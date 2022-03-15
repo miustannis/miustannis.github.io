@@ -57,7 +57,7 @@
     
     <title>
         
-            测试 | μe
+            站内搜索搭建完成 | μe
         
     </title>
     
@@ -190,7 +190,7 @@
     
     
       <div class="post-header"> 
-  <a class="post-header-title" href="/2022/03/15/1/">测试</a>
+  <a class="post-header-title" href="/2022/03/15/page/">站内搜索搭建完成</a>
   <div class="post-header-meta">
     <span>
       <span class="iconfont icon-calendar"></span>
@@ -218,25 +218,25 @@
       <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
       <ul class="mdui-menu" id="share_menu">
         <li class="mdui-menu-item">
-          <a href="http://service.weibo.com/share/share.php?appkey=&title=测试&url=http://miustannis.github.io/2022/03/15/1/&pic=http://miustannis.github.io/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=站内搜索搭建完成&url=http://miustannis.github.io/2022/03/15/page/&pic=http://miustannis.github.io/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
         </li>
         <li class="mdui-menu-item">
-          <a href="https://twitter.com/intent/tweet?text=测试&url=http://miustannis.github.io/2022/03/15/1/&via=miue" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+          <a href="https://twitter.com/intent/tweet?text=站内搜索搭建完成&url=http://miustannis.github.io/2022/03/15/page/&via=miue" target="_blank" class="mdui-ripple">分享到 Twitter</a>
         </li>
         <li class="mdui-menu-item">
-          <a href="https://www.facebook.com/sharer/sharer.php?u=http://miustannis.github.io/2022/03/15/1/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=http://miustannis.github.io/2022/03/15/page/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
         </li>
         <li class="mdui-menu-item">
-          <a href="https://plus.google.com/share?url=http://miustannis.github.io/2022/03/15/1/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+          <a href="https://plus.google.com/share?url=http://miustannis.github.io/2022/03/15/page/" target="_blank" class="mdui-ripple">分享到 Google+</a>
         </li>
         <li class="mdui-menu-item">
-          <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://miustannis.github.io/2022/03/15/1/&title=测试" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://miustannis.github.io/2022/03/15/page/&title=站内搜索搭建完成" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
         </li>
         <li class="mdui-menu-item">
-          <a href="http://connect.qq.com/widget/shareqq/index.html?site=μe&title=测试&summary=&pics=http://miustannis.github.io/null&url=http://miustannis.github.io/2022/03/15/1/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=μe&title=站内搜索搭建完成&summary=&pics=http://miustannis.github.io/null&url=http://miustannis.github.io/2022/03/15/page/" target="_blank" class="mdui-ripple">分享到 QQ</a>
         </li>
         <li class="mdui-menu-item">
-          <a href="https://telegram.me/share/url?url=http://miustannis.github.io/2022/03/15/1/&text=测试" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+          <a href="https://telegram.me/share/url?url=http://miustannis.github.io/2022/03/15/page/&text=站内搜索搭建完成" target="_blank" class="mdui-ripple">分享到 Telegram</a>
         </li>
       </ul>
     
@@ -248,8 +248,8 @@
   
   
   <div class="mdui-card-content mdui-typo mdui-p-x-4">
-    <p>​        展开阅读全文的功能好像出了点问题，然而我模电还没看，令人感叹，复制一大段话上来试试看。<del>杜甫少年时期有机会受到各种文化艺术的熏陶，这对他日后的诗歌创作有很大的影响。例如他五六岁时在河南郾城看过舞蹈家公孙大娘的剑器浑脱舞；后在洛阳尚善坊的岐王李范宅里，遵化里玄宗宠臣崔涤堂前，听过李龟年的歌声；在洛阳北邙山顶玄元皇帝庙里欣赏过画圣吴道子画的五圣尊容、千官行列，这在他以后的诗歌创作中都有所反映。当时社会名流崔尚、魏启心看到他习作的词赋，夸奖他有班固、扬雄之风。还有李邕、王翰这样的长辈也屈尊来访问他。</del></p>
-<p>​        改好了，现在做一下搜索的部分。</p>
+    <p>完成站内搜索功能相对还是比较简单的，但发现Hexo的本地搜索功能貌似并不含标题部分…<br>代码块如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  content: true</span><br><span class="line">  format: html</span><br></pre></td></tr></table></figure>
 
   </div>
   <!--文末结束语-->
@@ -262,14 +262,9 @@
   
   <nav>
     
-      <a rel="prev" class="post-nav-item mdui-float-left" href="/2022/03/15/page/">
-        <i class="iconfont icon-angle-left"></i>
-        <span>站内搜索搭建完成</span>
-      </a>
     
-    
-      <a rel="next" class="post-nav-item mdui-float-right" href="/2022/03/15/hello-world/">
-        <span>发布测试</span>
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2022/03/15/1/">
+        <span>测试</span>
         <i class="iconfont icon-angle-right"></i>
       </a>
     
@@ -283,7 +278,7 @@
     <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
     <ul class="mdui-menu" id="toc">
       <li class="mdui-menu-item">
-        <a href="/2022/03/15/1/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <a href="/2022/03/15/page/" id="toc-header" class="mdui-ripple">文章目录</a>
         
       </li>
     </ul>
