@@ -25,6 +25,28 @@
       </tags>
   </entry>
   <entry>
+    <title>社团内设计工作</title>
+    <url>/2022/03/16/202203161/</url>
+    <content><![CDATA[<p>翻了翻之前的文件夹，自己在在社团宣传部一年的作品好像并不是很多，但为什么我感觉做了很多（*゜ー゜*）</p>
+<p>首先是两个养老院的徽章，记得当时是在画第一个徽章的过程中错删了一个图层，然后碰巧搞出了一个镂空的效果，感觉还不错，就在第二个徽章里故技重施了一下，然后没有原来的效果了。。。<br><img src="/2022/03/16/202203161/4.PNG"></p>
+<p><img src="/2022/03/16/202203161/5.PNG"></p>
+<p>然后是大二上学期的一次活动海报设计，改了挺多版的。。。</p>
+<p><img src="/2022/03/16/202203161/7.png"><br>就没了就</p>
+]]></content>
+      <categories>
+        <category>胡涂涂</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>发布测试</title>
+    <url>/2022/03/15/hello-world/</url>
+    <content><![CDATA[<p>看似是第一篇blog，其实是第二篇，建站之后做了大量的翻新。。</p>
+]]></content>
+      <categories>
+        <category>建站过程</category>
+      </categories>
+  </entry>
+  <entry>
     <title>站内搜索搭建完成</title>
     <url>/2022/03/15/page/</url>
     <content><![CDATA[<p>完成站内搜索功能相对还是比较简单的，但发现<strong>Hexo</strong>的本地搜索功能貌似并不含标题部分…<br>在根目录的 <code>_config.yml</code>文件中<br>添置如下代码块：</p>
@@ -37,27 +59,5 @@
       <tags>
         <tag>伪学习</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>发布测试</title>
-    <url>/2022/03/15/hello-world/</url>
-    <content><![CDATA[<p>看似是第一篇blog，其实是第二篇，建站之后做了大量的翻新。。</p>
-]]></content>
-      <categories>
-        <category>建站过程</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>社团内设计工作</title>
-    <url>/2022/03/16/202203161/</url>
-    <content><![CDATA[<p>翻了翻之前的文件夹，自己在在社团宣传部一年的作品好像并不是很多，但为什么我感觉做了很多（*゜ー゜*）</p>
-<p>首先是两个养老院的徽章，记得当时是在画第一个徽章的过程中错删了一个图层，然后碰巧搞出了一个镂空的效果，感觉还不错，就在第二个徽章里故技重施了一下，然后没有原来的效果了。。。<br><img src="/2022/03/16/202203161/4.PNG"></p>
-<p><img src="/2022/03/16/202203161/5.PNG"></p>
-<p>然后是大二上学期的一次活动海报设计，改了挺多版的。。。</p>
-<p><img src="/2022/03/16/202203161/7.png"><br>就没了就</p>
-]]></content>
-      <categories>
-        <category>胡涂涂</category>
-      </categories>
   </entry>
 </search>
