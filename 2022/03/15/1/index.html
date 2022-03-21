@@ -291,6 +291,42 @@
 
 
 
+    <div id="comment" class="mdui-card mdui-p-a-2 mdui-m-b-5">
+      <div class="mdui-tab" mdui-tab>
+        
+          <a href="#comment-tab0" class="mdui-ripple">valine</a>
+        
+      </div>
+      
+        <div id="comment-tab0" class="mdui-p-a-2">
+          <div id="vcomments"></div>
+<script src="//cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var guest_info = ''.split(',').filter(function (item) {
+    return GUEST_INFO.indexOf(item) > -1;
+  });
+  var notify = '' === 'true';
+  var verify = 'false' === 'true';
+  new Valine({
+    el: '#vcomments',
+    notify: notify,
+    verify: verify,
+    appId: '6AnyA8EwvCfQb6Ckn0V2EEK4-gzGzoHsz',
+    appKey: '6w7PSV85migqtx9SjlVV7WfJ',
+    placeholder: 'hello',
+    pageSize: '10',
+    avatar: 'monsterid',
+    lang: '',
+    guest_info: guest_info
+  });
+</script>
+        </div>
+      
+    </div>
+
   </main>
   <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
   <div class="mdui-container">
