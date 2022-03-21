@@ -1,10 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>传几幅画</title>
+    <url>/2022/03/16/20220316/</url>
+    <content><![CDATA[<p>几张去年暑假的<strong>procreate</strong>作品<br>好久不画画了（。_ 。）</p>
+<center>
+
+<p><img src="/2022/03/16/20220316/test.jpg" title="moonrise"></p>
+<p><img src="/2022/03/16/20220316/1.jpg" title="sodaydream"></p>
+<p><img src="/2022/03/16/20220316/3.jpg" title="crowded"></p>
+</center>]]></content>
+      <categories>
+        <category>胡涂涂</category>
+      </categories>
+      <tags>
+        <tag>摸鱼</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>测试</title>
     <url>/2022/03/15/1/</url>
     <content><![CDATA[<p>​        展开阅读全文的功能好像出了点问题，然而我模电还没看，令人感叹，复制一大段话上来试试看。<del>杜甫少年时期有机会受到各种文化艺术的熏陶，这对他日后的诗歌创作有很大的影响。例如他五六岁时在河南郾城看过舞蹈家公孙大娘的剑器浑脱舞；后在洛阳尚善坊的岐王李范宅里，遵化里玄宗宠臣崔涤堂前，听过李龟年的歌声；在洛阳北邙山顶玄元皇帝庙里欣赏过画圣吴道子画的五圣尊容、千官行列，这在他以后的诗歌创作中都有所反映。当时社会名流崔尚、魏启心看到他习作的词赋，夸奖他有班固、扬雄之风。还有李邕、王翰这样的长辈也屈尊来访问他。</del></p>
 <p>​        改好了，现在做一下搜索的部分。</p>
+]]></content>
+      <categories>
+        <category>建站过程</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>发布测试</title>
+    <url>/2022/03/15/hello-world/</url>
+    <content><![CDATA[<p>看似是第一篇blog，其实是第二篇，建站之后做了大量的翻新。。</p>
 ]]></content>
       <categories>
         <category>建站过程</category>
@@ -35,30 +61,18 @@
       </categories>
   </entry>
   <entry>
-    <title>传几幅画</title>
-    <url>/2022/03/16/20220316/</url>
-    <content><![CDATA[<p>几张去年暑假的<strong>procreate</strong>作品<br>好久不画画了（。_ 。）</p>
-<center>
-
-<p><img src="/2022/03/16/20220316/test.jpg" title="moonrise"></p>
-<p><img src="/2022/03/16/20220316/1.jpg" title="sodaydream"></p>
-<p><img src="/2022/03/16/20220316/3.jpg" title="crowded"></p>
-</center>]]></content>
-      <categories>
-        <category>胡涂涂</category>
-      </categories>
-      <tags>
-        <tag>摸鱼</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>发布测试</title>
-    <url>/2022/03/15/hello-world/</url>
-    <content><![CDATA[<p>看似是第一篇blog，其实是第二篇，建站之后做了大量的翻新。。</p>
+    <title>站内搜索搭建完成</title>
+    <url>/2022/03/15/page/</url>
+    <content><![CDATA[<p>完成站内搜索功能相对还是比较简单的，但发现<strong>Hexo</strong>的本地搜索功能貌似并不含标题部分…<br>在根目录的 <code>_config.yml</code>文件中<br>添置如下代码块：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  content: true</span><br><span class="line">  format: html</span><br></pre></td></tr></table></figure>
+<p>之后在对应主题的<code>_config.yml</code>文件将相关值设置为<strong>true</strong>即可。</p>
 ]]></content>
       <categories>
         <category>建站过程</category>
       </categories>
+      <tags>
+        <tag>伪学习</tag>
+      </tags>
   </entry>
   <entry>
     <title>插入图片(并居中)</title>
@@ -70,25 +84,11 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">![](1/image.jpg)</span><br></pre></td></tr></table></figure>
 <h1 id="更改相对位置"><a href="#更改相对位置" class="headerlink" title="更改相对位置"></a>更改相对位置</h1><p>但这种方法在PC端有一个默认的问题就是图片插入后会自动左对齐，想要实现居中对齐，可以在<strong>markdown</strong>引用代码外部添加<strong>centre</strong>元素，或者直接添加<strong>html</strong>元素，如下所示：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;center&gt;</span><br><span class="line"></span><br><span class="line">![...](xxx)</span><br><span class="line"></span><br><span class="line">&lt;/center&gt;</span><br><span class="line"></span><br><span class="line">#or</span><br><span class="line"></span><br><span class="line">&lt;div align=center&gt;</span><br><span class="line"></span><br><span class="line">![...](xxx)</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<p>(因为我用Vscode来打开博客的md文件进行编辑，在上传至本地网页时一开始发现图片无法加载，后来排查得出居中命令代码间的空行是必要的，有点<strong>Latex</strong>的感觉了，不知道其他编辑器是否有这样的问题。)</p>
+<p>(因为我用VScode来打开博客的md文件进行编辑，在上传至本地网页时一开始发现图片无法加载，后来排查得出居中命令代码间的空行是必要的，有点<strong>Latex</strong>的感觉了，不知道其他编辑器是否有这样的问题。)</p>
 <p>还可以直接修改<strong>css</strong>文件，因为<strong>markdown</strong>插入图片的代码在最终渲染的时候变为<strong>html</strong>中的<strong>img</strong>元素。因此可以直接去博客主题文件的源代码中，找到控制文章内图片显示样式的<strong>css</strong>代码，将其修改成水平居中即可。前端编程中修改水平居中的方法非常多，以下是网上资源中提供的其中一种：</p>
 <p>一般情况下，我们可以在<strong>hexo</strong>博客文件夹进入到主题模板的<code>themes-&gt;(主题名称文件夹)-&gt;source-&gt;css-&gt;_partial</code>中，找到<code>post.styl</code>文件，该<strong>post</strong>文件中保存的就是文章详情页里面的显示样式。然后找到里面正确的<strong>img</strong>元素，修改其样式，增加<code>margin 0 auto</code>这行代码即可。如下:</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.post-content</span><br><span class="line">    position relative</span><br><span class="line">    color c-666</span><br><span class="line">    img</span><br><span class="line">      max-width 100%</span><br><span class="line">      cursor pointer</span><br><span class="line">      display block </span><br><span class="line">      margin 0 auto</span><br></pre></td></tr></table></figure>
-<p>然后可以实现了。但我在自己使用的主题中并没有找到相关语段，由于技术力的拉跨，我决定还是先老实用前两种吧。</p>
-]]></content>
-      <categories>
-        <category>建站过程</category>
-      </categories>
-      <tags>
-        <tag>伪学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>站内搜索搭建完成</title>
-    <url>/2022/03/15/page/</url>
-    <content><![CDATA[<p>完成站内搜索功能相对还是比较简单的，但发现<strong>Hexo</strong>的本地搜索功能貌似并不含标题部分…<br>在根目录的 <code>_config.yml</code>文件中<br>添置如下代码块：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  content: true</span><br><span class="line">  format: html</span><br></pre></td></tr></table></figure>
-<p>之后在对应主题的<code>_config.yml</code>文件将相关值设置为<strong>true</strong>即可。</p>
+<p>然后可以实现了。但我在自己使用的主题中并没有找到相关语段，由于技术力拉跨，我决定还是先老实用前两种吧。</p>
 ]]></content>
       <categories>
         <category>建站过程</category>
