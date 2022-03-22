@@ -11,6 +11,23 @@
       </categories>
   </entry>
   <entry>
+    <title>传几幅画</title>
+    <url>/2022/03/16/20220316/</url>
+    <content><![CDATA[<p>几张去年暑假的<strong>procreate</strong>作品<br>好久不画画了（。_ 。）</p>
+<center>
+
+<p><img src="/2022/03/16/20220316/test.jpg" title="moonrise"></p>
+<p><img src="/2022/03/16/20220316/1.jpg" title="sodaydream"></p>
+<p><img src="/2022/03/16/20220316/3.jpg" title="crowded"></p>
+</center>]]></content>
+      <categories>
+        <category>胡涂涂</category>
+      </categories>
+      <tags>
+        <tag>摸鱼</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>社团内设计工作</title>
     <url>/2022/03/16/202203161/</url>
     <content><![CDATA[<p>翻了翻之前的文件夹，自己在在社团宣传部一年的作品好像并不是很多，但为什么我感觉做了很多（*゜ー゜*）</p>
@@ -35,21 +52,27 @@
       </categories>
   </entry>
   <entry>
-    <title>传几幅画</title>
-    <url>/2022/03/16/20220316/</url>
-    <content><![CDATA[<p>几张去年暑假的<strong>procreate</strong>作品<br>好久不画画了（。_ 。）</p>
-<center>
-
-<p><img src="/2022/03/16/20220316/test.jpg" title="moonrise"></p>
-<p><img src="/2022/03/16/20220316/1.jpg" title="sodaydream"></p>
-<p><img src="/2022/03/16/20220316/3.jpg" title="crowded"></p>
-</center>]]></content>
+    <title>站内搜索搭建完成</title>
+    <url>/2022/03/15/page/</url>
+    <content><![CDATA[<p>完成站内搜索功能相对还是比较简单的，但发现<strong>Hexo</strong>的本地搜索功能貌似并不含标题部分…<br>在根目录的 <code>_config.yml</code>文件中<br>添置如下代码块：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  content: true</span><br><span class="line">  format: html</span><br></pre></td></tr></table></figure>
+<p>之后在对应主题的<code>_config.yml</code>文件将相关值设置为<strong>true</strong>即可。</p>
+]]></content>
       <categories>
-        <category>胡涂涂</category>
+        <category>建站过程</category>
       </categories>
       <tags>
-        <tag>摸鱼</tag>
+        <tag>伪学习</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>发布测试</title>
+    <url>/2022/03/15/hello-world/</url>
+    <content><![CDATA[<p>看似是第一篇blog，其实是第二篇，建站之后做了大量的翻新。。</p>
+]]></content>
+      <categories>
+        <category>建站过程</category>
+      </categories>
   </entry>
   <entry>
     <title>插入图片(并居中)</title>
@@ -75,15 +98,6 @@
       </tags>
   </entry>
   <entry>
-    <title>发布测试</title>
-    <url>/2022/03/15/hello-world/</url>
-    <content><![CDATA[<p>看似是第一篇blog，其实是第二篇，建站之后做了大量的翻新。。</p>
-]]></content>
-      <categories>
-        <category>建站过程</category>
-      </categories>
-  </entry>
-  <entry>
     <title>评论测试</title>
     <url>/2022/03/21/comm/</url>
     <content><![CDATA[<p>总体来说是Valine 评论系统与 LeanCloud 的结合应用<br>(套套模板)<br>此帖为测试帖</p>
@@ -91,19 +105,5 @@
       <categories>
         <category>建站过程</category>
       </categories>
-  </entry>
-  <entry>
-    <title>站内搜索搭建完成</title>
-    <url>/2022/03/15/page/</url>
-    <content><![CDATA[<p>完成站内搜索功能相对还是比较简单的，但发现<strong>Hexo</strong>的本地搜索功能貌似并不含标题部分…<br>在根目录的 <code>_config.yml</code>文件中<br>添置如下代码块：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  content: true</span><br><span class="line">  format: html</span><br></pre></td></tr></table></figure>
-<p>之后在对应主题的<code>_config.yml</code>文件将相关值设置为<strong>true</strong>即可。</p>
-]]></content>
-      <categories>
-        <category>建站过程</category>
-      </categories>
-      <tags>
-        <tag>伪学习</tag>
-      </tags>
   </entry>
 </search>
