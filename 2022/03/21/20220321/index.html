@@ -323,10 +323,10 @@
 <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
 <script>
   var GUEST_INFO = ['nick', 'mail', 'link'];
-  var guest_info = ''.split(',').filter(function (item) {
+  var guest_info = 'nick,mail'.split(',').filter(function (item) {
     return GUEST_INFO.indexOf(item) > -1;
   });
-  var notify = '' === 'true';
+  var notify = 'false' === 'true';
   var verify = 'false' === 'true';
   new Valine({
     el: '#vcomments',
@@ -335,8 +335,8 @@
     appId: '6AnyA8EwvCfQb6Ckn0V2EEK4-gzGzoHsz',
     appKey: '6w7PSV85migqtx9SjlVV7WfJ',
     placeholder: 'hello',
-    pageSize: '10',
-    avatar: 'monsterid',
+    pageSize: '8',
+    avatar: 'mp',
     lang: '',
     guest_info: guest_info
   });
