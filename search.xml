@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>测试</title>
-    <url>/2022/03/15/1/</url>
-    <content><![CDATA[<p>​        展开阅读全文的功能好像出了点问题，然而我模电还没看，令人感叹，复制一大段话上来试试看。<del>杜甫少年时期有机会受到各种文化艺术的熏陶，这对他日后的诗歌创作有很大的影响。例如他五六岁时在河南郾城看过舞蹈家公孙大娘的剑器浑脱舞；后在洛阳尚善坊的岐王李范宅里，遵化里玄宗宠臣崔涤堂前，听过李龟年的歌声；在洛阳北邙山顶玄元皇帝庙里欣赏过画圣吴道子画的五圣尊容、千官行列，这在他以后的诗歌创作中都有所反映。当时社会名流崔尚、魏启心看到他习作的词赋，夸奖他有班固、扬雄之风。还有李邕、王翰这样的长辈也屈尊来访问他。</del></p>
-<p>​        改好了，现在做一下搜索的部分。</p>
-]]></content>
-      <categories>
-        <category>建站过程</category>
-      </categories>
-  </entry>
-  <entry>
     <title>传几幅画</title>
     <url>/2022/03/16/20220316/</url>
     <content><![CDATA[<p>几张去年暑假的<strong>procreate</strong>作品<br>好久不画画了（。_ 。）</p>
@@ -48,6 +38,16 @@
 ]]></content>
       <categories>
         <category>胡涂涂</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>测试</title>
+    <url>/2022/03/15/1/</url>
+    <content><![CDATA[<p>​        展开阅读全文的功能好像出了点问题，然而我模电还没看，令人感叹，复制一大段话上来试试看。<del>杜甫少年时期有机会受到各种文化艺术的熏陶，这对他日后的诗歌创作有很大的影响。例如他五六岁时在河南郾城看过舞蹈家公孙大娘的剑器浑脱舞；后在洛阳尚善坊的岐王李范宅里，遵化里玄宗宠臣崔涤堂前，听过李龟年的歌声；在洛阳北邙山顶玄元皇帝庙里欣赏过画圣吴道子画的五圣尊容、千官行列，这在他以后的诗歌创作中都有所反映。当时社会名流崔尚、魏启心看到他习作的词赋，夸奖他有班固、扬雄之风。还有李邕、王翰这样的长辈也屈尊来访问他。</del></p>
+<p>​        改好了，现在做一下搜索的部分。</p>
+]]></content>
+      <categories>
+        <category>建站过程</category>
       </categories>
   </entry>
   <entry>
@@ -89,6 +89,24 @@
       </tags>
   </entry>
   <entry>
+    <title>评论测试</title>
+    <url>/2022/03/21/comm/</url>
+    <content><![CDATA[<p>总体来说是Valine 评论系统与 LeanCloud 的结合应用<br>(套套模板)<br>此帖为测试帖</p>
+]]></content>
+      <categories>
+        <category>建站过程</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>发布测试</title>
+    <url>/2022/03/15/hello-world/</url>
+    <content><![CDATA[<p>看似是第一篇blog，其实是第二篇，建站之后做了大量的翻新。。</p>
+]]></content>
+      <categories>
+        <category>建站过程</category>
+      </categories>
+  </entry>
+  <entry>
     <title>深度学习笔记</title>
     <url>/2022/04/01/20220401/</url>
     <content><![CDATA[<p>准备从头看《Python神经网络编程》（艰苦的调试经历让我抛弃了一口吃成一个胖子的念头）,老外的书里面总是有很多鼓励性的话语，即使是在一些专业性比较强的书籍里。</p>
@@ -99,15 +117,6 @@
       <tags>
         <tag>伪学习</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>发布测试</title>
-    <url>/2022/03/15/hello-world/</url>
-    <content><![CDATA[<p>看似是第一篇blog，其实是第二篇，建站之后做了大量的翻新。。</p>
-]]></content>
-      <categories>
-        <category>建站过程</category>
-      </categories>
   </entry>
   <entry>
     <title>站内搜索搭建完成</title>
@@ -122,14 +131,5 @@
       <tags>
         <tag>伪学习</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>评论测试</title>
-    <url>/2022/03/21/comm/</url>
-    <content><![CDATA[<p>总体来说是Valine 评论系统与 LeanCloud 的结合应用<br>(套套模板)<br>此帖为测试帖</p>
-]]></content>
-      <categories>
-        <category>建站过程</category>
-      </categories>
   </entry>
 </search>
