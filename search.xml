@@ -74,30 +74,6 @@
       </tags>
   </entry>
   <entry>
-    <title>一点网络摘录</title>
-    <url>/2022/03/23/20220323/</url>
-    <content><![CDATA[<h1 id="后来发现这种论调有点幼稚且理想化"><a href="#后来发现这种论调有点幼稚且理想化" class="headerlink" title="后来发现这种论调有点幼稚且理想化"></a>后来发现这种论调有点幼稚且理想化</h1><p>原文出自B站up主<code>@Zhan l</code>在2022年3月19日发布的视频中的台词，在一众疫情影响下的大学生群体声音中显得尤为清澈。虽然他的视频起点是吐槽电影院的一些不合理的管理措施，口吻戏谑，但最后着实能提供一些启迪与思考。</p>
-<p>以下为原文：</p>
-<p>“说到这里，我想起了最近的一个说法，叫‘我被疫情偷走了两年青春’，刚看到这个时，我也难免失落难过，但我后来想到，如果放在历史的时间轴上看，每一代人，在其年轻时刻，都要面临相应的挑战，我们在疫情中完成了学业，就好像那些在历史的任一巨变时刻成长起来的年轻人一样。我在挑战中变化，在挑战中成长，我的足迹虽然被限制，但精神不会，我学会了更安静地倾听他人，我学会了更细致地观察生活，我学会了打开镜头，讲述自己的故事，来与各位见面。</p>
-<p>所以我个人觉得，青春是偷不走的，青春不是非要完成某些同质化的仪式，青春可能不是非要去旅游、蹦极、坐热气球，青春的是我，我在这个年纪相遇的一切，都是青春。”</p>
-]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-      <tags>
-        <tag>拾贝</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>评论测试</title>
-    <url>/2022/03/21/comm/</url>
-    <content><![CDATA[<p>总体来说是Valine 评论系统与 LeanCloud 的结合应用<br>(套套模板)<br>此帖为测试帖</p>
-]]></content>
-      <categories>
-        <category>建站过程</category>
-      </categories>
-  </entry>
-  <entry>
     <title>深度学习笔记</title>
     <url>/2022/04/01/20220401/</url>
     <content><![CDATA[<p>准备从头看《Python神经网络编程》（艰苦的调试经历让我抛弃了一口吃成一个胖子的念头）,老外的书里面总是有很多鼓励性的话语，即使是在一些专业性比较强的书籍里。</p>
@@ -122,14 +98,5 @@
       <tags>
         <tag>伪学习</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>发布测试</title>
-    <url>/2024/08/30/hello-world/</url>
-    <content><![CDATA[<p>看似是第一篇blog，其实是第二篇，建站之后做了大量的翻新。。</p>
-]]></content>
-      <categories>
-        <category>建站过程</category>
-      </categories>
   </entry>
 </search>
