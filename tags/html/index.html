@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="标签: html, Miao">
-    <meta name="description" content="">
+    <meta name="description" content="silence">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -123,7 +123,7 @@
         <div class="logo-name">Miao</div>
         <div class="logo-desc">
             
-            Never really desperate, only the lost of the soul.
+            silence
             
         </div>
     </div>
@@ -206,13 +206,24 @@
         <div class="brand">
             <div class="title center-align">
                 
-                普通青年
+                A CORNER OF MY WORLD
                 
             </div>
 
             <div class="description center-align">
                 
-                    
+                <span id="subtitle"></span>
+                <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+                <script>
+                    var typed = new Typed("#subtitle", {
+                        strings: ['相聚是如此之偶然，以至于现实在成为回忆之前，反而显得不真实','We seperate，we reunion，we condole，we celebrate'],
+                        startDelay: 300,
+                        typeSpeed: 200,
+                        loop: true,
+                        backSpeed: 50,
+                        showCursor: false
+                    });
+                </script>
                 
             </div>
         </div>
@@ -252,10 +263,19 @@
                 </a>
                 
                 
-                <a href="/tags/html/" title="html: 2">
+                <a href="/tags/html/" title="html: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-active "
                             data-tagname="html" style="background-color: #F5EEF8;">html
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/yaml/" title="yaml: 2">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="yaml" style="background-color: #D5F5E3;">yaml
                         <span class="tag-length">2</span>
                     </span>
                 </a>
@@ -271,13 +291,12 @@
         <div class="row tags-posts">
             
             
-            <div class="article tag-post col s12 m6 l4" data-tags="html" data-aos="fade-up">
+            <div class="article tag-post col s12 m6 l4" data-tags="html, yaml" data-aos="fade-up">
                 <div class="card">
                     <a href="/2022/03/21/20220321/">
                         <div class="card-image tag-image">
                             
-                            
-                            <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="插入图片(并居中)">
+                            <img src="/images/1.png" class="responsive-img" alt="插入图片(并居中)">
                             
                             <span class="card-title">插入图片(并居中)</span>
                         </div>
@@ -286,38 +305,6 @@
                         <div class="publish-info">
                             <span class="publish-date">
                                 <i class="far fa-clock fa-fw icon-date"></i>2022-03-21
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%BB%BA%E7%AB%99%E8%BF%87%E7%A8%8B/" class="post-category">
-                                建站过程
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            
-            <div class="article tag-post col s12 m6 l4" data-tags="html" data-aos="fade-up">
-                <div class="card">
-                    <a href="/2022/03/15/page/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="站内搜索搭建完成">
-                            
-                            <span class="card-title">站内搜索搭建完成</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-15
                             </span>
                             <span class="publish-author">
                                 
@@ -579,6 +566,8 @@ $(function () {
 
     
 
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
     
 
     
