@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>网站启用测试</title>
-    <url>/2022/03/14/1/</url>
-    <content><![CDATA[<p>支持站内文字搜索</p>
-<p>支持代码块植入</p>
-<p>支持评论系统（目前已关闭）</p>
-<p>[来自后期补丁]</p>
-]]></content>
-      <categories>
-        <category>建站过程</category>
-      </categories>
-  </entry>
-  <entry>
     <title>procreate绘画-Moonrise</title>
     <url>/2022/03/16/20220316/</url>
     <content><![CDATA[<center>
@@ -28,40 +16,16 @@
       </tags>
   </entry>
   <entry>
-    <title>站内搜索搭建完成</title>
-    <url>/2022/03/15/page/</url>
-    <content><![CDATA[<p>完成站内搜索功能相对还是比较简单的，但发现<strong>Hexo</strong>的本地搜索功能貌似并不含标题部分…<br>在根目录的 <code>_config.yml</code>文件中<br>添置如下代码块：</p>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html">search:
-  path: search.xml
-  field: post
-  content: true
-  format: html<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>之后在对应主题的<code>_config.yml</code>文件将相关值设置为<strong>true</strong>即可。</p>
+    <title>网站启用测试</title>
+    <url>/2022/03/14/1/</url>
+    <content><![CDATA[<p>支持站内文字搜索</p>
+<p>支持代码块植入</p>
+<p>支持评论系统（目前已关闭）</p>
+<p>[来自后期补丁]</p>
 ]]></content>
       <categories>
         <category>建站过程</category>
       </categories>
-      <tags>
-        <tag>yaml</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>西南风光</title>
-    <url>/2024/09/16/%E8%A5%BF%E5%8D%97%E9%A3%8E%E5%85%89/</url>
-    <content><![CDATA[<p>2024年8月</p>
-<p>fine  journey 稍纵即逝</p>
-<center>
-    <img src="/2024/09/16/%E8%A5%BF%E5%8D%97%E9%A3%8E%E5%85%89/贵州.png" width="1200">
-</center>
-
-
-]]></content>
-      <categories>
-        <category>闲散</category>
-      </categories>
-      <tags>
-        <tag>摄影</tag>
-      </tags>
   </entry>
   <entry>
     <title>procreate社团设计3例</title>
@@ -126,8 +90,45 @@
         <category>建站过程</category>
       </categories>
       <tags>
-        <tag>yaml</tag>
         <tag>html</tag>
+        <tag>yaml</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>站内搜索搭建完成</title>
+    <url>/2022/03/15/page/</url>
+    <content><![CDATA[<p>完成站内搜索功能相对还是比较简单的，但发现<strong>Hexo</strong>的本地搜索功能貌似并不含标题部分…<br>在根目录的 <code>_config.yml</code>文件中<br>添置如下代码块：</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html">search:
+  path: search.xml
+  field: post
+  content: true
+  format: html<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>之后在对应主题的<code>_config.yml</code>文件将相关值设置为<strong>true</strong>即可。</p>
+]]></content>
+      <categories>
+        <category>建站过程</category>
+      </categories>
+      <tags>
+        <tag>yaml</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>西南风光</title>
+    <url>/2024/09/16/%E8%A5%BF%E5%8D%97%E9%A3%8E%E5%85%89/</url>
+    <content><![CDATA[<p>2024年8月</p>
+<p>fine  journey 稍纵即逝</p>
+<center>
+    <img src="/2024/09/16/%E8%A5%BF%E5%8D%97%E9%A3%8E%E5%85%89/贵州.webp" width="1200">
+</center>
+
+
+
+]]></content>
+      <categories>
+        <category>闲散</category>
+      </categories>
+      <tags>
+        <tag>摄影</tag>
       </tags>
   </entry>
 </search>
