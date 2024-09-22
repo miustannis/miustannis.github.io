@@ -101,6 +101,24 @@
       </tags>
   </entry>
   <entry>
+    <title>站内搜索搭建完成</title>
+    <url>/2022/03/15/page/</url>
+    <content><![CDATA[<p>完成站内搜索功能相对还是比较简单的，但发现<strong>Hexo</strong>的本地搜索功能貌似并不含标题部分…<br>在根目录的 <code>_config.yml</code>文件中<br>添置如下代码块：</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html">search:
+  path: search.xml
+  field: post
+  content: true
+  format: html<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>之后在对应主题的<code>_config.yml</code>文件将相关值设置为<strong>true</strong>即可。</p>
+]]></content>
+      <categories>
+        <category>建站过程</category>
+      </categories>
+      <tags>
+        <tag>yaml</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>寒山寺闲逛</title>
     <url>/2023/12/16/%E5%AF%92%E5%B1%B1%E5%AF%BA%E9%97%B2%E9%80%9B/</url>
     <content><![CDATA[<p>有《枫桥夜泊》钟声的加持，也算名气不小的景点<br>实际乏善可陈，没什么特点</p>
@@ -124,21 +142,25 @@
       </tags>
   </entry>
   <entry>
-    <title>站内搜索搭建完成</title>
-    <url>/2022/03/15/page/</url>
-    <content><![CDATA[<p>完成站内搜索功能相对还是比较简单的，但发现<strong>Hexo</strong>的本地搜索功能貌似并不含标题部分…<br>在根目录的 <code>_config.yml</code>文件中<br>添置如下代码块：</p>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html">search:
-  path: search.xml
-  field: post
-  content: true
-  format: html<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>之后在对应主题的<code>_config.yml</code>文件将相关值设置为<strong>true</strong>即可。</p>
+    <title>观影《遗愿清单》</title>
+    <url>/2024/09/22/%E8%A7%82%E5%BD%B1%E3%80%8A%E9%81%97%E6%84%BF%E6%B8%85%E5%8D%95%E3%80%8B/</url>
+    <content><![CDATA[<p>《遗愿清单》 《The Bucket List》</p>
+<p>平静的叙事，温情的旁白，朴素的关怀，对于死亡这个议题，怎么讨论都不为多</p>
+<center>
+<img src="/images/thebucketlist.webp" style="zoom:40%;">
+</center>
+
+
+<p>豆瓣链接 <a href="https://movie.douban.com/subject/1867345/">遗愿清单</a></p>
+<p><strong>“Our lives are streams, flowing into the same river, towards whatever heaven lies in the mist beyond the falls.”</strong></p>
+<p><strong>“Even now, I can’t claim to understand the measure of a life. But I can tell you this, I know that when he died, his eyes were closed, and his heart was open. And I’m pretty sure he was happy with his final resting place, because he was buried on the mountain, and that was against the law.”</strong></p>
+<p>we shall find the joy in our life and bring some joy to one another’s lives.</p>
 ]]></content>
       <categories>
-        <category>建站过程</category>
+        <category>闲散</category>
       </categories>
       <tags>
-        <tag>yaml</tag>
+        <tag>观影</tag>
       </tags>
   </entry>
   <entry>
