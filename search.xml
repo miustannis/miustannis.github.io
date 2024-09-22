@@ -31,6 +31,24 @@
       </tags>
   </entry>
   <entry>
+    <title>站内搜索搭建</title>
+    <url>/2022/03/15/page/</url>
+    <content><![CDATA[<p>完成站内搜索功能相对还是比较简单的，但发现<strong>Hexo</strong>的本地搜索功能貌似并不含标题部分…<br>在根目录的 <code>_config.yml</code>文件中<br>添置如下代码块：</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html">search:
+  path: search.xml
+  field: post
+  content: true
+  format: html<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>之后在对应主题的<code>_config.yml</code>文件将相关值设置为<strong>true</strong>即可。</p>
+]]></content>
+      <categories>
+        <category>建站过程</category>
+      </categories>
+      <tags>
+        <tag>yaml</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>procreate社团设计x3</title>
     <url>/2022/03/16/202203161/</url>
     <content><![CDATA[<p>翻了翻之前的文件夹，自己在在社团宣传部一年好像也没什么创作成果</p>
@@ -97,26 +115,8 @@
         <category>建站过程</category>
       </categories>
       <tags>
+        <tag>yaml</tag>
         <tag>html</tag>
-        <tag>yaml</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>站内搜索搭建</title>
-    <url>/2022/03/15/page/</url>
-    <content><![CDATA[<p>完成站内搜索功能相对还是比较简单的，但发现<strong>Hexo</strong>的本地搜索功能貌似并不含标题部分…<br>在根目录的 <code>_config.yml</code>文件中<br>添置如下代码块：</p>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html">search:
-  path: search.xml
-  field: post
-  content: true
-  format: html<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>之后在对应主题的<code>_config.yml</code>文件将相关值设置为<strong>true</strong>即可。</p>
-]]></content>
-      <categories>
-        <category>建站过程</category>
-      </categories>
-      <tags>
-        <tag>yaml</tag>
       </tags>
   </entry>
   <entry>
