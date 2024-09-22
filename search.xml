@@ -13,7 +13,7 @@
       </categories>
   </entry>
   <entry>
-    <title>procreate绘画-Moonrise</title>
+    <title>procreate绘画x1</title>
     <url>/2022/03/16/20220316/</url>
     <content><![CDATA[<center>
 <img src="/images/3.webp" style="zoom:80%;">
@@ -21,6 +21,7 @@
 
 
 <center>
+
 </center></center>]]></content>
       <categories>
         <category>闲散</category>
@@ -30,7 +31,7 @@
       </tags>
   </entry>
   <entry>
-    <title>procreate社团设计3例</title>
+    <title>procreate社团设计x3</title>
     <url>/2022/03/16/202203161/</url>
     <content><![CDATA[<p>翻了翻之前的文件夹，自己在在社团宣传部一年好像也没什么创作成果</p>
 <p>首先是两个养老院的徽章，记得当时是在画第一个徽章的过程中错删了一个图层，然后碰巧搞出了一个镂空的效果，感觉还不错，就在第二个徽章里故技重施了一下，但没有原来的效果了</p>
@@ -101,7 +102,7 @@
       </tags>
   </entry>
   <entry>
-    <title>站内搜索搭建完成</title>
+    <title>站内搜索搭建</title>
     <url>/2022/03/15/page/</url>
     <content><![CDATA[<p>完成站内搜索功能相对还是比较简单的，但发现<strong>Hexo</strong>的本地搜索功能貌似并不含标题部分…<br>在根目录的 <code>_config.yml</code>文件中<br>添置如下代码块：</p>
 <pre class="line-numbers language-html" data-language="html"><code class="language-html">search:
@@ -142,28 +143,6 @@
       </tags>
   </entry>
   <entry>
-    <title>观影《遗愿清单》</title>
-    <url>/2024/09/22/%E8%A7%82%E5%BD%B1%E3%80%8A%E9%81%97%E6%84%BF%E6%B8%85%E5%8D%95%E3%80%8B/</url>
-    <content><![CDATA[<p>《遗愿清单》 《The Bucket List》</p>
-<p>平静的叙事，温情的旁白，朴素的关怀，对于死亡这个议题，怎么讨论都不为多</p>
-<center>
-<img src="/images/thebucketlist.webp" style="zoom:40%;">
-</center>
-
-
-<p>豆瓣链接 <a href="https://movie.douban.com/subject/1867345/">遗愿清单</a></p>
-<p><strong>“Our lives are streams, flowing into the same river, towards whatever heaven lies in the mist beyond the falls.”</strong></p>
-<p><strong>“Even now, I can’t claim to understand the measure of a life. But I can tell you this, I know that when he died, his eyes were closed, and his heart was open. And I’m pretty sure he was happy with his final resting place, because he was buried on the mountain, and that was against the law.”</strong></p>
-<p>we shall find the joy in our life and bring some joy to one another’s lives.</p>
-]]></content>
-      <categories>
-        <category>闲散</category>
-      </categories>
-      <tags>
-        <tag>观影</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>西南风光</title>
     <url>/2024/09/16/%E8%A5%BF%E5%8D%97%E9%A3%8E%E5%85%89/</url>
     <content><![CDATA[<p>2024年8月</p>
@@ -194,6 +173,28 @@
       </categories>
       <tags>
         <tag>摄影</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>观影《遗愿清单》</title>
+    <url>/2024/09/22/%E8%A7%82%E5%BD%B1%E3%80%8A%E9%81%97%E6%84%BF%E6%B8%85%E5%8D%95%E3%80%8B/</url>
+    <content><![CDATA[<p>《遗愿清单》 《The Bucket List》</p>
+<p>平静的叙事，温情的旁白，朴素的关怀，对于死亡这个议题，怎么讨论都不为多</p>
+<center>
+<img src="/images/thebucketlist.webp" style="zoom:40%;">
+</center>
+
+
+<p>豆瓣链接 <a href="https://movie.douban.com/subject/1867345/">遗愿清单</a></p>
+<p><strong>“Our lives are streams, flowing into the same river, towards whatever heaven lies in the mist beyond the falls.”</strong></p>
+<p><strong>“Even now, I can’t claim to understand the measure of a life. But I can tell you this, I know that when he died, his eyes were closed, and his heart was open. And I’m pretty sure he was happy with his final resting place, because he was buried on the mountain, and that was against the law.”</strong></p>
+<p>we shall find the joy in our life and bring some joy to one another’s lives.</p>
+]]></content>
+      <categories>
+        <category>闲散</category>
+      </categories>
+      <tags>
+        <tag>观影</tag>
       </tags>
   </entry>
 </search>
