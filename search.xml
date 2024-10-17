@@ -1,6 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>网站启用测试</title>
+    <url>/2022/03/14/1/</url>
+    <content><![CDATA[<p>支持站内文字搜索</p>
+<p>支持代码块植入</p>
+<p>支持评论系统（目前已关闭）</p>
+<p>[来自后期补丁]</p>
+]]></content>
+      <categories>
+        <category>建站过程</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>插入图片(并居中)</title>
+    <url>/2022/03/15/20220321/</url>
+    <content><![CDATA[<h1 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h1><p>之前打算在文章中插入图片，配置的过程中遇到了一些问题。想在博客中引用外站图片问题不大，但<strong>Hexo</strong>默认插入图片只有这一个方法，对有本地化需求的人群来说不够方便，此时可以安装一个满足本地图片引用的插件，在国内某知名（<strong>c</strong>）专业（<strong>s</strong>）开发者（<strong>d</strong>）社区（<strong>n</strong>）里提供的90%的方案为以下命令：<br><code>npm install hexo-asset-image –save</code><br>该论坛上相互借鉴蔚然成风的壮景对我这个刚入门的小白真是非常险恶，此指令安装版本落后，无法有效显示图片，有效的版本安装命令如下：<br><code>npm install https://github.com/CodeFalling/hexo-asset-image –save</code></p>
+<p>修改<code>_config.yml</code>文件，将<code>post_asset_folder:</code>值改为<strong>true</strong>。</p>
+<p>之后在新建一个博客的同时会生成同名文件夹，将需插入的图片放入该文件夹即可。文章中的具体引用代码为以下格式：(后来发现在<code>source</code>文件夹里新建一个名为<code>images</code>的文件夹存放图片也行)</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">]</span>(1/image.jpg)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h1 id="更改相对位置"><a href="#更改相对位置" class="headerlink" title="更改相对位置"></a>更改相对位置</h1><p>但这种方法在PC端有一个默认的问题就是图片插入后会自动左对齐，想要实现居中对齐，可以在<strong>markdown</strong>引用代码外部添加<strong>center</strong>元素，或者直接添加<strong>html</strong>元素，如下所示：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">&lt;center<span class="token punctuation">></span>
+
+<span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">...</span><span class="token punctuation">]</span>(xxx)
+
+&lt;/center<span class="token punctuation">></span>
+
+<span class="token comment">#or</span>
+
+&lt;div align=center<span class="token punctuation">></span>
+
+<span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">...</span><span class="token punctuation">]</span>(xxx)
+
+&lt;/div<span class="token punctuation">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>(因为我用VScode来打开博客的md文件进行编辑，在上传至本地网页时一开始发现图片无法加载，后来排查得出居中命令代码间的空行是必要的，不知道其他编辑器是否有这样的问题。)</p>
+<p>还可以直接修改<strong>css</strong>文件，因为<strong>markdown</strong>插入图片的代码在最终渲染的时候变为<strong>html</strong>中的<strong>img</strong>元素。因此可以直接去博客主题文件的源代码中，找到控制文章内图片显示样式的<strong>css</strong>代码，将其修改成水平居中即可。前端编程中修改水平居中的方法非常多，以下是网上资源中提供的其中一种：</p>
+<p>一般情况下可以在<strong>Hexo</strong>博客文件夹进入到主题模板的<code>themes-&gt;(主题名称文件夹)-&gt;source-&gt;css-&gt;_partial</code>中，找到<code>post.styl</code>文件，该<strong>post</strong>文件中保存的就是文章详情页里面的显示样式。然后找到里面正确的<strong>img</strong>元素，修改其样式，增加<code>margin 0 auto</code>这行指令。如下:</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">.post<span class="token punctuation">-</span>content
+    position relative
+    color c<span class="token punctuation">-</span><span class="token number">666</span>
+    img
+      max<span class="token punctuation">-</span>width 100%
+      cursor pointer
+      display block 
+      margin 0 auto<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>然后可以实现了。但我在自己当前使用的主题中并没有找到相关语段，由于技术比较拉跨，我决定还是先老实用前两种吧。</p>
+<p>[后期补丁：你需要一款名为<em><strong>Typora</strong></em>的<strong>markdown</strong>编辑软件]</p>
+]]></content>
+      <categories>
+        <category>建站过程</category>
+      </categories>
+      <tags>
+        <tag>html</tag>
+        <tag>yaml</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>procreate绘画x1</title>
     <url>/2022/03/16/20220316/</url>
     <content><![CDATA[<center>
@@ -47,82 +102,6 @@
       </tags>
   </entry>
   <entry>
-    <title>插入图片(并居中)</title>
-    <url>/2022/03/15/20220321/</url>
-    <content><![CDATA[<h1 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h1><p>之前打算在文章中插入图片，配置的过程中遇到了一些问题。想在博客中引用外站图片问题不大，但<strong>Hexo</strong>默认插入图片只有这一个方法，对有本地化需求的人群来说不够方便，此时可以安装一个满足本地图片引用的插件，在国内某知名（<strong>c</strong>）专业（<strong>s</strong>）开发者（<strong>d</strong>）社区（<strong>n</strong>）里提供的90%的方案为以下命令：<br><code>npm install hexo-asset-image –save</code><br>该论坛上相互借鉴蔚然成风的壮景对我这个刚入门的小白真是非常险恶，此指令安装版本落后，无法有效显示图片，有效的版本安装命令如下：<br><code>npm install https://github.com/CodeFalling/hexo-asset-image –save</code></p>
-<p>修改<code>_config.yml</code>文件，将<code>post_asset_folder:</code>值改为<strong>true</strong>。</p>
-<p>之后在新建一个博客的同时会生成同名文件夹，将需插入的图片放入该文件夹即可。文章中的具体引用代码为以下格式：(后来发现在<code>source</code>文件夹里新建一个名为<code>images</code>的文件夹存放图片也行)</p>
-<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">]</span>(1/image.jpg)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h1 id="更改相对位置"><a href="#更改相对位置" class="headerlink" title="更改相对位置"></a>更改相对位置</h1><p>但这种方法在PC端有一个默认的问题就是图片插入后会自动左对齐，想要实现居中对齐，可以在<strong>markdown</strong>引用代码外部添加<strong>center</strong>元素，或者直接添加<strong>html</strong>元素，如下所示：</p>
-<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">&lt;center<span class="token punctuation">></span>
-
-<span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">...</span><span class="token punctuation">]</span>(xxx)
-
-&lt;/center<span class="token punctuation">></span>
-
-<span class="token comment">#or</span>
-
-&lt;div align=center<span class="token punctuation">></span>
-
-<span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">...</span><span class="token punctuation">]</span>(xxx)
-
-&lt;/div<span class="token punctuation">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>(因为我用VScode来打开博客的md文件进行编辑，在上传至本地网页时一开始发现图片无法加载，后来排查得出居中命令代码间的空行是必要的，不知道其他编辑器是否有这样的问题。)</p>
-<p>还可以直接修改<strong>css</strong>文件，因为<strong>markdown</strong>插入图片的代码在最终渲染的时候变为<strong>html</strong>中的<strong>img</strong>元素。因此可以直接去博客主题文件的源代码中，找到控制文章内图片显示样式的<strong>css</strong>代码，将其修改成水平居中即可。前端编程中修改水平居中的方法非常多，以下是网上资源中提供的其中一种：</p>
-<p>一般情况下可以在<strong>Hexo</strong>博客文件夹进入到主题模板的<code>themes-&gt;(主题名称文件夹)-&gt;source-&gt;css-&gt;_partial</code>中，找到<code>post.styl</code>文件，该<strong>post</strong>文件中保存的就是文章详情页里面的显示样式。然后找到里面正确的<strong>img</strong>元素，修改其样式，增加<code>margin 0 auto</code>这行指令。如下:</p>
-<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">.post<span class="token punctuation">-</span>content
-    position relative
-    color c<span class="token punctuation">-</span><span class="token number">666</span>
-    img
-      max<span class="token punctuation">-</span>width 100%
-      cursor pointer
-      display block 
-      margin 0 auto<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>然后可以实现了。但我在自己当前使用的主题中并没有找到相关语段，由于技术比较拉跨，我决定还是先老实用前两种吧。</p>
-<p>[后期补丁：你需要一款名为<em><strong>Typora</strong></em>的<strong>markdown</strong>编辑软件]</p>
-]]></content>
-      <categories>
-        <category>建站过程</category>
-      </categories>
-      <tags>
-        <tag>html</tag>
-        <tag>yaml</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>西南风光</title>
-    <url>/2024/09/16/%E8%A5%BF%E5%8D%97%E9%A3%8E%E5%85%89/</url>
-    <content><![CDATA[<p>2024年8月</p>
-<p>迟来的fine  journey 稍纵即逝</p>
-<center>
-    <img src="/2024/09/16/%E8%A5%BF%E5%8D%97%E9%A3%8E%E5%85%89/贵州.webp" width="1200">
-</center>
-<center>
-    <img src="/2024/09/16/%E8%A5%BF%E5%8D%97%E9%A3%8E%E5%85%89/重庆.webp" width="1200">
-</center>
-
-<center>
-    <img src="/2024/09/16/%E8%A5%BF%E5%8D%97%E9%A3%8E%E5%85%89/西藏1.webp" width="1200">
-</center>
-
-<center>
-    <img src="/2024/09/16/%E8%A5%BF%E5%8D%97%E9%A3%8E%E5%85%89/西藏2.webp" width="1200">
-</center>
-
-<center>
-    <img src="/2024/09/16/%E8%A5%BF%E5%8D%97%E9%A3%8E%E5%85%89/西藏3.webp" width="1200">
-</center>
-
-<p>醉后不知天在水 满船清梦压星河</p>
-]]></content>
-      <categories>
-        <category>闲散</category>
-      </categories>
-      <tags>
-        <tag>摄影</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>站内搜索搭建</title>
     <url>/2022/03/15/page/</url>
     <content><![CDATA[<p>完成站内搜索功能相对还是比较简单的，但发现<strong>Hexo</strong>的本地搜索功能貌似并不含标题部分…<br>在根目录的 <code>_config.yml</code>文件中<br>添置如下代码块：</p>
@@ -138,6 +117,51 @@
       </categories>
       <tags>
         <tag>yaml</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>寒山寺闲逛</title>
+    <url>/2023/12/16/%E5%AF%92%E5%B1%B1%E5%AF%BA%E9%97%B2%E9%80%9B/</url>
+    <content><![CDATA[<p>有《枫桥夜泊》钟声的加持，也算名气不小的景点<br>实际乏善可陈，没什么特点</p>
+<center>
+    <img src="/2023/12/16/%E5%AF%92%E5%B1%B1%E5%AF%BA%E9%97%B2%E9%80%9B/hss1.webp" width="400">
+</center>
+
+<center>
+    <img src="/2023/12/16/%E5%AF%92%E5%B1%B1%E5%AF%BA%E9%97%B2%E9%80%9B/hss2.webp" width="400">
+</center>
+
+
+
+<p>张继的雕像侧躺在现代枫桥旁边<br>手脚部位被游客盘得发亮，据说摸一摸家里小孩就能考上好大学</p>
+]]></content>
+      <categories>
+        <category>闲散</category>
+      </categories>
+      <tags>
+        <tag>摄影</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>观影《遗愿清单》</title>
+    <url>/2024/09/22/%E8%A7%82%E5%BD%B1%E3%80%8A%E9%81%97%E6%84%BF%E6%B8%85%E5%8D%95%E3%80%8B/</url>
+    <content><![CDATA[<p>《遗愿清单》 《The Bucket List》</p>
+<p>平静的叙事，温情的旁白，朴素的关怀，对于死亡这个议题，怎么讨论都不为多</p>
+<center>
+<img src="/images/thebucketlist.webp" style="zoom:40%;">
+</center>
+
+
+<p>豆瓣链接 <a href="https://movie.douban.com/subject/1867345/">遗愿清单</a></p>
+<p><strong>“Our lives are streams, flowing into the same river, towards whatever heaven lies in the mist beyond the falls.”</strong></p>
+<p><strong>“Even now, I can’t claim to understand the measure of a life. But I can tell you this, I know that when he died, his eyes were closed, and his heart was open. And I’m pretty sure he was happy with his final resting place, because he was buried on the mountain, and that was against the law.”</strong></p>
+<p>we shall find the joy in our life and bring some joy to one another’s lives.</p>
+]]></content>
+      <categories>
+        <category>闲散</category>
+      </categories>
+      <tags>
+        <tag>观影</tag>
       </tags>
   </entry>
   <entry>
@@ -222,60 +246,36 @@
       </tags>
   </entry>
   <entry>
-    <title>寒山寺闲逛</title>
-    <url>/2023/12/16/%E5%AF%92%E5%B1%B1%E5%AF%BA%E9%97%B2%E9%80%9B/</url>
-    <content><![CDATA[<p>有《枫桥夜泊》钟声的加持，也算名气不小的景点<br>实际乏善可陈，没什么特点</p>
+    <title>西南风光</title>
+    <url>/2024/09/16/%E8%A5%BF%E5%8D%97%E9%A3%8E%E5%85%89/</url>
+    <content><![CDATA[<p>2024年8月</p>
+<p>迟来的fine  journey 稍纵即逝</p>
 <center>
-    <img src="/2023/12/16/%E5%AF%92%E5%B1%B1%E5%AF%BA%E9%97%B2%E9%80%9B/hss1.webp" width="400">
+    <img src="/2024/09/16/%E8%A5%BF%E5%8D%97%E9%A3%8E%E5%85%89/贵州.webp" width="1200">
+</center>
+<center>
+    <img src="/2024/09/16/%E8%A5%BF%E5%8D%97%E9%A3%8E%E5%85%89/重庆.webp" width="1200">
 </center>
 
 <center>
-    <img src="/2023/12/16/%E5%AF%92%E5%B1%B1%E5%AF%BA%E9%97%B2%E9%80%9B/hss2.webp" width="400">
+    <img src="/2024/09/16/%E8%A5%BF%E5%8D%97%E9%A3%8E%E5%85%89/西藏1.webp" width="1200">
 </center>
 
+<center>
+    <img src="/2024/09/16/%E8%A5%BF%E5%8D%97%E9%A3%8E%E5%85%89/西藏2.webp" width="1200">
+</center>
 
+<center>
+    <img src="/2024/09/16/%E8%A5%BF%E5%8D%97%E9%A3%8E%E5%85%89/西藏3.webp" width="1200">
+</center>
 
-<p>张继的雕像侧躺在现代枫桥旁边<br>手脚部位被游客盘得发亮，据说摸一摸家里小孩就能考上好大学</p>
+<p>醉后不知天在水 满船清梦压星河</p>
 ]]></content>
       <categories>
         <category>闲散</category>
       </categories>
       <tags>
         <tag>摄影</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>网站启用测试</title>
-    <url>/2022/03/14/1/</url>
-    <content><![CDATA[<p>支持站内文字搜索</p>
-<p>支持代码块植入</p>
-<p>支持评论系统（目前已关闭）</p>
-<p>[来自后期补丁]</p>
-]]></content>
-      <categories>
-        <category>建站过程</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>观影《遗愿清单》</title>
-    <url>/2024/09/22/%E8%A7%82%E5%BD%B1%E3%80%8A%E9%81%97%E6%84%BF%E6%B8%85%E5%8D%95%E3%80%8B/</url>
-    <content><![CDATA[<p>《遗愿清单》 《The Bucket List》</p>
-<p>平静的叙事，温情的旁白，朴素的关怀，对于死亡这个议题，怎么讨论都不为多</p>
-<center>
-<img src="/images/thebucketlist.webp" style="zoom:40%;">
-</center>
-
-
-<p>豆瓣链接 <a href="https://movie.douban.com/subject/1867345/">遗愿清单</a></p>
-<p><strong>“Our lives are streams, flowing into the same river, towards whatever heaven lies in the mist beyond the falls.”</strong></p>
-<p><strong>“Even now, I can’t claim to understand the measure of a life. But I can tell you this, I know that when he died, his eyes were closed, and his heart was open. And I’m pretty sure he was happy with his final resting place, because he was buried on the mountain, and that was against the law.”</strong></p>
-<p>we shall find the joy in our life and bring some joy to one another’s lives.</p>
-]]></content>
-      <categories>
-        <category>闲散</category>
-      </categories>
-      <tags>
-        <tag>观影</tag>
       </tags>
   </entry>
 </search>
