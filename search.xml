@@ -1,46 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>网站启用测试</title>
-    <url>/2022/03/14/1/</url>
-    <content><![CDATA[<p>支持站内文字搜索</p>
-<p>支持代码块植入</p>
-<p>支持评论系统（目前已关闭）</p>
-<p>[来自后期补丁]</p>
-]]></content>
-      <categories>
-        <category>建站过程</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>procreate社团设计x3</title>
-    <url>/2022/03/16/202203161/</url>
-    <content><![CDATA[<p>翻了翻之前的文件夹，自己在在社团宣传部一年好像也没什么创作成果</p>
-<p>首先是两个养老院的徽章，记得当时是在画第一个徽章的过程中错删了一个图层，然后碰巧搞出了一个镂空的效果，感觉还不错，就在第二个徽章里故技重施了一下，但没有原来的效果了</p>
-<center>
-<img src="/images/4.webp" style="zoom:80%;">
-<img src="/images/5.webp" style="zoom:80%;">
-</center>
-
-
-
-<p>下图是大二上学期一次活动的海报设计，for苏州大学独墅湖校区冬至灯会</p>
-<center>
-<img src="/images/2.webp" style="zoom:80%;">
-</center>
-
-
-
-<p>以上作品均由<strong>iPad</strong>绘画软件<strong>procreate</strong>绘制，方便使用，新手友好</p>
-]]></content>
-      <categories>
-        <category>闲散</category>
-      </categories>
-      <tags>
-        <tag>绘画</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>procreate绘画x3</title>
     <url>/2022/03/16/20220316/</url>
     <content><![CDATA[<center>
@@ -62,6 +22,18 @@
       <tags>
         <tag>绘画</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>网站启用测试</title>
+    <url>/2022/03/14/1/</url>
+    <content><![CDATA[<p>支持站内文字搜索</p>
+<p>支持代码块植入</p>
+<p>支持评论系统（目前已关闭）</p>
+<p>[来自后期补丁]</p>
+]]></content>
+      <categories>
+        <category>建站过程</category>
+      </categories>
   </entry>
   <entry>
     <title>插入图片(并居中)</title>
@@ -103,6 +75,67 @@
       </categories>
       <tags>
         <tag>html</tag>
+        <tag>yaml</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>procreate社团设计x3</title>
+    <url>/2022/03/16/202203161/</url>
+    <content><![CDATA[<p>翻了翻之前的文件夹，自己在在社团宣传部一年好像也没什么创作成果</p>
+<p>首先是两个养老院的徽章，记得当时是在画第一个徽章的过程中错删了一个图层，然后碰巧搞出了一个镂空的效果，感觉还不错，就在第二个徽章里故技重施了一下，但没有原来的效果了</p>
+<center>
+<img src="/images/4.webp" style="zoom:80%;">
+<img src="/images/5.webp" style="zoom:80%;">
+</center>
+
+
+
+<p>下图是大二上学期一次活动的海报设计，for苏州大学独墅湖校区冬至灯会</p>
+<center>
+<img src="/images/2.webp" style="zoom:80%;">
+</center>
+
+
+
+<p>以上作品均由<strong>iPad</strong>绘画软件<strong>procreate</strong>绘制，方便使用，新手友好</p>
+]]></content>
+      <categories>
+        <category>闲散</category>
+      </categories>
+      <tags>
+        <tag>绘画</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>STM32配置笔记参考</title>
+    <url>/2024/11/21/241121/</url>
+    <content><![CDATA[<p>大二时的笔记，upload当乐高说明书看</p>
+<p><strong>pdf嵌入使用了pdf.js插件</strong>，hexo-pdf这个插件在移动端不能很好地显示</p>
+<iframe src="/pdfjs/web/viewer.html?file=/pdf/post1.pdf" style="width:100%;height:800px"></iframe>
+]]></content>
+      <categories>
+        <category>学习记录</category>
+      </categories>
+      <tags>
+        <tag>嵌入式</tag>
+        <tag>C</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>站内搜索搭建</title>
+    <url>/2022/03/15/page/</url>
+    <content><![CDATA[<p>完成站内搜索功能相对还是比较简单的，但发现<strong>Hexo</strong>的本地搜索功能貌似并不含标题部分…<br>在根目录的 <code>_config.yml</code>文件中<br>添置如下代码块：</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html">search:
+  path: search.xml
+  field: post
+  content: true
+  format: html<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>之后在对应主题的<code>_config.yml</code>文件将相关值设置为<strong>true</strong>即可。</p>
+]]></content>
+      <categories>
+        <category>建站过程</category>
+      </categories>
+      <tags>
         <tag>yaml</tag>
       </tags>
   </entry>
@@ -188,26 +221,44 @@
       </tags>
   </entry>
   <entry>
-    <title>STM32配置笔记参考</title>
-    <url>/2024/11/21/241121/</url>
-    <content><![CDATA[<p>大二时的笔记，upload当乐高说明书看</p>
-<p><strong>pdf嵌入使用了pdf.js插件</strong>，hexo-pdf这个插件在移动端不能很好地显示</p>
-<iframe src="/pdfjs/web/viewer.html?file=/pdf/post1.pdf" style="width:100%;height:800px"></iframe>
+    <title>西南风光</title>
+    <url>/2024/09/16/%E8%A5%BF%E5%8D%97%E9%A3%8E%E5%85%89/</url>
+    <content><![CDATA[<p>2024年8月</p>
+<p>迟来的fine  journey 稍纵即逝</p>
+<center>
+    <img src="/2024/09/16/%E8%A5%BF%E5%8D%97%E9%A3%8E%E5%85%89/贵州.webp" width="1200">
+</center>
+<center>
+    <img src="/2024/09/16/%E8%A5%BF%E5%8D%97%E9%A3%8E%E5%85%89/重庆.webp" width="1200">
+</center>
+
+<center>
+    <img src="/2024/09/16/%E8%A5%BF%E5%8D%97%E9%A3%8E%E5%85%89/西藏1.webp" width="1200">
+</center>
+
+<center>
+    <img src="/2024/09/16/%E8%A5%BF%E5%8D%97%E9%A3%8E%E5%85%89/西藏2.webp" width="1200">
+</center>
+
+<center>
+    <img src="/2024/09/16/%E8%A5%BF%E5%8D%97%E9%A3%8E%E5%85%89/西藏3.webp" width="1200">
+</center>
+
+<p>醉后不知天在水 满船清梦压星河</p>
 ]]></content>
       <categories>
-        <category>学习记录</category>
+        <category>闲散</category>
       </categories>
       <tags>
-        <tag>嵌入式</tag>
-        <tag>C</tag>
+        <tag>摄影</tag>
       </tags>
   </entry>
   <entry>
     <title>UART收发处理函数</title>
     <url>/2024/10/20/%E4%B8%B2%E5%8F%A3%E6%94%B6%E5%8F%91%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<p>UART（Universal Asynchronous Receiver&#x2F;Transmitter）是一种串行通信协议，在嵌入式系统和微控制器间数据传输中发挥着核心作用。UART协议通过异步方式传输数据，不依赖于共享时钟信号，简化了通信线路的需求。每次传输包括起始位、数据位、可选的奇偶校验位以及停止位，这种结构支持从简单的传感器到复杂的处理器之间的可靠数据交换。</p>
-<p>UART的重要性还体现在其广泛的兼容性和低成本实现上。它可以通过简单的两线（TX和RX）接口实现全双工通信，极大地降低了系统的硬件复杂性。此外，UART通信协议可以适应不同的波特率设置，使其能够灵活地调整以匹配特定应用的速度要求。在许多工业和消费电子产品中，UART仍然是实现可靠串行通信的首选技术，尤其在资源受限的环境中显示出其高效和经济的优势。</p>
-<p>在进行传感器测试时，常用到嵌入芯片的UART，这里mark一下常用的HAL库函数封装，免得后续一直翻之前的程序</p>
+<p>其重要性还体现在其广泛的兼容性和低成本实现上。它可以通过简单的两线（TX和RX）接口实现全双工通信，极大地降低了系统的硬件复杂性。此外，UART通信协议可以适应不同的波特率设置，使其能够灵活地调整以匹配特定应用的速度要求。在许多工业和消费电子产品中，UART仍然是实现可靠串行通信的首选技术，尤其在资源受限的环境中显示出其高效和经济的优势。（<strong>以上均为GPT生成</strong>）</p>
+<p>在进行传感器测试时，常用到UART，这里mark一下自己常用的HAL库函数封装，免得后续一直翻之前的程序</p>
 <p>函数需要用到的全局变量如下：</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">char</span> send<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token number">0</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span> <span class="token comment">//传输用字符数组，储存字符串</span>
 
@@ -285,39 +336,6 @@ uint8_t startbegin2 = 0x00;
       </tags>
   </entry>
   <entry>
-    <title>西南风光</title>
-    <url>/2024/09/16/%E8%A5%BF%E5%8D%97%E9%A3%8E%E5%85%89/</url>
-    <content><![CDATA[<p>2024年8月</p>
-<p>迟来的fine  journey 稍纵即逝</p>
-<center>
-    <img src="/2024/09/16/%E8%A5%BF%E5%8D%97%E9%A3%8E%E5%85%89/贵州.webp" width="1200">
-</center>
-<center>
-    <img src="/2024/09/16/%E8%A5%BF%E5%8D%97%E9%A3%8E%E5%85%89/重庆.webp" width="1200">
-</center>
-
-<center>
-    <img src="/2024/09/16/%E8%A5%BF%E5%8D%97%E9%A3%8E%E5%85%89/西藏1.webp" width="1200">
-</center>
-
-<center>
-    <img src="/2024/09/16/%E8%A5%BF%E5%8D%97%E9%A3%8E%E5%85%89/西藏2.webp" width="1200">
-</center>
-
-<center>
-    <img src="/2024/09/16/%E8%A5%BF%E5%8D%97%E9%A3%8E%E5%85%89/西藏3.webp" width="1200">
-</center>
-
-<p>醉后不知天在水 满船清梦压星河</p>
-]]></content>
-      <categories>
-        <category>闲散</category>
-      </categories>
-      <tags>
-        <tag>摄影</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>寒山寺闲逛</title>
     <url>/2023/12/16/%E5%AF%92%E5%B1%B1%E5%AF%BA%E9%97%B2%E9%80%9B/</url>
     <content><![CDATA[<p>有《枫桥夜泊》钟声的加持，也算名气不小的景点<br>实际乏善可陈，没什么特点</p>
@@ -360,24 +378,6 @@ uint8_t startbegin2 = 0x00;
       </categories>
       <tags>
         <tag>观影</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>站内搜索搭建</title>
-    <url>/2022/03/15/page/</url>
-    <content><![CDATA[<p>完成站内搜索功能相对还是比较简单的，但发现<strong>Hexo</strong>的本地搜索功能貌似并不含标题部分…<br>在根目录的 <code>_config.yml</code>文件中<br>添置如下代码块：</p>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html">search:
-  path: search.xml
-  field: post
-  content: true
-  format: html<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>之后在对应主题的<code>_config.yml</code>文件将相关值设置为<strong>true</strong>即可。</p>
-]]></content>
-      <categories>
-        <category>建站过程</category>
-      </categories>
-      <tags>
-        <tag>yaml</tag>
       </tags>
   </entry>
 </search>
