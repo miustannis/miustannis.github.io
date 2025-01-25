@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>网站启用测试</title>
+    <url>/2022/03/14/1/</url>
+    <content><![CDATA[<p>支持站内文字搜索</p>
+<p>支持代码块植入</p>
+<p>支持评论系统（目前已关闭）</p>
+<p>[来自后期补丁]</p>
+]]></content>
+      <categories>
+        <category>DIY</category>
+      </categories>
+      <tags>
+        <tag>html</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>STM32配置笔记参考</title>
+    <url>/2024/11/21/241121/</url>
+    <content><![CDATA[<p>大二时的笔记，upload当乐高说明书看</p>
+<span id="more"></span>
+
+<p><strong>pdf嵌入使用了pdf.js插件</strong>，hexo-pdf这个插件在移动端不能很好地显示</p>
+<iframe src="/pdfjs/web/viewer.html?file=/pdf/post1.pdf" style="width:100%;height:800px"></iframe>
+]]></content>
+      <categories>
+        <category>学习记录</category>
+      </categories>
+      <tags>
+        <tag>嵌入式</tag>
+        <tag>C</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>procreate社团设计x3</title>
     <url>/2022/03/16/202203161/</url>
     <content><![CDATA[<p>翻了翻之前的文件夹，自己在在本科社团宣传部一年好像也没什么创作成果</p>
@@ -28,6 +60,29 @@
       </categories>
       <tags>
         <tag>绘画</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>寒山寺闲逛</title>
+    <url>/2023/12/16/%E5%AF%92%E5%B1%B1%E5%AF%BA%E9%97%B2%E9%80%9B/</url>
+    <content><![CDATA[<p>有《枫桥夜泊》钟声的加持，也算名气不小的景点<br>实际乏善可陈，没什么特点</p>
+<center>
+    <img src="/images/hss1.webp" width="400">
+</center>
+
+<center>
+    <img src="/images/hss2.webp" width="400">
+</center>
+
+
+
+<p>张继的雕像侧躺在现代枫桥旁边<br>手脚部位被游客盘得发亮，据说摸一摸家里小孩就能考上好大学</p>
+]]></content>
+      <categories>
+        <category>闲散</category>
+      </categories>
+      <tags>
+        <tag>摄影</tag>
       </tags>
   </entry>
   <entry>
@@ -103,23 +158,6 @@
       <tags>
         <tag>html</tag>
         <tag>yaml</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>STM32配置笔记参考</title>
-    <url>/2024/11/21/241121/</url>
-    <content><![CDATA[<p>大二时的笔记，upload当乐高说明书看</p>
-<span id="more"></span>
-
-<p><strong>pdf嵌入使用了pdf.js插件</strong>，hexo-pdf这个插件在移动端不能很好地显示</p>
-<iframe src="/pdfjs/web/viewer.html?file=/pdf/post1.pdf" style="width:100%;height:800px"></iframe>
-]]></content>
-      <categories>
-        <category>学习记录</category>
-      </categories>
-      <tags>
-        <tag>嵌入式</tag>
-        <tag>C</tag>
       </tags>
   </entry>
   <entry>
@@ -205,44 +243,6 @@ uint8_t startbegin2 = 0x00;
       </tags>
   </entry>
   <entry>
-    <title>西南风光</title>
-    <url>/2024/09/16/%E8%A5%BF%E5%8D%97%E9%A3%8E%E5%85%89/</url>
-    <content><![CDATA[<p>2024年8月</p>
-<p>迟来的fine  journey 稍纵即逝</p>
-<span id="more"></span>
-
-
-
-<center>
-    <img src="/images/GUIZHOU.webp" width="1200">
-</center>
-<center>
-    <img src="/images/CHONGQING.webp" width="1200">
-</center>
-
-<center>
-    <img src="/images/TIBET1.webp" width="1200">
-</center>
-
-<center>
-    <img src="/images/TIBET2.webp" width="1200">
-</center>
-
-<center>
-    <img src="/images/TIBET3.webp" width="1200">
-</center>
-
-
-<p>醉后不知天在水 满船清梦压星河</p>
-]]></content>
-      <categories>
-        <category>闲散</category>
-      </categories>
-      <tags>
-        <tag>摄影</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>TFTLCD驱动</title>
     <url>/2024/09/28/TFTLCD%E9%A9%B1%E5%8A%A8/</url>
     <content><![CDATA[<p>在使用Img2LCD取模软件和ST7735S驱动IC控制LCD时，发现API中显示图片的函数调用后显示异常</p>
@@ -323,18 +323,41 @@ uint8_t startbegin2 = 0x00;
       </tags>
   </entry>
   <entry>
-    <title>网站启用测试</title>
-    <url>/2022/03/14/1/</url>
-    <content><![CDATA[<p>支持站内文字搜索</p>
-<p>支持代码块植入</p>
-<p>支持评论系统（目前已关闭）</p>
-<p>[来自后期补丁]</p>
+    <title>西南风光</title>
+    <url>/2024/09/16/%E8%A5%BF%E5%8D%97%E9%A3%8E%E5%85%89/</url>
+    <content><![CDATA[<p>2024年8月</p>
+<p>迟来的fine  journey 稍纵即逝</p>
+<span id="more"></span>
+
+
+
+<center>
+    <img src="/images/GUIZHOU.webp" width="1200">
+</center>
+<center>
+    <img src="/images/CHONGQING.webp" width="1200">
+</center>
+
+<center>
+    <img src="/images/TIBET1.webp" width="1200">
+</center>
+
+<center>
+    <img src="/images/TIBET2.webp" width="1200">
+</center>
+
+<center>
+    <img src="/images/TIBET3.webp" width="1200">
+</center>
+
+
+<p>醉后不知天在水 满船清梦压星河</p>
 ]]></content>
       <categories>
-        <category>DIY</category>
+        <category>闲散</category>
       </categories>
       <tags>
-        <tag>html</tag>
+        <tag>摄影</tag>
       </tags>
   </entry>
   <entry>
@@ -357,29 +380,6 @@ uint8_t startbegin2 = 0x00;
       </categories>
       <tags>
         <tag>观影</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>寒山寺闲逛</title>
-    <url>/2023/12/16/%E5%AF%92%E5%B1%B1%E5%AF%BA%E9%97%B2%E9%80%9B/</url>
-    <content><![CDATA[<p>有《枫桥夜泊》钟声的加持，也算名气不小的景点<br>实际乏善可陈，没什么特点</p>
-<center>
-    <img src="/images/hss1.webp" width="400">
-</center>
-
-<center>
-    <img src="/images/hss2.webp" width="400">
-</center>
-
-
-
-<p>张继的雕像侧躺在现代枫桥旁边<br>手脚部位被游客盘得发亮，据说摸一摸家里小孩就能考上好大学</p>
-]]></content>
-      <categories>
-        <category>闲散</category>
-      </categories>
-      <tags>
-        <tag>摄影</tag>
       </tags>
   </entry>
 </search>
