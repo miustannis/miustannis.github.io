@@ -1,54 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>procreate绘画x3</title>
-    <url>/2022/03/16/20220316/</url>
-    <content><![CDATA[<p>或许有点蒸汽波</p>
-<span id="more"></span>
-
-
-
-<center>
-<img src="/images/3.webp" style="zoom:88%;">
-<img src="/images/popsummit.webp" style="zoom:50%;">
-<img src="/images/crowded.webp" style="zoom:50%;">
-
-
-
-
-
-
-
-<center>
-
-</center></center>]]></content>
-      <categories>
-        <category>闲散</category>
-      </categories>
-      <tags>
-        <tag>绘画</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>STM32配置笔记参考</title>
-    <url>/2024/11/21/241121/</url>
-    <content><![CDATA[<p>大二时的笔记，upload当乐高说明书看</p>
-<span id="more"></span>
-
-<p><strong>pdf嵌入使用了pdf.js插件</strong>，hexo-pdf这个插件在移动端不能很好地显示</p>
-<iframe src="/pdfjs/web/viewer.html?file=/pdf/post1.pdf" style="width:100%;height:800px"></iframe>
-]]></content>
-      <categories>
-        <category>学习记录</category>
-      </categories>
-      <tags>
-        <tag>嵌入式</tag>
-        <tag>C</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>procreate社团设计x3</title>
-    <url>/2022/03/16/202203161/</url>
+    <url>/2022/03/16/220317/</url>
     <content><![CDATA[<p>翻了翻之前的文件夹，自己在在本科社团宣传部一年好像也没什么创作成果</p>
 <span id="more"></span>
 
@@ -78,7 +32,7 @@
   </entry>
   <entry>
     <title>网站启用测试</title>
-    <url>/2022/03/14/1/</url>
+    <url>/2022/03/14/220314/</url>
     <content><![CDATA[<p>支持站内文字搜索</p>
 <p>支持代码块植入</p>
 <p>支持评论系统（目前已关闭）</p>
@@ -93,7 +47,7 @@
   </entry>
   <entry>
     <title>插入图片(并居中)</title>
-    <url>/2022/03/15/20220321/</url>
+    <url>/2022/03/15/220321/</url>
     <content><![CDATA[<h1 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h1><p>之前打算在文章中插入图片，配置的过程中遇到了一些问题。</p>
 <span id="more"></span>
 
@@ -138,90 +92,8 @@
       </tags>
   </entry>
   <entry>
-    <title>UART收发处理函数</title>
-    <url>/2024/10/20/%E4%B8%B2%E5%8F%A3%E6%94%B6%E5%8F%91%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<p>UART（Universal Asynchronous Receiver&#x2F;Transmitter）是一种串行通信协议，在嵌入式系统和微控制器间数据传输中发挥着核心作用。UART协议通过异步方式传输数据，不依赖于共享时钟信号，简化了通信线路的需求。每次传输包括起始位、数据位、可选的奇偶校验位以及停止位，这种结构支持从简单的传感器到复杂的处理器之间的可靠数据交换。</p>
-<p>其重要性还体现在其广泛的兼容性和低成本实现上。它可以通过简单的两线（TX和RX）接口实现全双工通信，极大地降低了系统的硬件复杂性。此外，UART通信协议可以适应不同的波特率设置，使其能够灵活地调整以匹配特定应用的速度要求。在许多工业和消费电子产品中，UART仍然是实现可靠串行通信的首选技术，尤其在资源受限的环境中显示出其高效和经济的优势。（<strong>以上均为GPT生成</strong>）</p>
-<p>在进行传感器测试时，常用到UART，这里mark一下自己常用的HAL库函数封装，免得后续一直翻之前的程序</p>
-<p>函数需要用到的全局变量如下：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">char</span> send<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token number">0</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span> <span class="token comment">//传输用字符数组，储存字符串</span>
-
-<span class="token class-name">uint8_t</span> rx_buffer <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//接收字符缓冲区</span>
-
-<span class="token keyword">char</span> rx_receiver<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token number">0</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span> <span class="token comment">//接收用字符数组</span>
-
-<span class="token class-name">uint8_t</span> rx_num <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//接收字符数量</span>
-
-<span class="token class-name">uint8_t</span>  uart_start_flag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//接收标志位</span>
-
-__IO  <span class="token class-name">uint32_t</span> uart_gettick <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//系统时钟比较变量</span>
-
-<span class="token comment">/* 测试变量
-uint16_t pwm_duty = 0;
-
-uint8_t startbegin = 0xff;
-
-uint8_t startbegin2 = 0x00;
-*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>在硬件配置时要打开UART中断：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token function">HAL_UART_Receive_IT</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1 <span class="token punctuation">,</span> <span class="token operator">&amp;</span>rx_buffer<span class="token punctuation">,</span>  <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>中断回调函数如下：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">HAL_UART_RxCpltCallback</span><span class="token punctuation">(</span>UART_HandleTypeDef <span class="token operator">*</span>huart<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-  <span class="token keyword">if</span><span class="token punctuation">(</span>rx_num <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-  uart_gettick <span class="token operator">=</span> uwTick<span class="token punctuation">;</span> 
-  uart_start_flag <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>  
-  <span class="token punctuation">&#125;</span>
-  <span class="token keyword">if</span><span class="token punctuation">(</span>uart_start_flag <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-  rx_receiver<span class="token punctuation">[</span>rx_num<span class="token punctuation">]</span> <span class="token operator">=</span> rx_buffer<span class="token punctuation">;</span>
-  rx_num<span class="token operator">++</span><span class="token punctuation">;</span>  
-  <span class="token punctuation">&#125;</span>
-  <span class="token function">HAL_UART_Receive_IT</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1 <span class="token punctuation">,</span> <span class="token operator">&amp;</span>rx_buffer<span class="token punctuation">,</span>  <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>主循环中的处理函数如下：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">UART_RX_PROC</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span> uwTick<span class="token operator">-</span> uart_gettick <span class="token punctuation">)</span> <span class="token operator">>=</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span><span class="token punctuation">(</span> uwTick<span class="token operator">-</span> uart_gettick <span class="token punctuation">)</span> <span class="token operator">&lt;=</span><span class="token number">600</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>uart_start_flag <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>rx_receiver<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token char">'&amp;'</span> <span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span> rx_num <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">//示例：传输pwm占空比</span>
-    pwm_duty <span class="token operator">=</span>  rx_receiver<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span> rx_num <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    pwm_duty <span class="token operator">=</span> <span class="token punctuation">(</span>rx_receiver<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">10</span> <span class="token operator">+</span> rx_receiver<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span> rx_num <span class="token operator">==</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    pwm_duty <span class="token operator">=</span> <span class="token punctuation">(</span>rx_receiver<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">100</span> <span class="token operator">+</span> <span class="token punctuation">(</span>rx_receiver<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">10</span> <span class="token operator">+</span> rx_receiver<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>      
-    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span> rx_num <span class="token operator">>=</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    pwm_duty <span class="token operator">=</span> <span class="token number">1000</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-  <span class="token punctuation">&#125;</span>
-    <span class="token function">HAL_UART_Transmit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token operator">&amp;</span>startbegin<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0xffff</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">HAL_UART_Transmit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token operator">&amp;</span>startbegin2<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0xffff</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">HAL_UART_Transmit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token operator">&amp;</span>startbegin<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0xffff</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    rx_num <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    uart_start_flag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>这里的函数主要是用以处理字符串的，应付一些的简单的应用已经够用了，当然，也能在此基础上扩展。</p>
-]]></content>
-      <categories>
-        <category>学习记录</category>
-      </categories>
-      <tags>
-        <tag>嵌入式</tag>
-        <tag>C</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>TFTLCD驱动</title>
-    <url>/2024/09/28/TFTLCD%E9%A9%B1%E5%8A%A8/</url>
+    <url>/2024/09/28/240928/</url>
     <content><![CDATA[<p>在使用Img2LCD取模软件和ST7735S驱动IC控制LCD时，发现API中显示图片的函数调用后显示异常</p>
 <p>原函数：</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">ST7735_DrawImage</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span> x<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> y<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> w<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> h<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token class-name">uint16_t</span><span class="token operator">*</span> data<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -300,8 +172,37 @@ uint8_t startbegin2 = 0x00;
       </tags>
   </entry>
   <entry>
+    <title>procreate绘画x3</title>
+    <url>/2022/03/16/220316/</url>
+    <content><![CDATA[<p>或许有点蒸汽波</p>
+<span id="more"></span>
+
+
+
+<center>
+<img src="/images/3.webp" style="zoom:88%;">
+<img src="/images/popsummit.webp" style="zoom:50%;">
+<img src="/images/crowded.webp" style="zoom:50%;">
+
+
+
+
+
+
+
+<center>
+
+</center></center>]]></content>
+      <categories>
+        <category>闲散</category>
+      </categories>
+      <tags>
+        <tag>绘画</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>寒山寺闲逛</title>
-    <url>/2023/12/16/%E5%AF%92%E5%B1%B1%E5%AF%BA%E9%97%B2%E9%80%9B/</url>
+    <url>/2023/12/16/231216/</url>
     <content><![CDATA[<p>有《枫桥夜泊》钟声的加持，也算名气不小的景点<br>实际乏善可陈，没什么特点</p>
 <center>
     <img src="/images/hss1.webp" width="400">
@@ -324,7 +225,7 @@ uint8_t startbegin2 = 0x00;
   </entry>
   <entry>
     <title>西南风光</title>
-    <url>/2024/09/16/%E8%A5%BF%E5%8D%97%E9%A3%8E%E5%85%89/</url>
+    <url>/2024/09/16/240916/</url>
     <content><![CDATA[<p>2024年8月</p>
 <p>迟来的fine  journey 稍纵即逝</p>
 <span id="more"></span>
@@ -358,6 +259,160 @@ uint8_t startbegin2 = 0x00;
       </categories>
       <tags>
         <tag>摄影</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>STM32配置笔记参考</title>
+    <url>/2024/11/21/241121/</url>
+    <content><![CDATA[<p>大二时的笔记，upload当乐高说明书看</p>
+<span id="more"></span>
+
+<p><strong>pdf嵌入使用了pdf.js插件</strong>，hexo-pdf这个插件在移动端不能很好地显示</p>
+<iframe src="/pdfjs/web/viewer.html?file=/pdf/post1.pdf" style="width:100%;height:800px"></iframe>
+]]></content>
+      <categories>
+        <category>学习记录</category>
+      </categories>
+      <tags>
+        <tag>嵌入式</tag>
+        <tag>C</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2025 Feb Packing Up &amp; Personal Step to Decluttering</title>
+    <url>/2025/02/12/250212/</url>
+    <content><![CDATA[<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>寒假从公寓打包东西回家时，我感受到自己的行李数量过多，直观的表现是我用了四个大号搬家盒，且剩余的物品也将我的行李箱塞得很满，导致拉链都很难拉上。</p>
+<p>我有收藏的癖好，包括各种证件，证书，徽章等。很多时候我觉得我的这个习惯帮助自己成为一个有条理的人，因为对于收纳好的物品，我很少出现找不到东西的情况；但也有很多时候我感觉自己在已经过去的事情上花费了过多的精力，一定程度上影响了自己的生活节奏。</p>
+<p>然而我始终认为很多东西是有纪念意义的，因此有必要实现这个意义的方法上进行一些变通。近期，我在收纳整理方面做了一些思考与改变。</p>
+<h2 id="For-Record"><a href="#For-Record" class="headerlink" title="For Record"></a>For Record</h2><p>在2023年我看到一些博主，使用一种叫手账的方式记录自己的日常生活，他们会在一些记事本（通常外观看起来比较好看）上通过文字，绘画与粘贴物品等方式呈现一种比日记更丰富的记录。当时正值保研结束的暑假，是我大学以来最放松的一段时间，对现实与未来没有过多的想象与焦虑，仿佛生活可以随风而起，处处是可以随手采撷的格桑花。于是我一眼看上这种“生活的艺术”，买了一个手账本，一台用于打印照片的 Canon CP1500，以及一些用来切割的工具。</p>
+<p>我会用图片记录下一些东西，将他们用照片打印机打印出来后，撕去相纸的背面硬支撑部分，用胶水将其粘贴在手账本上，并在一旁配上文字描述与相关心情。甚至在看完一部电影或是一部动漫之后，我会将它们的海报打印下来，一并粘贴上去。</p>
+<center>
+    <img src="/images/shouzhang.webp" width="600">
+</center>
+
+<p>一套流程下来，整理两页的手账得画上1~2个小时，尤其是媒体记录，其实在豆瓣上点一个“看过”大概只需要十几秒的时间。</p>
+<p>本质上来说，“手账”以及其他的一些类似记录的方式属于一种对慢生活态度的实践，可能对于当时的我来说，需要一段时间来放空自己。</p>
+<table>
+<thead>
+<tr>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>放松</td>
+<td>繁杂冗长</td>
+</tr>
+<tr>
+<td>自我表达</td>
+<td>效率低</td>
+</tr>
+<tr>
+<td>组织与规划能力</td>
+<td>过于追求细节</td>
+</tr>
+</tbody></table>
+<p>综上优缺点考量，我决定不再继续这种记录方式了，博客或其他电子设备记录是一种更可取的方式。</p>
+<h2 id="For-高达模型"><a href="#For-高达模型" class="headerlink" title="For 高达模型"></a>For 高达模型</h2><p>拼装模型是我从小到大的爱好，从军模到高达，我很享受把碎片构造成一个完整体的过程，有种化腐朽为神奇的感觉（尽管都是别人设计好的）。现在我保存的高达所剩不多了，据我记得的，拼好后丢失的就有：MG黄金百式2.0，RG命运女神，RG新安州异色版等，每一个高达拼完都花不小的功夫，现在想想没能很好地保存下来非常可惜。</p>
+<p>我的素组高达制作有以下三个步骤：</p>
+<ul>
+<li>板件拼装（包括修剪水口与简易打磨）</li>
+<li>水贴修饰</li>
+<li>保护漆喷涂</li>
+</ul>
+<p>寒假我把之前的MG艾比安和MG能天使都拿出来喷了消光，正好用完之前剩下的半罐漆。</p>
+<p>现在我的房间一面长这样，堆了许多收藏的东西。Kinda messy, kinda trendy. </p>
+<center>
+    <img src="/images/room.webp" width="600">
+</center>
+]]></content>
+      <categories>
+        <category>闲散</category>
+      </categories>
+      <tags>
+        <tag>自言自语</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>UART收发处理函数</title>
+    <url>/2024/10/20/241020/</url>
+    <content><![CDATA[<p>UART（Universal Asynchronous Receiver&#x2F;Transmitter）是一种串行通信协议，在嵌入式系统和微控制器间数据传输中发挥着核心作用。UART协议通过异步方式传输数据，不依赖于共享时钟信号，简化了通信线路的需求。每次传输包括起始位、数据位、可选的奇偶校验位以及停止位，这种结构支持从简单的传感器到复杂的处理器之间的可靠数据交换。</p>
+<p>其重要性还体现在其广泛的兼容性和低成本实现上。它可以通过简单的两线（TX和RX）接口实现全双工通信，极大地降低了系统的硬件复杂性。此外，UART通信协议可以适应不同的波特率设置，使其能够灵活地调整以匹配特定应用的速度要求。在许多工业和消费电子产品中，UART仍然是实现可靠串行通信的首选技术，尤其在资源受限的环境中显示出其高效和经济的优势。（<strong>以上均为GPT生成</strong>）</p>
+<p>在进行传感器测试时，常用到UART，这里mark一下自己常用的HAL库函数封装，免得后续一直翻之前的程序</p>
+<p>函数需要用到的全局变量如下：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">char</span> send<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token number">0</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span> <span class="token comment">//传输用字符数组，储存字符串</span>
+
+<span class="token class-name">uint8_t</span> rx_buffer <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//接收字符缓冲区</span>
+
+<span class="token keyword">char</span> rx_receiver<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token number">0</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span> <span class="token comment">//接收用字符数组</span>
+
+<span class="token class-name">uint8_t</span> rx_num <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//接收字符数量</span>
+
+<span class="token class-name">uint8_t</span>  uart_start_flag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//接收标志位</span>
+
+__IO  <span class="token class-name">uint32_t</span> uart_gettick <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//系统时钟比较变量</span>
+
+<span class="token comment">/* 测试变量
+uint16_t pwm_duty = 0;
+
+uint8_t startbegin = 0xff;
+
+uint8_t startbegin2 = 0x00;
+*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在硬件配置时要打开UART中断：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token function">HAL_UART_Receive_IT</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1 <span class="token punctuation">,</span> <span class="token operator">&amp;</span>rx_buffer<span class="token punctuation">,</span>  <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>中断回调函数如下：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">HAL_UART_RxCpltCallback</span><span class="token punctuation">(</span>UART_HandleTypeDef <span class="token operator">*</span>huart<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>rx_num <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+  uart_gettick <span class="token operator">=</span> uwTick<span class="token punctuation">;</span> 
+  uart_start_flag <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>  
+  <span class="token punctuation">&#125;</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>uart_start_flag <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+  rx_receiver<span class="token punctuation">[</span>rx_num<span class="token punctuation">]</span> <span class="token operator">=</span> rx_buffer<span class="token punctuation">;</span>
+  rx_num<span class="token operator">++</span><span class="token punctuation">;</span>  
+  <span class="token punctuation">&#125;</span>
+  <span class="token function">HAL_UART_Receive_IT</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1 <span class="token punctuation">,</span> <span class="token operator">&amp;</span>rx_buffer<span class="token punctuation">,</span>  <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>主循环中的处理函数如下：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">UART_RX_PROC</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span> uwTick<span class="token operator">-</span> uart_gettick <span class="token punctuation">)</span> <span class="token operator">>=</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span><span class="token punctuation">(</span> uwTick<span class="token operator">-</span> uart_gettick <span class="token punctuation">)</span> <span class="token operator">&lt;=</span><span class="token number">600</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>uart_start_flag <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>rx_receiver<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token char">'&amp;'</span> <span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span> rx_num <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">//示例：传输pwm占空比</span>
+    pwm_duty <span class="token operator">=</span>  rx_receiver<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span> rx_num <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    pwm_duty <span class="token operator">=</span> <span class="token punctuation">(</span>rx_receiver<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">10</span> <span class="token operator">+</span> rx_receiver<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span> rx_num <span class="token operator">==</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    pwm_duty <span class="token operator">=</span> <span class="token punctuation">(</span>rx_receiver<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">100</span> <span class="token operator">+</span> <span class="token punctuation">(</span>rx_receiver<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">10</span> <span class="token operator">+</span> rx_receiver<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>      
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span> rx_num <span class="token operator">>=</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    pwm_duty <span class="token operator">=</span> <span class="token number">1000</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span>
+    <span class="token function">HAL_UART_Transmit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token operator">&amp;</span>startbegin<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0xffff</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">HAL_UART_Transmit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token operator">&amp;</span>startbegin2<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0xffff</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">HAL_UART_Transmit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token operator">&amp;</span>startbegin<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0xffff</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    rx_num <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    uart_start_flag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这里的函数主要是用以处理字符串的，应付一些的简单的应用已经够用了，当然，也能在此基础上扩展。</p>
+]]></content>
+      <categories>
+        <category>学习记录</category>
+      </categories>
+      <tags>
+        <tag>嵌入式</tag>
+        <tag>C</tag>
       </tags>
   </entry>
 </search>
