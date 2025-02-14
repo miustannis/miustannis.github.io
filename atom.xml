@@ -6,7 +6,7 @@
   <link href="https://miustannis.github.io/atom.xml" rel="self"/>
   
   <link href="https://miustannis.github.io/"/>
-  <updated>2025-02-13T16:07:44.480Z</updated>
+  <updated>2025-02-14T16:19:47.813Z</updated>
   <id>https://miustannis.github.io/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Xiaomi路由器BE3600快速救砖</title>
+    <link href="https://miustannis.github.io/2025/02/13/250213/"/>
+    <id>https://miustannis.github.io/2025/02/13/250213/</id>
+    <published>2025-02-13T10:25:24.000Z</published>
+    <updated>2025-02-14T16:19:47.813Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;家里的路由器变砖了（具体原因不清楚）&lt;/p&gt;
+&lt;p&gt;指示灯由蓝色常亮变成橙色常亮，对于家用路由器这种消费电子产品，一般重启一下能解决90%的故障&lt;/p&gt;
+&lt;p&gt;但心血来潮想试一下给它刷个机&lt;/p&gt;
+&lt;p&gt;型号是这个：&lt;/p&gt;
+&lt;center&gt;
+    &lt;img src=&quot;/</summary>
+      
+    
+    
+    
+    <category term="DIY" scheme="https://miustannis.github.io/categories/DIY/"/>
+    
+    
+    <category term="改装" scheme="https://miustannis.github.io/tags/%E6%94%B9%E8%A3%85/"/>
+    
+  </entry>
+  
+  <entry>
     <title>2025 Feb Packing Up &amp; Personal Step to Decluttering</title>
-    <link href="https://miustannis.github.io/2025/02/12/250212/"/>
-    <id>https://miustannis.github.io/2025/02/12/250212/</id>
-    <published>2025-02-12T11:12:26.000Z</published>
-    <updated>2025-02-13T16:07:44.480Z</updated>
+    <link href="https://miustannis.github.io/2025/02/10/250212/"/>
+    <id>https://miustannis.github.io/2025/02/10/250212/</id>
+    <published>2025-02-10T11:12:26.000Z</published>
+    <updated>2025-02-14T16:15:35.197Z</updated>
     
     
       
@@ -108,26 +135,6 @@
     <category term="C" scheme="https://miustannis.github.io/tags/C/"/>
     
     <category term="MATLAB" scheme="https://miustannis.github.io/tags/MATLAB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>西南风光</title>
-    <link href="https://miustannis.github.io/2024/09/16/240916/"/>
-    <id>https://miustannis.github.io/2024/09/16/240916/</id>
-    <published>2024-09-15T17:01:33.000Z</published>
-    <updated>2025-01-27T03:13:23.471Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;2024年8月&lt;/p&gt;
-&lt;p&gt;迟来的fine  journey 稍纵即逝&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="闲散" scheme="https://miustannis.github.io/categories/%E9%97%B2%E6%95%A3/"/>
-    
-    
-    <category term="摄影" scheme="https://miustannis.github.io/tags/%E6%91%84%E5%BD%B1/"/>
     
   </entry>
   
