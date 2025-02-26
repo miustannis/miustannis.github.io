@@ -6,7 +6,7 @@
   <link href="https://miustannis.github.io/atom.xml" rel="self"/>
   
   <link href="https://miustannis.github.io/"/>
-  <updated>2025-02-14T16:19:47.813Z</updated>
+  <updated>2025-02-26T02:08:44.474Z</updated>
   <id>https://miustannis.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>基于MLX90640的手持红外热成像仪（更新中）</title>
+    <link href="https://miustannis.github.io/2025/02/26/250226/"/>
+    <id>https://miustannis.github.io/2025/02/26/250226/</id>
+    <published>2025-02-26T02:05:52.000Z</published>
+    <updated>2025-02-26T02:08:44.474Z</updated>
+    
+    
+    
+    
+    <category term="DIY" scheme="https://miustannis.github.io/categories/DIY/"/>
+    
+    <category term="学习记录" scheme="https://miustannis.github.io/categories/DIY/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"/>
+    
+    
+    <category term="嵌入式" scheme="https://miustannis.github.io/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    <category term="C" scheme="https://miustannis.github.io/tags/C/"/>
+    
+  </entry>
   
   <entry>
     <title>Xiaomi路由器BE3600快速救砖</title>
@@ -107,34 +128,6 @@
     <category term="嵌入式" scheme="https://miustannis.github.io/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
     
     <category term="C" scheme="https://miustannis.github.io/tags/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>TFTLCD驱动</title>
-    <link href="https://miustannis.github.io/2024/09/28/240928/"/>
-    <id>https://miustannis.github.io/2024/09/28/240928/</id>
-    <published>2024-09-28T06:00:30.000Z</published>
-    <updated>2024-12-11T06:13:31.973Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;在使用Img2LCD取模软件和ST7735S驱动IC控制LCD时，发现API中显示图片的函数调用后显示异常&lt;/p&gt;
-&lt;p&gt;原函数：&lt;/p&gt;
-&lt;pre class=&quot;line-numbers language-c&quot; data-language=&quot;c&quot;&gt;&lt;code class=</summary>
-      
-    
-    
-    
-    <category term="学习记录" scheme="https://miustannis.github.io/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"/>
-    
-    
-    <category term="嵌入式" scheme="https://miustannis.github.io/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
-    
-    <category term="C" scheme="https://miustannis.github.io/tags/C/"/>
-    
-    <category term="MATLAB" scheme="https://miustannis.github.io/tags/MATLAB/"/>
     
   </entry>
   
