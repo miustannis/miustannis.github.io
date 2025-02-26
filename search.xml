@@ -1,6 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>寒山寺闲逛</title>
+    <url>/2023/12/16/231216/</url>
+    <content><![CDATA[<p>有《枫桥夜泊》钟声的加持，也算名气不小的景点<br>实际乏善可陈，没什么特点</p>
+<center>
+    <img src="/images/hss1.webp" width="400">
+</center>
+
+<center>
+    <img src="/images/hss2.webp" width="400">
+</center>
+
+
+
+<p>张继的雕像侧躺在现代枫桥旁边<br>手脚部位被游客盘得发亮，据说摸一摸家里小孩就能考上好大学</p>
+]]></content>
+      <categories>
+        <category>闲散</category>
+      </categories>
+      <tags>
+        <tag>摄影</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo博客插入图片(并居中)</title>
+    <url>/2022/03/15/220321/</url>
+    <content><![CDATA[<h2 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h2><p>之前打算在文章中插入图片，配置的过程中遇到了一些问题。</p>
+<span id="more"></span>
+
+<p>想在博客中引用外站图片问题不大，但<strong>Hexo</strong>默认插入图片只有这一个方法，对有本地化需求的人群来说不够方便，此时可以安装一个满足本地图片引用的插件，在国内某知名（<strong>c</strong>）专业（<strong>s</strong>）开发者（<strong>d</strong>）社区（<strong>n</strong>）里提供的90%的方案为以下命令：<br><code>npm install hexo-asset-image –save</code><br>该论坛上相互借鉴蔚然成风的壮景对我这个刚入门的小白真是非常险恶，此指令安装版本落后，无法有效显示图片，有效的版本安装命令如下：<br><code>npm install https://github.com/CodeFalling/hexo-asset-image –save</code></p>
+<p>修改<code>_config.yml</code>文件，将<code>post_asset_folder:</code>值改为<strong>true</strong>。</p>
+<p>之后在新建一个博客的同时会生成同名文件夹，将需插入的图片放入该文件夹即可。文章中的具体引用代码为以下格式：(后来发现在<code>source</code>文件夹里新建一个名为<code>images</code>的文件夹存放图片也行)</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">]</span>(1/image.jpg)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="更改相对位置"><a href="#更改相对位置" class="headerlink" title="更改相对位置"></a>更改相对位置</h2><p>但这种方法在PC端有一个默认的问题就是图片插入后会自动左对齐，想要实现居中对齐，可以在<strong>markdown</strong>引用代码外部添加<strong>center</strong>元素，或者直接添加<strong>html</strong>元素，如下所示：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">&lt;center<span class="token punctuation">></span>
+
+<span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">...</span><span class="token punctuation">]</span>(xxx)
+
+&lt;/center<span class="token punctuation">></span>
+
+<span class="token comment">#or</span>
+
+&lt;div align=center<span class="token punctuation">></span>
+
+<span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">...</span><span class="token punctuation">]</span>(xxx)
+
+&lt;/div<span class="token punctuation">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>(因为我用VScode来打开博客的md文件进行编辑，在上传至本地网页时一开始发现图片无法加载，后来排查得出居中命令代码间的空行是必要的，不知道其他编辑器是否有这样的问题。)</p>
+<p>还可以直接修改<strong>css</strong>文件，因为<strong>markdown</strong>插入图片的代码在最终渲染的时候变为<strong>html</strong>中的<strong>img</strong>元素。因此可以直接去博客主题文件的源代码中，找到控制文章内图片显示样式的<strong>css</strong>代码，将其修改成水平居中即可。前端编程中修改水平居中的方法非常多，以下是网上资源中提供的其中一种：</p>
+<p>一般情况下可以在<strong>Hexo</strong>博客文件夹进入到主题模板的<code>themes-&gt;(主题名称文件夹)-&gt;source-&gt;css-&gt;_partial</code>中，找到<code>post.styl</code>文件，该<strong>post</strong>文件中保存的就是文章详情页里面的显示样式。然后找到里面正确的<strong>img</strong>元素，修改其样式，增加<code>margin 0 auto</code>这行指令。如下:</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">.post<span class="token punctuation">-</span>content
+    position relative
+    color c<span class="token punctuation">-</span><span class="token number">666</span>
+    img
+      max<span class="token punctuation">-</span>width 100%
+      cursor pointer
+      display block 
+      margin 0 auto<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>然后可以实现了。但我在自己当前使用的主题中并没有找到相关语段，由于技术比较拉跨，我决定还是先老实用前两种吧。</p>
+<p>[后期补丁：你需要一款名为<em><strong>Typora</strong></em>的<strong>markdown</strong>编辑软件]</p>
+]]></content>
+      <categories>
+        <category>DIY</category>
+      </categories>
+      <tags>
+        <tag>html</tag>
+        <tag>yaml</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>procreate社团设计x3</title>
     <url>/2022/03/16/220317/</url>
     <content><![CDATA[<p>翻了翻之前的文件夹，自己在在本科社团宣传部一年好像也没什么创作成果</p>
@@ -60,6 +129,44 @@
       </tags>
   </entry>
   <entry>
+    <title>西南风光</title>
+    <url>/2024/09/16/240916/</url>
+    <content><![CDATA[<p>2024年8月</p>
+<p>迟来的fine  journey 稍纵即逝</p>
+<span id="more"></span>
+
+
+
+<center>
+    <img src="/images/GUIZHOU.webp" width="1200">
+</center>
+<center>
+    <img src="/images/CHONGQING.webp" width="1200">
+</center>
+
+<center>
+    <img src="/images/TIBET1.webp" width="1200">
+</center>
+
+<center>
+    <img src="/images/TIBET2.webp" width="1200">
+</center>
+
+<center>
+    <img src="/images/TIBET3.webp" width="1200">
+</center>
+
+
+<p>醉后不知天在水 满船清梦压星河</p>
+]]></content>
+      <categories>
+        <category>闲散</category>
+      </categories>
+      <tags>
+        <tag>摄影</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>网站启用测试</title>
     <url>/2022/03/14/220314/</url>
     <content><![CDATA[<p>支持站内文字搜索</p>
@@ -72,92 +179,6 @@
       </categories>
       <tags>
         <tag>html</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>寒山寺闲逛</title>
-    <url>/2023/12/16/231216/</url>
-    <content><![CDATA[<p>有《枫桥夜泊》钟声的加持，也算名气不小的景点<br>实际乏善可陈，没什么特点</p>
-<center>
-    <img src="/images/hss1.webp" width="400">
-</center>
-
-<center>
-    <img src="/images/hss2.webp" width="400">
-</center>
-
-
-
-<p>张继的雕像侧躺在现代枫桥旁边<br>手脚部位被游客盘得发亮，据说摸一摸家里小孩就能考上好大学</p>
-]]></content>
-      <categories>
-        <category>闲散</category>
-      </categories>
-      <tags>
-        <tag>摄影</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>插入图片(并居中)</title>
-    <url>/2022/03/15/220321/</url>
-    <content><![CDATA[<h1 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h1><p>之前打算在文章中插入图片，配置的过程中遇到了一些问题。</p>
-<span id="more"></span>
-
-<p>想在博客中引用外站图片问题不大，但<strong>Hexo</strong>默认插入图片只有这一个方法，对有本地化需求的人群来说不够方便，此时可以安装一个满足本地图片引用的插件，在国内某知名（<strong>c</strong>）专业（<strong>s</strong>）开发者（<strong>d</strong>）社区（<strong>n</strong>）里提供的90%的方案为以下命令：<br><code>npm install hexo-asset-image –save</code><br>该论坛上相互借鉴蔚然成风的壮景对我这个刚入门的小白真是非常险恶，此指令安装版本落后，无法有效显示图片，有效的版本安装命令如下：<br><code>npm install https://github.com/CodeFalling/hexo-asset-image –save</code></p>
-<p>修改<code>_config.yml</code>文件，将<code>post_asset_folder:</code>值改为<strong>true</strong>。</p>
-<p>之后在新建一个博客的同时会生成同名文件夹，将需插入的图片放入该文件夹即可。文章中的具体引用代码为以下格式：(后来发现在<code>source</code>文件夹里新建一个名为<code>images</code>的文件夹存放图片也行)</p>
-<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">]</span>(1/image.jpg)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h1 id="更改相对位置"><a href="#更改相对位置" class="headerlink" title="更改相对位置"></a>更改相对位置</h1><p>但这种方法在PC端有一个默认的问题就是图片插入后会自动左对齐，想要实现居中对齐，可以在<strong>markdown</strong>引用代码外部添加<strong>center</strong>元素，或者直接添加<strong>html</strong>元素，如下所示：</p>
-<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">&lt;center<span class="token punctuation">></span>
-
-<span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">...</span><span class="token punctuation">]</span>(xxx)
-
-&lt;/center<span class="token punctuation">></span>
-
-<span class="token comment">#or</span>
-
-&lt;div align=center<span class="token punctuation">></span>
-
-<span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">...</span><span class="token punctuation">]</span>(xxx)
-
-&lt;/div<span class="token punctuation">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>(因为我用VScode来打开博客的md文件进行编辑，在上传至本地网页时一开始发现图片无法加载，后来排查得出居中命令代码间的空行是必要的，不知道其他编辑器是否有这样的问题。)</p>
-<p>还可以直接修改<strong>css</strong>文件，因为<strong>markdown</strong>插入图片的代码在最终渲染的时候变为<strong>html</strong>中的<strong>img</strong>元素。因此可以直接去博客主题文件的源代码中，找到控制文章内图片显示样式的<strong>css</strong>代码，将其修改成水平居中即可。前端编程中修改水平居中的方法非常多，以下是网上资源中提供的其中一种：</p>
-<p>一般情况下可以在<strong>Hexo</strong>博客文件夹进入到主题模板的<code>themes-&gt;(主题名称文件夹)-&gt;source-&gt;css-&gt;_partial</code>中，找到<code>post.styl</code>文件，该<strong>post</strong>文件中保存的就是文章详情页里面的显示样式。然后找到里面正确的<strong>img</strong>元素，修改其样式，增加<code>margin 0 auto</code>这行指令。如下:</p>
-<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">.post<span class="token punctuation">-</span>content
-    position relative
-    color c<span class="token punctuation">-</span><span class="token number">666</span>
-    img
-      max<span class="token punctuation">-</span>width 100%
-      cursor pointer
-      display block 
-      margin 0 auto<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>然后可以实现了。但我在自己当前使用的主题中并没有找到相关语段，由于技术比较拉跨，我决定还是先老实用前两种吧。</p>
-<p>[后期补丁：你需要一款名为<em><strong>Typora</strong></em>的<strong>markdown</strong>编辑软件]</p>
-]]></content>
-      <categories>
-        <category>DIY</category>
-      </categories>
-      <tags>
-        <tag>html</tag>
-        <tag>yaml</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>STM32配置笔记参考</title>
-    <url>/2024/11/21/241121/</url>
-    <content><![CDATA[<p>大二时的笔记，upload当乐高说明书看</p>
-<span id="more"></span>
-
-<p><strong>pdf嵌入使用了pdf.js插件</strong>，hexo-pdf这个插件在移动端不能很好地显示</p>
-<iframe src="/pdfjs/web/viewer.html?file=/pdf/post1.pdf" style="width:100%;height:800px"></iframe>
-]]></content>
-      <categories>
-        <category>学习记录</category>
-      </categories>
-      <tags>
-        <tag>嵌入式</tag>
-        <tag>C</tag>
       </tags>
   </entry>
   <entry>
@@ -241,99 +262,6 @@
       </tags>
   </entry>
   <entry>
-    <title>西南风光</title>
-    <url>/2024/09/16/240916/</url>
-    <content><![CDATA[<p>2024年8月</p>
-<p>迟来的fine  journey 稍纵即逝</p>
-<span id="more"></span>
-
-
-
-<center>
-    <img src="/images/GUIZHOU.webp" width="1200">
-</center>
-<center>
-    <img src="/images/CHONGQING.webp" width="1200">
-</center>
-
-<center>
-    <img src="/images/TIBET1.webp" width="1200">
-</center>
-
-<center>
-    <img src="/images/TIBET2.webp" width="1200">
-</center>
-
-<center>
-    <img src="/images/TIBET3.webp" width="1200">
-</center>
-
-
-<p>醉后不知天在水 满船清梦压星河</p>
-]]></content>
-      <categories>
-        <category>闲散</category>
-      </categories>
-      <tags>
-        <tag>摄影</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>2025 Feb Packing Up &amp; Personal Step to Decluttering</title>
-    <url>/2025/02/10/250212/</url>
-    <content><![CDATA[<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>寒假从公寓打包东西回家时，我感受到自己的行李数量过多，直观的表现是我用了四个大号搬家盒邮寄，但剩余的物品还是将我的行李箱塞得很满，导致拉链都很难拉上。</p>
-<p>我有收藏的癖好，包括各种证件，证书，徽章等。很多时候我觉得这个习惯帮助自己成为一个有条理的人，因为对于收纳好的物品，我很少出现找不到东西的情况；但也有很多时候我感觉自己在已经过去的事情上花费了过多的精力，一定程度上影响了自己的生活节奏。</p>
-<p>然而我始终认为很多东西是有纪念意义的，因此有必要在实现这个意义的方法上进行一些变通。近期，我在收纳整理方面做了一些思考与改变。</p>
-<h2 id="For-Record"><a href="#For-Record" class="headerlink" title="For Record"></a>For Record</h2><p>在2023年我看到一些博主，使用一种叫手账的方式记录自己的日常生活，他们会在一些记事本（通常外观看起来比较好看）上通过文字，绘画与粘贴物品等方式呈现一种比日记更丰富的格式，个人风格十分鲜明。当时正值保研结束的暑假，是我大学以来最放松的一段时间，对现实与未来没有过多的想象与焦虑，仿佛生活随风而起，处处是可以随手采撷的格桑花。于是我一眼看上这种“生活的艺术”，买了一个手账本，一台用于打印照片的 Canon CP1500，以及一些用来切割的工具。</p>
-<p>我会用图片记录下一些东西，将他们用照片打印机打印出来后，撕去相纸的背面硬支撑部分，用胶水将其粘贴在手账本上，并在一旁配上文字描述与相关心情。甚至在看完一部电影或是一部动漫之后，我会将它们的海报打印下来，一并粘贴上去。</p>
-<center>
-    <img src="/images/shouzhang.webp" width="500">
-</center>
-
-<p>一套流程下来，整理两页的手账得画上1~2个小时，尤其是媒体记录，其实在豆瓣上点一个“看过”大概只需要十几秒的时间。</p>
-<p>本质上来说，“手账”以及其他的一些类似记录的方式属于一种对慢生活态度的实践，可能对于当时的我来说，需要一段时间来放空自己。</p>
-<table>
-<thead>
-<tr>
-<th>优点</th>
-<th>缺点</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>放松</td>
-<td>繁杂冗长</td>
-</tr>
-<tr>
-<td>自我表达</td>
-<td>效率低</td>
-</tr>
-<tr>
-<td>组织与规划能力</td>
-<td>过于追求细节</td>
-</tr>
-</tbody></table>
-<p>综上优缺点考量，我决定不再继续这种记录方式了，博客或其他电子设备记录是一种更可取的方式。</p>
-<h2 id="For-高达模型"><a href="#For-高达模型" class="headerlink" title="For 高达模型"></a>For 高达模型</h2><p>拼装模型是我从小到大的爱好，从军模到高达，我很享受把碎片构造成一个完整体的过程，有种化腐朽为神奇的感觉（尽管都是别人设计好的）。现在我保存的高达所剩不多了，据我记得的，拼好后丢失的就有：MG黄金百式2.0，RG命运女神，RG新安州异色版等，每一个高达拼完都花不小的功夫，现在想想没能保存下来非常可惜。</p>
-<p>我的素组高达制作有以下三个步骤：</p>
-<ul>
-<li>板件拼装（包括修剪水口与简易打磨）</li>
-<li>水贴修饰</li>
-<li>保护漆喷涂</li>
-</ul>
-<p>我把之前的MG艾比安和MG能天使都拿出来喷了消光，正好用完之前剩下的半罐漆。</p>
-<p>现在我的房间的一面长这样，堆了许多收藏的东西。Kinda messy, kinda trendy. </p>
-<center>
-    <img src="/images/room.webp" width="700">
-</center>
-]]></content>
-      <categories>
-        <category>闲散</category>
-      </categories>
-      <tags>
-        <tag>自言自语</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>UART收发处理函数</title>
     <url>/2024/10/20/241020/</url>
     <content><![CDATA[<p>UART（Universal Asynchronous Receiver&#x2F;Transmitter）是一种串行通信协议，在嵌入式系统和微控制器间数据传输中发挥着核心作用。UART协议通过异步方式传输数据，不依赖于共享时钟信号，简化了通信线路的需求。每次传输包括起始位、数据位、可选的奇偶校验位以及停止位，这种结构支持从简单的传感器到复杂的处理器之间的可靠数据交换。</p>
@@ -413,6 +341,78 @@ uint8_t startbegin2 = 0x00;
       <tags>
         <tag>嵌入式</tag>
         <tag>C</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>STM32配置笔记参考</title>
+    <url>/2024/11/21/241121/</url>
+    <content><![CDATA[<p>大二时的笔记，upload当乐高说明书看</p>
+<span id="more"></span>
+
+<p><strong>pdf嵌入使用了pdf.js插件</strong>，hexo-pdf这个插件在移动端不能很好地显示</p>
+<iframe src="/pdfjs/web/viewer.html?file=/pdf/post1.pdf" style="width:100%;height:800px"></iframe>
+]]></content>
+      <categories>
+        <category>学习记录</category>
+      </categories>
+      <tags>
+        <tag>嵌入式</tag>
+        <tag>C</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2025 Feb Packing Up &amp; Personal Step to Decluttering</title>
+    <url>/2025/02/10/250212/</url>
+    <content><![CDATA[<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>寒假从公寓打包东西回家时，我感受到自己的行李数量过多，直观的表现是我用了四个大号搬家盒邮寄，但剩余的物品还是将我的行李箱塞得很满，导致拉链都很难拉上。</p>
+<p>我有收藏的癖好，包括各种证件，证书，徽章等。很多时候我觉得这个习惯帮助自己成为一个有条理的人，因为对于收纳好的物品，我很少出现找不到东西的情况；但也有很多时候我感觉自己在已经过去的事情上花费了过多的精力，一定程度上影响了自己的生活节奏。</p>
+<p>然而我始终认为很多东西是有纪念意义的，因此有必要在实现这个意义的方法上进行一些变通。近期，我在收纳整理方面做了一些思考与改变。</p>
+<h2 id="For-Record"><a href="#For-Record" class="headerlink" title="For Record"></a>For Record</h2><p>在2023年我看到一些博主，使用一种叫手账的方式记录自己的日常生活，他们会在一些记事本（通常外观看起来比较好看）上通过文字，绘画与粘贴物品等方式呈现一种比日记更丰富的格式，个人风格十分鲜明。当时正值保研结束的暑假，是我大学以来最放松的一段时间，对现实与未来没有过多的想象与焦虑，仿佛生活随风而起，处处是可以随手采撷的格桑花。于是我一眼看上这种“生活的艺术”，买了一个手账本，一台用于打印照片的 Canon CP1500，以及一些用来切割的工具。</p>
+<p>我会用图片记录下一些东西，将他们用照片打印机打印出来后，撕去相纸的背面硬支撑部分，用胶水将其粘贴在手账本上，并在一旁配上文字描述与相关心情。甚至在看完一部电影或是一部动漫之后，我会将它们的海报打印下来，一并粘贴上去。</p>
+<center>
+    <img src="/images/shouzhang.webp" width="500">
+</center>
+
+<p>一套流程下来，整理两页的手账得画上1~2个小时，尤其是媒体记录，其实在豆瓣上点一个“看过”大概只需要十几秒的时间。</p>
+<p>本质上来说，“手账”以及其他的一些类似记录的方式属于一种对慢生活态度的实践，可能对于当时的我来说，需要一段时间来放空自己。</p>
+<table>
+<thead>
+<tr>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>放松</td>
+<td>繁杂冗长</td>
+</tr>
+<tr>
+<td>自我表达</td>
+<td>效率低</td>
+</tr>
+<tr>
+<td>组织与规划能力</td>
+<td>过于追求细节</td>
+</tr>
+</tbody></table>
+<p>综上优缺点考量，我决定不再继续这种记录方式了，博客或其他电子设备记录是一种更可取的方式。</p>
+<h2 id="For-高达模型"><a href="#For-高达模型" class="headerlink" title="For 高达模型"></a>For 高达模型</h2><p>拼装模型是我从小到大的爱好，从军模到高达，我很享受把碎片构造成一个完整体的过程，有种化腐朽为神奇的感觉（尽管都是别人设计好的）。现在我保存的高达所剩不多了，据我记得的，拼好后丢失的就有：MG黄金百式2.0，RG命运女神，RG新安州异色版等，每一个高达拼完都花不小的功夫，现在想想没能保存下来非常可惜。</p>
+<p>我的素组高达制作有以下三个步骤：</p>
+<ul>
+<li>板件拼装（包括修剪水口与简易打磨）</li>
+<li>水贴修饰</li>
+<li>保护漆喷涂</li>
+</ul>
+<p>我把之前的MG艾比安和MG能天使都拿出来喷了消光，正好用完之前剩下的半罐漆。</p>
+<p>现在我的房间的一面长这样，堆了许多收藏的东西。Kinda messy, kinda trendy. </p>
+<center>
+    <img src="/images/room.webp" width="700">
+</center>
+]]></content>
+      <categories>
+        <category>闲散</category>
+      </categories>
+      <tags>
+        <tag>自言自语</tag>
       </tags>
   </entry>
   <entry>
