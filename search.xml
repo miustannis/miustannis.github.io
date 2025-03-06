@@ -1,36 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>procreate社团设计x3</title>
-    <url>/2022/03/16/220317/</url>
-    <content><![CDATA[<p>翻了翻之前的文件夹，自己在在本科社团宣传部一年好像也没什么创作成果</p>
-<span id="more"></span>
-
-<p>首先是两个养老院的徽章，记得当时是在画第一个徽章的过程中错删了一个图层，然后碰巧搞出了一个镂空的效果，感觉还不错，就在第二个徽章里故技重施了一下，但没有原来的效果了</p>
-<center>
-<img src="/images/4.webp" style="zoom:80%;">
-<img src="/images/5.webp" style="zoom:80%;">
-</center>
-
-
-
-<p>下图是大二上学期一次活动的海报设计，for苏州大学独墅湖校区冬至灯会</p>
-<center>
-<img src="/images/2.webp" style="zoom:80%;">
-</center>
-
-
-
-<p>以上作品均由<strong>iPad</strong>绘画软件<strong>procreate</strong>绘制，方便使用，新手友好</p>
-]]></content>
-      <categories>
-        <category>闲散</category>
-      </categories>
-      <tags>
-        <tag>绘画</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>procreate绘画x3</title>
     <url>/2022/03/16/220316/</url>
     <content><![CDATA[<p>或许有点蒸汽波</p>
@@ -182,86 +152,6 @@
       </tags>
   </entry>
   <entry>
-    <title>TFTLCD驱动</title>
-    <url>/2024/09/28/240928/</url>
-    <content><![CDATA[<p>在使用Img2LCD取模软件和ST7735S驱动IC控制LCD时，发现API中显示图片的函数调用后显示异常</p>
-<p>原函数：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">ST7735_DrawImage</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span> x<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> y<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> w<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> h<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token class-name">uint16_t</span><span class="token operator">*</span> data<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>y <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">+</span> w <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>y <span class="token operator">+</span> h <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
-
-    <span class="token function">ST7735_Select</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">ST7735_SetAddressWindow</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> x<span class="token operator">+</span>w<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> y<span class="token operator">+</span>h<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">ST7735_WriteData</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token operator">*</span><span class="token punctuation">)</span>data<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span><span class="token punctuation">)</span><span class="token operator">*</span>w<span class="token operator">*</span>h<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">ST7735_Unselect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>输入数据要求16位rgb565格式图片，与Img2LCD取模软件两个8位数表示一个像素点的编码逻辑不同，首次修改仅改了原函数输入数据的格式：将data16位常量数据指针类型改为8位无符号变量指针类型，且在spi写入数据时将数据量乘以2，修改后的函数如下：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">ST7735_DrawImage8bit_Img2LCD</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span> x<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> y<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> w<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> h<span class="token punctuation">,</span> <span class="token class-name">uint8_t</span><span class="token operator">*</span> data<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>y <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">+</span> w <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>y <span class="token operator">+</span> h <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
-    
-    <span class="token function">ST7735_Select</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">ST7735_SetAddressWindow</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> x<span class="token operator">+</span>w<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> y<span class="token operator">+</span>h<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	
-    <span class="token function">ST7735_WriteData</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token operator">*</span><span class="token punctuation">)</span>data<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token punctuation">)</span><span class="token operator">*</span>w<span class="token operator">*</span>h<span class="token operator">*</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">ST7735_Unselect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>但是烧录测试后LCD显示颜色异常且边缘模糊，初步推测是图片数据原本的问题，考虑到可能2个8位数据合并时高8位与低8位的顺序反了，在MATLAB中进行数组元素两两翻转验证：</p>
-<pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> swappedArray <span class="token operator">=</span> <span class="token function">swapPairs</span><span class="token punctuation">(</span>inputArray<span class="token punctuation">)</span>
-    <span class="token keyword">if</span> <span class="token function">iscolumn</span><span class="token punctuation">(</span>inputArray<span class="token punctuation">)</span>
-        inputArray <span class="token operator">=</span> inputArray<span class="token operator">'</span><span class="token punctuation">;</span>
-    <span class="token keyword">end</span>
-    n <span class="token operator">=</span> <span class="token function">length</span><span class="token punctuation">(</span>inputArray<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token function">mod</span><span class="token punctuation">(</span>n<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">~=</span> <span class="token number">0</span>
-        <span class="token function">inputArray</span><span class="token punctuation">(</span><span class="token keyword">end</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">NaN</span><span class="token punctuation">;</span> 
-    <span class="token keyword">end</span>
-    swappedArray <span class="token operator">=</span> inputArray<span class="token punctuation">;</span>
-    <span class="token function">swappedArray</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">2</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">inputArray</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">:</span><span class="token number">2</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">swappedArray</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">:</span><span class="token number">2</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">inputArray</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">2</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    swappedArray <span class="token operator">=</span> <span class="token function">swappedArray</span><span class="token punctuation">(</span><span class="token operator">~</span><span class="token function">isnan</span><span class="token punctuation">(</span>swappedArray<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>将原始图片数据处理后再进行烧录，发现显示正常，问题定位到数组元素的写入顺序，解决方法较多，这里我直接在函数中将原始数组变换，最终的函数如下：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">ST7735_DrawImage8bit_Img2LCD</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span> x<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> y<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> w<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> h<span class="token punctuation">,</span> <span class="token class-name">uint8_t</span><span class="token operator">*</span> data<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-	<span class="token class-name">uint32_t</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-	<span class="token class-name">uint8_t</span> temp <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>y <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">+</span> w <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>y <span class="token operator">+</span> h <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
-	<span class="token comment">/* Swap adjacent elements in the data array	*/</span>
-	<span class="token keyword">for</span> <span class="token punctuation">(</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> w <span class="token operator">*</span> h <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span> i <span class="token operator">+=</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-	    <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&lt;</span> w <span class="token operator">*</span> h <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-	        temp <span class="token operator">=</span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-	        data<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> data<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-	        data<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
-	    <span class="token punctuation">&#125;</span>
-	<span class="token punctuation">&#125;</span>
-	<span class="token function">ST7735_Select</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token function">ST7735_SetAddressWindow</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> x<span class="token operator">+</span>w<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> y<span class="token operator">+</span>h<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	
-	<span class="token function">ST7735_WriteData</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token operator">*</span><span class="token punctuation">)</span>data<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token punctuation">)</span><span class="token operator">*</span>w<span class="token operator">*</span>h<span class="token operator">*</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token function">ST7735_Unselect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>看看显示效果：</p>
-<center>
-<img src="/images/LCDTEST.webp" width="400">
-</center>
-]]></content>
-      <categories>
-        <category>学习记录</category>
-      </categories>
-      <tags>
-        <tag>嵌入式</tag>
-        <tag>C</tag>
-        <tag>MATLAB</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>UART收发处理函数</title>
     <url>/2024/10/20/241020/</url>
     <content><![CDATA[<p>UART（Universal Asynchronous Receiver&#x2F;Transmitter）是一种串行通信协议，在嵌入式系统和微控制器间数据传输中发挥着核心作用。UART协议通过异步方式传输数据，不依赖于共享时钟信号，简化了通信线路的需求。每次传输包括起始位、数据位、可选的奇偶校验位以及停止位，这种结构支持从简单的传感器到复杂的处理器之间的可靠数据交换。</p>
@@ -344,13 +234,75 @@ uint8_t startbegin2 = 0x00;
       </tags>
   </entry>
   <entry>
-    <title>STM32配置笔记参考</title>
-    <url>/2024/11/21/241121/</url>
-    <content><![CDATA[<p>大二时的笔记，upload当乐高说明书看</p>
-<span id="more"></span>
+    <title>TFTLCD驱动</title>
+    <url>/2024/09/28/240928/</url>
+    <content><![CDATA[<p>在使用Img2LCD取模软件和ST7735S驱动IC控制LCD时，发现API中显示图片的函数调用后显示异常</p>
+<p>原函数：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">ST7735_DrawImage</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span> x<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> y<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> w<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> h<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token class-name">uint16_t</span><span class="token operator">*</span> data<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>y <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">+</span> w <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>y <span class="token operator">+</span> h <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
 
-<p><strong>pdf嵌入使用了pdf.js插件</strong>，hexo-pdf这个插件在移动端不能很好地显示</p>
-<iframe src="/pdfjs/web/viewer.html?file=/pdf/post1.pdf" style="width:100%;height:800px"></iframe>
+    <span class="token function">ST7735_Select</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">ST7735_SetAddressWindow</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> x<span class="token operator">+</span>w<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> y<span class="token operator">+</span>h<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">ST7735_WriteData</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token operator">*</span><span class="token punctuation">)</span>data<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span><span class="token punctuation">)</span><span class="token operator">*</span>w<span class="token operator">*</span>h<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">ST7735_Unselect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输入数据要求16位rgb565格式图片，与Img2LCD取模软件两个8位数表示一个像素点的编码逻辑不同，首次修改仅改了原函数输入数据的格式：将data16位常量数据指针类型改为8位无符号变量指针类型，且在spi写入数据时将数据量乘以2，修改后的函数如下：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">ST7735_DrawImage8bit_Img2LCD</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span> x<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> y<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> w<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> h<span class="token punctuation">,</span> <span class="token class-name">uint8_t</span><span class="token operator">*</span> data<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>y <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">+</span> w <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>y <span class="token operator">+</span> h <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    
+    <span class="token function">ST7735_Select</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">ST7735_SetAddressWindow</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> x<span class="token operator">+</span>w<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> y<span class="token operator">+</span>h<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	
+    <span class="token function">ST7735_WriteData</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token operator">*</span><span class="token punctuation">)</span>data<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token punctuation">)</span><span class="token operator">*</span>w<span class="token operator">*</span>h<span class="token operator">*</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">ST7735_Unselect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>但是烧录测试后LCD显示颜色异常且边缘模糊，初步推测是图片数据原本的问题，考虑到可能2个8位数据合并时高8位与低8位的顺序反了，在MATLAB中进行数组元素两两翻转验证：</p>
+<pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> swappedArray <span class="token operator">=</span> <span class="token function">swapPairs</span><span class="token punctuation">(</span>inputArray<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token function">iscolumn</span><span class="token punctuation">(</span>inputArray<span class="token punctuation">)</span>
+        inputArray <span class="token operator">=</span> inputArray<span class="token operator">'</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+    n <span class="token operator">=</span> <span class="token function">length</span><span class="token punctuation">(</span>inputArray<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token function">mod</span><span class="token punctuation">(</span>n<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">~=</span> <span class="token number">0</span>
+        <span class="token function">inputArray</span><span class="token punctuation">(</span><span class="token keyword">end</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">NaN</span><span class="token punctuation">;</span> 
+    <span class="token keyword">end</span>
+    swappedArray <span class="token operator">=</span> inputArray<span class="token punctuation">;</span>
+    <span class="token function">swappedArray</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">2</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">inputArray</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">:</span><span class="token number">2</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">swappedArray</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">:</span><span class="token number">2</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">inputArray</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">2</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    swappedArray <span class="token operator">=</span> <span class="token function">swappedArray</span><span class="token punctuation">(</span><span class="token operator">~</span><span class="token function">isnan</span><span class="token punctuation">(</span>swappedArray<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>将原始图片数据处理后再进行烧录，发现显示正常，问题定位到数组元素的写入顺序，解决方法较多，这里我直接在函数中将原始数组变换，最终的函数如下：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">ST7735_DrawImage8bit_Img2LCD</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span> x<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> y<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> w<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> h<span class="token punctuation">,</span> <span class="token class-name">uint8_t</span><span class="token operator">*</span> data<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token class-name">uint32_t</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+	<span class="token class-name">uint8_t</span> temp <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>y <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">+</span> w <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>y <span class="token operator">+</span> h <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+	<span class="token comment">/* Swap adjacent elements in the data array	*/</span>
+	<span class="token keyword">for</span> <span class="token punctuation">(</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> w <span class="token operator">*</span> h <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span> i <span class="token operator">+=</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	    <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&lt;</span> w <span class="token operator">*</span> h <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	        temp <span class="token operator">=</span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+	        data<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> data<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+	        data<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+	    <span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token function">ST7735_Select</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">ST7735_SetAddressWindow</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> x<span class="token operator">+</span>w<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> y<span class="token operator">+</span>h<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	
+	<span class="token function">ST7735_WriteData</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token operator">*</span><span class="token punctuation">)</span>data<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token punctuation">)</span><span class="token operator">*</span>w<span class="token operator">*</span>h<span class="token operator">*</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">ST7735_Unselect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>看看显示效果：</p>
+<center>
+<img src="/images/LCDTEST.webp" width="400">
+</center>
 ]]></content>
       <categories>
         <category>学习记录</category>
@@ -358,6 +310,37 @@ uint8_t startbegin2 = 0x00;
       <tags>
         <tag>嵌入式</tag>
         <tag>C</tag>
+        <tag>MATLAB</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>procreate社团设计x3</title>
+    <url>/2022/03/16/220317/</url>
+    <content><![CDATA[<p>翻了翻之前的文件夹，自己在在本科社团宣传部一年好像也没什么创作成果</p>
+<span id="more"></span>
+
+<p>首先是两个养老院的徽章，记得当时是在画第一个徽章的过程中错删了一个图层，然后碰巧搞出了一个镂空的效果，感觉还不错，就在第二个徽章里故技重施了一下，但没有原来的效果了</p>
+<center>
+<img src="/images/4.webp" style="zoom:80%;">
+<img src="/images/5.webp" style="zoom:80%;">
+</center>
+
+
+
+<p>下图是大二上学期一次活动的海报设计，for苏州大学独墅湖校区冬至灯会</p>
+<center>
+<img src="/images/2.webp" style="zoom:80%;">
+</center>
+
+
+
+<p>以上作品均由<strong>iPad</strong>绘画软件<strong>procreate</strong>绘制，方便使用，新手友好</p>
+]]></content>
+      <categories>
+        <category>闲散</category>
+      </categories>
+      <tags>
+        <tag>绘画</tag>
       </tags>
   </entry>
   <entry>
@@ -416,6 +399,35 @@ uint8_t startbegin2 = 0x00;
       </tags>
   </entry>
   <entry>
+    <title>STM32配置笔记参考</title>
+    <url>/2024/11/21/241121/</url>
+    <content><![CDATA[<p>大二时的笔记，upload当乐高说明书看</p>
+<span id="more"></span>
+
+<p><strong>pdf嵌入使用了pdf.js插件</strong>，hexo-pdf这个插件在移动端不能很好地显示</p>
+<iframe src="/pdfjs/web/viewer.html?file=/pdf/post1.pdf" style="width:100%;height:800px"></iframe>
+]]></content>
+      <categories>
+        <category>学习记录</category>
+      </categories>
+      <tags>
+        <tag>嵌入式</tag>
+        <tag>C</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Havard CS50 课程学习记录（更新中）</title>
+    <url>/2025/03/06/250306/</url>
+    <content><![CDATA[<p>Problem Set： <a href="https://cs50.harvard.edu/x/2024/psets/">https://cs50.harvard.edu/x/2024/psets/</a></p>
+]]></content>
+      <categories>
+        <category>学习记录</category>
+      </categories>
+      <tags>
+        <tag>计算机科学</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Xiaomi路由器BE3600快速救砖</title>
     <url>/2025/02/13/250213/</url>
     <content><![CDATA[<p>家里的路由器变砖了（具体原因不清楚）</p>
@@ -457,18 +469,6 @@ uint8_t startbegin2 = 0x00;
       </tags>
   </entry>
   <entry>
-    <title>Havard CS50 课程学习记录（更新中）</title>
-    <url>/2025/03/06/250306/</url>
-    <content><![CDATA[<p>Problem Set： <a href="https://cs50.harvard.edu/x/2024/psets/">https://cs50.harvard.edu/x/2024/psets/</a></p>
-]]></content>
-      <categories>
-        <category>学习记录</category>
-      </categories>
-      <tags>
-        <tag>计算机科学</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>基于MLX90640的手持红外热成像仪（更新中）</title>
     <url>/2025/02/26/250226/</url>
     <content><![CDATA[<h2 id="小问题合集："><a href="#小问题合集：" class="headerlink" title="小问题合集："></a><strong>小问题合集：</strong></h2><h3 id="problem1：使用ST-Link下载过一次程序后发现无法继续下载"><a href="#problem1：使用ST-Link下载过一次程序后发现无法继续下载" class="headerlink" title="problem1：使用ST-Link下载过一次程序后发现无法继续下载"></a><strong>problem1：使用ST-Link下载过一次程序后发现无法继续下载</strong></h3><ol>
@@ -484,7 +484,6 @@ uint8_t startbegin2 = 0x00;
 ]]></content>
       <categories>
         <category>DIY</category>
-        <category>学习记录</category>
       </categories>
       <tags>
         <tag>嵌入式</tag>
