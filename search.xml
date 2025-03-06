@@ -1,75 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>寒山寺闲逛</title>
-    <url>/2023/12/16/231216/</url>
-    <content><![CDATA[<p>有《枫桥夜泊》钟声的加持，也算名气不小的景点<br>实际乏善可陈，没什么特点</p>
-<center>
-    <img src="/images/hss1.webp" width="400">
-</center>
-
-<center>
-    <img src="/images/hss2.webp" width="400">
-</center>
-
-
-
-<p>张继的雕像侧躺在现代枫桥旁边<br>手脚部位被游客盘得发亮，据说摸一摸家里小孩就能考上好大学</p>
-]]></content>
-      <categories>
-        <category>闲散</category>
-      </categories>
-      <tags>
-        <tag>摄影</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo博客插入图片(并居中)</title>
-    <url>/2022/03/15/220321/</url>
-    <content><![CDATA[<h2 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h2><p>之前打算在文章中插入图片，配置的过程中遇到了一些问题。</p>
-<span id="more"></span>
-
-<p>想在博客中引用外站图片问题不大，但<strong>Hexo</strong>默认插入图片只有这一个方法，对有本地化需求的人群来说不够方便，此时可以安装一个满足本地图片引用的插件，在国内某知名（<strong>c</strong>）专业（<strong>s</strong>）开发者（<strong>d</strong>）社区（<strong>n</strong>）里提供的90%的方案为以下命令：<br><code>npm install hexo-asset-image –save</code><br>该论坛上相互借鉴蔚然成风的壮景对我这个刚入门的小白真是非常险恶，此指令安装版本落后，无法有效显示图片，有效的版本安装命令如下：<br><code>npm install https://github.com/CodeFalling/hexo-asset-image –save</code></p>
-<p>修改<code>_config.yml</code>文件，将<code>post_asset_folder:</code>值改为<strong>true</strong>。</p>
-<p>之后在新建一个博客的同时会生成同名文件夹，将需插入的图片放入该文件夹即可。文章中的具体引用代码为以下格式：(后来发现在<code>source</code>文件夹里新建一个名为<code>images</code>的文件夹存放图片也行)</p>
-<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">]</span>(1/image.jpg)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h2 id="更改相对位置"><a href="#更改相对位置" class="headerlink" title="更改相对位置"></a>更改相对位置</h2><p>但这种方法在PC端有一个默认的问题就是图片插入后会自动左对齐，想要实现居中对齐，可以在<strong>markdown</strong>引用代码外部添加<strong>center</strong>元素，或者直接添加<strong>html</strong>元素，如下所示：</p>
-<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">&lt;center<span class="token punctuation">></span>
-
-<span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">...</span><span class="token punctuation">]</span>(xxx)
-
-&lt;/center<span class="token punctuation">></span>
-
-<span class="token comment">#or</span>
-
-&lt;div align=center<span class="token punctuation">></span>
-
-<span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">...</span><span class="token punctuation">]</span>(xxx)
-
-&lt;/div<span class="token punctuation">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>(因为我用VScode来打开博客的md文件进行编辑，在上传至本地网页时一开始发现图片无法加载，后来排查得出居中命令代码间的空行是必要的，不知道其他编辑器是否有这样的问题。)</p>
-<p>还可以直接修改<strong>css</strong>文件，因为<strong>markdown</strong>插入图片的代码在最终渲染的时候变为<strong>html</strong>中的<strong>img</strong>元素。因此可以直接去博客主题文件的源代码中，找到控制文章内图片显示样式的<strong>css</strong>代码，将其修改成水平居中即可。前端编程中修改水平居中的方法非常多，以下是网上资源中提供的其中一种：</p>
-<p>一般情况下可以在<strong>Hexo</strong>博客文件夹进入到主题模板的<code>themes-&gt;(主题名称文件夹)-&gt;source-&gt;css-&gt;_partial</code>中，找到<code>post.styl</code>文件，该<strong>post</strong>文件中保存的就是文章详情页里面的显示样式。然后找到里面正确的<strong>img</strong>元素，修改其样式，增加<code>margin 0 auto</code>这行指令。如下:</p>
-<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">.post<span class="token punctuation">-</span>content
-    position relative
-    color c<span class="token punctuation">-</span><span class="token number">666</span>
-    img
-      max<span class="token punctuation">-</span>width 100%
-      cursor pointer
-      display block 
-      margin 0 auto<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>然后可以实现了。但我在自己当前使用的主题中并没有找到相关语段，由于技术比较拉跨，我决定还是先老实用前两种吧。</p>
-<p>[后期补丁：你需要一款名为<em><strong>Typora</strong></em>的<strong>markdown</strong>编辑软件]</p>
-]]></content>
-      <categories>
-        <category>DIY</category>
-      </categories>
-      <tags>
-        <tag>html</tag>
-        <tag>yaml</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>procreate社团设计x3</title>
     <url>/2022/03/16/220317/</url>
     <content><![CDATA[<p>翻了翻之前的文件夹，自己在在本科社团宣传部一年好像也没什么创作成果</p>
@@ -129,6 +60,67 @@
       </tags>
   </entry>
   <entry>
+    <title>网站启用测试</title>
+    <url>/2022/03/14/220314/</url>
+    <content><![CDATA[<p>支持站内文字搜索</p>
+<p>支持代码块植入</p>
+<p>支持评论系统（目前已关闭）</p>
+<p>[来自后期补丁]</p>
+]]></content>
+      <categories>
+        <category>DIY</category>
+      </categories>
+      <tags>
+        <tag>html</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo博客插入图片(并居中)</title>
+    <url>/2022/03/15/220321/</url>
+    <content><![CDATA[<h2 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h2><p>之前打算在文章中插入图片，配置的过程中遇到了一些问题。</p>
+<span id="more"></span>
+
+<p>想在博客中引用外站图片问题不大，但<strong>Hexo</strong>默认插入图片只有这一个方法，对有本地化需求的人群来说不够方便，此时可以安装一个满足本地图片引用的插件，在国内某知名（<strong>c</strong>）专业（<strong>s</strong>）开发者（<strong>d</strong>）社区（<strong>n</strong>）里提供的90%的方案为以下命令：<br><code>npm install hexo-asset-image –save</code><br>该论坛上相互借鉴蔚然成风的壮景对我这个刚入门的小白真是非常险恶，此指令安装版本落后，无法有效显示图片，有效的版本安装命令如下：<br><code>npm install https://github.com/CodeFalling/hexo-asset-image –save</code></p>
+<p>修改<code>_config.yml</code>文件，将<code>post_asset_folder:</code>值改为<strong>true</strong>。</p>
+<p>之后在新建一个博客的同时会生成同名文件夹，将需插入的图片放入该文件夹即可。文章中的具体引用代码为以下格式：(后来发现在<code>source</code>文件夹里新建一个名为<code>images</code>的文件夹存放图片也行)</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">]</span>(1/image.jpg)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="更改相对位置"><a href="#更改相对位置" class="headerlink" title="更改相对位置"></a>更改相对位置</h2><p>但这种方法在PC端有一个默认的问题就是图片插入后会自动左对齐，想要实现居中对齐，可以在<strong>markdown</strong>引用代码外部添加<strong>center</strong>元素，或者直接添加<strong>html</strong>元素，如下所示：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">&lt;center<span class="token punctuation">></span>
+
+<span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">...</span><span class="token punctuation">]</span>(xxx)
+
+&lt;/center<span class="token punctuation">></span>
+
+<span class="token comment">#or</span>
+
+&lt;div align=center<span class="token punctuation">></span>
+
+<span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">...</span><span class="token punctuation">]</span>(xxx)
+
+&lt;/div<span class="token punctuation">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>(因为我用VScode来打开博客的md文件进行编辑，在上传至本地网页时一开始发现图片无法加载，后来排查得出居中命令代码间的空行是必要的，不知道其他编辑器是否有这样的问题。)</p>
+<p>还可以直接修改<strong>css</strong>文件，因为<strong>markdown</strong>插入图片的代码在最终渲染的时候变为<strong>html</strong>中的<strong>img</strong>元素。因此可以直接去博客主题文件的源代码中，找到控制文章内图片显示样式的<strong>css</strong>代码，将其修改成水平居中即可。前端编程中修改水平居中的方法非常多，以下是网上资源中提供的其中一种：</p>
+<p>一般情况下可以在<strong>Hexo</strong>博客文件夹进入到主题模板的<code>themes-&gt;(主题名称文件夹)-&gt;source-&gt;css-&gt;_partial</code>中，找到<code>post.styl</code>文件，该<strong>post</strong>文件中保存的就是文章详情页里面的显示样式。然后找到里面正确的<strong>img</strong>元素，修改其样式，增加<code>margin 0 auto</code>这行指令。如下:</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">.post<span class="token punctuation">-</span>content
+    position relative
+    color c<span class="token punctuation">-</span><span class="token number">666</span>
+    img
+      max<span class="token punctuation">-</span>width 100%
+      cursor pointer
+      display block 
+      margin 0 auto<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>然后可以实现了。但我在自己当前使用的主题中并没有找到相关语段，由于技术比较拉跨，我决定还是先老实用前两种吧。</p>
+<p>[后期补丁：你需要一款名为<em><strong>Typora</strong></em>的<strong>markdown</strong>编辑软件]</p>
+]]></content>
+      <categories>
+        <category>DIY</category>
+      </categories>
+      <tags>
+        <tag>html</tag>
+        <tag>yaml</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>西南风光</title>
     <url>/2024/09/16/240916/</url>
     <content><![CDATA[<p>2024年8月</p>
@@ -167,18 +159,26 @@
       </tags>
   </entry>
   <entry>
-    <title>网站启用测试</title>
-    <url>/2022/03/14/220314/</url>
-    <content><![CDATA[<p>支持站内文字搜索</p>
-<p>支持代码块植入</p>
-<p>支持评论系统（目前已关闭）</p>
-<p>[来自后期补丁]</p>
+    <title>寒山寺闲逛</title>
+    <url>/2023/12/16/231216/</url>
+    <content><![CDATA[<p>有《枫桥夜泊》钟声的加持，也算名气不小的景点<br>实际乏善可陈，没什么特点</p>
+<center>
+    <img src="/images/hss1.webp" width="400">
+</center>
+
+<center>
+    <img src="/images/hss2.webp" width="400">
+</center>
+
+
+
+<p>张继的雕像侧躺在现代枫桥旁边<br>手脚部位被游客盘得发亮，据说摸一摸家里小孩就能考上好大学</p>
 ]]></content>
       <categories>
-        <category>DIY</category>
+        <category>闲散</category>
       </categories>
       <tags>
-        <tag>html</tag>
+        <tag>摄影</tag>
       </tags>
   </entry>
   <entry>
@@ -416,19 +416,6 @@ uint8_t startbegin2 = 0x00;
       </tags>
   </entry>
   <entry>
-    <title>基于MLX90640的手持红外热成像仪（更新中）</title>
-    <url>/2025/02/26/250226/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>DIY</category>
-        <category>学习记录</category>
-      </categories>
-      <tags>
-        <tag>嵌入式</tag>
-        <tag>C</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Xiaomi路由器BE3600快速救砖</title>
     <url>/2025/02/13/250213/</url>
     <content><![CDATA[<p>家里的路由器变砖了（具体原因不清楚）</p>
@@ -467,6 +454,41 @@ uint8_t startbegin2 = 0x00;
       </categories>
       <tags>
         <tag>改装</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Havard CS50 课程学习记录（更新中）</title>
+    <url>/2025/03/06/250306/</url>
+    <content><![CDATA[<p>Problem Set： <a href="https://cs50.harvard.edu/x/2024/psets/">https://cs50.harvard.edu/x/2024/psets/</a></p>
+]]></content>
+      <categories>
+        <category>学习记录</category>
+      </categories>
+      <tags>
+        <tag>计算机科学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>基于MLX90640的手持红外热成像仪（更新中）</title>
+    <url>/2025/02/26/250226/</url>
+    <content><![CDATA[<h2 id="小问题合集："><a href="#小问题合集：" class="headerlink" title="小问题合集："></a><strong>小问题合集：</strong></h2><h3 id="problem1：使用ST-Link下载过一次程序后发现无法继续下载"><a href="#problem1：使用ST-Link下载过一次程序后发现无法继续下载" class="headerlink" title="problem1：使用ST-Link下载过一次程序后发现无法继续下载"></a><strong>problem1：使用ST-Link下载过一次程序后发现无法继续下载</strong></h3><ol>
+<li>检查设备管理器，确保有正确的ST-Link驱动</li>
+<li>检查Keil软件配置，确保导入正确的型号版本</li>
+<li>检查引脚配置，发现问题：</li>
+</ol>
+<center>
+    <img src="/images/stlink_problem.webp" width="400">
+</center>
+
+<p>​    配置的IIC通信引脚占用了SWD下载引脚<em>（STM32默认的PA13 &amp;PA14）</em>，引脚输入输出模式不适配，显然后续无法下载，遂改之，问题解决。</p>
+]]></content>
+      <categories>
+        <category>DIY</category>
+        <category>学习记录</category>
+      </categories>
+      <tags>
+        <tag>嵌入式</tag>
+        <tag>C</tag>
       </tags>
   </entry>
 </search>

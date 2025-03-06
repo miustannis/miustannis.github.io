@@ -6,7 +6,7 @@
   <link href="https://miustannis.github.io/atom.xml" rel="self"/>
   
   <link href="https://miustannis.github.io/"/>
-  <updated>2025-02-26T02:26:16.268Z</updated>
+  <updated>2025-03-06T13:03:06.668Z</updated>
   <id>https://miustannis.github.io/</id>
   
   <author>
@@ -17,12 +17,40 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Havard CS50 课程学习记录（更新中）</title>
+    <link href="https://miustannis.github.io/2025/03/06/250306/"/>
+    <id>https://miustannis.github.io/2025/03/06/250306/</id>
+    <published>2025-03-06T12:39:18.000Z</published>
+    <updated>2025-03-06T13:03:06.668Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Problem Set： &lt;a href=&quot;https://cs50.harvard.edu/x/2024/psets/&quot;&gt;https://cs50.harvard.edu/x/2024/psets/&lt;/a&gt;&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    <category term="学习记录" scheme="https://miustannis.github.io/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"/>
+    
+    
+    <category term="计算机科学" scheme="https://miustannis.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/"/>
+    
+  </entry>
+  
+  <entry>
     <title>基于MLX90640的手持红外热成像仪（更新中）</title>
     <link href="https://miustannis.github.io/2025/02/26/250226/"/>
     <id>https://miustannis.github.io/2025/02/26/250226/</id>
     <published>2025-02-26T02:05:52.000Z</published>
-    <updated>2025-02-26T02:26:16.268Z</updated>
+    <updated>2025-03-06T13:03:34.572Z</updated>
     
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;小问题合集：&quot;&gt;&lt;a href=&quot;#小问题合集：&quot; class=&quot;headerlink&quot; title=&quot;小问题合集：&quot;&gt;&lt;/a&gt;&lt;strong&gt;小问题合集：&lt;/strong&gt;&lt;/h2&gt;&lt;h3 id=&quot;problem1：使用ST-Link下载过一次程序后发现无法继续</summary>
+      
     
     
     
@@ -95,30 +123,6 @@
     
     
     <summary type="html">&lt;p&gt;大二时的笔记，upload当乐高说明书看&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="学习记录" scheme="https://miustannis.github.io/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"/>
-    
-    
-    <category term="嵌入式" scheme="https://miustannis.github.io/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
-    
-    <category term="C" scheme="https://miustannis.github.io/tags/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>UART收发处理函数</title>
-    <link href="https://miustannis.github.io/2024/10/20/241020/"/>
-    <id>https://miustannis.github.io/2024/10/20/241020/</id>
-    <published>2024-10-20T02:51:00.000Z</published>
-    <updated>2024-12-11T06:10:18.125Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;UART（Universal Asynchronous Receiver&amp;#x2F;Transmitter）是一种串行通信协议，在嵌入式系统和微控制器间数据传输中发挥着核心作用。UART协议通过异步方式传输数据，不依赖于共享时钟信号，简化了通信线路的需求。每次传输包括起始位</summary>
-      
     
     
     
