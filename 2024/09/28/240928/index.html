@@ -31,8 +31,8 @@
 <meta property="article:published_time" content="2024-09-28T06:00:30.000Z">
 <meta property="article:modified_time" content="2024-12-11T06:13:31.973Z">
 <meta property="article:author" content="miao">
-<meta property="article:tag" content="C">
 <meta property="article:tag" content="嵌入式">
+<meta property="article:tag" content="C">
 <meta property="article:tag" content="MATLAB">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://miustannis.github.io/images/LCDTEST.webp">
@@ -148,13 +148,13 @@
     <div class="widget">
       <h3 class="widget-title">分类</h3>
       <div class="category-box">
-            <a class="category-link" href="/categories/DIY/">
-                DIY
-                <div class="category-count">4</div>
-            </a>
-        
             <a class="category-link" href="/categories/%E9%97%B2%E6%95%A3/">
                 闲散
+                <div class="category-count">5</div>
+            </a>
+        
+            <a class="category-link" href="/categories/DIY/">
+                DIY
                 <div class="category-count">5</div>
             </a>
         
@@ -186,7 +186,7 @@
       
         <a class="archive-link" href="/archives/2025/03 ">
           三月 2025 
-          <div class="archive-count">1 </div>
+          <div class="archive-count">2 </div>
         </a>
       
         <a class="archive-link" href="/archives/2025/02 ">
@@ -230,6 +230,12 @@
       <h3 class="widget-title">最新文章</h3>
       <ul>
         
+          <a class="recent-link" href="/2025/03/27/250327/" title="Hexo博客插入数学公式" >
+            <div class="recent-link-text">
+              Hexo博客插入数学公式
+            </div>
+          </a>
+        
           <a class="recent-link" href="/2025/03/06/250306/" title="Harvard CS50 课程学习记录（更新中）" >
             <div class="recent-link-text">
               Harvard CS50 课程学习记录（更新中）
@@ -251,12 +257,6 @@
           <a class="recent-link" href="/2025/02/10/250212/" title="2025 Feb Packing Up & Personal Step to Decluttering" >
             <div class="recent-link-text">
               2025 Feb Packing Up &amp; Personal Step to Decluttering
-            </div>
-          </a>
-        
-          <a class="recent-link" href="/2024/11/21/241121/" title="STM32配置笔记参考" >
-            <div class="recent-link-text">
-              STM32配置笔记参考
             </div>
           </a>
         
@@ -325,7 +325,6 @@
     <span class="token function">ST7735_WriteData</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token operator">*</span><span class="token punctuation">)</span>data<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span><span class="token punctuation">)</span><span class="token operator">*</span>w<span class="token operator">*</span>h<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">ST7735_Unselect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>输入数据要求16位rgb565格式图片，与Img2LCD取模软件两个8位数表示一个像素点的编码逻辑不同，首次修改仅改了原函数输入数据的格式：将data16位常量数据指针类型改为8位无符号变量指针类型，且在spi写入数据时将数据量乘以2，修改后的函数如下：</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">ST7735_DrawImage8bit_Img2LCD</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span> x<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> y<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> w<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> h<span class="token punctuation">,</span> <span class="token class-name">uint8_t</span><span class="token operator">*</span> data<span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
@@ -338,7 +337,6 @@
     <span class="token function">ST7735_WriteData</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token operator">*</span><span class="token punctuation">)</span>data<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token punctuation">)</span><span class="token operator">*</span>w<span class="token operator">*</span>h<span class="token operator">*</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">ST7735_Unselect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>但是烧录测试后LCD显示颜色异常且边缘模糊，初步推测是图片数据原本的问题，考虑到可能2个8位数据合并时高8位与低8位的顺序反了，在MATLAB中进行数组元素两两翻转验证：</p>
 <pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> swappedArray <span class="token operator">=</span> <span class="token function">swapPairs</span><span class="token punctuation">(</span>inputArray<span class="token punctuation">)</span>
     <span class="token keyword">if</span> <span class="token function">iscolumn</span><span class="token punctuation">(</span>inputArray<span class="token punctuation">)</span>
@@ -353,7 +351,6 @@
     <span class="token function">swappedArray</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">:</span><span class="token number">2</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">inputArray</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">2</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     swappedArray <span class="token operator">=</span> <span class="token function">swappedArray</span><span class="token punctuation">(</span><span class="token operator">~</span><span class="token function">isnan</span><span class="token punctuation">(</span>swappedArray<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>将原始图片数据处理后再进行烧录，发现显示正常，问题定位到数组元素的写入顺序，解决方法较多，这里我直接在函数中将原始数组变换，最终的函数如下：</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">ST7735_DrawImage8bit_Img2LCD</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span> x<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> y<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> w<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> h<span class="token punctuation">,</span> <span class="token class-name">uint8_t</span><span class="token operator">*</span> data<span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
@@ -375,7 +372,6 @@
 	<span class="token function">ST7735_WriteData</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token operator">*</span><span class="token punctuation">)</span>data<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token punctuation">)</span><span class="token operator">*</span>w<span class="token operator">*</span>h<span class="token operator">*</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token function">ST7735_Unselect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>看看显示效果：</p>
 <center>
 <img src="/images/LCDTEST.webp" width="400">
@@ -464,5 +460,23 @@
 
   </div>
   <script src="/js/light-dark-switch.js"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+--->
+<script src="//cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 </html>

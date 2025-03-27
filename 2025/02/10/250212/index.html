@@ -147,13 +147,13 @@
     <div class="widget">
       <h3 class="widget-title">分类</h3>
       <div class="category-box">
-            <a class="category-link" href="/categories/DIY/">
-                DIY
-                <div class="category-count">4</div>
-            </a>
-        
             <a class="category-link" href="/categories/%E9%97%B2%E6%95%A3/">
                 闲散
+                <div class="category-count">5</div>
+            </a>
+        
+            <a class="category-link" href="/categories/DIY/">
+                DIY
                 <div class="category-count">5</div>
             </a>
         
@@ -185,7 +185,7 @@
       
         <a class="archive-link" href="/archives/2025/03 ">
           三月 2025 
-          <div class="archive-count">1 </div>
+          <div class="archive-count">2 </div>
         </a>
       
         <a class="archive-link" href="/archives/2025/02 ">
@@ -229,6 +229,12 @@
       <h3 class="widget-title">最新文章</h3>
       <ul>
         
+          <a class="recent-link" href="/2025/03/27/250327/" title="Hexo博客插入数学公式" >
+            <div class="recent-link-text">
+              Hexo博客插入数学公式
+            </div>
+          </a>
+        
           <a class="recent-link" href="/2025/03/06/250306/" title="Harvard CS50 课程学习记录（更新中）" >
             <div class="recent-link-text">
               Harvard CS50 课程学习记录（更新中）
@@ -250,12 +256,6 @@
           <a class="recent-link" href="/2025/02/10/250212/" title="2025 Feb Packing Up & Personal Step to Decluttering" >
             <div class="recent-link-text">
               2025 Feb Packing Up &amp; Personal Step to Decluttering
-            </div>
-          </a>
-        
-          <a class="recent-link" href="/2024/11/21/241121/" title="STM32配置笔记参考" >
-            <div class="recent-link-text">
-              STM32配置笔记参考
             </div>
           </a>
         
@@ -323,6 +323,7 @@
 
 <p>一套流程下来，整理两页的手账得画上1~2个小时，尤其是媒体记录，其实在豆瓣上点一个“看过”大概只需要十几秒的时间。</p>
 <p>本质上来说，“手账”以及其他的一些类似记录的方式属于一种对慢生活态度的实践，可能对于当时的我来说，需要一段时间来放空自己。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -330,7 +331,8 @@
 <th>缺点</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>放松</td>
 <td>繁杂冗长</td>
 </tr>
@@ -342,7 +344,9 @@
 <td>组织与规划能力</td>
 <td>过于追求细节</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>综上优缺点考量，我决定不再继续这种记录方式了，博客或其他电子设备记录是一种更可取的方式。</p>
 <h2 id="For-高达模型"><a href="#For-高达模型" class="headerlink" title="For 高达模型"></a>For 高达模型</h2><p>拼装模型是我从小到大的爱好，从军模到高达，我很享受把碎片构造成一个完整体的过程，有种化腐朽为神奇的感觉（尽管都是别人设计好的）。现在我保存的高达所剩不多了，据我记得的，拼好后丢失的就有：MG黄金百式2.0，RG命运女神，RG新安州异色版等，每一个高达拼完都花不小的功夫，现在想想没能保存下来非常可惜。</p>
 <p>我的素组高达制作有以下三个步骤：</p>
@@ -440,5 +444,23 @@
 
   </div>
   <script src="/js/light-dark-switch.js"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+--->
+<script src="//cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 </html>

@@ -139,13 +139,13 @@
     <div class="widget">
       <h3 class="widget-title">分类</h3>
       <div class="category-box">
-            <a class="category-link" href="/categories/DIY/">
-                DIY
-                <div class="category-count">4</div>
-            </a>
-        
             <a class="category-link" href="/categories/%E9%97%B2%E6%95%A3/">
                 闲散
+                <div class="category-count">5</div>
+            </a>
+        
+            <a class="category-link" href="/categories/DIY/">
+                DIY
                 <div class="category-count">5</div>
             </a>
         
@@ -177,7 +177,7 @@
       
         <a class="archive-link" href="/archives/2025/03 ">
           三月 2025 
-          <div class="archive-count">1 </div>
+          <div class="archive-count">2 </div>
         </a>
       
         <a class="archive-link" href="/archives/2025/02 ">
@@ -221,6 +221,12 @@
       <h3 class="widget-title">最新文章</h3>
       <ul>
         
+          <a class="recent-link" href="/2025/03/27/250327/" title="Hexo博客插入数学公式" >
+            <div class="recent-link-text">
+              Hexo博客插入数学公式
+            </div>
+          </a>
+        
           <a class="recent-link" href="/2025/03/06/250306/" title="Harvard CS50 课程学习记录（更新中）" >
             <div class="recent-link-text">
               Harvard CS50 课程学习记录（更新中）
@@ -242,12 +248,6 @@
           <a class="recent-link" href="/2025/02/10/250212/" title="2025 Feb Packing Up & Personal Step to Decluttering" >
             <div class="recent-link-text">
               2025 Feb Packing Up &amp; Personal Step to Decluttering
-            </div>
-          </a>
-        
-          <a class="recent-link" href="/2024/11/21/241121/" title="STM32配置笔记参考" >
-            <div class="recent-link-text">
-              STM32配置笔记参考
             </div>
           </a>
         
@@ -295,7 +295,7 @@
             </div>
         </div>
         <div class="tags">
-            #C #嵌入式 #MATLAB
+            #嵌入式 #C #MATLAB
         </div>
       </a>
     
@@ -337,5 +337,23 @@
 
   </div>
   <script src="/js/light-dark-switch.js"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+--->
+<script src="//cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 </html>
