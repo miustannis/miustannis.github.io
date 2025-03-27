@@ -1,66 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>procreate绘画x3</title>
-    <url>/2022/03/16/220316/</url>
-    <content><![CDATA[<p>或许有点蒸汽波</p>
-<span id="more"></span>
-<p><center><br><img src="/images/3.webp" style="zoom:88%;"><br><img src="/images/popsummit.webp" style="zoom:50%;"><br><img src="/images/crowded.webp" style="zoom:50%;"></center></p>
-<center>
-
-</center>]]></content>
-      <categories>
-        <category>闲散</category>
-      </categories>
-      <tags>
-        <tag>绘画</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>procreate社团设计x3</title>
-    <url>/2022/03/16/220317/</url>
-    <content><![CDATA[<p>翻了翻之前的文件夹，自己在在本科社团宣传部一年好像也没什么创作成果</p>
-<span id="more"></span>
-<p>首先是两个养老院的徽章，记得当时是在画第一个徽章的过程中错删了一个图层，然后碰巧搞出了一个镂空的效果，感觉还不错，就在第二个徽章里故技重施了一下，但没有原来的效果了</p>
-<center>
-<img src="/images/4.webp" style="zoom:80%;">
-<img src="/images/5.webp" style="zoom:80%;">
-</center>
-
-
-
-<p>下图是大二上学期一次活动的海报设计，for苏州大学独墅湖校区冬至灯会</p>
-<center>
-<img src="/images/2.webp" style="zoom:80%;">
-</center>
-
-
-
-<p>以上作品均由<strong>iPad</strong>绘画软件<strong>procreate</strong>绘制，方便使用，新手友好</p>
-]]></content>
-      <categories>
-        <category>闲散</category>
-      </categories>
-      <tags>
-        <tag>绘画</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>网站启用测试</title>
-    <url>/2022/03/14/220314/</url>
-    <content><![CDATA[<p>支持站内文字搜索</p>
-<p>支持代码块植入</p>
-<p>支持评论系统（目前已关闭）</p>
-<p>[来自后期补丁]</p>
-]]></content>
-      <categories>
-        <category>DIY</category>
-      </categories>
-      <tags>
-        <tag>html</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>寒山寺闲逛</title>
     <url>/2023/12/16/231216/</url>
     <content><![CDATA[<p>有《枫桥夜泊》钟声的加持，也算名气不小的景点<br>实际乏善可陈，没什么特点</p>
@@ -81,6 +21,166 @@
       </categories>
       <tags>
         <tag>摄影</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>西南风光</title>
+    <url>/2024/09/16/240916/</url>
+    <content><![CDATA[<p>2024年8月</p>
+<p>迟来的fine  journey 稍纵即逝</p>
+<span id="more"></span>
+<center>
+    <img src="/images/GUIZHOU.webp" width="1200">
+</center>
+<center>
+    <img src="/images/CHONGQING.webp" width="1200">
+</center>
+
+<center>
+    <img src="/images/TIBET1.webp" width="1200">
+</center>
+
+<center>
+    <img src="/images/TIBET2.webp" width="1200">
+</center>
+
+<center>
+    <img src="/images/TIBET3.webp" width="1200">
+</center>
+
+
+<p>醉后不知天在水 满船清梦压星河</p>
+]]></content>
+      <categories>
+        <category>闲散</category>
+      </categories>
+      <tags>
+        <tag>摄影</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>procreate绘画x3</title>
+    <url>/2022/03/16/220316/</url>
+    <content><![CDATA[<p>或许有点蒸汽波</p>
+<span id="more"></span>
+<p><center><br><img src="/images/3.webp" style="zoom:88%;"><br><img src="/images/popsummit.webp" style="zoom:50%;"><br><img src="/images/crowded.webp" style="zoom:50%;"></center></p>
+<center>
+
+</center>]]></content>
+      <categories>
+        <category>闲散</category>
+      </categories>
+      <tags>
+        <tag>绘画</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>UART收发处理函数</title>
+    <url>/2024/10/20/241020/</url>
+    <content><![CDATA[<p>UART（Universal Asynchronous Receiver/Transmitter）是一种串行通信协议，在嵌入式系统和微控制器间数据传输中发挥着核心作用。UART协议通过异步方式传输数据，不依赖于共享时钟信号，简化了通信线路的需求。每次传输包括起始位、数据位、可选的奇偶校验位以及停止位，这种结构支持从简单的传感器到复杂的处理器之间的可靠数据交换。</p>
+<p>其重要性还体现在其广泛的兼容性和低成本实现上。它可以通过简单的两线（TX和RX）接口实现全双工通信，极大地降低了系统的硬件复杂性。此外，UART通信协议可以适应不同的波特率设置，使其能够灵活地调整以匹配特定应用的速度要求。在许多工业和消费电子产品中，UART仍然是实现可靠串行通信的首选技术，尤其在资源受限的环境中显示出其高效和经济的优势。（<strong>以上均为GPT生成</strong>）</p>
+<p>在进行传感器测试时，常用到UART，这里mark一下自己常用的HAL库函数封装，免得后续一直翻之前的程序</p>
+<p>函数需要用到的全局变量如下：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">char</span> send<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token number">0</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span> <span class="token comment">//传输用字符数组，储存字符串</span>
+
+<span class="token class-name">uint8_t</span> rx_buffer <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//接收字符缓冲区</span>
+
+<span class="token keyword">char</span> rx_receiver<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token number">0</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span> <span class="token comment">//接收用字符数组</span>
+
+<span class="token class-name">uint8_t</span> rx_num <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//接收字符数量</span>
+
+<span class="token class-name">uint8_t</span>  uart_start_flag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//接收标志位</span>
+
+__IO  <span class="token class-name">uint32_t</span> uart_gettick <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//系统时钟比较变量</span>
+
+<span class="token comment">/* 测试变量
+uint16_t pwm_duty = 0;
+
+uint8_t startbegin = 0xff;
+
+uint8_t startbegin2 = 0x00;
+*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在硬件配置时要打开UART中断：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token function">HAL_UART_Receive_IT</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1 <span class="token punctuation">,</span> <span class="token operator">&amp;</span>rx_buffer<span class="token punctuation">,</span>  <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>中断回调函数如下：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">HAL_UART_RxCpltCallback</span><span class="token punctuation">(</span>UART_HandleTypeDef <span class="token operator">*</span>huart<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>rx_num <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+  uart_gettick <span class="token operator">=</span> uwTick<span class="token punctuation">;</span> 
+  uart_start_flag <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>  
+  <span class="token punctuation">&#125;</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>uart_start_flag <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+  rx_receiver<span class="token punctuation">[</span>rx_num<span class="token punctuation">]</span> <span class="token operator">=</span> rx_buffer<span class="token punctuation">;</span>
+  rx_num<span class="token operator">++</span><span class="token punctuation">;</span>  
+  <span class="token punctuation">&#125;</span>
+  <span class="token function">HAL_UART_Receive_IT</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1 <span class="token punctuation">,</span> <span class="token operator">&amp;</span>rx_buffer<span class="token punctuation">,</span>  <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>主循环中的处理函数如下：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">UART_RX_PROC</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span> uwTick<span class="token operator">-</span> uart_gettick <span class="token punctuation">)</span> <span class="token operator">>=</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span><span class="token punctuation">(</span> uwTick<span class="token operator">-</span> uart_gettick <span class="token punctuation">)</span> <span class="token operator">&lt;=</span><span class="token number">600</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>uart_start_flag <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>rx_receiver<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token char">'&amp;'</span> <span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span> rx_num <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">//示例：传输pwm占空比</span>
+    pwm_duty <span class="token operator">=</span>  rx_receiver<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span> rx_num <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    pwm_duty <span class="token operator">=</span> <span class="token punctuation">(</span>rx_receiver<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">10</span> <span class="token operator">+</span> rx_receiver<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span> rx_num <span class="token operator">==</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    pwm_duty <span class="token operator">=</span> <span class="token punctuation">(</span>rx_receiver<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">100</span> <span class="token operator">+</span> <span class="token punctuation">(</span>rx_receiver<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">10</span> <span class="token operator">+</span> rx_receiver<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>      
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span> rx_num <span class="token operator">>=</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    pwm_duty <span class="token operator">=</span> <span class="token number">1000</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span>
+    <span class="token function">HAL_UART_Transmit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token operator">&amp;</span>startbegin<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0xffff</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">HAL_UART_Transmit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token operator">&amp;</span>startbegin2<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0xffff</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">HAL_UART_Transmit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token operator">&amp;</span>startbegin<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0xffff</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    rx_num <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    uart_start_flag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这里的函数主要是用以处理字符串的，应付一些的简单的应用已经够用了，当然，也能在此基础上扩展。</p>
+]]></content>
+      <categories>
+        <category>学习记录</category>
+      </categories>
+      <tags>
+        <tag>嵌入式</tag>
+        <tag>C</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>网站启用测试</title>
+    <url>/2022/03/14/220314/</url>
+    <content><![CDATA[<p>支持站内文字搜索</p>
+<p>支持代码块植入</p>
+<p>支持评论系统（目前已关闭）</p>
+<p>[来自后期补丁]</p>
+]]></content>
+      <categories>
+        <category>DIY</category>
+      </categories>
+      <tags>
+        <tag>html</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>STM32配置笔记参考</title>
+    <url>/2024/11/21/241121/</url>
+    <content><![CDATA[<p>大二时的笔记，upload当乐高说明书看</p>
+<span id="more"></span>
+<p><strong>pdf嵌入使用了pdf.js插件</strong>，hexo-pdf这个插件在移动端不能很好地显示</p>
+<iframe src="/pdfjs/web/viewer.html?file=/pdf/post1.pdf" style="width:100%;height:800px"></iframe>
+]]></content>
+      <categories>
+        <category>学习记录</category>
+      </categories>
+      <tags>
+        <tag>嵌入式</tag>
+        <tag>C</tag>
       </tags>
   </entry>
   <entry>
@@ -200,135 +300,6 @@
       </tags>
   </entry>
   <entry>
-    <title>西南风光</title>
-    <url>/2024/09/16/240916/</url>
-    <content><![CDATA[<p>2024年8月</p>
-<p>迟来的fine  journey 稍纵即逝</p>
-<span id="more"></span>
-<center>
-    <img src="/images/GUIZHOU.webp" width="1200">
-</center>
-<center>
-    <img src="/images/CHONGQING.webp" width="1200">
-</center>
-
-<center>
-    <img src="/images/TIBET1.webp" width="1200">
-</center>
-
-<center>
-    <img src="/images/TIBET2.webp" width="1200">
-</center>
-
-<center>
-    <img src="/images/TIBET3.webp" width="1200">
-</center>
-
-
-<p>醉后不知天在水 满船清梦压星河</p>
-]]></content>
-      <categories>
-        <category>闲散</category>
-      </categories>
-      <tags>
-        <tag>摄影</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>UART收发处理函数</title>
-    <url>/2024/10/20/241020/</url>
-    <content><![CDATA[<p>UART（Universal Asynchronous Receiver/Transmitter）是一种串行通信协议，在嵌入式系统和微控制器间数据传输中发挥着核心作用。UART协议通过异步方式传输数据，不依赖于共享时钟信号，简化了通信线路的需求。每次传输包括起始位、数据位、可选的奇偶校验位以及停止位，这种结构支持从简单的传感器到复杂的处理器之间的可靠数据交换。</p>
-<p>其重要性还体现在其广泛的兼容性和低成本实现上。它可以通过简单的两线（TX和RX）接口实现全双工通信，极大地降低了系统的硬件复杂性。此外，UART通信协议可以适应不同的波特率设置，使其能够灵活地调整以匹配特定应用的速度要求。在许多工业和消费电子产品中，UART仍然是实现可靠串行通信的首选技术，尤其在资源受限的环境中显示出其高效和经济的优势。（<strong>以上均为GPT生成</strong>）</p>
-<p>在进行传感器测试时，常用到UART，这里mark一下自己常用的HAL库函数封装，免得后续一直翻之前的程序</p>
-<p>函数需要用到的全局变量如下：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">char</span> send<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token number">0</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span> <span class="token comment">//传输用字符数组，储存字符串</span>
-
-<span class="token class-name">uint8_t</span> rx_buffer <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//接收字符缓冲区</span>
-
-<span class="token keyword">char</span> rx_receiver<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token number">0</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span> <span class="token comment">//接收用字符数组</span>
-
-<span class="token class-name">uint8_t</span> rx_num <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//接收字符数量</span>
-
-<span class="token class-name">uint8_t</span>  uart_start_flag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//接收标志位</span>
-
-__IO  <span class="token class-name">uint32_t</span> uart_gettick <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//系统时钟比较变量</span>
-
-<span class="token comment">/* 测试变量
-uint16_t pwm_duty = 0;
-
-uint8_t startbegin = 0xff;
-
-uint8_t startbegin2 = 0x00;
-*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>在硬件配置时要打开UART中断：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token function">HAL_UART_Receive_IT</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1 <span class="token punctuation">,</span> <span class="token operator">&amp;</span>rx_buffer<span class="token punctuation">,</span>  <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>中断回调函数如下：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">HAL_UART_RxCpltCallback</span><span class="token punctuation">(</span>UART_HandleTypeDef <span class="token operator">*</span>huart<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-  <span class="token keyword">if</span><span class="token punctuation">(</span>rx_num <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-  uart_gettick <span class="token operator">=</span> uwTick<span class="token punctuation">;</span> 
-  uart_start_flag <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>  
-  <span class="token punctuation">&#125;</span>
-  <span class="token keyword">if</span><span class="token punctuation">(</span>uart_start_flag <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-  rx_receiver<span class="token punctuation">[</span>rx_num<span class="token punctuation">]</span> <span class="token operator">=</span> rx_buffer<span class="token punctuation">;</span>
-  rx_num<span class="token operator">++</span><span class="token punctuation">;</span>  
-  <span class="token punctuation">&#125;</span>
-  <span class="token function">HAL_UART_Receive_IT</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1 <span class="token punctuation">,</span> <span class="token operator">&amp;</span>rx_buffer<span class="token punctuation">,</span>  <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>主循环中的处理函数如下：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">UART_RX_PROC</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span> uwTick<span class="token operator">-</span> uart_gettick <span class="token punctuation">)</span> <span class="token operator">>=</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span><span class="token punctuation">(</span> uwTick<span class="token operator">-</span> uart_gettick <span class="token punctuation">)</span> <span class="token operator">&lt;=</span><span class="token number">600</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>uart_start_flag <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>rx_receiver<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token char">'&amp;'</span> <span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span> rx_num <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">//示例：传输pwm占空比</span>
-    pwm_duty <span class="token operator">=</span>  rx_receiver<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span> rx_num <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    pwm_duty <span class="token operator">=</span> <span class="token punctuation">(</span>rx_receiver<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">10</span> <span class="token operator">+</span> rx_receiver<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span> rx_num <span class="token operator">==</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    pwm_duty <span class="token operator">=</span> <span class="token punctuation">(</span>rx_receiver<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">100</span> <span class="token operator">+</span> <span class="token punctuation">(</span>rx_receiver<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">10</span> <span class="token operator">+</span> rx_receiver<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>      
-    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span> rx_num <span class="token operator">>=</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    pwm_duty <span class="token operator">=</span> <span class="token number">1000</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-  <span class="token punctuation">&#125;</span>
-    <span class="token function">HAL_UART_Transmit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token operator">&amp;</span>startbegin<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0xffff</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">HAL_UART_Transmit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token operator">&amp;</span>startbegin2<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0xffff</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">HAL_UART_Transmit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token operator">&amp;</span>startbegin<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0xffff</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    rx_num <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    uart_start_flag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>这里的函数主要是用以处理字符串的，应付一些的简单的应用已经够用了，当然，也能在此基础上扩展。</p>
-]]></content>
-      <categories>
-        <category>学习记录</category>
-      </categories>
-      <tags>
-        <tag>嵌入式</tag>
-        <tag>C</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>STM32配置笔记参考</title>
-    <url>/2024/11/21/241121/</url>
-    <content><![CDATA[<p>大二时的笔记，upload当乐高说明书看</p>
-<span id="more"></span>
-<p><strong>pdf嵌入使用了pdf.js插件</strong>，hexo-pdf这个插件在移动端不能很好地显示</p>
-<iframe src="/pdfjs/web/viewer.html?file=/pdf/post1.pdf" style="width:100%;height:800px"></iframe>
-]]></content>
-      <categories>
-        <category>学习记录</category>
-      </categories>
-      <tags>
-        <tag>嵌入式</tag>
-        <tag>C</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>2025 Feb Packing Up &amp; Personal Step to Decluttering</title>
     <url>/2025/02/10/250212/</url>
     <content><![CDATA[<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>寒假从公寓打包东西回家时，我感受到自己的行李数量过多，直观的表现是我用了四个大号搬家盒邮寄，但剩余的物品还是将我的行李箱塞得很满，导致拉链都很难拉上。</p>
@@ -385,6 +356,35 @@ uint8_t startbegin2 = 0x00;
       </categories>
       <tags>
         <tag>自言自语</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>procreate社团设计x3</title>
+    <url>/2022/03/16/220317/</url>
+    <content><![CDATA[<p>翻了翻之前的文件夹，自己在在本科社团宣传部一年好像也没什么创作成果</p>
+<span id="more"></span>
+<p>首先是两个养老院的徽章，记得当时是在画第一个徽章的过程中错删了一个图层，然后碰巧搞出了一个镂空的效果，感觉还不错，就在第二个徽章里故技重施了一下，但没有原来的效果了</p>
+<center>
+<img src="/images/4.webp" style="zoom:80%;">
+<img src="/images/5.webp" style="zoom:80%;">
+</center>
+
+
+
+<p>下图是大二上学期一次活动的海报设计，for苏州大学独墅湖校区冬至灯会</p>
+<center>
+<img src="/images/2.webp" style="zoom:80%;">
+</center>
+
+
+
+<p>以上作品均由<strong>iPad</strong>绘画软件<strong>procreate</strong>绘制，方便使用，新手友好</p>
+]]></content>
+      <categories>
+        <category>闲散</category>
+      </categories>
+      <tags>
+        <tag>绘画</tag>
       </tags>
   </entry>
   <entry>
@@ -448,70 +448,6 @@ uint8_t startbegin2 = 0x00;
       <tags>
         <tag>嵌入式</tag>
         <tag>C</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo博客插入数学公式</title>
-    <url>/2025/03/27/250327/</url>
-    <content><![CDATA[<p>在写一些内容时，会遇到需要添加数学公式的地方，Hexo部分主题不支持公式的渲染，比如我正在使用的vivia主题，在查阅一些资料之后，我使用<strong>MathJax</strong>引擎实现了vivia主题下的数学公式渲染。</p>
-<p>MathJax简介：<a href="https://www.osgeo.cn/mathjax/basic/mathjax.html">https://www.osgeo.cn/mathjax/basic/mathjax.html</a></p>
-<p>该引擎是一款可在所有现代浏览器中工作的开源js显示引擎，辅助页面作者编写含有数学公式的文档</p>
-<h4 id="Step-1-安装MathJax引擎并更换渲染引擎："><a href="#Step-1-安装MathJax引擎并更换渲染引擎：" class="headerlink" title="Step 1 : 安装MathJax引擎并更换渲染引擎："></a><strong>Step 1</strong> : 安装MathJax引擎并更换渲染引擎：</h4><p>​              操作包括卸载Hexo自带的Hexo-math，卸载默认的对MathJax不友好的marked引擎</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">npm uinstall hexo<span class="token operator">-</span>math <span class="token operator">--</span>save
-npm install hexo<span class="token operator">-</span>renderer<span class="token operator">-</span>mathjax <span class="token operator">--</span>save
-
-npm uinstall hexo<span class="token operator">-</span>renderer<span class="token operator">-</span>marked <span class="token operator">--</span>save
-npm install hexo<span class="token operator">-</span>renderer<span class="token operator">-</span>kramed <span class="token operator">--</span>save<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="Step-2-更新MathJax的cdn链接"><a href="#Step-2-更新MathJax的cdn链接" class="headerlink" title="Step 2 : 更新MathJax的cdn链接"></a><strong>Step 2</strong> : 更新MathJax的cdn链接</h4><h4 id="Step-3-更改部分转义规则"><a href="#Step-3-更改部分转义规则" class="headerlink" title="Step 3 : 更改部分转义规则"></a><strong>Step 3</strong> : 更改部分转义规则</h4><p> hexo 默认的转义规则会将一些字符进行转义，所以要对默认的规则进行修改。<br>首先， 打开/node_modules/kramed/lib/rules/inline.js</p>
-<p>把：</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">escape</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\\([\\`*{}\[\]()#$+\-.!_&gt;])</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
-<span class="token literal-property property">em</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>更改为：</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">escape</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\\([`*\[\]()# +\-.!_&gt;])</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
-<span class="token literal-property property">em</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\*((?:\*\*|[\s\S])+?)\*(?!\*)</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h4 id="Step-4-主题未预配置下使用Hexo-filter-mathjax"><a href="#Step-4-主题未预配置下使用Hexo-filter-mathjax" class="headerlink" title="Step 4 : 主题未预配置下使用Hexo-filter-mathjax"></a><strong>Step 4</strong> : 主题未预配置下使用Hexo-filter-mathjax</h4><p>对于已经配置MathJax的主题来说，在相关config文件里打开控件即可，对于未配置的主题，可以使用Hexo-filter-mathjax来帮助实现</p>
-<p>Hexo-filter-mathjax项目地址：<a href="https://github.com/next-theme/hexo-filter-mathjax">https://github.com/next-theme/hexo-filter-mathjax</a></p>
-<p>安装：</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">npm install hexo<span class="token operator">-</span>filter<span class="token operator">-</span>mathjax <span class="token operator">--</span>save<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>对需要开启的博文，在其Front-Matter处增加mathjax: true这一行即可，如：</p>
-<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token front-matter-block"><span class="token punctuation">---</span>
-<span class="token front-matter yaml language-yaml"><span class="token key atrule">title</span><span class="token punctuation">:</span> xxxxxx
-<span class="token key atrule">categories</span><span class="token punctuation">:</span> xxxxx
-<span class="token key atrule">date</span><span class="token punctuation">:</span> xxxx<span class="token punctuation">-</span>xx<span class="token punctuation">-</span>xx
-<span class="token key atrule">mathjax</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></span>
-<span class="token punctuation">---</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><p>行间公式：</p>
-<script type="math/tex; mode=display">\scr{\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6} }</script><p>行内公式：        <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.186ex;" xmlns="http://www.w3.org/2000/svg" width="35.912ex" height="2.147ex" role="img" focusable="false" viewbox="0 -867 15873 949"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="63" d="M370 305T349 305T313 320T297 358Q297 381 312 396Q317 401 317 402T307 404Q281 408 258 408Q209 408 178 376Q131 329 131 219Q131 137 162 90Q203 29 272 29Q313 29 338 55T374 117Q376 125 379 127T395 129H409Q415 123 415 120Q415 116 411 104T395 71T366 33T318 2T249 -11Q163 -11 99 53T34 214Q34 318 99 383T250 448T370 421T404 357Q404 334 387 320Z"/><path data-c="6F" d="M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z" transform="translate(444,0)"/><path data-c="73" d="M295 316Q295 356 268 385T190 414Q154 414 128 401Q98 382 98 349Q97 344 98 336T114 312T157 287Q175 282 201 278T245 269T277 256Q294 248 310 236T342 195T359 133Q359 71 321 31T198 -10H190Q138 -10 94 26L86 19L77 10Q71 4 65 -1L54 -11H46H42Q39 -11 33 -5V74V132Q33 153 35 157T45 162H54Q66 162 70 158T75 146T82 119T101 77Q136 26 198 26Q295 26 295 104Q295 133 277 151Q257 175 194 187T111 210Q75 227 54 256T33 318Q33 357 50 384T93 424T143 442T187 447H198Q238 447 268 432L283 424L292 431Q302 440 314 448H322H326Q329 448 335 442V310L329 304H301Q295 310 295 316Z" transform="translate(944,0)"/></g><g data-mml-node="mo" transform="translate(1338,0)"><path data-c="2061" d=""/></g><g data-mml-node="mn" transform="translate(1504.7,0)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/></g><g data-mml-node="mi" transform="translate(2004.7,0)"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z"/></g><g data-mml-node="mo" transform="translate(2751.4,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"/></g><g data-mml-node="msup" transform="translate(3807.2,0)"><g data-mml-node="mi"><path data-c="63" d="M370 305T349 305T313 320T297 358Q297 381 312 396Q317 401 317 402T307 404Q281 408 258 408Q209 408 178 376Q131 329 131 219Q131 137 162 90Q203 29 272 29Q313 29 338 55T374 117Q376 125 379 127T395 129H409Q415 123 415 120Q415 116 411 104T395 71T366 33T318 2T249 -11Q163 -11 99 53T34 214Q34 318 99 383T250 448T370 421T404 357Q404 334 387 320Z"/><path data-c="6F" d="M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z" transform="translate(444,0)"/><path data-c="73" d="M295 316Q295 356 268 385T190 414Q154 414 128 401Q98 382 98 349Q97 344 98 336T114 312T157 287Q175 282 201 278T245 269T277 256Q294 248 310 236T342 195T359 133Q359 71 321 31T198 -10H190Q138 -10 94 26L86 19L77 10Q71 4 65 -1L54 -11H46H42Q39 -11 33 -5V74V132Q33 153 35 157T45 162H54Q66 162 70 158T75 146T82 119T101 77Q136 26 198 26Q295 26 295 104Q295 133 277 151Q257 175 194 187T111 210Q75 227 54 256T33 318Q33 357 50 384T93 424T143 442T187 447H198Q238 447 268 432L283 424L292 431Q302 440 314 448H322H326Q329 448 335 442V310L329 304H301Q295 310 295 316Z" transform="translate(944,0)"/></g><g data-mml-node="mn" transform="translate(1371,363) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/></g></g><g data-mml-node="mo" transform="translate(5581.8,0)"><path data-c="2061" d=""/></g><g data-mml-node="mi" transform="translate(5748.4,0)"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z"/></g><g data-mml-node="mo" transform="translate(6439.7,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"/></g><g data-mml-node="msup" transform="translate(7439.9,0)"><g data-mml-node="mi"><path data-c="73" d="M295 316Q295 356 268 385T190 414Q154 414 128 401Q98 382 98 349Q97 344 98 336T114 312T157 287Q175 282 201 278T245 269T277 256Q294 248 310 236T342 195T359 133Q359 71 321 31T198 -10H190Q138 -10 94 26L86 19L77 10Q71 4 65 -1L54 -11H46H42Q39 -11 33 -5V74V132Q33 153 35 157T45 162H54Q66 162 70 158T75 146T82 119T101 77Q136 26 198 26Q295 26 295 104Q295 133 277 151Q257 175 194 187T111 210Q75 227 54 256T33 318Q33 357 50 384T93 424T143 442T187 447H198Q238 447 268 432L283 424L292 431Q302 440 314 448H322H326Q329 448 335 442V310L329 304H301Q295 310 295 316Z"/><path data-c="69" d="M69 609Q69 637 87 653T131 669Q154 667 171 652T188 609Q188 579 171 564T129 549Q104 549 87 564T69 609ZM247 0Q232 3 143 3Q132 3 106 3T56 1L34 0H26V46H42Q70 46 91 49Q100 53 102 60T104 102V205V293Q104 345 102 359T88 378Q74 385 41 385H30V408Q30 431 32 431L42 432Q52 433 70 434T106 436Q123 437 142 438T171 441T182 442H185V62Q190 52 197 50T232 46H255V0H247Z" transform="translate(394,0)"/><path data-c="6E" d="M41 46H55Q94 46 102 60V68Q102 77 102 91T102 122T103 161T103 203Q103 234 103 269T102 328V351Q99 370 88 376T43 385H25V408Q25 431 27 431L37 432Q47 433 65 434T102 436Q119 437 138 438T167 441T178 442H181V402Q181 364 182 364T187 369T199 384T218 402T247 421T285 437Q305 442 336 442Q450 438 463 329Q464 322 464 190V104Q464 66 466 59T477 49Q498 46 526 46H542V0H534L510 1Q487 2 460 2T422 3Q319 3 310 0H302V46H318Q379 46 379 62Q380 64 380 200Q379 335 378 343Q372 371 358 385T334 402T308 404Q263 404 229 370Q202 343 195 315T187 232V168V108Q187 78 188 68T191 55T200 49Q221 46 249 46H265V0H257L234 1Q210 2 183 2T145 3Q42 3 33 0H25V46H41Z" transform="translate(672,0)"/></g><g data-mml-node="mn" transform="translate(1261,396.1) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/></g></g><g data-mml-node="mo" transform="translate(9104.4,0)"><path data-c="2061" d=""/></g><g data-mml-node="mi" transform="translate(9271.1,0)"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z"/></g><g data-mml-node="mo" transform="translate(10017.9,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"/></g><g data-mml-node="mn" transform="translate(11073.7,0)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/></g><g data-mml-node="msup" transform="translate(11740.3,0)"><g data-mml-node="mi"><path data-c="63" d="M370 305T349 305T313 320T297 358Q297 381 312 396Q317 401 317 402T307 404Q281 408 258 408Q209 408 178 376Q131 329 131 219Q131 137 162 90Q203 29 272 29Q313 29 338 55T374 117Q376 125 379 127T395 129H409Q415 123 415 120Q415 116 411 104T395 71T366 33T318 2T249 -11Q163 -11 99 53T34 214Q34 318 99 383T250 448T370 421T404 357Q404 334 387 320Z"/><path data-c="6F" d="M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z" transform="translate(444,0)"/><path data-c="73" d="M295 316Q295 356 268 385T190 414Q154 414 128 401Q98 382 98 349Q97 344 98 336T114 312T157 287Q175 282 201 278T245 269T277 256Q294 248 310 236T342 195T359 133Q359 71 321 31T198 -10H190Q138 -10 94 26L86 19L77 10Q71 4 65 -1L54 -11H46H42Q39 -11 33 -5V74V132Q33 153 35 157T45 162H54Q66 162 70 158T75 146T82 119T101 77Q136 26 198 26Q295 26 295 104Q295 133 277 151Q257 175 194 187T111 210Q75 227 54 256T33 318Q33 357 50 384T93 424T143 442T187 447H198Q238 447 268 432L283 424L292 431Q302 440 314 448H322H326Q329 448 335 442V310L329 304H301Q295 310 295 316Z" transform="translate(944,0)"/></g><g data-mml-node="mn" transform="translate(1371,363) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/></g></g><g data-mml-node="mo" transform="translate(13514.9,0)"><path data-c="2061" d=""/></g><g data-mml-node="mi" transform="translate(13681.5,0)"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z"/></g><g data-mml-node="mo" transform="translate(14372.8,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"/></g><g data-mml-node="mn" transform="translate(15373,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"/></g></g></g></svg></mjx-container></p>
-<p>矩阵运算：</p>
-<script type="math/tex; mode=display">
-\left(
-    \begin{array}{c}
-      s \\
-      t
-    \end{array}
-\right)
-=
-\left(
-    \begin{array}{cc}
-      cos(b) & -sin(b) \\
-      sin(b) & cos(b)
-    \end{array}
-\right)
-\left(
-    \begin{array}{c}
-      x \\
-      y
-    \end{array}
-\right)</script><p>*注意到公式字体对行间公式有一定影响，可能会一些字体会被渲染成主题相同字体</p>
-<p>参考资料：</p>
-<p><a href="https://www.cnblogs.com/wangxin37/p/8185688.html">https://www.cnblogs.com/wangxin37/p/8185688.html</a></p>
-<p><a href="https://heartlessly.github.io/others/latex-mathjax-gong-shi-zi-ti-mei-hua/">https://heartlessly.github.io/others/latex-mathjax-gong-shi-zi-ti-mei-hua/</a></p>
-]]></content>
-      <categories>
-        <category>DIY</category>
-      </categories>
-      <tags>
-        <tag>html</tag>
       </tags>
   </entry>
   <entry>
