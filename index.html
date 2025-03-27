@@ -256,14 +256,14 @@ mjx-container[display="true"] + br {
                 <div class="category-count">5</div>
             </a>
         
-            <a class="category-link" href="/categories/DIY/">
-                DIY
-                <div class="category-count">5</div>
-            </a>
-        
             <a class="category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
                 学习记录
                 <div class="category-count">4</div>
+            </a>
+        
+            <a class="category-link" href="/categories/DIY/">
+                DIY
+                <div class="category-count">5</div>
             </a>
         </div>
     </div>
@@ -418,7 +418,7 @@ mjx-container[display="true"] + br {
           <div class="truncate-text">
             
               在写一些内容时，会遇到需要添加数学公式的地方，Hexo部分主题不支持公式的渲染，比如我正在使用的vivia主题，在查阅一些资料之后，我使用MathJax引擎实现了vivia主题下的数学公式渲染。
-MathJax简介：https://www.osgeo.cn/mathjax/basic/mathjax.html
+MathJax简介：https://www.osgeo.cn/mathjax/basic/mathjax.html 
 该引擎是一款可在所有现代浏览器中工作的开源js显示引擎，辅助页面作者编写含有数学公式的文档
 Step 1 : 安装MathJax引擎并更换渲染引擎：​              操作包括卸载Hexo自带的Hexo-math，卸载默认的对MathJax不友好的marked引擎
 npm uinstall hexo-math --save
@@ -426,7 +426,7 @@ npm install hexo-renderer-mathjax --save
 
 npm uinstall hexo-renderer-marked --save
 npm install hexo-renderer-kramed --save
-Step 2 : 更新MathJax的cdn链接Step 3 : 更改部分转义规则 hexo 默认的...
+Step 2 : 更新MathJax的cdn链接Step 3 : 更改部分转义规则 hexo 默认...
             
           </div>
         
@@ -1071,5 +1071,22 @@ void ST7735_DrawImage(uint16_t x, uint16_t y, uint16_t w, uint16_t h, const uint
 
   </div>
   <script src="/js/light-dark-switch.js"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
 </body>
 </html>
