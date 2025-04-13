@@ -249,14 +249,14 @@ mjx-container[display="true"] + br {
     <div class="widget">
       <h3 class="widget-title">分类</h3>
       <div class="category-box">
-            <a class="category-link" href="/categories/DIY/">
-                DIY
-                <div class="category-count">5</div>
-            </a>
-        
             <a class="category-link" href="/categories/Being/">
                 Being
                 <div class="category-count">6</div>
+            </a>
+        
+            <a class="category-link" href="/categories/DIY/">
+                DIY
+                <div class="category-count">5</div>
             </a>
         
             <a class="category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
@@ -557,7 +557,7 @@ Step 2 : 更新MathJax的cdn链接Step 3 : 更改部分转义规则 hexo 默认.
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            699 词 
+            1.4k 词 
           </div>
         </div>
         
@@ -573,7 +573,7 @@ Lecture 1 C
 Lecture 2 Arrays
 Lecture 3 Algorithms
 
-​        Time Complexity is an important metric used to measure the relationship between the running time of an algorithm and the size of the input. It describes how the execution time of an algorithm increases as the input size grows. Time complexity helps us assess the efficiency of an algorithm under different problem sizes, allowing us to choose the most appropriate algorithm. Time complexity is usually expressed using B...
+Time Complexity is an important metric used to measure the relationship between the running time of an algorithm and the size of the input. It describes how the execution time of an algorithm increases as the input size grows. Time complexity helps us assess the efficiency of an algorithm under different problem sizes, allowing us to choose the most appropriate algorithm. Time complexity is usually expressed using Big  notat...
             
           </div>
         
@@ -1058,5 +1058,22 @@ uint8_t rx_buffer...
 
   </div>
   <script src="/js/light-dark-switch.js"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
 </body>
 </html>
