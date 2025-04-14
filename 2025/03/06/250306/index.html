@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://miustannis.github.io/images/cs50_2.webp">
 <meta property="og:image" content="https://miustannis.github.io/images/cs50_4.webp">
 <meta property="article:published_time" content="2025-03-06T12:39:18.000Z">
-<meta property="article:modified_time" content="2025-04-14T04:11:55.124Z">
+<meta property="article:modified_time" content="2025-04-14T06:50:50.399Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="计算机科学">
 <meta name="twitter:card" content="summary">
@@ -259,14 +259,14 @@ mjx-container[display="true"] + br {
     <div class="widget">
       <h3 class="widget-title">分类</h3>
       <div class="category-box">
-            <a class="category-link" href="/categories/Being/">
-                Being
-                <div class="category-count">6</div>
-            </a>
-        
             <a class="category-link" href="/categories/DIY/">
                 DIY
                 <div class="category-count">5</div>
+            </a>
+        
+            <a class="category-link" href="/categories/Being/">
+                Being
+                <div class="category-count">6</div>
             </a>
         
             <a class="category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
@@ -415,7 +415,7 @@ mjx-container[display="true"] + br {
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            3.5k 词 
+            3.7k 词 
           </div>
         </div>
         
@@ -436,7 +436,7 @@ mjx-container[display="true"] + br {
 <h3 id="Lecture-4-Memory"><a href="#Lecture-4-Memory" class="headerlink" title="Lecture 4 Memory"></a><strong>Lecture 4 Memory</strong></h3><ul>
 <li><p>This section basically start from the pixels which formed by RGB code, for example 0xFF0000(using hexadecimal or base16 — <strong>0x</strong>) . Why hexadecimal ?  Using binary, it takes 4 bits to represent 16 possibilities. Using hexadecimal, 4 bits -&gt; one digit, that’s easier. So one byte, two of them, is a common unit of measurement.</p>
 <center>
-    <img src="/images/cs50_1.webp" width="400">
+    <img src="/images/cs50_1.webp" width="800">
 </center>
 </li>
 <li><p>Then it comes to the tool or variable commonly used in C language which is <strong>pointer</strong>. <strong>A pointer is an address</strong>. </p>
@@ -478,10 +478,58 @@ string s <span class="token operator">=</span> <span class="token string">"CS50!
 </li>
 <li><p>memory allocate:  FREE &amp; MALLOC</p>
 <center>
-    <img src="/images/cs50_3.webp" width="400">
+    <img src="/images/cs50_3.webp" width="800">
 </center>
 
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;ctype.h&gt;</span></span>
+
+
+</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>栈（Stack）</th>
+<th>堆（Heap）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>管理方式</td>
+<td>自动（编译器/操作系统）</td>
+<td>手动（程序员）</td>
+</tr>
+<tr>
+<td>分配速度</td>
+<td>快（直接移动指针）</td>
+<td>慢（需要查找可用内存）</td>
+</tr>
+<tr>
+<td>生命周期</td>
+<td>函数调用结束就释放</td>
+<td>显式释放（free）</td>
+</tr>
+<tr>
+<td>大小限制</td>
+<td>较小（几MB）</td>
+<td>较大（受系统内存限制）</td>
+</tr>
+<tr>
+<td>存储内容</td>
+<td>局部变量、函数调用信息</td>
+<td>动态分配的对象、大型数据</td>
+</tr>
+<tr>
+<td>碎片问题</td>
+<td>无</td>
+<td>可能产生内存碎片</td>
+</tr>
+</tbody>
+</table>
+</div>
+  <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">//program for string operating</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;ctype.h&gt;</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h&gt;</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h&gt;</span></span>
@@ -515,11 +563,11 @@ string s <span class="token operator">=</span> <span class="token string">"CS50!
     
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-<span class="token comment">// Upper the first Character</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
+<span class="token comment">// Upper the first Character</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
 <li><p>valgrind: prog that check memory mistake</p>
 <center>
-    <img src="/images/cs50_2.webp" width="400">
+    <img src="/images/cs50_2.webp" width="800">
 </center>
 </li>
 <li><p>garbage values</p>
@@ -531,11 +579,12 @@ string s <span class="token operator">=</span> <span class="token string">"CS50!
     <span class="token operator">*</span>b <span class="token operator">=</span> temp
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <center>
-    <img src="/images/cs50_4.webp" width="400">
+    <img src="/images/cs50_4.webp" width="800">
 </center>
 </li>
 <li><p>File I/O</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cs50.h&gt;</span></span>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">//program for file writing --phonebook</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cs50.h&gt;</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h&gt;</span></span>
 
@@ -550,7 +599,7 @@ string s <span class="token operator">=</span> <span class="token string">"CS50!
     
    <span class="token function">fprintf</span><span class="token punctuation">(</span>file<span class="token punctuation">,</span> <span class="token string">"%s,%s\n,name,number"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
    <span class="token function">fclose</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">//program for file copy</span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdint.h&gt;</span></span>
@@ -662,22 +711,5 @@ string s <span class="token operator">=</span> <span class="token string">"CS50!
 
   </div>
   <script src="/js/light-dark-switch.js"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-
 </body>
 </html>
