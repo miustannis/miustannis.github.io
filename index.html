@@ -404,7 +404,7 @@ mjx-container[display="true"] + br {
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            0 词 
+            446 词 
           </div>
         </div>
         
@@ -415,7 +415,13 @@ mjx-container[display="true"] + br {
         
           <div class="truncate-text">
             
-              
+              *光盘读取原理无论是CD光盘还是DVD光盘，其存储方式与磁盘一样，都是以二进制数据的形式来存储信息。要在这些光盘上存储数据，需要借助激光把二进制数据刻在扁平、具有反射能力的盘片上。为了识别数据，定义激光刻出的小坑就代表二进制的“1”，而空白处则代表二进制的“0”。（凹坑和平坦区域的 边缘变化【如从凹坑到平坦，或反之】代表”1”，无变化代表”0”）DVD的记录凹坑比CD小，且螺旋存储凹坑之间的距离也更小。
+CD光驱或DVD光驱的主要部分就是激光发生器和光监测器。激光发生器（激光二极管），可以产生对应波长的激光光束，然后经过一系列的处理后照到光盘上。经由光监测器捕捉反射信号而识别实际的数据。然后计算机将这些二进制代码转换成为原来的数据或程序。当光盘在光驱中作高速旋转，激光头在电机的控制下作径向移动，数据就这样源源不断地读取出来。
+根据数据密度的差别可分为CD, DVD, BD等。
+
+光盘与机械硬盘的工作原理区别可见以下博客：
+https://zhuanlan.zhihu.com/p/51572176
+
             
           </div>
         
@@ -1054,22 +1060,5 @@ uint8_t rx_buffer...
 
   </div>
   <script src="/js/light-dark-switch.js"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-
 </body>
 </html>
