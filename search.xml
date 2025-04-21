@@ -1,37 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hexo博客启用测试</title>
-    <url>/2022/03/14/220314/</url>
-    <content><![CDATA[<p>支持站内文字搜索</p>
-<p>支持代码块植入</p>
-<p>支持评论系统（目前已关闭）</p>
-<p>[来自后期补丁]</p>
-]]></content>
-      <categories>
-        <category>DIY</category>
-      </categories>
-      <tags>
-        <tag>html</tag>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>procreate绘画x3</title>
-    <url>/2022/03/16/220316/</url>
-    <content><![CDATA[<p>或许有点蒸汽波</p>
-<span id="more"></span>
-<p><center><br><img src="/images/3.webp" style="zoom:88%;"><br><img src="/images/popsummit.webp" style="zoom:50%;"><br><img src="/images/crowded.webp" style="zoom:50%;"></center></p>
-<center>
-</center>]]></content>
-      <categories>
-        <category>Being</category>
-      </categories>
-      <tags>
-        <tag>绘画</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>procreate社团设计x3</title>
     <url>/2022/03/16/220317/</url>
     <content><![CDATA[<p>翻了翻之前的文件夹，自己在在本科社团宣传部一年好像也没什么创作成果</p>
@@ -53,6 +22,21 @@
 
 <p>以上作品均由<strong>iPad</strong>绘画软件<strong>procreate</strong>绘制，方便使用，新手友好</p>
 ]]></content>
+      <categories>
+        <category>Being</category>
+      </categories>
+      <tags>
+        <tag>绘画</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>procreate绘画x3</title>
+    <url>/2022/03/16/220316/</url>
+    <content><![CDATA[<p>或许有点蒸汽波</p>
+<span id="more"></span>
+<p><center><br><img src="/images/3.webp" style="zoom:88%;"><br><img src="/images/popsummit.webp" style="zoom:50%;"><br><img src="/images/crowded.webp" style="zoom:50%;"></center></p>
+<center>
+</center>]]></content>
       <categories>
         <category>Being</category>
       </categories>
@@ -97,31 +81,24 @@
       </categories>
       <tags>
         <tag>html</tag>
-        <tag>Hexo</tag>
         <tag>yaml</tag>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
-    <title>寒山寺闲逛</title>
-    <url>/2023/12/16/231216/</url>
-    <content><![CDATA[<p>有《枫桥夜泊》钟声的加持，也算名气不小的景点<br>实际乏善可陈，没什么特点</p>
-<center>
-    <img src="/images/hss1.webp" width="400">
-</center>
-
-<center>
-    <img src="/images/hss2.webp" width="400">
-</center>
-
-
-
-<p>张继的雕像侧躺在现代枫桥旁边<br>手脚部位被游客盘得发亮，据说摸一摸家里小孩就能考上好大学</p>
+    <title>Hexo博客启用测试</title>
+    <url>/2022/03/14/220314/</url>
+    <content><![CDATA[<p>支持站内文字搜索</p>
+<p>支持代码块植入</p>
+<p>支持评论系统（目前已关闭）</p>
+<p>[来自后期补丁]</p>
 ]]></content>
       <categories>
-        <category>Being</category>
+        <category>DIY</category>
       </categories>
       <tags>
-        <tag>摄影</tag>
+        <tag>html</tag>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -184,79 +161,26 @@
       </tags>
   </entry>
   <entry>
-    <title>TFTLCD驱动</title>
-    <url>/2024/09/28/240928/</url>
-    <content><![CDATA[<p>在使用Img2LCD取模软件和ST7735S驱动IC控制LCD时，发现API中显示图片的函数调用后显示异常</p>
-<p>原函数：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">ST7735_DrawImage</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span> x<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> y<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> w<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> h<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token class-name">uint16_t</span><span class="token operator">*</span> data<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>y <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">+</span> w <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>y <span class="token operator">+</span> h <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
-
-    <span class="token function">ST7735_Select</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">ST7735_SetAddressWindow</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> x<span class="token operator">+</span>w<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> y<span class="token operator">+</span>h<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">ST7735_WriteData</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token operator">*</span><span class="token punctuation">)</span>data<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span><span class="token punctuation">)</span><span class="token operator">*</span>w<span class="token operator">*</span>h<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">ST7735_Unselect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>输入数据要求16位rgb565格式图片，与Img2LCD取模软件两个8位数表示一个像素点的编码逻辑不同，首次修改仅改了原函数输入数据的格式：将data16位常量数据指针类型改为8位无符号变量指针类型，且在spi写入数据时将数据量乘以2，修改后的函数如下：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">ST7735_DrawImage8bit_Img2LCD</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span> x<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> y<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> w<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> h<span class="token punctuation">,</span> <span class="token class-name">uint8_t</span><span class="token operator">*</span> data<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>y <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">+</span> w <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>y <span class="token operator">+</span> h <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
-    
-    <span class="token function">ST7735_Select</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">ST7735_SetAddressWindow</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> x<span class="token operator">+</span>w<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> y<span class="token operator">+</span>h<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	
-    <span class="token function">ST7735_WriteData</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token operator">*</span><span class="token punctuation">)</span>data<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token punctuation">)</span><span class="token operator">*</span>w<span class="token operator">*</span>h<span class="token operator">*</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">ST7735_Unselect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>但是烧录测试后LCD显示颜色异常且边缘模糊，初步推测是图片数据原本的问题，考虑到可能2个8位数据合并时高8位与低8位的顺序反了，在MATLAB中进行数组元素两两翻转验证：</p>
-<pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> swappedArray <span class="token operator">=</span> <span class="token function">swapPairs</span><span class="token punctuation">(</span>inputArray<span class="token punctuation">)</span>
-    <span class="token keyword">if</span> <span class="token function">iscolumn</span><span class="token punctuation">(</span>inputArray<span class="token punctuation">)</span>
-        inputArray <span class="token operator">=</span> inputArray<span class="token operator">'</span><span class="token punctuation">;</span>
-    <span class="token keyword">end</span>
-    n <span class="token operator">=</span> <span class="token function">length</span><span class="token punctuation">(</span>inputArray<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token function">mod</span><span class="token punctuation">(</span>n<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">~=</span> <span class="token number">0</span>
-        <span class="token function">inputArray</span><span class="token punctuation">(</span><span class="token keyword">end</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">NaN</span><span class="token punctuation">;</span> 
-    <span class="token keyword">end</span>
-    swappedArray <span class="token operator">=</span> inputArray<span class="token punctuation">;</span>
-    <span class="token function">swappedArray</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">2</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">inputArray</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">:</span><span class="token number">2</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">swappedArray</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">:</span><span class="token number">2</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">inputArray</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">2</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    swappedArray <span class="token operator">=</span> <span class="token function">swappedArray</span><span class="token punctuation">(</span><span class="token operator">~</span><span class="token function">isnan</span><span class="token punctuation">(</span>swappedArray<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>将原始图片数据处理后再进行烧录，发现显示正常，问题定位到数组元素的写入顺序，解决方法较多，这里我直接在函数中将原始数组变换，最终的函数如下：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">ST7735_DrawImage8bit_Img2LCD</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span> x<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> y<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> w<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> h<span class="token punctuation">,</span> <span class="token class-name">uint8_t</span><span class="token operator">*</span> data<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-	<span class="token class-name">uint32_t</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-	<span class="token class-name">uint8_t</span> temp <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>y <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">+</span> w <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>y <span class="token operator">+</span> h <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
-	<span class="token comment">/* Swap adjacent elements in the data array	*/</span>
-	<span class="token keyword">for</span> <span class="token punctuation">(</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> w <span class="token operator">*</span> h <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span> i <span class="token operator">+=</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-	    <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&lt;</span> w <span class="token operator">*</span> h <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-	        temp <span class="token operator">=</span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-	        data<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> data<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-	        data<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
-	    <span class="token punctuation">&#125;</span>
-	<span class="token punctuation">&#125;</span>
-	<span class="token function">ST7735_Select</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token function">ST7735_SetAddressWindow</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> x<span class="token operator">+</span>w<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> y<span class="token operator">+</span>h<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	
-	<span class="token function">ST7735_WriteData</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token operator">*</span><span class="token punctuation">)</span>data<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token punctuation">)</span><span class="token operator">*</span>w<span class="token operator">*</span>h<span class="token operator">*</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token function">ST7735_Unselect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>看看显示效果：</p>
+    <title>寒山寺闲逛</title>
+    <url>/2023/12/16/231216/</url>
+    <content><![CDATA[<p>有《枫桥夜泊》钟声的加持，也算名气不小的景点<br>实际乏善可陈，没什么特点</p>
 <center>
-<img src="/images/LCDTEST.webp" width="400">
+    <img src="/images/hss1.webp" width="400">
 </center>
+
+<center>
+    <img src="/images/hss2.webp" width="400">
+</center>
+
+
+
+<p>张继的雕像侧躺在现代枫桥旁边<br>手脚部位被游客盘得发亮，据说摸一摸家里小孩就能考上好大学</p>
 ]]></content>
       <categories>
-        <category>学习记录</category>
+        <category>Being</category>
       </categories>
       <tags>
-        <tag>嵌入式</tag>
-        <tag>C</tag>
-        <tag>MATLAB</tag>
+        <tag>摄影</tag>
       </tags>
   </entry>
   <entry>
@@ -413,25 +337,79 @@ uint8_t startbegin2 = 0x00;
       </tags>
   </entry>
   <entry>
-    <title>基于MLX90640的手持红外热成像仪（on going）</title>
-    <url>/2025/02/26/250226/</url>
-    <content><![CDATA[<h2 id="小问题合集："><a href="#小问题合集：" class="headerlink" title="小问题合集："></a><strong>小问题合集：</strong></h2><h3 id="problem1：使用ST-Link下载过一次程序后发现无法继续下载"><a href="#problem1：使用ST-Link下载过一次程序后发现无法继续下载" class="headerlink" title="problem1：使用ST-Link下载过一次程序后发现无法继续下载"></a><strong>problem1：使用ST-Link下载过一次程序后发现无法继续下载</strong></h3><ol>
-<li>检查设备管理器，确保有正确的ST-Link驱动</li>
-<li>检查Keil软件配置，确保导入正确的型号版本</li>
-<li>检查引脚配置，发现问题：</li>
-</ol>
-<center>
-    <img src="/images/stlink_problem.webp" width="400">
-</center>
+    <title>TFTLCD驱动</title>
+    <url>/2024/09/28/240928/</url>
+    <content><![CDATA[<p>在使用Img2LCD取模软件和ST7735S驱动IC控制LCD时，发现API中显示图片的函数调用后显示异常</p>
+<p>原函数：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">ST7735_DrawImage</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span> x<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> y<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> w<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> h<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token class-name">uint16_t</span><span class="token operator">*</span> data<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>y <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">+</span> w <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>y <span class="token operator">+</span> h <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
 
-<p>​    配置的IIC通信引脚占用了SWD下载引脚<em>（STM32默认的PA13 &amp;PA14）</em>，引脚输入输出模式不适配，显然后续无法下载，遂改之，问题解决。</p>
+    <span class="token function">ST7735_Select</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">ST7735_SetAddressWindow</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> x<span class="token operator">+</span>w<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> y<span class="token operator">+</span>h<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">ST7735_WriteData</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token operator">*</span><span class="token punctuation">)</span>data<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span><span class="token punctuation">)</span><span class="token operator">*</span>w<span class="token operator">*</span>h<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">ST7735_Unselect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>输入数据要求16位rgb565格式图片，与Img2LCD取模软件两个8位数表示一个像素点的编码逻辑不同，首次修改仅改了原函数输入数据的格式：将data16位常量数据指针类型改为8位无符号变量指针类型，且在spi写入数据时将数据量乘以2，修改后的函数如下：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">ST7735_DrawImage8bit_Img2LCD</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span> x<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> y<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> w<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> h<span class="token punctuation">,</span> <span class="token class-name">uint8_t</span><span class="token operator">*</span> data<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>y <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">+</span> w <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>y <span class="token operator">+</span> h <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    
+    <span class="token function">ST7735_Select</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">ST7735_SetAddressWindow</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> x<span class="token operator">+</span>w<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> y<span class="token operator">+</span>h<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	
+    <span class="token function">ST7735_WriteData</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token operator">*</span><span class="token punctuation">)</span>data<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token punctuation">)</span><span class="token operator">*</span>w<span class="token operator">*</span>h<span class="token operator">*</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">ST7735_Unselect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>但是烧录测试后LCD显示颜色异常且边缘模糊，初步推测是图片数据原本的问题，考虑到可能2个8位数据合并时高8位与低8位的顺序反了，在MATLAB中进行数组元素两两翻转验证：</p>
+<pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> swappedArray <span class="token operator">=</span> <span class="token function">swapPairs</span><span class="token punctuation">(</span>inputArray<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token function">iscolumn</span><span class="token punctuation">(</span>inputArray<span class="token punctuation">)</span>
+        inputArray <span class="token operator">=</span> inputArray<span class="token operator">'</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+    n <span class="token operator">=</span> <span class="token function">length</span><span class="token punctuation">(</span>inputArray<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token function">mod</span><span class="token punctuation">(</span>n<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">~=</span> <span class="token number">0</span>
+        <span class="token function">inputArray</span><span class="token punctuation">(</span><span class="token keyword">end</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">NaN</span><span class="token punctuation">;</span> 
+    <span class="token keyword">end</span>
+    swappedArray <span class="token operator">=</span> inputArray<span class="token punctuation">;</span>
+    <span class="token function">swappedArray</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">2</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">inputArray</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">:</span><span class="token number">2</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">swappedArray</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">:</span><span class="token number">2</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">inputArray</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">2</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    swappedArray <span class="token operator">=</span> <span class="token function">swappedArray</span><span class="token punctuation">(</span><span class="token operator">~</span><span class="token function">isnan</span><span class="token punctuation">(</span>swappedArray<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>将原始图片数据处理后再进行烧录，发现显示正常，问题定位到数组元素的写入顺序，解决方法较多，这里我直接在函数中将原始数组变换，最终的函数如下：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">ST7735_DrawImage8bit_Img2LCD</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span> x<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> y<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> w<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> h<span class="token punctuation">,</span> <span class="token class-name">uint8_t</span><span class="token operator">*</span> data<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token class-name">uint32_t</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+	<span class="token class-name">uint8_t</span> temp <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>y <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">+</span> w <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>y <span class="token operator">+</span> h <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+	<span class="token comment">/* Swap adjacent elements in the data array	*/</span>
+	<span class="token keyword">for</span> <span class="token punctuation">(</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> w <span class="token operator">*</span> h <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span> i <span class="token operator">+=</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	    <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&lt;</span> w <span class="token operator">*</span> h <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	        temp <span class="token operator">=</span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+	        data<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> data<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+	        data<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+	    <span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token function">ST7735_Select</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">ST7735_SetAddressWindow</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> x<span class="token operator">+</span>w<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> y<span class="token operator">+</span>h<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	
+	<span class="token function">ST7735_WriteData</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token operator">*</span><span class="token punctuation">)</span>data<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token punctuation">)</span><span class="token operator">*</span>w<span class="token operator">*</span>h<span class="token operator">*</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">ST7735_Unselect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>看看显示效果：</p>
+<center>
+<img src="/images/LCDTEST.webp" width="400">
+</center>
 ]]></content>
       <categories>
-        <category>DIY</category>
+        <category>学习记录</category>
       </categories>
       <tags>
         <tag>嵌入式</tag>
         <tag>C</tag>
+        <tag>MATLAB</tag>
       </tags>
   </entry>
   <entry>
@@ -473,6 +451,114 @@ uint8_t startbegin2 = 0x00;
       </categories>
       <tags>
         <tag>改装</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>基于MLX90640的手持红外热成像仪（on going）</title>
+    <url>/2025/02/26/250226/</url>
+    <content><![CDATA[<h2 id="小问题合集："><a href="#小问题合集：" class="headerlink" title="小问题合集："></a><strong>小问题合集：</strong></h2><h3 id="problem1：使用ST-Link下载过一次程序后发现无法继续下载"><a href="#problem1：使用ST-Link下载过一次程序后发现无法继续下载" class="headerlink" title="problem1：使用ST-Link下载过一次程序后发现无法继续下载"></a><strong>problem1：使用ST-Link下载过一次程序后发现无法继续下载</strong></h3><ol>
+<li>检查设备管理器，确保有正确的ST-Link驱动</li>
+<li>检查Keil软件配置，确保导入正确的型号版本</li>
+<li>检查引脚配置，发现问题：</li>
+</ol>
+<center>
+    <img src="/images/stlink_problem.webp" width="400">
+</center>
+
+<p>​    配置的IIC通信引脚占用了SWD下载引脚<em>（STM32默认的PA13 &amp;PA14）</em>，引脚输入输出模式不适配，显然后续无法下载，遂改之，问题解决。</p>
+]]></content>
+      <categories>
+        <category>DIY</category>
+      </categories>
+      <tags>
+        <tag>嵌入式</tag>
+        <tag>C</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>冈萨雷斯 《数字图像处理》Study Log（on going）</title>
+    <url>/2025/03/28/250328/</url>
+    <content><![CDATA[<h4 id="光盘读取原理"><a href="#光盘读取原理" class="headerlink" title="*光盘读取原理"></a>*光盘读取原理</h4><p>无论是CD光盘还是DVD光盘，其存储方式与磁盘一样，都是以二进制数据的形式来存储信息。要在这些光盘上存储数据，需要借助激光把二进制数据刻在扁平、具有反射能力的盘片上。为了识别数据，定义激光刻出的小坑就代表二进制的“1”，而空白处则代表二进制的“0”。（凹坑和平坦区域的 <strong>边缘变化</strong>【如从凹坑到平坦，或反之】代表”1”，无变化代表”0”）DVD的记录凹坑比CD小，且螺旋存储凹坑之间的距离也更小。</p>
+<p>CD光驱或DVD光驱的主要部分就是激光发生器和光监测器。激光发生器（激光二极管），可以产生对应波长的激光光束，然后经过一系列的处理后照到光盘上。经由光监测器捕捉反射信号而识别实际的数据。然后计算机将这些二进制代码转换成为原来的数据或程序。当光盘在光驱中作高速旋转，激光头在电机的控制下作径向移动，数据就这样源源不断地读取出来。</p>
+<p>根据数据密度的差别可分为CD, DVD, BD等。</p>
+<center>
+    <img src="/images/DVD.webp" width="600">
+</center>
+
+<p>光盘与机械硬盘的工作原理区别可见以下博客：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/51572176">https://zhuanlan.zhihu.com/p/51572176</a></p>
+]]></content>
+      <categories>
+        <category>学习记录</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>图像处理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo博客插入数学公式</title>
+    <url>/2025/03/27/250327/</url>
+    <content><![CDATA[<p>在写一些内容时，会遇到需要添加数学公式的地方，Hexo部分主题不支持公式的渲染，比如我正在使用的vivia主题，在查阅一些资料之后，我使用<strong>MathJax</strong>引擎实现了vivia主题下的数学公式渲染。</p>
+<p>MathJax简介：<a href="https://www.osgeo.cn/mathjax/basic/mathjax.html">https://www.osgeo.cn/mathjax/basic/mathjax.html</a> </p>
+<p>该引擎是一款可在所有现代浏览器中工作的开源js显示引擎，辅助页面作者编写含有数学公式的文档</p>
+<h4 id="Step-1-安装MathJax引擎并更换渲染引擎："><a href="#Step-1-安装MathJax引擎并更换渲染引擎：" class="headerlink" title="Step 1 : 安装MathJax引擎并更换渲染引擎："></a><strong>Step 1</strong> : 安装MathJax引擎并更换渲染引擎：</h4><p>​              操作包括卸载Hexo自带的Hexo-math，卸载默认的对MathJax不友好的marked引擎</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">npm uinstall hexo<span class="token operator">-</span>math <span class="token operator">--</span>save
+npm install hexo<span class="token operator">-</span>renderer<span class="token operator">-</span>mathjax <span class="token operator">--</span>save
+
+npm uinstall hexo<span class="token operator">-</span>renderer<span class="token operator">-</span>marked <span class="token operator">--</span>save
+npm install hexo<span class="token operator">-</span>renderer<span class="token operator">-</span>kramed <span class="token operator">--</span>save<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="Step-2-更新MathJax的cdn链接"><a href="#Step-2-更新MathJax的cdn链接" class="headerlink" title="Step 2 : 更新MathJax的cdn链接"></a><strong>Step 2</strong> : 更新MathJax的cdn链接</h4><h4 id="Step-3-更改部分转义规则"><a href="#Step-3-更改部分转义规则" class="headerlink" title="Step 3 : 更改部分转义规则"></a><strong>Step 3</strong> : 更改部分转义规则</h4><p> hexo 默认的转义规则会将一些字符进行转义，所以要对默认的规则进行修改。<br>首先， 打开/node_modules/kramed/lib/rules/inline.js</p>
+<p>把：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">escape</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\\([\\`*{}\[\]()#$+\-.!_&gt;])</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+<span class="token literal-property property">em</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>更改为：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">escape</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\\([`*\[\]()# +\-.!_&gt;])</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+<span class="token literal-property property">em</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\*((?:\*\*|[\s\S])+?)\*(?!\*)</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h4 id="Step-4-主题未预配置下使用Hexo-filter-mathjax"><a href="#Step-4-主题未预配置下使用Hexo-filter-mathjax" class="headerlink" title="Step 4 : 主题未预配置下使用Hexo-filter-mathjax"></a><strong>Step 4</strong> : 主题未预配置下使用Hexo-filter-mathjax</h4><p>对于已经配置MathJax的主题来说，在相关config文件里打开控件即可，对于未配置的主题，可以使用Hexo-filter-mathjax来帮助实现</p>
+<p>Hexo-filter-mathjax项目地址：<a href="https://github.com/next-theme/hexo-filter-mathjax">https://github.com/next-theme/hexo-filter-mathjax</a></p>
+<p>安装：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">npm install hexo<span class="token operator">-</span>filter<span class="token operator">-</span>mathjax <span class="token operator">--</span>save<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>对需要开启的博文，在其Front-Matter处增加mathjax: true这一行即可，如：</p>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token front-matter-block"><span class="token punctuation">---</span>
+<span class="token front-matter yaml language-yaml"><span class="token key atrule">title</span><span class="token punctuation">:</span> xxxxxx
+<span class="token key atrule">categories</span><span class="token punctuation">:</span> xxxxx
+<span class="token key atrule">date</span><span class="token punctuation">:</span> xxxx<span class="token punctuation">-</span>xx<span class="token punctuation">-</span>xx
+<span class="token key atrule">mathjax</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></span>
+<span class="token punctuation">---</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><p>行间公式：</p>
+<script type="math/tex; mode=display">\frak{\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6} }</script><p>行内公式：        <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.186ex;" xmlns="http://www.w3.org/2000/svg" width="35.835ex" height="1.84ex" role="img" focusable="false" viewbox="0 -731.2 15839.2 813.2"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="63" d="M370 305T349 305T313 320T297 358Q297 381 312 396Q317 401 317 402T307 404Q281 408 258 408Q209 408 178 376Q131 329 131 219Q131 137 162 90Q203 29 272 29Q313 29 338 55T374 117Q376 125 379 127T395 129H409Q415 123 415 120Q415 116 411 104T395 71T366 33T318 2T249 -11Q163 -11 99 53T34 214Q34 318 99 383T250 448T370 421T404 357Q404 334 387 320Z"/><path data-c="6F" d="M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z" transform="translate(444,0)"/><path data-c="73" d="M295 316Q295 356 268 385T190 414Q154 414 128 401Q98 382 98 349Q97 344 98 336T114 312T157 287Q175 282 201 278T245 269T277 256Q294 248 310 236T342 195T359 133Q359 71 321 31T198 -10H190Q138 -10 94 26L86 19L77 10Q71 4 65 -1L54 -11H46H42Q39 -11 33 -5V74V132Q33 153 35 157T45 162H54Q66 162 70 158T75 146T82 119T101 77Q136 26 198 26Q295 26 295 104Q295 133 277 151Q257 175 194 187T111 210Q75 227 54 256T33 318Q33 357 50 384T93 424T143 442T187 447H198Q238 447 268 432L283 424L292 431Q302 440 314 448H322H326Q329 448 335 442V310L329 304H301Q295 310 295 316Z" transform="translate(944,0)"/></g><g data-mml-node="mo" transform="translate(1338,0)"><path data-c="2061" d=""/></g><g data-mml-node="mn" transform="translate(1504.7,0)"><path data-c="32" d="M104 384Q115 394 133 409T199 449T281 474Q321 474 351 447T385 378Q385 328 333 255T228 127T176 72Q176 67 183 65Q184 65 203 65T260 67T331 69L475 73L484 67Q484 64 472 33L460 1H60V17L107 61Q210 159 249 208Q309 283 309 331Q309 363 285 389T228 415Q212 415 184 403T134 379L114 367L104 384Z"/></g><g data-mml-node="mi" transform="translate(2006.7,0)"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z"/></g><g data-mml-node="mo" transform="translate(2753.4,0)"><path data-c="3D" d="M725 366Q724 365 721 349T716 331V329H385Q54 329 54 331Q55 332 59 349T63 368H394Q725 368 725 366ZM725 169Q724 168 721 152T716 134V132H385Q54 132 54 134Q55 135 59 152T63 171H394Q725 171 725 169Z"/></g><g data-mml-node="msup" transform="translate(3787.2,0)"><g data-mml-node="mi"><path data-c="63" d="M370 305T349 305T313 320T297 358Q297 381 312 396Q317 401 317 402T307 404Q281 408 258 408Q209 408 178 376Q131 329 131 219Q131 137 162 90Q203 29 272 29Q313 29 338 55T374 117Q376 125 379 127T395 129H409Q415 123 415 120Q415 116 411 104T395 71T366 33T318 2T249 -11Q163 -11 99 53T34 214Q34 318 99 383T250 448T370 421T404 357Q404 334 387 320Z"/><path data-c="6F" d="M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z" transform="translate(444,0)"/><path data-c="73" d="M295 316Q295 356 268 385T190 414Q154 414 128 401Q98 382 98 349Q97 344 98 336T114 312T157 287Q175 282 201 278T245 269T277 256Q294 248 310 236T342 195T359 133Q359 71 321 31T198 -10H190Q138 -10 94 26L86 19L77 10Q71 4 65 -1L54 -11H46H42Q39 -11 33 -5V74V132Q33 153 35 157T45 162H54Q66 162 70 158T75 146T82 119T101 77Q136 26 198 26Q295 26 295 104Q295 133 277 151Q257 175 194 187T111 210Q75 227 54 256T33 318Q33 357 50 384T93 424T143 442T187 447H198Q238 447 268 432L283 424L292 431Q302 440 314 448H322H326Q329 448 335 442V310L329 304H301Q295 310 295 316Z" transform="translate(944,0)"/></g><g data-mml-node="mn" transform="translate(1371,363) scale(0.707)"><path data-c="32" d="M104 384Q115 394 133 409T199 449T281 474Q321 474 351 447T385 378Q385 328 333 255T228 127T176 72Q176 67 183 65Q184 65 203 65T260 67T331 69L475 73L484 67Q484 64 472 33L460 1H60V17L107 61Q210 159 249 208Q309 283 309 331Q309 363 285 389T228 415Q212 415 184 403T134 379L114 367L104 384Z"/></g></g><g data-mml-node="mo" transform="translate(5563.2,0)"><path data-c="2061" d=""/></g><g data-mml-node="mi" transform="translate(5729.9,0)"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z"/></g><g data-mml-node="mo" transform="translate(6421.1,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"/></g><g data-mml-node="msup" transform="translate(7421.3,0)"><g data-mml-node="mi"><path data-c="73" d="M295 316Q295 356 268 385T190 414Q154 414 128 401Q98 382 98 349Q97 344 98 336T114 312T157 287Q175 282 201 278T245 269T277 256Q294 248 310 236T342 195T359 133Q359 71 321 31T198 -10H190Q138 -10 94 26L86 19L77 10Q71 4 65 -1L54 -11H46H42Q39 -11 33 -5V74V132Q33 153 35 157T45 162H54Q66 162 70 158T75 146T82 119T101 77Q136 26 198 26Q295 26 295 104Q295 133 277 151Q257 175 194 187T111 210Q75 227 54 256T33 318Q33 357 50 384T93 424T143 442T187 447H198Q238 447 268 432L283 424L292 431Q302 440 314 448H322H326Q329 448 335 442V310L329 304H301Q295 310 295 316Z"/><path data-c="69" d="M69 609Q69 637 87 653T131 669Q154 667 171 652T188 609Q188 579 171 564T129 549Q104 549 87 564T69 609ZM247 0Q232 3 143 3Q132 3 106 3T56 1L34 0H26V46H42Q70 46 91 49Q100 53 102 60T104 102V205V293Q104 345 102 359T88 378Q74 385 41 385H30V408Q30 431 32 431L42 432Q52 433 70 434T106 436Q123 437 142 438T171 441T182 442H185V62Q190 52 197 50T232 46H255V0H247Z" transform="translate(394,0)"/><path data-c="6E" d="M41 46H55Q94 46 102 60V68Q102 77 102 91T102 122T103 161T103 203Q103 234 103 269T102 328V351Q99 370 88 376T43 385H25V408Q25 431 27 431L37 432Q47 433 65 434T102 436Q119 437 138 438T167 441T178 442H181V402Q181 364 182 364T187 369T199 384T218 402T247 421T285 437Q305 442 336 442Q450 438 463 329Q464 322 464 190V104Q464 66 466 59T477 49Q498 46 526 46H542V0H534L510 1Q487 2 460 2T422 3Q319 3 310 0H302V46H318Q379 46 379 62Q380 64 380 200Q379 335 378 343Q372 371 358 385T334 402T308 404Q263 404 229 370Q202 343 195 315T187 232V168V108Q187 78 188 68T191 55T200 49Q221 46 249 46H265V0H257L234 1Q210 2 183 2T145 3Q42 3 33 0H25V46H41Z" transform="translate(672,0)"/></g><g data-mml-node="mn" transform="translate(1261,396.1) scale(0.707)"><path data-c="32" d="M104 384Q115 394 133 409T199 449T281 474Q321 474 351 447T385 378Q385 328 333 255T228 127T176 72Q176 67 183 65Q184 65 203 65T260 67T331 69L475 73L484 67Q484 64 472 33L460 1H60V17L107 61Q210 159 249 208Q309 283 309 331Q309 363 285 389T228 415Q212 415 184 403T134 379L114 367L104 384Z"/></g></g><g data-mml-node="mo" transform="translate(9087.3,0)"><path data-c="2061" d=""/></g><g data-mml-node="mi" transform="translate(9253.9,0)"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z"/></g><g data-mml-node="mo" transform="translate(10000.7,0)"><path data-c="3D" d="M725 366Q724 365 721 349T716 331V329H385Q54 329 54 331Q55 332 59 349T63 368H394Q725 368 725 366ZM725 169Q724 168 721 152T716 134V132H385Q54 132 54 134Q55 135 59 152T63 171H394Q725 171 725 169Z"/></g><g data-mml-node="mn" transform="translate(11034.5,0)"><path data-c="32" d="M104 384Q115 394 133 409T199 449T281 474Q321 474 351 447T385 378Q385 328 333 255T228 127T176 72Q176 67 183 65Q184 65 203 65T260 67T331 69L475 73L484 67Q484 64 472 33L460 1H60V17L107 61Q210 159 249 208Q309 283 309 331Q309 363 285 389T228 415Q212 415 184 403T134 379L114 367L104 384Z"/></g><g data-mml-node="msup" transform="translate(11703.2,0)"><g data-mml-node="mi"><path data-c="63" d="M370 305T349 305T313 320T297 358Q297 381 312 396Q317 401 317 402T307 404Q281 408 258 408Q209 408 178 376Q131 329 131 219Q131 137 162 90Q203 29 272 29Q313 29 338 55T374 117Q376 125 379 127T395 129H409Q415 123 415 120Q415 116 411 104T395 71T366 33T318 2T249 -11Q163 -11 99 53T34 214Q34 318 99 383T250 448T370 421T404 357Q404 334 387 320Z"/><path data-c="6F" d="M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z" transform="translate(444,0)"/><path data-c="73" d="M295 316Q295 356 268 385T190 414Q154 414 128 401Q98 382 98 349Q97 344 98 336T114 312T157 287Q175 282 201 278T245 269T277 256Q294 248 310 236T342 195T359 133Q359 71 321 31T198 -10H190Q138 -10 94 26L86 19L77 10Q71 4 65 -1L54 -11H46H42Q39 -11 33 -5V74V132Q33 153 35 157T45 162H54Q66 162 70 158T75 146T82 119T101 77Q136 26 198 26Q295 26 295 104Q295 133 277 151Q257 175 194 187T111 210Q75 227 54 256T33 318Q33 357 50 384T93 424T143 442T187 447H198Q238 447 268 432L283 424L292 431Q302 440 314 448H322H326Q329 448 335 442V310L329 304H301Q295 310 295 316Z" transform="translate(944,0)"/></g><g data-mml-node="mn" transform="translate(1371,363) scale(0.707)"><path data-c="32" d="M104 384Q115 394 133 409T199 449T281 474Q321 474 351 447T385 378Q385 328 333 255T228 127T176 72Q176 67 183 65Q184 65 203 65T260 67T331 69L475 73L484 67Q484 64 472 33L460 1H60V17L107 61Q210 159 249 208Q309 283 309 331Q309 363 285 389T228 415Q212 415 184 403T134 379L114 367L104 384Z"/></g></g><g data-mml-node="mo" transform="translate(13479.1,0)"><path data-c="2061" d=""/></g><g data-mml-node="mi" transform="translate(13645.8,0)"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z"/></g><g data-mml-node="mo" transform="translate(14337,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"/></g><g data-mml-node="mn" transform="translate(15337.2,0)"><path data-c="31" d="M123 459Q145 459 170 460T217 462T256 464T284 466L295 467Q296 467 296 467T297 468Q299 468 302 466T307 462L309 459Q307 454 304 424T299 341T297 235Q297 139 298 101T302 55T313 44Q316 43 367 43L460 46Q460 35 459 22V-1H450Q402 2 281 6Q222 6 171 4T91 1T56 -1L47 -2V43H121H170Q195 43 201 45T209 56Q212 69 212 214Q212 333 209 365T194 409Q183 417 161 423T121 430L104 432Q103 432 103 446V459H123Z"/></g></g></g></g></svg></mjx-container></p>
+<p>矩阵运算：</p>
+<script type="math/tex; mode=display">
+\left(
+    \begin{array}{c}
+      s \\
+      t
+    \end{array}
+\right)
+=
+\left(
+    \begin{array}{cc}
+      cos(b) & -sin(b) \\
+      sin(b) & cos(b)
+    \end{array}
+\right)
+\left(
+    \begin{array}{c}
+      x \\
+      y
+    \end{array}
+\right)</script><p>*注意到有的cdn版本MathJax框架下公式字体对行间公式有一定影响，可能会一些字体会被渲染成主题相同字体，且移动端不能很好地显示</p>
+<p>参考资料：</p>
+<p><a href="https://www.cnblogs.com/wangxin37/p/8185688.html">https://www.cnblogs.com/wangxin37/p/8185688.html</a></p>
+<p><a href="https://heartlessly.github.io/others/latex-mathjax-gong-shi-zi-ti-mei-hua/">https://heartlessly.github.io/others/latex-mathjax-gong-shi-zi-ti-mei-hua/</a></p>
+]]></content>
+      <categories>
+        <category>DIY</category>
+      </categories>
+      <tags>
+        <tag>html</tag>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -932,7 +1018,7 @@ list <span class="token operator">=</span> n<span class="token punctuation">;</s
 
 ### **Lecture 6 Python &amp; Artificial Intelligence**
 
-- Python manages your memory automatically.
+- Python manages your memory automatically. It may take more memory than C.
 
   ```python
   # python version of hash table in Problem set 5
@@ -956,9 +1042,61 @@ list <span class="token operator">=</span> n<span class="token punctuation">;</s
 </li>
 </ul>
 </li>
-<li><p>Python has greater ecosystem for developers, basically more libs.</p>
+<li><p>Python has greater ecosystem for developers, basically more libs. Example:  Face detection</p>
+</li>
+<li><p>common IO syntax, you don’t have to specify the type of your variables</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">answer <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"input:"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"output, "</span> <span class="token operator">+</span> answer<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"output,"</span><span class="token punctuation">,</span> answer<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"output,</span><span class="token interpolation"><span class="token punctuation">{</span>answer<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+
+<span class="token comment">#type: bool float int str list set ...</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>intent matters</strong></p>
+</li>
+<li><p><strong>object oriented program(OOP):</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">s <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"opinion: "</span><span class="token punctuation">)</span>
+s <span class="token operator">=</span> s<span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># s = input("opinion: ").lower()</span>
+
+<span class="token keyword">if</span> s <span class="token keyword">in</span> <span class="token punctuation">[</span><span class="token string">"y"</span><span class="token punctuation">,</span><span class="token string">"yes"</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+	<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"agreed"</span><span class="token punctuation">,</span> end <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">)</span>
+<span class="token keyword">elif</span> s <span class="token keyword">in</span> <span class="token punctuation">[</span><span class="token string">"n"</span><span class="token punctuation">,</span><span class="token string">"no"</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+	<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"not agreed"</span><span class="token punctuation">)</span>
+    
+<span class="token comment">#loop</span>
+<span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"test"</span><span class="token punctuation">)</span>
+    
+<span class="token comment">#function exception</span>
+<span class="token keyword">def</span> <span class="token function">get_int</span><span class="token punctuation">(</span>prompt<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+    	<span class="token keyword">try</span><span class="token punctuation">:</span> 
+        	<span class="token keyword">return</span> <span class="token builtin">int</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">(</span>prompt<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    	<span class="token keyword">except</span> ValueError<span class="token punctuation">:</span>
+        	<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"not an integer"</span><span class="token punctuation">)</span>
+            
+<span class="token comment">#for loop can end with an else </span>
+people <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span><span class="token string">"name"</span><span class="token punctuation">:</span><span class="token string">"carter1"</span><span class="token punctuation">,</span><span class="token string">"number"</span><span class="token punctuation">:</span><span class="token string">"+1-555-986-1004"</span><span class="token punctuation">}</span>
+    <span class="token punctuation">{</span><span class="token string">"name"</span><span class="token punctuation">:</span><span class="token string">"carter2"</span><span class="token punctuation">,</span><span class="token string">"number"</span><span class="token punctuation">:</span><span class="token string">"+1-555-986-1004"</span><span class="token punctuation">}</span>
+    <span class="token punctuation">{</span><span class="token string">"name"</span><span class="token punctuation">:</span><span class="token string">"carter3"</span><span class="token punctuation">,</span><span class="token string">"number"</span><span class="token punctuation">:</span><span class="token string">"+1-555-986-1004"</span><span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+
+name <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"Name: "</span><span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> person <span class="token keyword">in</span> people<span class="token punctuation">:</span>
+    <span class="token keyword">if</span> person<span class="token punctuation">[</span><span class="token string">"name"</span><span class="token punctuation">]</span> <span class="token operator">==</span> name<span class="token punctuation">:</span>
+        number <span class="token operator">=</span> person<span class="token punctuation">[</span><span class="token string">"number"</span><span class="token punctuation">]</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Found </span><span class="token interpolation"><span class="token punctuation">{</span>number<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+        <span class="token keyword">break</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    printf<span class="token punctuation">(</span><span class="token string">"Not found"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ul>
+<p>​        </p>
+<p>​    </p>
 <p><strong>Problem Set：</strong> <a href="https://cs50.harvard.edu/x/2024/psets/">https://cs50.harvard.edu/x/2024/psets/</a></p>
 <p>*看此课程以温习basic coding和补充一些计算机思维，老师讲的很有激情，时间花的还算比较有价值</p>
 ]]></content>
@@ -967,92 +1105,6 @@ list <span class="token operator">=</span> n<span class="token punctuation">;</s
       </categories>
       <tags>
         <tag>CS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo博客插入数学公式</title>
-    <url>/2025/03/27/250327/</url>
-    <content><![CDATA[<p>在写一些内容时，会遇到需要添加数学公式的地方，Hexo部分主题不支持公式的渲染，比如我正在使用的vivia主题，在查阅一些资料之后，我使用<strong>MathJax</strong>引擎实现了vivia主题下的数学公式渲染。</p>
-<p>MathJax简介：<a href="https://www.osgeo.cn/mathjax/basic/mathjax.html">https://www.osgeo.cn/mathjax/basic/mathjax.html</a> </p>
-<p>该引擎是一款可在所有现代浏览器中工作的开源js显示引擎，辅助页面作者编写含有数学公式的文档</p>
-<h4 id="Step-1-安装MathJax引擎并更换渲染引擎："><a href="#Step-1-安装MathJax引擎并更换渲染引擎：" class="headerlink" title="Step 1 : 安装MathJax引擎并更换渲染引擎："></a><strong>Step 1</strong> : 安装MathJax引擎并更换渲染引擎：</h4><p>​              操作包括卸载Hexo自带的Hexo-math，卸载默认的对MathJax不友好的marked引擎</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">npm uinstall hexo<span class="token operator">-</span>math <span class="token operator">--</span>save
-npm install hexo<span class="token operator">-</span>renderer<span class="token operator">-</span>mathjax <span class="token operator">--</span>save
-
-npm uinstall hexo<span class="token operator">-</span>renderer<span class="token operator">-</span>marked <span class="token operator">--</span>save
-npm install hexo<span class="token operator">-</span>renderer<span class="token operator">-</span>kramed <span class="token operator">--</span>save<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="Step-2-更新MathJax的cdn链接"><a href="#Step-2-更新MathJax的cdn链接" class="headerlink" title="Step 2 : 更新MathJax的cdn链接"></a><strong>Step 2</strong> : 更新MathJax的cdn链接</h4><h4 id="Step-3-更改部分转义规则"><a href="#Step-3-更改部分转义规则" class="headerlink" title="Step 3 : 更改部分转义规则"></a><strong>Step 3</strong> : 更改部分转义规则</h4><p> hexo 默认的转义规则会将一些字符进行转义，所以要对默认的规则进行修改。<br>首先， 打开/node_modules/kramed/lib/rules/inline.js</p>
-<p>把：</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">escape</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\\([\\`*{}\[\]()#$+\-.!_&gt;])</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
-<span class="token literal-property property">em</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>更改为：</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">escape</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\\([`*\[\]()# +\-.!_&gt;])</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
-<span class="token literal-property property">em</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\*((?:\*\*|[\s\S])+?)\*(?!\*)</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h4 id="Step-4-主题未预配置下使用Hexo-filter-mathjax"><a href="#Step-4-主题未预配置下使用Hexo-filter-mathjax" class="headerlink" title="Step 4 : 主题未预配置下使用Hexo-filter-mathjax"></a><strong>Step 4</strong> : 主题未预配置下使用Hexo-filter-mathjax</h4><p>对于已经配置MathJax的主题来说，在相关config文件里打开控件即可，对于未配置的主题，可以使用Hexo-filter-mathjax来帮助实现</p>
-<p>Hexo-filter-mathjax项目地址：<a href="https://github.com/next-theme/hexo-filter-mathjax">https://github.com/next-theme/hexo-filter-mathjax</a></p>
-<p>安装：</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">npm install hexo<span class="token operator">-</span>filter<span class="token operator">-</span>mathjax <span class="token operator">--</span>save<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>对需要开启的博文，在其Front-Matter处增加mathjax: true这一行即可，如：</p>
-<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token front-matter-block"><span class="token punctuation">---</span>
-<span class="token front-matter yaml language-yaml"><span class="token key atrule">title</span><span class="token punctuation">:</span> xxxxxx
-<span class="token key atrule">categories</span><span class="token punctuation">:</span> xxxxx
-<span class="token key atrule">date</span><span class="token punctuation">:</span> xxxx<span class="token punctuation">-</span>xx<span class="token punctuation">-</span>xx
-<span class="token key atrule">mathjax</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></span>
-<span class="token punctuation">---</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><p>行间公式：</p>
-<script type="math/tex; mode=display">\frak{\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6} }</script><p>行内公式：        <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.186ex;" xmlns="http://www.w3.org/2000/svg" width="35.835ex" height="1.84ex" role="img" focusable="false" viewbox="0 -731.2 15839.2 813.2"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="63" d="M370 305T349 305T313 320T297 358Q297 381 312 396Q317 401 317 402T307 404Q281 408 258 408Q209 408 178 376Q131 329 131 219Q131 137 162 90Q203 29 272 29Q313 29 338 55T374 117Q376 125 379 127T395 129H409Q415 123 415 120Q415 116 411 104T395 71T366 33T318 2T249 -11Q163 -11 99 53T34 214Q34 318 99 383T250 448T370 421T404 357Q404 334 387 320Z"/><path data-c="6F" d="M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z" transform="translate(444,0)"/><path data-c="73" d="M295 316Q295 356 268 385T190 414Q154 414 128 401Q98 382 98 349Q97 344 98 336T114 312T157 287Q175 282 201 278T245 269T277 256Q294 248 310 236T342 195T359 133Q359 71 321 31T198 -10H190Q138 -10 94 26L86 19L77 10Q71 4 65 -1L54 -11H46H42Q39 -11 33 -5V74V132Q33 153 35 157T45 162H54Q66 162 70 158T75 146T82 119T101 77Q136 26 198 26Q295 26 295 104Q295 133 277 151Q257 175 194 187T111 210Q75 227 54 256T33 318Q33 357 50 384T93 424T143 442T187 447H198Q238 447 268 432L283 424L292 431Q302 440 314 448H322H326Q329 448 335 442V310L329 304H301Q295 310 295 316Z" transform="translate(944,0)"/></g><g data-mml-node="mo" transform="translate(1338,0)"><path data-c="2061" d=""/></g><g data-mml-node="mn" transform="translate(1504.7,0)"><path data-c="32" d="M104 384Q115 394 133 409T199 449T281 474Q321 474 351 447T385 378Q385 328 333 255T228 127T176 72Q176 67 183 65Q184 65 203 65T260 67T331 69L475 73L484 67Q484 64 472 33L460 1H60V17L107 61Q210 159 249 208Q309 283 309 331Q309 363 285 389T228 415Q212 415 184 403T134 379L114 367L104 384Z"/></g><g data-mml-node="mi" transform="translate(2006.7,0)"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z"/></g><g data-mml-node="mo" transform="translate(2753.4,0)"><path data-c="3D" d="M725 366Q724 365 721 349T716 331V329H385Q54 329 54 331Q55 332 59 349T63 368H394Q725 368 725 366ZM725 169Q724 168 721 152T716 134V132H385Q54 132 54 134Q55 135 59 152T63 171H394Q725 171 725 169Z"/></g><g data-mml-node="msup" transform="translate(3787.2,0)"><g data-mml-node="mi"><path data-c="63" d="M370 305T349 305T313 320T297 358Q297 381 312 396Q317 401 317 402T307 404Q281 408 258 408Q209 408 178 376Q131 329 131 219Q131 137 162 90Q203 29 272 29Q313 29 338 55T374 117Q376 125 379 127T395 129H409Q415 123 415 120Q415 116 411 104T395 71T366 33T318 2T249 -11Q163 -11 99 53T34 214Q34 318 99 383T250 448T370 421T404 357Q404 334 387 320Z"/><path data-c="6F" d="M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z" transform="translate(444,0)"/><path data-c="73" d="M295 316Q295 356 268 385T190 414Q154 414 128 401Q98 382 98 349Q97 344 98 336T114 312T157 287Q175 282 201 278T245 269T277 256Q294 248 310 236T342 195T359 133Q359 71 321 31T198 -10H190Q138 -10 94 26L86 19L77 10Q71 4 65 -1L54 -11H46H42Q39 -11 33 -5V74V132Q33 153 35 157T45 162H54Q66 162 70 158T75 146T82 119T101 77Q136 26 198 26Q295 26 295 104Q295 133 277 151Q257 175 194 187T111 210Q75 227 54 256T33 318Q33 357 50 384T93 424T143 442T187 447H198Q238 447 268 432L283 424L292 431Q302 440 314 448H322H326Q329 448 335 442V310L329 304H301Q295 310 295 316Z" transform="translate(944,0)"/></g><g data-mml-node="mn" transform="translate(1371,363) scale(0.707)"><path data-c="32" d="M104 384Q115 394 133 409T199 449T281 474Q321 474 351 447T385 378Q385 328 333 255T228 127T176 72Q176 67 183 65Q184 65 203 65T260 67T331 69L475 73L484 67Q484 64 472 33L460 1H60V17L107 61Q210 159 249 208Q309 283 309 331Q309 363 285 389T228 415Q212 415 184 403T134 379L114 367L104 384Z"/></g></g><g data-mml-node="mo" transform="translate(5563.2,0)"><path data-c="2061" d=""/></g><g data-mml-node="mi" transform="translate(5729.9,0)"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z"/></g><g data-mml-node="mo" transform="translate(6421.1,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"/></g><g data-mml-node="msup" transform="translate(7421.3,0)"><g data-mml-node="mi"><path data-c="73" d="M295 316Q295 356 268 385T190 414Q154 414 128 401Q98 382 98 349Q97 344 98 336T114 312T157 287Q175 282 201 278T245 269T277 256Q294 248 310 236T342 195T359 133Q359 71 321 31T198 -10H190Q138 -10 94 26L86 19L77 10Q71 4 65 -1L54 -11H46H42Q39 -11 33 -5V74V132Q33 153 35 157T45 162H54Q66 162 70 158T75 146T82 119T101 77Q136 26 198 26Q295 26 295 104Q295 133 277 151Q257 175 194 187T111 210Q75 227 54 256T33 318Q33 357 50 384T93 424T143 442T187 447H198Q238 447 268 432L283 424L292 431Q302 440 314 448H322H326Q329 448 335 442V310L329 304H301Q295 310 295 316Z"/><path data-c="69" d="M69 609Q69 637 87 653T131 669Q154 667 171 652T188 609Q188 579 171 564T129 549Q104 549 87 564T69 609ZM247 0Q232 3 143 3Q132 3 106 3T56 1L34 0H26V46H42Q70 46 91 49Q100 53 102 60T104 102V205V293Q104 345 102 359T88 378Q74 385 41 385H30V408Q30 431 32 431L42 432Q52 433 70 434T106 436Q123 437 142 438T171 441T182 442H185V62Q190 52 197 50T232 46H255V0H247Z" transform="translate(394,0)"/><path data-c="6E" d="M41 46H55Q94 46 102 60V68Q102 77 102 91T102 122T103 161T103 203Q103 234 103 269T102 328V351Q99 370 88 376T43 385H25V408Q25 431 27 431L37 432Q47 433 65 434T102 436Q119 437 138 438T167 441T178 442H181V402Q181 364 182 364T187 369T199 384T218 402T247 421T285 437Q305 442 336 442Q450 438 463 329Q464 322 464 190V104Q464 66 466 59T477 49Q498 46 526 46H542V0H534L510 1Q487 2 460 2T422 3Q319 3 310 0H302V46H318Q379 46 379 62Q380 64 380 200Q379 335 378 343Q372 371 358 385T334 402T308 404Q263 404 229 370Q202 343 195 315T187 232V168V108Q187 78 188 68T191 55T200 49Q221 46 249 46H265V0H257L234 1Q210 2 183 2T145 3Q42 3 33 0H25V46H41Z" transform="translate(672,0)"/></g><g data-mml-node="mn" transform="translate(1261,396.1) scale(0.707)"><path data-c="32" d="M104 384Q115 394 133 409T199 449T281 474Q321 474 351 447T385 378Q385 328 333 255T228 127T176 72Q176 67 183 65Q184 65 203 65T260 67T331 69L475 73L484 67Q484 64 472 33L460 1H60V17L107 61Q210 159 249 208Q309 283 309 331Q309 363 285 389T228 415Q212 415 184 403T134 379L114 367L104 384Z"/></g></g><g data-mml-node="mo" transform="translate(9087.3,0)"><path data-c="2061" d=""/></g><g data-mml-node="mi" transform="translate(9253.9,0)"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z"/></g><g data-mml-node="mo" transform="translate(10000.7,0)"><path data-c="3D" d="M725 366Q724 365 721 349T716 331V329H385Q54 329 54 331Q55 332 59 349T63 368H394Q725 368 725 366ZM725 169Q724 168 721 152T716 134V132H385Q54 132 54 134Q55 135 59 152T63 171H394Q725 171 725 169Z"/></g><g data-mml-node="mn" transform="translate(11034.5,0)"><path data-c="32" d="M104 384Q115 394 133 409T199 449T281 474Q321 474 351 447T385 378Q385 328 333 255T228 127T176 72Q176 67 183 65Q184 65 203 65T260 67T331 69L475 73L484 67Q484 64 472 33L460 1H60V17L107 61Q210 159 249 208Q309 283 309 331Q309 363 285 389T228 415Q212 415 184 403T134 379L114 367L104 384Z"/></g><g data-mml-node="msup" transform="translate(11703.2,0)"><g data-mml-node="mi"><path data-c="63" d="M370 305T349 305T313 320T297 358Q297 381 312 396Q317 401 317 402T307 404Q281 408 258 408Q209 408 178 376Q131 329 131 219Q131 137 162 90Q203 29 272 29Q313 29 338 55T374 117Q376 125 379 127T395 129H409Q415 123 415 120Q415 116 411 104T395 71T366 33T318 2T249 -11Q163 -11 99 53T34 214Q34 318 99 383T250 448T370 421T404 357Q404 334 387 320Z"/><path data-c="6F" d="M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z" transform="translate(444,0)"/><path data-c="73" d="M295 316Q295 356 268 385T190 414Q154 414 128 401Q98 382 98 349Q97 344 98 336T114 312T157 287Q175 282 201 278T245 269T277 256Q294 248 310 236T342 195T359 133Q359 71 321 31T198 -10H190Q138 -10 94 26L86 19L77 10Q71 4 65 -1L54 -11H46H42Q39 -11 33 -5V74V132Q33 153 35 157T45 162H54Q66 162 70 158T75 146T82 119T101 77Q136 26 198 26Q295 26 295 104Q295 133 277 151Q257 175 194 187T111 210Q75 227 54 256T33 318Q33 357 50 384T93 424T143 442T187 447H198Q238 447 268 432L283 424L292 431Q302 440 314 448H322H326Q329 448 335 442V310L329 304H301Q295 310 295 316Z" transform="translate(944,0)"/></g><g data-mml-node="mn" transform="translate(1371,363) scale(0.707)"><path data-c="32" d="M104 384Q115 394 133 409T199 449T281 474Q321 474 351 447T385 378Q385 328 333 255T228 127T176 72Q176 67 183 65Q184 65 203 65T260 67T331 69L475 73L484 67Q484 64 472 33L460 1H60V17L107 61Q210 159 249 208Q309 283 309 331Q309 363 285 389T228 415Q212 415 184 403T134 379L114 367L104 384Z"/></g></g><g data-mml-node="mo" transform="translate(13479.1,0)"><path data-c="2061" d=""/></g><g data-mml-node="mi" transform="translate(13645.8,0)"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z"/></g><g data-mml-node="mo" transform="translate(14337,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"/></g><g data-mml-node="mn" transform="translate(15337.2,0)"><path data-c="31" d="M123 459Q145 459 170 460T217 462T256 464T284 466L295 467Q296 467 296 467T297 468Q299 468 302 466T307 462L309 459Q307 454 304 424T299 341T297 235Q297 139 298 101T302 55T313 44Q316 43 367 43L460 46Q460 35 459 22V-1H450Q402 2 281 6Q222 6 171 4T91 1T56 -1L47 -2V43H121H170Q195 43 201 45T209 56Q212 69 212 214Q212 333 209 365T194 409Q183 417 161 423T121 430L104 432Q103 432 103 446V459H123Z"/></g></g></g></g></svg></mjx-container></p>
-<p>矩阵运算：</p>
-<script type="math/tex; mode=display">
-\left(
-    \begin{array}{c}
-      s \\
-      t
-    \end{array}
-\right)
-=
-\left(
-    \begin{array}{cc}
-      cos(b) & -sin(b) \\
-      sin(b) & cos(b)
-    \end{array}
-\right)
-\left(
-    \begin{array}{c}
-      x \\
-      y
-    \end{array}
-\right)</script><p>*注意到有的cdn版本MathJax框架下公式字体对行间公式有一定影响，可能会一些字体会被渲染成主题相同字体，且移动端不能很好地显示</p>
-<p>参考资料：</p>
-<p><a href="https://www.cnblogs.com/wangxin37/p/8185688.html">https://www.cnblogs.com/wangxin37/p/8185688.html</a></p>
-<p><a href="https://heartlessly.github.io/others/latex-mathjax-gong-shi-zi-ti-mei-hua/">https://heartlessly.github.io/others/latex-mathjax-gong-shi-zi-ti-mei-hua/</a></p>
-]]></content>
-      <categories>
-        <category>DIY</category>
-      </categories>
-      <tags>
-        <tag>html</tag>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>冈萨雷斯 《数字图像处理》Study Log（on going）</title>
-    <url>/2025/03/28/250328/</url>
-    <content><![CDATA[<h4 id="光盘读取原理"><a href="#光盘读取原理" class="headerlink" title="*光盘读取原理"></a>*光盘读取原理</h4><p>无论是CD光盘还是DVD光盘，其存储方式与磁盘一样，都是以二进制数据的形式来存储信息。要在这些光盘上存储数据，需要借助激光把二进制数据刻在扁平、具有反射能力的盘片上。为了识别数据，定义激光刻出的小坑就代表二进制的“1”，而空白处则代表二进制的“0”。（凹坑和平坦区域的 <strong>边缘变化</strong>【如从凹坑到平坦，或反之】代表”1”，无变化代表”0”）DVD的记录凹坑比CD小，且螺旋存储凹坑之间的距离也更小。</p>
-<p>CD光驱或DVD光驱的主要部分就是激光发生器和光监测器。激光发生器（激光二极管），可以产生对应波长的激光光束，然后经过一系列的处理后照到光盘上。经由光监测器捕捉反射信号而识别实际的数据。然后计算机将这些二进制代码转换成为原来的数据或程序。当光盘在光驱中作高速旋转，激光头在电机的控制下作径向移动，数据就这样源源不断地读取出来。</p>
-<p>根据数据密度的差别可分为CD, DVD, BD等。</p>
-<center>
-    <img src="/images/DVD.webp" width="600">
-</center>
-
-<p>光盘与机械硬盘的工作原理区别可见以下博客：</p>
-<p><a href="https://zhuanlan.zhihu.com/p/51572176">https://zhuanlan.zhihu.com/p/51572176</a></p>
-]]></content>
-      <categories>
-        <category>学习记录</category>
-      </categories>
-      <tags>
-        <tag>算法</tag>
-        <tag>图像处理</tag>
       </tags>
   </entry>
 </search>

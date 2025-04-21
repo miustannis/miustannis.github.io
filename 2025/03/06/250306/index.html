@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://miustannis.github.io/images/cs50_7.webp">
 <meta property="og:image" content="https://miustannis.github.io/images/cs50_8.webp">
 <meta property="article:published_time" content="2025-03-06T12:39:18.000Z">
-<meta property="article:modified_time" content="2025-04-19T06:51:54.622Z">
+<meta property="article:modified_time" content="2025-04-21T04:26:48.051Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="CS">
 <meta name="twitter:card" content="summary">
@@ -263,14 +263,14 @@ mjx-container[display="true"] + br {
     <div class="widget">
       <h3 class="widget-title">分类</h3>
       <div class="category-box">
-            <a class="category-link" href="/categories/DIY/">
-                DIY
-                <div class="category-count">5</div>
-            </a>
-        
             <a class="category-link" href="/categories/Being/">
                 Being
                 <div class="category-count">6</div>
+            </a>
+        
+            <a class="category-link" href="/categories/DIY/">
+                DIY
+                <div class="category-count">5</div>
             </a>
         
             <a class="category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
@@ -419,7 +419,7 @@ mjx-container[display="true"] + br {
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            7.3k 词 
+            8.2k 词 
           </div>
         </div>
         
@@ -882,7 +882,7 @@ list <span class="token operator">=</span> n<span class="token punctuation">;</s
 
 ### **Lecture 6 Python &amp; Artificial Intelligence**
 
-- Python manages your memory automatically.
+- Python manages your memory automatically. It may take more memory than C.
 
   ```python
   # python version of hash table in Problem set 5
@@ -906,9 +906,61 @@ list <span class="token operator">=</span> n<span class="token punctuation">;</s
 </li>
 </ul>
 </li>
-<li><p>Python has greater ecosystem for developers, basically more libs.</p>
+<li><p>Python has greater ecosystem for developers, basically more libs. Example:  Face detection</p>
+</li>
+<li><p>common IO syntax, you don’t have to specify the type of your variables</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">answer <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"input:"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"output, "</span> <span class="token operator">+</span> answer<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"output,"</span><span class="token punctuation">,</span> answer<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"output,</span><span class="token interpolation"><span class="token punctuation">{</span>answer<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+
+<span class="token comment">#type: bool float int str list set ...</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>intent matters</strong></p>
+</li>
+<li><p><strong>object oriented program(OOP):</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">s <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"opinion: "</span><span class="token punctuation">)</span>
+s <span class="token operator">=</span> s<span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># s = input("opinion: ").lower()</span>
+
+<span class="token keyword">if</span> s <span class="token keyword">in</span> <span class="token punctuation">[</span><span class="token string">"y"</span><span class="token punctuation">,</span><span class="token string">"yes"</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+	<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"agreed"</span><span class="token punctuation">,</span> end <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">)</span>
+<span class="token keyword">elif</span> s <span class="token keyword">in</span> <span class="token punctuation">[</span><span class="token string">"n"</span><span class="token punctuation">,</span><span class="token string">"no"</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+	<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"not agreed"</span><span class="token punctuation">)</span>
+    
+<span class="token comment">#loop</span>
+<span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"test"</span><span class="token punctuation">)</span>
+    
+<span class="token comment">#function exception</span>
+<span class="token keyword">def</span> <span class="token function">get_int</span><span class="token punctuation">(</span>prompt<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+    	<span class="token keyword">try</span><span class="token punctuation">:</span> 
+        	<span class="token keyword">return</span> <span class="token builtin">int</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">(</span>prompt<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    	<span class="token keyword">except</span> ValueError<span class="token punctuation">:</span>
+        	<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"not an integer"</span><span class="token punctuation">)</span>
+            
+<span class="token comment">#for loop can end with an else </span>
+people <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span><span class="token string">"name"</span><span class="token punctuation">:</span><span class="token string">"carter1"</span><span class="token punctuation">,</span><span class="token string">"number"</span><span class="token punctuation">:</span><span class="token string">"+1-555-986-1004"</span><span class="token punctuation">}</span>
+    <span class="token punctuation">{</span><span class="token string">"name"</span><span class="token punctuation">:</span><span class="token string">"carter2"</span><span class="token punctuation">,</span><span class="token string">"number"</span><span class="token punctuation">:</span><span class="token string">"+1-555-986-1004"</span><span class="token punctuation">}</span>
+    <span class="token punctuation">{</span><span class="token string">"name"</span><span class="token punctuation">:</span><span class="token string">"carter3"</span><span class="token punctuation">,</span><span class="token string">"number"</span><span class="token punctuation">:</span><span class="token string">"+1-555-986-1004"</span><span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+
+name <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"Name: "</span><span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> person <span class="token keyword">in</span> people<span class="token punctuation">:</span>
+    <span class="token keyword">if</span> person<span class="token punctuation">[</span><span class="token string">"name"</span><span class="token punctuation">]</span> <span class="token operator">==</span> name<span class="token punctuation">:</span>
+        number <span class="token operator">=</span> person<span class="token punctuation">[</span><span class="token string">"number"</span><span class="token punctuation">]</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Found </span><span class="token interpolation"><span class="token punctuation">{</span>number<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+        <span class="token keyword">break</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    printf<span class="token punctuation">(</span><span class="token string">"Not found"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ul>
+<p>​        </p>
+<p>​    </p>
 <p><strong>Problem Set：</strong> <a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2024/psets/">https://cs50.harvard.edu/x/2024/psets/</a></p>
 <p>*看此课程以温习basic coding和补充一些计算机思维，老师讲的很有激情，时间花的还算比较有价值</p>
 
