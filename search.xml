@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hexo博客启用测试</title>
+    <url>/2022/03/14/220314/</url>
+    <content><![CDATA[<p>支持站内文字搜索</p>
+<p>支持代码块植入</p>
+<p>支持评论系统（目前已关闭）</p>
+<p>[来自后期补丁]</p>
+]]></content>
+      <categories>
+        <category>DIY</category>
+      </categories>
+      <tags>
+        <tag>html</tag>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>procreate绘画x3</title>
+    <url>/2022/03/16/220316/</url>
+    <content><![CDATA[<p>或许有点蒸汽波</p>
+<span id="more"></span>
+<p><center><br><img src="/images/3.webp" style="zoom:88%;"><br><img src="/images/popsummit.webp" style="zoom:50%;"><br><img src="/images/crowded.webp" style="zoom:50%;"></center></p>
+<center>
+</center>]]></content>
+      <categories>
+        <category>Being</category>
+      </categories>
+      <tags>
+        <tag>绘画</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>procreate社团设计x3</title>
     <url>/2022/03/16/220317/</url>
     <content><![CDATA[<p>翻了翻之前的文件夹，自己在在本科社团宣传部一年好像也没什么创作成果</p>
@@ -22,21 +53,6 @@
 
 <p>以上作品均由<strong>iPad</strong>绘画软件<strong>procreate</strong>绘制，方便使用，新手友好</p>
 ]]></content>
-      <categories>
-        <category>Being</category>
-      </categories>
-      <tags>
-        <tag>绘画</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>procreate绘画x3</title>
-    <url>/2022/03/16/220316/</url>
-    <content><![CDATA[<p>或许有点蒸汽波</p>
-<span id="more"></span>
-<p><center><br><img src="/images/3.webp" style="zoom:88%;"><br><img src="/images/popsummit.webp" style="zoom:50%;"><br><img src="/images/crowded.webp" style="zoom:50%;"></center></p>
-<center>
-</center>]]></content>
       <categories>
         <category>Being</category>
       </categories>
@@ -81,24 +97,55 @@
       </categories>
       <tags>
         <tag>html</tag>
-        <tag>yaml</tag>
         <tag>Hexo</tag>
+        <tag>yaml</tag>
       </tags>
   </entry>
   <entry>
-    <title>Hexo博客启用测试</title>
-    <url>/2022/03/14/220314/</url>
-    <content><![CDATA[<p>支持站内文字搜索</p>
-<p>支持代码块植入</p>
-<p>支持评论系统（目前已关闭）</p>
-<p>[来自后期补丁]</p>
+    <title>寒山寺闲逛</title>
+    <url>/2023/12/16/231216/</url>
+    <content><![CDATA[<p>有《枫桥夜泊》钟声的加持，也算名气不小的景点<br>实际乏善可陈，没什么特点</p>
+<center>
+    <img src="/images/hss1.webp" width="400">
+</center>
+
+<center>
+    <img src="/images/hss2.webp" width="400">
+</center>
+
+
+
+<p>张继的雕像侧躺在现代枫桥旁边<br>手脚部位被游客盘得发亮，据说摸一摸家里小孩就能考上好大学</p>
 ]]></content>
       <categories>
-        <category>DIY</category>
+        <category>Being</category>
       </categories>
       <tags>
-        <tag>html</tag>
-        <tag>Hexo</tag>
+        <tag>摄影</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Reflections on my undergraduate life</title>
+    <url>/2023/12/31/231231/</url>
+    <content><![CDATA[<p>2020秋入学至今，我已进入我的Senior Year，成为学校中离毕业最近的那批人之一。</p>
+<p>藏不住高考的阴霾，我在一个潮湿的周末办理了入学报到。对学校本身，我并没有太多想象，只是机械地和别人一样走着搬宿舍，入住，参观学校，军训的流程，对自己将要呆的地方没有丝毫好奇心，not to mention “归属感”。在做题多年所带来的优绩主义思想残留和想要改变现状的迫切心理交叉影响下，刚入学的我便决定好好学习，达到保研要求，去一个更好的平台读研。除此之外，我又想多尝试一些事情，当一个斜杠man，不想变成nerd，并且和这些人划清界线。</p>
+<p>这两个指导思想，贯穿着我的大学生活。</p>
+<p>对于保研去往更好的平台，这个目的本身并没有问题，我现在也认为，学习本身也是为了更好的生活。从当时和现在看来，保研无疑是比较平稳且有效的选择，是“本手”。</p>
+<p>只是受限于达到保研要求这个悬在头顶的宝剑，我的目光和精力被束缚在GPA，加分政策等一系列数字与文书上，于是这三年，我并没有对自己的兴趣爱好进行充分的发掘，也并没有从埋头学习中收获太多的乐趣。或者说，我对自己想要成为一个什么样的人，完全没有进行过深度思考。即使是现在大四的我，也只是能说出几个模糊的未来愿景。依稀记得之前看到过一个视频，记者采访一个白人小女孩，她规划了一整套人生流程，从参加议会到参加总统选举，清晰明了，令人咋舌。Lockdown期间，我在家上网课，虽然缺失了一部分大学生活，好在发展了几个持续且有输出性质的爱好，比如这个site。然而，我认为三年时间我应该达到的远不止这些。</p>
+<p>前人常说，读大学应该提升专业技能和社交能力。就社交能力而言，我确实提升了很多，这和参加了很多活动不无关系，一开始我是一个socially awkward的人，过于在意别人的感受，把自己搞得十分拘谨，现在好很多，这是我最显著的成长之一。当然不一定要在校园里，三年时间，在哪里都能成长很多。</p>
+<p>就专业技能方面，我应该是比较欠缺，由于没有参与正儿八经的科研项目，我的从问题出发，逐步改进方案的方法论还处于发育阶段，之前参与的一些比赛倒是帮助了一些，不过总体上还是在一个固定的框架下进行问题求解，遑论创新性的培养。可能我比其他nerd会变通一些，不过也好不到哪里去。这是很大的一个问题，创新思维很重要，这在ai取代低级工人的发展前景下是可预见的。希望未来我可以好好改进。</p>
+<p>思想上，我一直有在通过chat&amp;chill进行一些非刻意的同龄人观察，不自觉地划分出：沾沾自喜的网络表层用户，焦虑的做题家，自命不凡的巨婴，沉迷塑造人设的封面人物，乐子人及其拥趸，暴躁的理想主义者等，当然也有淳朴的怀旧主义者，阳光而正常的普通人。后现代解构思潮将我推往人类与社会的本质，没等我看清，又一下子推开。对我来说，有一种把一盘五颜六色的M&amp;m豆翻倒，按碎在玻璃桌上，迸溅出一般底色的踉跄美感。回头看看这种带有先入为主色彩和刻板印象的分类，会感觉自己确实是这些类型的混合体，某一时间段的人格形象只是某一种特质占比升高的产物。只是感慨自己书读的太少，又缺少行万里路的资本和机遇，还不能做到摆脱而洒脱。或许时机未到，或许不需要摆脱，然后“沉浸在这种恶无限的倒错游戏里”。</p>
+<p><strong><em>Γνῶθι σεαυτόν</em></strong>  认识你自己，本科我没有做到，这是遗憾，也是契机。</p>
+<p>不过，现在我坐在宿舍里，毕业前只想简单地在这城乡结合部体验一下烂俗文学中享乐主义横行的校园生活，好好在没有走过几遍的苏城小路上来回踱一踱步，在去往下一场折腾前，大口呼吸。</p>
+<center>
+    <img src="/images/yangchenghu.webp" width="400">
+</center>
+]]></content>
+      <categories>
+        <category>Being</category>
+      </categories>
+      <tags>
+        <tag>自言自语</tag>
       </tags>
   </entry>
   <entry>
@@ -213,50 +260,19 @@
       </tags>
   </entry>
   <entry>
-    <title>寒山寺闲逛</title>
-    <url>/2023/12/16/231216/</url>
-    <content><![CDATA[<p>有《枫桥夜泊》钟声的加持，也算名气不小的景点<br>实际乏善可陈，没什么特点</p>
-<center>
-    <img src="/images/hss1.webp" width="400">
-</center>
-
-<center>
-    <img src="/images/hss2.webp" width="400">
-</center>
-
-
-
-<p>张继的雕像侧躺在现代枫桥旁边<br>手脚部位被游客盘得发亮，据说摸一摸家里小孩就能考上好大学</p>
+    <title>STM32配置笔记参考</title>
+    <url>/2024/11/21/241121/</url>
+    <content><![CDATA[<p>大二时的笔记，upload当乐高说明书看</p>
+<span id="more"></span>
+<p><strong>pdf嵌入使用了pdf.js插件</strong>，hexo-pdf这个插件在移动端不能很好地显示</p>
+<iframe src="/pdfjs/web/viewer.html?file=/pdf/post1.pdf" style="width:100%;height:800px"></iframe>
 ]]></content>
       <categories>
-        <category>Being</category>
+        <category>学习记录</category>
       </categories>
       <tags>
-        <tag>摄影</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Reflections on my undergraduate life</title>
-    <url>/2023/12/31/231231/</url>
-    <content><![CDATA[<p>2020秋入学至今，我已进入我的Senior Year，成为学校中离毕业最近的那批人之一。</p>
-<p>藏不住高考的阴霾，我在一个潮湿的周末办理了入学报到。对学校本身，我并没有太多想象，只是机械地和别人一样走着搬宿舍，入住，参观学校，军训的流程，对自己将要呆的地方没有丝毫好奇心，not to mention “归属感”。在做题多年所带来的优绩主义思想残留和想要改变现状的迫切心理交叉影响下，刚入学的我便决定好好学习，达到保研要求，去一个更好的平台读研。除此之外，我又想多尝试一些事情，当一个斜杠man，不想变成nerd，并且和这些人划清界线。</p>
-<p>这两个指导思想，贯穿着我的大学生活。</p>
-<p>对于保研去往更好的平台，这个目的本身并没有问题，我现在也认为，学习本身也是为了更好的生活。从当时和现在看来，保研无疑是比较平稳且有效的选择，是“本手”。</p>
-<p>只是受限于达到保研要求这个悬在头顶的宝剑，我的目光和精力被束缚在GPA，加分政策等一系列数字与文书上，于是这三年，我并没有对自己的兴趣爱好进行充分的发掘，也并没有从埋头学习中收获太多的乐趣。或者说，我对自己想要成为一个什么样的人，完全没有进行过深度思考。即使是现在大四的我，也只是能说出几个模糊的未来愿景。依稀记得之前看到过一个视频，记者采访一个白人小女孩，她规划了一整套人生流程，从参加议会到参加总统选举，清晰明了，令人咋舌。Lockdown期间，我在家上网课，虽然缺失了一部分大学生活，好在发展了几个持续且有输出性质的爱好，比如这个site。然而，我认为三年时间我应该达到的远不止这些。</p>
-<p>前人常说，读大学应该提升专业技能和社交能力。就社交能力而言，我确实提升了很多，这和参加了很多活动不无关系，一开始我是一个socially awkward的人，过于在意别人的感受，把自己搞得十分拘谨，现在好很多，这是我最显著的成长之一。当然不一定要在校园里，三年时间，在哪里都能成长很多。</p>
-<p>就专业技能方面，我应该是比较欠缺，由于没有参与正儿八经的科研项目，我的从问题出发，逐步改进方案的方法论还处于发育阶段，之前参与的一些比赛倒是帮助了一些，不过总体上还是在一个固定的框架下进行问题求解，遑论创新性的培养。可能我比其他nerd会变通一些，不过也好不到哪里去。这是很大的一个问题，创新思维很重要，这在ai取代低级工人的发展前景下是可预见的。希望未来我可以好好改进。</p>
-<p>思想上，我一直有在通过chat&amp;chill进行一些非刻意的同龄人观察，不自觉地划分出：沾沾自喜的网络表层用户，焦虑的做题家，自命不凡的巨婴，沉迷塑造人设的封面人物，乐子人及其拥趸，暴躁的理想主义者等，当然也有淳朴的怀旧主义者，阳光而正常的普通人。后现代解构思潮将我推往人类与社会的本质，没等我看清，又一下子推开。对我来说，有一种把一盘五颜六色的M&amp;m豆翻倒，按碎在玻璃桌上，迸溅出一般底色的踉跄美感。回头看看这种带有先入为主色彩和刻板印象的分类，会感觉自己确实是这些类型的混合体，某一时间段的人格形象只是某一种特质占比升高的产物。只是感慨自己书读的太少，又缺少行万里路的资本和机遇，还不能做到摆脱而洒脱。或许时机未到，或许不需要摆脱，然后“沉浸在这种恶无限的倒错游戏里”。</p>
-<p><strong><em>Γνῶθι σεαυτόν</em></strong>  认识你自己，本科我没有做到，这是遗憾，也是契机。</p>
-<p>不过，现在我坐在宿舍里，毕业前只想简单地在这城乡结合部体验一下烂俗文学中的享乐主义横行的校园生活，好好在没有走过几遍的苏城小路上来回踱一踱步，在去往下一场折腾前，大口呼吸。</p>
-<center>
-    <img src="/images/yangchenghu.webp" width="400">
-</center>
-]]></content>
-      <categories>
-        <category>Being</category>
-      </categories>
-      <tags>
-        <tag>自言自语</tag>
+        <tag>嵌入式</tag>
+        <tag>C</tag>
       </tags>
   </entry>
   <entry>
@@ -328,22 +344,6 @@ uint8_t startbegin2 = 0x00;
 
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这里的函数主要是用以处理字符串的，应付一些的简单的应用已经够用了，当然，也能在此基础上扩展。</p>
-]]></content>
-      <categories>
-        <category>学习记录</category>
-      </categories>
-      <tags>
-        <tag>嵌入式</tag>
-        <tag>C</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>STM32配置笔记参考</title>
-    <url>/2024/11/21/241121/</url>
-    <content><![CDATA[<p>大二时的笔记，upload当乐高说明书看</p>
-<span id="more"></span>
-<p><strong>pdf嵌入使用了pdf.js插件</strong>，hexo-pdf这个插件在移动端不能很好地显示</p>
-<iframe src="/pdfjs/web/viewer.html?file=/pdf/post1.pdf" style="width:100%;height:800px"></iframe>
 ]]></content>
       <categories>
         <category>学习记录</category>
@@ -451,6 +451,28 @@ uint8_t startbegin2 = 0x00;
       </categories>
       <tags>
         <tag>改装</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>基于MLX90640的手持红外热成像仪（on going）</title>
+    <url>/2025/02/26/250226/</url>
+    <content><![CDATA[<h2 id="小问题合集："><a href="#小问题合集：" class="headerlink" title="小问题合集："></a><strong>小问题合集：</strong></h2><h3 id="problem1：使用ST-Link下载过一次程序后发现无法继续下载"><a href="#problem1：使用ST-Link下载过一次程序后发现无法继续下载" class="headerlink" title="problem1：使用ST-Link下载过一次程序后发现无法继续下载"></a><strong>problem1：使用ST-Link下载过一次程序后发现无法继续下载</strong></h3><ol>
+<li>检查设备管理器，确保有正确的ST-Link驱动</li>
+<li>检查Keil软件配置，确保导入正确的型号版本</li>
+<li>检查引脚配置，发现问题：</li>
+</ol>
+<center>
+    <img src="/images/stlink_problem.webp" width="400">
+</center>
+
+<p>​    配置的IIC通信引脚占用了SWD下载引脚<em>（STM32默认的PA13 &amp;PA14）</em>，引脚输入输出模式不适配，显然后续无法下载，遂改之，问题解决。</p>
+]]></content>
+      <categories>
+        <category>DIY</category>
+      </categories>
+      <tags>
+        <tag>嵌入式</tag>
+        <tag>C</tag>
       </tags>
   </entry>
   <entry>
@@ -1005,49 +1027,6 @@ name <span class="token operator">=</span> <span class="token builtin">input</sp
       </tags>
   </entry>
   <entry>
-    <title>冈萨雷斯 《数字图像处理》Study Log（on going）</title>
-    <url>/2025/03/28/250328/</url>
-    <content><![CDATA[<h4 id="光盘读取原理"><a href="#光盘读取原理" class="headerlink" title="*光盘读取原理"></a>*光盘读取原理</h4><p>无论是CD光盘还是DVD光盘，其存储方式与磁盘一样，都是以二进制数据的形式来存储信息。要在这些光盘上存储数据，需要借助激光把二进制数据刻在扁平、具有反射能力的盘片上。为了识别数据，定义激光刻出的小坑就代表二进制的“1”，而空白处则代表二进制的“0”。（凹坑和平坦区域的 <strong>边缘变化</strong>【如从凹坑到平坦，或反之】代表”1”，无变化代表”0”）DVD的记录凹坑比CD小，且螺旋存储凹坑之间的距离也更小。</p>
-<p>CD光驱或DVD光驱的主要部分就是激光发生器和光监测器。激光发生器（激光二极管），可以产生对应波长的激光光束，然后经过一系列的处理后照到光盘上。经由光监测器捕捉反射信号而识别实际的数据。然后计算机将这些二进制代码转换成为原来的数据或程序。当光盘在光驱中作高速旋转，激光头在电机的控制下作径向移动，数据就这样源源不断地读取出来。</p>
-<p>根据数据密度的差别可分为CD, DVD, BD等。</p>
-<center>
-    <img src="/images/DVD.webp" width="600">
-</center>
-
-<p>光盘与机械硬盘的工作原理区别可见以下博客：</p>
-<p><a href="https://zhuanlan.zhihu.com/p/51572176">https://zhuanlan.zhihu.com/p/51572176</a></p>
-]]></content>
-      <categories>
-        <category>学习记录</category>
-      </categories>
-      <tags>
-        <tag>算法</tag>
-        <tag>图像处理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>基于MLX90640的手持红外热成像仪（on going）</title>
-    <url>/2025/02/26/250226/</url>
-    <content><![CDATA[<h2 id="小问题合集："><a href="#小问题合集：" class="headerlink" title="小问题合集："></a><strong>小问题合集：</strong></h2><h3 id="problem1：使用ST-Link下载过一次程序后发现无法继续下载"><a href="#problem1：使用ST-Link下载过一次程序后发现无法继续下载" class="headerlink" title="problem1：使用ST-Link下载过一次程序后发现无法继续下载"></a><strong>problem1：使用ST-Link下载过一次程序后发现无法继续下载</strong></h3><ol>
-<li>检查设备管理器，确保有正确的ST-Link驱动</li>
-<li>检查Keil软件配置，确保导入正确的型号版本</li>
-<li>检查引脚配置，发现问题：</li>
-</ol>
-<center>
-    <img src="/images/stlink_problem.webp" width="400">
-</center>
-
-<p>​    配置的IIC通信引脚占用了SWD下载引脚<em>（STM32默认的PA13 &amp;PA14）</em>，引脚输入输出模式不适配，显然后续无法下载，遂改之，问题解决。</p>
-]]></content>
-      <categories>
-        <category>DIY</category>
-      </categories>
-      <tags>
-        <tag>嵌入式</tag>
-        <tag>C</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hexo博客插入数学公式</title>
     <url>/2025/03/27/250327/</url>
     <content><![CDATA[<p>在写一些内容时，会遇到需要添加数学公式的地方，Hexo部分主题不支持公式的渲染，比如我正在使用的vivia主题，在查阅一些资料之后，我使用<strong>MathJax</strong>引擎实现了vivia主题下的数学公式渲染。</p>
@@ -1110,6 +1089,27 @@ npm install hexo<span class="token operator">-</span>renderer<span class="token 
       <tags>
         <tag>html</tag>
         <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>冈萨雷斯 《数字图像处理》Study Log（on going）</title>
+    <url>/2025/03/28/250328/</url>
+    <content><![CDATA[<h4 id="光盘读取原理"><a href="#光盘读取原理" class="headerlink" title="*光盘读取原理"></a>*光盘读取原理</h4><p>无论是CD光盘还是DVD光盘，其存储方式与磁盘一样，都是以二进制数据的形式来存储信息。要在这些光盘上存储数据，需要借助激光把二进制数据刻在扁平、具有反射能力的盘片上。为了识别数据，定义激光刻出的小坑就代表二进制的“1”，而空白处则代表二进制的“0”。（凹坑和平坦区域的 <strong>边缘变化</strong>【如从凹坑到平坦，或反之】代表”1”，无变化代表”0”）DVD的记录凹坑比CD小，且螺旋存储凹坑之间的距离也更小。</p>
+<p>CD光驱或DVD光驱的主要部分就是激光发生器和光监测器。激光发生器（激光二极管），可以产生对应波长的激光光束，然后经过一系列的处理后照到光盘上。经由光监测器捕捉反射信号而识别实际的数据。然后计算机将这些二进制代码转换成为原来的数据或程序。当光盘在光驱中作高速旋转，激光头在电机的控制下作径向移动，数据就这样源源不断地读取出来。</p>
+<p>根据数据密度的差别可分为CD, DVD, BD等。</p>
+<center>
+    <img src="/images/DVD.webp" width="600">
+</center>
+
+<p>光盘与机械硬盘的工作原理区别可见以下博客：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/51572176">https://zhuanlan.zhihu.com/p/51572176</a></p>
+]]></content>
+      <categories>
+        <category>学习记录</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>图像处理</tag>
       </tags>
   </entry>
 </search>
