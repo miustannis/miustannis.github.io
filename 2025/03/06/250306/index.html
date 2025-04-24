@@ -36,8 +36,9 @@
 <meta property="og:image" content="https://miustannis.github.io/images/cs50_7.webp">
 <meta property="og:image" content="https://miustannis.github.io/images/cs50_8.webp">
 <meta property="og:image" content="https://miustannis.github.io/images/cs50_9.webp">
+<meta property="og:image" content="https://miustannis.github.io/images/sql.webp">
 <meta property="article:published_time" content="2025-03-06T12:39:18.000Z">
-<meta property="article:modified_time" content="2025-04-21T08:49:52.837Z">
+<meta property="article:modified_time" content="2025-04-24T08:35:22.743Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="CS">
 <meta name="twitter:card" content="summary">
@@ -264,14 +265,14 @@ mjx-container[display="true"] + br {
     <div class="widget">
       <h3 class="widget-title">分类</h3>
       <div class="category-box">
-            <a class="category-link" href="/categories/Being/">
-                Being
-                <div class="category-count">6</div>
-            </a>
-        
             <a class="category-link" href="/categories/DIY/">
                 DIY
                 <div class="category-count">5</div>
+            </a>
+        
+            <a class="category-link" href="/categories/Being/">
+                Being
+                <div class="category-count">6</div>
             </a>
         
             <a class="category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
@@ -420,7 +421,7 @@ mjx-container[display="true"] + br {
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            8.3k 词 
+            10k 词 
           </div>
         </div>
         
@@ -966,8 +967,70 @@ name <span class="token operator">=</span> <span class="token builtin">input</sp
 </ul>
 </li>
 </ul>
-<h3 id="Lecture-7-SQL"><a href="#Lecture-7-SQL" class="headerlink" title="Lecture 7 SQL"></a><strong>Lecture 7 SQL</strong></h3><p>​    </p>
-<p><strong>Problem Set：</strong> <a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2024/psets/">https://cs50.harvard.edu/x/2024/psets/</a></p>
+<h3 id="Lecture-7-SQL"><a href="#Lecture-7-SQL" class="headerlink" title="Lecture 7 SQL"></a><strong>Lecture 7 SQL</strong></h3><ul>
+<li><p>SQL: a database-centric language <strong>(Structured Query Language)</strong></p>
+</li>
+<li><p>flat file database example: csv</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#csv example</span>
+<span class="token keyword">import</span> csv
+
+<span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"favorites.csv"</span><span class="token punctuation">,</span><span class="token string">"r"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token builtin">file</span><span class="token punctuation">:</span>
+    reader <span class="token operator">=</span> csv<span class="token punctuation">.</span>DictReader<span class="token punctuation">(</span><span class="token builtin">file</span><span class="token punctuation">)</span>
+    counts <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    
+    <span class="token keyword">for</span> row <span class="token keyword">in</span> reader<span class="token punctuation">:</span>
+        favorite <span class="token operator">=</span> row<span class="token punctuation">[</span><span class="token string">"language"</span><span class="token punctuation">]</span>
+        <span class="token keyword">if</span> favorite <span class="token keyword">in</span> counts<span class="token punctuation">:</span>
+            counts<span class="token punctuation">[</span>favorite<span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token number">1</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            counts<span class="token punctuation">[</span>favorite<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span>
+            
+<span class="token keyword">for</span> favorite <span class="token keyword">in</span> <span class="token builtin">sorted</span><span class="token punctuation">(</span>counts<span class="token punctuation">,</span> key <span class="token operator">=</span> counts<span class="token punctuation">.</span>get<span class="token punctuation">)</span><span class="token punctuation">:</span>
+	<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">{</span>favorite<span class="token punctuation">}</span></span><span class="token string">: </span><span class="token interpolation"><span class="token punctuation">{</span>counts<span class="token punctuation">[</span>favorite<span class="token punctuation">]</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>relational database: CRUD(create read update delete || insert drop)</p>
+</li>
+<li><p>this lecture uses sqlite3, for mobile database.</p>
+<pre class="line-numbers language-sqlite" data-language="sqlite"><code class="language-sqlite">$ sqlite3 favorites.db
+sqlite&gt; .mode csv
+sqlite&gt; .import favorites.csv favorites --import csv to table
+sqlite&gt; .quit
+
+sqlite&gt; .schema --a sqlite command that shows the schema of the database
+
+sqlite&gt; SELECT * FROM favorites; --show entire content of the table
+sqlite&gt; SELECT language FROM favorites LIMIT 10; --show seletced content of the table
+
+sqlite&gt; SELECT COUNT(*) FROM favorites; --total count
+sqlite&gt; SELECT COUNT(DISTINCT(language)) FROM favorites; --type count
+
+sqlite&gt; SELECT COUNT(*) FROM favorites WHERE language = 'C';
+sqlite&gt; SELECT COUNT(*) FROM favorites WHERE language = 'C' AND problem = 'Hello, World';
+
+sqlite&gt; SELECT language, COUNT(*) FROM favorites GROUP BY language; --works as python code above
+
+sqlite&gt; INSERT INTO favotites(language, problem) VALUES('SQL', 'fiftyville'); --appending a new row to table
+sqlite&gt; DELETE FROM favorites WHERE Timestamp IS NULL;--delete row
+sqlite&gt; UPDATE favorites SET language = 'SQL', problem = 'fiftyville';--update and now all content has been changed which can be justified by WHERE...(condition)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>link different tables together: <strong>primary key &amp; foreign key</strong>  <strong>one-to-one</strong></p>
+<pre class="line-numbers language-sqlite" data-language="sqlite"><code class="language-sqlite">-- IMDb example
+sqlite&gt; SELECT * FROM shows WHERE id IN 
+	...&gt;(SELECT show_id FROM ratings WHERE rating &gt;= 6.0)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>how to join two tables that have related keys?</p>
+<pre class="line-numbers language-sqlite" data-language="sqlite"><code class="language-sqlite">-- syntax 'JOIN'
+sqlite&gt; SELECT * FROM shows JOIN ratings ON shows.id = ratings.show_id WHERE rating&gt;= 6.0 LIMIT 10;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<center>
+    <img src="/images/sql.webp" width="800">
+</center>
+</li>
+<li><p>link different tables together:  <strong>one-to-many</strong></p>
+</li>
+</ul>
+<p>​        </p>
+<h3 id="Lecture-8-HTML-CSS-JavaScript"><a href="#Lecture-8-HTML-CSS-JavaScript" class="headerlink" title="Lecture 8 HTML, CSS, JavaScript"></a><strong>Lecture 8 HTML, CSS, JavaScript</strong></h3><h3 id="Lecture-9-Flask"><a href="#Lecture-9-Flask" class="headerlink" title="Lecture 9 Flask"></a><strong>Lecture 9 Flask</strong></h3><h3 id="Lecture-10-Cybersecurity"><a href="#Lecture-10-Cybersecurity" class="headerlink" title="Lecture 10 Cybersecurity"></a><strong>Lecture 10 Cybersecurity</strong></h3><p><strong>Problem Set：</strong> <a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2024/psets/">https://cs50.harvard.edu/x/2024/psets/</a></p>
 <p>*看此课程以温习basic coding和补充一些计算机思维，老师讲的很有激情，时间花的还算比较有价值</p>
 
         
