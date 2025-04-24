@@ -249,14 +249,14 @@ mjx-container[display="true"] + br {
     <div class="widget">
       <h3 class="widget-title">分类</h3>
       <div class="category-box">
-            <a class="category-link" href="/categories/DIY/">
-                DIY
-                <div class="category-count">5</div>
-            </a>
-        
             <a class="category-link" href="/categories/Being/">
                 Being
                 <div class="category-count">6</div>
+            </a>
+        
+            <a class="category-link" href="/categories/DIY/">
+                DIY
+                <div class="category-count">5</div>
             </a>
         
             <a class="category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
@@ -349,9 +349,9 @@ mjx-container[display="true"] + br {
             </div>
           </a>
         
-          <a class="recent-link" href="/2025/02/26/250226/" title="基于MLX90640的手持红外热成像仪（on going）" >
+          <a class="recent-link" href="/2025/02/26/250226/" title="基于MLX90640的手持红外热成像仪" >
             <div class="recent-link-text">
-              基于MLX90640的手持红外热成像仪（on going）
+              基于MLX90640的手持红外热成像仪
             </div>
           </a>
         
@@ -620,7 +620,7 @@ Time Complexity is an important metric used to measure the relationship between 
   
     
       <h1 itemprop="name">
-        <a class="p-name article-title" href="/2025/02/26/250226/">基于MLX90640的手持红外热成像仪（on going）</a>
+        <a class="p-name article-title" href="/2025/02/26/250226/">基于MLX90640的手持红外热成像仪</a>
       </h1>
     
   
@@ -639,7 +639,7 @@ Time Complexity is an important metric used to measure the relationship between 
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            172 词 
+            3.1k 词 
           </div>
         </div>
         
@@ -650,17 +650,38 @@ Time Complexity is an important metric used to measure the relationship between 
         
           <div class="truncate-text">
             
-              小问题合集：problem1：使用ST-Link下载过一次程序后发现无法继续下载
-检查设备管理器，确保有正确的ST-Link驱动
-检查Keil软件配置，确保导入正确的型号版本
-检查引脚配置，发现问题：
+              项目背景：
+DIY好玩捏
+
+电路工作时有时需要检查元件发热情况，但用手触摸元件有一定的风险，因此需要一种无接触式的多点测温设备
+
+
+于是开始了解到热成像这个测温方式，以下是软硬件方案
+方案：硬件部分​        采用上下两块板子对插组合，为了减少复杂度，留了排母方便直插LCD与传感器模组。
+BOARD1: MCU与外设
+采用STM32F407作为主控，512KB  Flash，其实没特别注意选型，只是手上有这个开发板，要压缩成本的话用其他型号也可以
+红外传感模组为MLX90640 BAA，这个价格比较贵，比其他元件加起来都贵
+屏幕模组为1.44寸TFT-LCD，也是现成的，买了俩还剩一个，下次做别的东西的时候给用了吧
+留了串口测试点和烧录测试点
 
 
     
 
 
-​    配置的IIC通信引脚占用了SWD下载引脚（STM32默认的PA13 &amp;PA14），引脚输入输出模式不适配，显然后续无法下载，遂改之，问题解决。
+BOARD2: POWER
+3.7V锂电池供电，可通过USB接口经过LGS4084H电源管理芯片给锂电池充电
+经过一个LDO稳到3.3V给MCU整体供电，VDDA和VCC用磁珠滤波隔离了一下
 
+
+    
+
+
+电源板后续涉及锂电池供电DIY的倒是可以继续沿用
+
+    
+
+
+立创打样PCB，自己贴片，PCB板框留了一...
             
           </div>
         

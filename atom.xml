@@ -88,16 +88,19 @@
   </entry>
   
   <entry>
-    <title>基于MLX90640的手持红外热成像仪（on going）</title>
+    <title>基于MLX90640的手持红外热成像仪</title>
     <link href="https://miustannis.github.io/2025/02/26/250226/"/>
     <id>https://miustannis.github.io/2025/02/26/250226/</id>
     <published>2025-02-26T02:05:52.000Z</published>
-    <updated>2025-04-19T06:53:15.578Z</updated>
+    <updated>2025-04-24T05:38:08.099Z</updated>
     
     
       
       
-    <summary type="html">&lt;h2 id=&quot;小问题合集：&quot;&gt;&lt;a href=&quot;#小问题合集：&quot; class=&quot;headerlink&quot; title=&quot;小问题合集：&quot;&gt;&lt;/a&gt;&lt;strong&gt;小问题合集：&lt;/strong&gt;&lt;/h2&gt;&lt;h3 id=&quot;problem1：使用ST-Link下载过一次程序后发现无法继续</summary>
+    <summary type="html">&lt;h2 id=&quot;项目背景：&quot;&gt;&lt;a href=&quot;#项目背景：&quot; class=&quot;headerlink&quot; title=&quot;项目背景：&quot;&gt;&lt;/a&gt;项目背景：&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;DIY好玩捏&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;电路工作时有时需要检查元件发热情况，但用手触摸元件</summary>
       
     
     
