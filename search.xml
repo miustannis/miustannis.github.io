@@ -16,6 +16,29 @@
       </tags>
   </entry>
   <entry>
+    <title>寒山寺闲逛</title>
+    <url>/2023/12/16/231216/</url>
+    <content><![CDATA[<p>有《枫桥夜泊》钟声的加持，也算名气不小的景点<br>实际乏善可陈，没什么特点</p>
+<center>
+    <img src="/images/hss1.webp" width="400">
+</center>
+
+<center>
+    <img src="/images/hss2.webp" width="400">
+</center>
+
+
+
+<p>张继的雕像侧躺在现代枫桥旁边<br>手脚部位被游客盘得发亮，据说摸一摸家里小孩就能考上好大学</p>
+]]></content>
+      <categories>
+        <category>Being</category>
+      </categories>
+      <tags>
+        <tag>摄影</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>procreate社团设计x3</title>
     <url>/2022/03/16/220317/</url>
     <content><![CDATA[<p>翻了翻之前的文件夹，自己在在本科社团宣传部一年好像也没什么创作成果</p>
@@ -42,86 +65,6 @@
       </categories>
       <tags>
         <tag>绘画</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>寒山寺闲逛</title>
-    <url>/2023/12/16/231216/</url>
-    <content><![CDATA[<p>有《枫桥夜泊》钟声的加持，也算名气不小的景点<br>实际乏善可陈，没什么特点</p>
-<center>
-    <img src="/images/hss1.webp" width="400">
-</center>
-
-<center>
-    <img src="/images/hss2.webp" width="400">
-</center>
-
-
-
-<p>张继的雕像侧躺在现代枫桥旁边<br>手脚部位被游客盘得发亮，据说摸一摸家里小孩就能考上好大学</p>
-]]></content>
-      <categories>
-        <category>Being</category>
-      </categories>
-      <tags>
-        <tag>摄影</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo博客插入图片</title>
-    <url>/2022/03/15/220321/</url>
-    <content><![CDATA[<h2 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h2><p>之前打算在文章中插入图片，配置的过程中遇到了一些问题。</p>
-<span id="more"></span>
-<p>想在博客中引用外站图片问题不大，但<strong>Hexo</strong>默认插入图片只有这一个方法，对有本地化需求的人群来说不够方便，此时可以安装一个满足本地图片引用的插件，在国内某知名（<strong>c</strong>）专业（<strong>s</strong>）开发者（<strong>d</strong>）社区（<strong>n</strong>）里提供的90%的方案为以下命令：<br><code>npm install hexo-asset-image –save</code><br>该论坛上相互借鉴蔚然成风的壮景对我这个刚入门的小白真是非常险恶，此指令安装版本落后，无法有效显示图片，有效的版本安装命令如下：<br><code>npm install https://github.com/CodeFalling/hexo-asset-image –save</code></p>
-<p>修改<code>_config.yml</code>文件，将<code>post_asset_folder:</code>值改为<strong>true</strong>。</p>
-<p>之后在新建一个博客的同时会生成同名文件夹，将需插入的图片放入该文件夹即可。文章中的具体引用代码为以下格式：(后来发现在<code>source</code>文件夹里新建一个名为<code>images</code>的文件夹存放图片也行)<br><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">]</span>(1/image.jpg)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></p>
-<h2 id="更改相对位置"><a href="#更改相对位置" class="headerlink" title="更改相对位置"></a>更改相对位置</h2><p>但这种方法在PC端有一个默认的问题就是图片插入后会自动左对齐，想要实现居中对齐，可以在<strong>markdown</strong>引用代码外部添加<strong>center</strong>元素，或者直接添加<strong>html</strong>元素，如下所示：<br><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">&lt;center<span class="token punctuation">></span>
-
-<span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">...</span><span class="token punctuation">]</span>(xxx)
-
-&lt;/center<span class="token punctuation">></span>
-
-<span class="token comment">#or</span>
-
-&lt;div align=center<span class="token punctuation">></span>
-
-<span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">...</span><span class="token punctuation">]</span>(xxx)
-
-&lt;/div<span class="token punctuation">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><br>(因为我用VScode来打开博客的md文件进行编辑，在上传至本地网页时一开始发现图片无法加载，后来排查得出居中命令代码间的空行是必要的，不知道其他编辑器是否有这样的问题。)</p>
-<p>还可以直接修改<strong>css</strong>文件，因为<strong>markdown</strong>插入图片的代码在最终渲染的时候变为<strong>html</strong>中的<strong>img</strong>元素。因此可以直接去博客主题文件的源代码中，找到控制文章内图片显示样式的<strong>css</strong>代码，将其修改成水平居中即可。前端编程中修改水平居中的方法非常多，以下是网上资源中提供的其中一种：</p>
-<p>一般情况下可以在<strong>Hexo</strong>博客文件夹进入到主题模板的<code>themes-&gt;(主题名称文件夹)-&gt;source-&gt;css-&gt;_partial</code>中，找到<code>post.styl</code>文件，该<strong>post</strong>文件中保存的就是文章详情页里面的显示样式。然后找到里面正确的<strong>img</strong>元素，修改其样式，增加<code>margin 0 auto</code>这行指令。如下:<br><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">.post<span class="token punctuation">-</span>content
-    position relative
-    color c<span class="token punctuation">-</span><span class="token number">666</span>
-    img
-      max<span class="token punctuation">-</span>width 100%
-      cursor pointer
-      display block 
-      margin 0 auto<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><br>然后可以实现了。但我在自己当前使用的主题中并没有找到相关语段，由于技术比较拉跨，我决定还是先老实用前两种吧。</p>
-<p>[后期补丁：你需要一款名为<strong><em>Typora</em></strong>的<strong>markdown</strong>编辑软件]</p>
-]]></content>
-      <categories>
-        <category>DIY</category>
-      </categories>
-      <tags>
-        <tag>html</tag>
-        <tag>yaml</tag>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo博客启用测试</title>
-    <url>/2022/03/14/220314/</url>
-    <content><![CDATA[<p>支持站内文字搜索</p>
-<p>支持代码块植入</p>
-<p>支持评论系统（目前已关闭）</p>
-<p>[来自后期补丁]</p>
-]]></content>
-      <categories>
-        <category>DIY</category>
-      </categories>
-      <tags>
-        <tag>html</tag>
-        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -160,74 +103,52 @@
       </tags>
   </entry>
   <entry>
-    <title>UART收发处理函数</title>
-    <url>/2024/10/20/241020/</url>
-    <content><![CDATA[<p>UART（Universal Asynchronous Receiver/Transmitter）是一种串行通信协议，在嵌入式系统和微控制器间数据传输中发挥着核心作用。UART协议通过异步方式传输数据，不依赖于共享时钟信号，简化了通信线路的需求。每次传输包括起始位、数据位、可选的奇偶校验位以及停止位，这种结构支持从简单的传感器到复杂的处理器之间的可靠数据交换。</p>
-<p>其重要性还体现在其广泛的兼容性和低成本实现上。它可以通过简单的两线（TX和RX）接口实现全双工通信，极大地降低了系统的硬件复杂性。此外，UART通信协议可以适应不同的波特率设置，使其能够灵活地调整以匹配特定应用的速度要求。在许多工业和消费电子产品中，UART仍然是实现可靠串行通信的首选技术，尤其在资源受限的环境中显示出其高效和经济的优势。（<strong>以上均为GPT生成</strong>）</p>
-<p>在进行传感器测试时，常用到UART，这里mark一下自己常用的HAL库函数封装，免得后续一直翻之前的程序</p>
-<p>函数需要用到的全局变量如下：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">char</span> send<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token number">0</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span> <span class="token comment">//传输用字符数组，储存字符串</span>
-
-<span class="token class-name">uint8_t</span> rx_buffer <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//接收字符缓冲区</span>
-
-<span class="token keyword">char</span> rx_receiver<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token number">0</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span> <span class="token comment">//接收用字符数组</span>
-
-<span class="token class-name">uint8_t</span> rx_num <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//接收字符数量</span>
-
-<span class="token class-name">uint8_t</span>  uart_start_flag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//接收标志位</span>
-
-__IO  <span class="token class-name">uint32_t</span> uart_gettick <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//系统时钟比较变量</span>
-
-<span class="token comment">/* 测试变量
-uint16_t pwm_duty = 0;
-
-uint8_t startbegin = 0xff;
-
-uint8_t startbegin2 = 0x00;
-*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>在硬件配置时要打开UART中断：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token function">HAL_UART_Receive_IT</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1 <span class="token punctuation">,</span> <span class="token operator">&amp;</span>rx_buffer<span class="token punctuation">,</span>  <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>中断回调函数如下：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">HAL_UART_RxCpltCallback</span><span class="token punctuation">(</span>UART_HandleTypeDef <span class="token operator">*</span>huart<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-  <span class="token keyword">if</span><span class="token punctuation">(</span>rx_num <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-  uart_gettick <span class="token operator">=</span> uwTick<span class="token punctuation">;</span> 
-  uart_start_flag <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>  
-  <span class="token punctuation">&#125;</span>
-  <span class="token keyword">if</span><span class="token punctuation">(</span>uart_start_flag <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-  rx_receiver<span class="token punctuation">[</span>rx_num<span class="token punctuation">]</span> <span class="token operator">=</span> rx_buffer<span class="token punctuation">;</span>
-  rx_num<span class="token operator">++</span><span class="token punctuation">;</span>  
-  <span class="token punctuation">&#125;</span>
-  <span class="token function">HAL_UART_Receive_IT</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1 <span class="token punctuation">,</span> <span class="token operator">&amp;</span>rx_buffer<span class="token punctuation">,</span>  <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>主循环中的处理函数如下：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">UART_RX_PROC</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span> uwTick<span class="token operator">-</span> uart_gettick <span class="token punctuation">)</span> <span class="token operator">>=</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span><span class="token punctuation">(</span> uwTick<span class="token operator">-</span> uart_gettick <span class="token punctuation">)</span> <span class="token operator">&lt;=</span><span class="token number">600</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>uart_start_flag <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>rx_receiver<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token char">'&amp;'</span> <span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span> rx_num <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">//示例：传输pwm占空比</span>
-    pwm_duty <span class="token operator">=</span>  rx_receiver<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span> rx_num <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    pwm_duty <span class="token operator">=</span> <span class="token punctuation">(</span>rx_receiver<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">10</span> <span class="token operator">+</span> rx_receiver<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span> rx_num <span class="token operator">==</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    pwm_duty <span class="token operator">=</span> <span class="token punctuation">(</span>rx_receiver<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">100</span> <span class="token operator">+</span> <span class="token punctuation">(</span>rx_receiver<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">10</span> <span class="token operator">+</span> rx_receiver<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>      
-    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span> rx_num <span class="token operator">>=</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    pwm_duty <span class="token operator">=</span> <span class="token number">1000</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-  <span class="token punctuation">&#125;</span>
-    <span class="token function">HAL_UART_Transmit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token operator">&amp;</span>startbegin<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0xffff</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">HAL_UART_Transmit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token operator">&amp;</span>startbegin2<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0xffff</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">HAL_UART_Transmit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token operator">&amp;</span>startbegin<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0xffff</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    rx_num <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    uart_start_flag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>这里的函数主要是用以处理字符串的，应付一些的简单的应用已经够用了，当然，也能在此基础上扩展。</p>
+    <title>Hexo博客启用测试</title>
+    <url>/2022/03/14/220314/</url>
+    <content><![CDATA[<p>支持站内文字搜索</p>
+<p>支持代码块植入</p>
+<p>支持评论系统（目前已关闭）</p>
+<p>[来自后期补丁]</p>
+]]></content>
+      <categories>
+        <category>DIY</category>
+      </categories>
+      <tags>
+        <tag>html</tag>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Reflections on my undergraduate life</title>
+    <url>/2023/12/31/231231/</url>
+    <content><![CDATA[<p>2020秋入学至今，我已进入我的Senior Year，成为学校中离毕业最近的那批人之一。</p>
+<p>藏不住高考的阴霾，我在一个潮湿的周末办理了入学报到。对学校本身，我并没有太多想象，只是机械地和别人一样走着搬宿舍，入住，参观学校，军训的流程，对自己将要呆的地方没有丝毫好奇心，not to mention “归属感”。在做题多年所带来的优绩主义思想残留和想要改变现状的迫切心理交叉影响下，刚入学的我便决定好好学习，达到保研要求，去一个更好的平台读研。除此之外，我又想多尝试一些事情，当一个斜杠man，不想变成nerd，并且和这些人划清界线。</p>
+<p>这两个指导思想，贯穿着我的大学生活。</p>
+<p>对于保研去往更好的平台，这个目的本身并没有问题，我现在也认为，学习本身也是为了更好的生活。从当时和现在看来，保研无疑是比较平稳且有效的选择，是“本手”。</p>
+<p>只是受限于达到保研要求这个悬在头顶的宝剑，我的目光和精力被束缚在GPA，加分政策等一系列数字与文书上，于是这三年，我并没有对自己的兴趣爱好进行充分的发掘，也并没有从埋头学习中收获太多的乐趣。或者说，我对自己想要成为一个什么样的人，完全没有进行过深度思考。即使是现在大四的我，也只是能说出几个模糊的未来愿景。依稀记得之前看到过一个视频，记者采访一个白人小女孩，她规划了一整套人生流程，从参加议会到参加总统选举，清晰明了，令人咋舌。Lockdown期间，我在家上网课，虽然缺失了一部分大学生活，好在发展了几个持续且有输出性质的爱好，比如这个site。然而，我认为三年时间我应该达到的远不止这些。</p>
+<p>前人常说，读大学应该提升专业技能和社交能力。就社交能力而言，我确实提升了很多，这和参加了很多活动不无关系，一开始我是一个socially awkward的人，过于在意别人的感受，把自己搞得十分拘谨，现在好很多，这是我最显著的成长之一。当然不一定要在校园里，三年时间，在哪里都能成长很多。</p>
+<p>就专业技能方面，我应该是比较欠缺，由于没有参与正儿八经的科研项目，我的从问题出发，逐步改进方案的方法论还处于发育阶段，之前参与的一些比赛倒是帮助了一些，不过总体上还是在一个固定的框架下进行问题求解，遑论创新性的培养。可能我比其他nerd会变通一些，不过也好不到哪里去。这是很大的一个问题，创新思维很重要，这在ai取代低级工人的发展前景下是可预见的。希望未来我可以好好改进。</p>
+<p>思想上，我一直有在通过chat&amp;chill进行一些非刻意的同龄人观察，不自觉地划分出：沾沾自喜的网络表层用户，焦虑的做题家，自命不凡的巨婴，沉迷塑造人设的封面人物，乐子人及其拥趸，暴躁的理想主义者等，当然也有淳朴的怀旧主义者，阳光而正常的普通人。后现代解构思潮将我推往人类与社会的本质，没等我看清，又一下子推开。对我来说，有一种把一盘五颜六色的M&amp;m豆翻倒，按碎在玻璃桌上，迸溅出一般底色的踉跄美感。回头看看这种带有先入为主色彩和刻板印象的分类，会感觉自己确实是这些类型的混合体，某一时间段的人格形象只是某一种特质占比升高的产物。只是感慨自己书读的太少，又缺少行万里路的资本和机遇，还不能做到摆脱而洒脱。或许时机未到，或许不需要摆脱，然后“沉浸在这种恶无限的倒错游戏里”。</p>
+<p><strong><em>Γνῶθι σεαυτόν</em></strong>  认识你自己，本科我没有做到，这是遗憾，也是契机。</p>
+<p>不过，现在我坐在宿舍里，毕业前只想简单地在这城乡结合部体验一下烂俗文学中享乐主义横行的校园生活，好好在没有走过几遍的苏城小路上来回踱一踱步，在去往下一场折腾前，大口呼吸。</p>
+<center>
+    <img src="/images/yangchenghu.webp" width="400">
+</center>
+]]></content>
+      <categories>
+        <category>Being</category>
+      </categories>
+      <tags>
+        <tag>自言自语</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>STM32配置笔记参考</title>
+    <url>/2024/11/21/241121/</url>
+    <content><![CDATA[<p>大二时的笔记，upload当乐高说明书看</p>
+<span id="more"></span>
+<p><strong>pdf嵌入使用了pdf.js插件</strong>，hexo-pdf这个插件在移动端不能很好地显示</p>
+<iframe src="/pdfjs/web/viewer.html?file=/pdf/post1.pdf" style="width:100%;height:800px"></iframe>
 ]]></content>
       <categories>
         <category>学习记录</category>
@@ -314,44 +235,262 @@ uint8_t startbegin2 = 0x00;
       </tags>
   </entry>
   <entry>
-    <title>Xiaomi路由器BE3600快速救砖</title>
-    <url>/2025/02/13/250213/</url>
-    <content><![CDATA[<p>家里的路由器变砖了（具体原因不清楚）</p>
-<p>指示灯由蓝色常亮变成橙色常亮，对于家用路由器这种消费电子产品，一般重启一下能解决90%的故障</p>
-<p>但心血来潮想试一下给它刷个机</p>
-<p>型号是这个：</p>
-<center>
-    <img src="/images/miwifi1.webp" width="500">
-</center>
+    <title>UART收发处理函数</title>
+    <url>/2024/10/20/241020/</url>
+    <content><![CDATA[<p>UART（Universal Asynchronous Receiver/Transmitter）是一种串行通信协议，在嵌入式系统和微控制器间数据传输中发挥着核心作用。UART协议通过异步方式传输数据，不依赖于共享时钟信号，简化了通信线路的需求。每次传输包括起始位、数据位、可选的奇偶校验位以及停止位，这种结构支持从简单的传感器到复杂的处理器之间的可靠数据交换。</p>
+<p>其重要性还体现在其广泛的兼容性和低成本实现上。它可以通过简单的两线（TX和RX）接口实现全双工通信，极大地降低了系统的硬件复杂性。此外，UART通信协议可以适应不同的波特率设置，使其能够灵活地调整以匹配特定应用的速度要求。在许多工业和消费电子产品中，UART仍然是实现可靠串行通信的首选技术，尤其在资源受限的环境中显示出其高效和经济的优势。（<strong>以上均为GPT生成</strong>）</p>
+<p>在进行传感器测试时，常用到UART，这里mark一下自己常用的HAL库函数封装，免得后续一直翻之前的程序</p>
+<p>函数需要用到的全局变量如下：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">char</span> send<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token number">0</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span> <span class="token comment">//传输用字符数组，储存字符串</span>
 
-<p>刷机需要一根网线，PC，以及变砖的路由器</p>
-<p>步骤如下：</p>
-<ul>
-<li>在网址<a href="https://www1.miwifi.com/miwifi_download.html">MiWiFi</a>中找到刷机软件与对应型号的ROM固件</li>
-<li>关闭PC的防火墙，将网线连接至路由器的LAN口，本型号WAN与LAN口二合一了,随便找个口插上就行</li>
-<li>打开刷机软件并载入对应的固件</li>
-</ul>
-<center>
-    <img src="/images/miwifi2.webp" width="500">
-</center>
+<span class="token class-name">uint8_t</span> rx_buffer <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//接收字符缓冲区</span>
 
-<ul>
-<li>用工具按住路由器的reset键后通电源，这一步非常像之前给单片机内部flash进行ISP下载程序的步骤，因此感觉很熟悉</li>
-<li>待指示灯闪烁后松开reset键，固件开始下载</li>
-</ul>
-<center>
-    <img src="/images/miwifi3.webp" width="500">
-</center>
+<span class="token keyword">char</span> rx_receiver<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token number">0</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span> <span class="token comment">//接收用字符数组</span>
 
-<ul>
-<li>路由器变为蓝灯闪烁，此时已经刷机完成，当新路由器用就行</li>
-</ul>
+<span class="token class-name">uint8_t</span> rx_num <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//接收字符数量</span>
+
+<span class="token class-name">uint8_t</span>  uart_start_flag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//接收标志位</span>
+
+__IO  <span class="token class-name">uint32_t</span> uart_gettick <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//系统时钟比较变量</span>
+
+<span class="token comment">/* 测试变量
+uint16_t pwm_duty = 0;
+
+uint8_t startbegin = 0xff;
+
+uint8_t startbegin2 = 0x00;
+*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在硬件配置时要打开UART中断：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token function">HAL_UART_Receive_IT</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1 <span class="token punctuation">,</span> <span class="token operator">&amp;</span>rx_buffer<span class="token punctuation">,</span>  <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>中断回调函数如下：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">HAL_UART_RxCpltCallback</span><span class="token punctuation">(</span>UART_HandleTypeDef <span class="token operator">*</span>huart<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>rx_num <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+  uart_gettick <span class="token operator">=</span> uwTick<span class="token punctuation">;</span> 
+  uart_start_flag <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>  
+  <span class="token punctuation">&#125;</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>uart_start_flag <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+  rx_receiver<span class="token punctuation">[</span>rx_num<span class="token punctuation">]</span> <span class="token operator">=</span> rx_buffer<span class="token punctuation">;</span>
+  rx_num<span class="token operator">++</span><span class="token punctuation">;</span>  
+  <span class="token punctuation">&#125;</span>
+  <span class="token function">HAL_UART_Receive_IT</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1 <span class="token punctuation">,</span> <span class="token operator">&amp;</span>rx_buffer<span class="token punctuation">,</span>  <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>主循环中的处理函数如下：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">UART_RX_PROC</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span> uwTick<span class="token operator">-</span> uart_gettick <span class="token punctuation">)</span> <span class="token operator">>=</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span><span class="token punctuation">(</span> uwTick<span class="token operator">-</span> uart_gettick <span class="token punctuation">)</span> <span class="token operator">&lt;=</span><span class="token number">600</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>uart_start_flag <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>rx_receiver<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token char">'&amp;'</span> <span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span> rx_num <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">//示例：传输pwm占空比</span>
+    pwm_duty <span class="token operator">=</span>  rx_receiver<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span> rx_num <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    pwm_duty <span class="token operator">=</span> <span class="token punctuation">(</span>rx_receiver<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">10</span> <span class="token operator">+</span> rx_receiver<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span> rx_num <span class="token operator">==</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    pwm_duty <span class="token operator">=</span> <span class="token punctuation">(</span>rx_receiver<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">100</span> <span class="token operator">+</span> <span class="token punctuation">(</span>rx_receiver<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">10</span> <span class="token operator">+</span> rx_receiver<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>      
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span> rx_num <span class="token operator">>=</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    pwm_duty <span class="token operator">=</span> <span class="token number">1000</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span>
+    <span class="token function">HAL_UART_Transmit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token operator">&amp;</span>startbegin<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0xffff</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">HAL_UART_Transmit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token operator">&amp;</span>startbegin2<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0xffff</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">HAL_UART_Transmit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token operator">&amp;</span>startbegin<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0xffff</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    rx_num <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    uart_start_flag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这里的函数主要是用以处理字符串的，应付一些的简单的应用已经够用了，当然，也能在此基础上扩展。</p>
+]]></content>
+      <categories>
+        <category>学习记录</category>
+      </categories>
+      <tags>
+        <tag>嵌入式</tag>
+        <tag>C</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo博客插入图片</title>
+    <url>/2022/03/15/220321/</url>
+    <content><![CDATA[<h2 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h2><p>之前打算在文章中插入图片，配置的过程中遇到了一些问题。</p>
+<span id="more"></span>
+<p>想在博客中引用外站图片问题不大，但<strong>Hexo</strong>默认插入图片只有这一个方法，对有本地化需求的人群来说不够方便，此时可以安装一个满足本地图片引用的插件，在国内某知名（<strong>c</strong>）专业（<strong>s</strong>）开发者（<strong>d</strong>）社区（<strong>n</strong>）里提供的90%的方案为以下命令：<br><code>npm install hexo-asset-image –save</code><br>该论坛上相互借鉴蔚然成风的壮景对我这个刚入门的小白真是非常险恶，此指令安装版本落后，无法有效显示图片，有效的版本安装命令如下：<br><code>npm install https://github.com/CodeFalling/hexo-asset-image –save</code></p>
+<p>修改<code>_config.yml</code>文件，将<code>post_asset_folder:</code>值改为<strong>true</strong>。</p>
+<p>之后在新建一个博客的同时会生成同名文件夹，将需插入的图片放入该文件夹即可。文章中的具体引用代码为以下格式：(后来发现在<code>source</code>文件夹里新建一个名为<code>images</code>的文件夹存放图片也行)<br><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">]</span>(1/image.jpg)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></p>
+<h2 id="更改相对位置"><a href="#更改相对位置" class="headerlink" title="更改相对位置"></a>更改相对位置</h2><p>但这种方法在PC端有一个默认的问题就是图片插入后会自动左对齐，想要实现居中对齐，可以在<strong>markdown</strong>引用代码外部添加<strong>center</strong>元素，或者直接添加<strong>html</strong>元素，如下所示：<br><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">&lt;center<span class="token punctuation">></span>
+
+<span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">...</span><span class="token punctuation">]</span>(xxx)
+
+&lt;/center<span class="token punctuation">></span>
+
+&lt;<span class="token tag">!--or</span> <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">></span>
+
+&lt;div align=center<span class="token punctuation">></span>
+
+<span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">...</span><span class="token punctuation">]</span>(xxx)
+
+&lt;/div<span class="token punctuation">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><br>(因为我用VScode来打开博客的md文件进行编辑，在上传至本地网页时一开始发现图片无法加载，后来排查得出居中命令代码间的空行是必要的，不知道其他编辑器是否有这样的问题。)</p>
+<p>还可以直接修改<strong>css</strong>文件，因为<strong>markdown</strong>插入图片的代码在最终渲染的时候变为<strong>html</strong>中的<strong>img</strong>元素。因此可以直接去博客主题文件的源代码中，找到控制文章内图片显示样式的<strong>css</strong>代码，将其修改成水平居中即可。前端编程中修改水平居中的方法非常多，以下是网上资源中提供的其中一种：</p>
+<p>一般情况下可以在<strong>Hexo</strong>博客文件夹进入到主题模板的<code>themes-&gt;(主题名称文件夹)-&gt;source-&gt;css-&gt;_partial</code>中，找到<code>post.styl</code>文件，该<strong>post</strong>文件中保存的就是文章详情页里面的显示样式。然后找到里面正确的<strong>img</strong>元素，修改其样式，增加<code>margin 0 auto</code>这行指令。如下:<br><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">.post<span class="token punctuation">-</span>content
+    position relative
+    color c<span class="token punctuation">-</span><span class="token number">666</span>
+    img
+      max<span class="token punctuation">-</span>width 100%
+      cursor pointer
+      display block 
+      margin 0 auto<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><br>然后可以实现了。但我在自己当前使用的主题中并没有找到相关语段，由于技术比较拉跨，我决定还是先老实用前两种吧。</p>
+<p>[后期补丁：你需要一款名为<strong><em>Typora</em></strong>的<strong>markdown</strong>编辑软件]</p>
 ]]></content>
       <categories>
         <category>DIY</category>
       </categories>
       <tags>
-        <tag>改装</tag>
+        <tag>html</tag>
+        <tag>Hexo</tag>
+        <tag>yaml</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>基于MLX90640的手持红外热成像仪</title>
+    <url>/2025/02/26/250226/</url>
+    <content><![CDATA[<h2 id="项目背景："><a href="#项目背景：" class="headerlink" title="项目背景："></a>项目背景：</h2><ol>
+<li><p>DIY好玩捏</p>
+</li>
+<li><p>电路工作时有时需要检查元件发热情况，但用手触摸元件有一定的风险，因此需要一种无接触式的多点测温设备</p>
+</li>
+</ol>
+<p>于是开始了解到热成像这个测温方式，以下是软硬件方案</p>
+<h2 id="方案："><a href="#方案：" class="headerlink" title="方案："></a>方案：</h2><h3 id="硬件部分"><a href="#硬件部分" class="headerlink" title="硬件部分"></a>硬件部分</h3><p>​        采用上下两块板子对插组合，为了减少复杂度，留了排母方便直插LCD与传感器模组。</p>
+<h4 id="BOARD1-MCU与外设"><a href="#BOARD1-MCU与外设" class="headerlink" title="BOARD1: MCU与外设"></a>BOARD1: MCU与外设</h4><ul>
+<li>采用STM32F407作为主控，512KB  Flash，其实没特别注意选型，只是手上有这个开发板，要压缩成本的话用其他型号也可以</li>
+<li>红外传感模组为MLX90640 BAA，这个价格比较贵，比其他元件加起来都贵</li>
+<li>屏幕模组为1.44寸TFT-LCD，也是现成的，买了俩还剩一个，下次做别的东西的时候给用了吧</li>
+<li>留了串口测试点和烧录测试点</li>
+</ul>
+<center>
+    <img src="/images/tc_board1.webp" width="800">
+</center>
+
+<h4 id="BOARD2-POWER"><a href="#BOARD2-POWER" class="headerlink" title="BOARD2: POWER"></a>BOARD2: POWER</h4><ul>
+<li>3.7V锂电池供电，可通过USB接口经过LGS4084H电源管理芯片给锂电池充电</li>
+<li>经过一个LDO稳到3.3V给MCU整体供电，VDDA和VCC用磁珠滤波隔离了一下</li>
+</ul>
+<center>
+    <img src="/images/tc_board2.webp" width="800">
+</center>
+
+<p>电源板后续涉及锂电池供电DIY的倒是可以继续沿用</p>
+<center>
+    <img src="/images/battery.webp" width="600">
+</center>
+
+<p>立创打样PCB，自己贴片，PCB板框留了一些M3螺孔方便组装。</p>
+<h3 id="软件部分"><a href="#软件部分" class="headerlink" title="软件部分"></a><strong>软件部分</strong></h3><p>通讯接口涉及IIC与SPI，以及图像测试的时候用了一下UART，均比较基础。使用硬件IIC进行传感器模组与MCU间的通信，模组官方提供了接口可调用，可读取温度值。RGB转换用了开源的函数：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/*pass in value and figure out R G B
+    several published ways to do this I basically graphed R G B and developed simple linear equations
+    again a 5-6-5 color display will not need accurate temp to R G B color calculation
+    equations based on
+    http://web-tech.ga-usa.com/2012/05/creating-a-custom-hot-to-cold-temperature-color-gradient-for-use-with-rrdtool/index.html
+  */</span>
+<span class="token keyword">static</span> <span class="token class-name">uint16_t</span> <span class="token function">TempToColor</span><span class="token punctuation">(</span><span class="token keyword">float</span> val<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+  red <span class="token operator">=</span> <span class="token function">constrain</span><span class="token punctuation">(</span><span class="token number">255.0f</span> <span class="token operator">/</span> <span class="token punctuation">(</span>c <span class="token operator">-</span> b<span class="token punctuation">)</span> <span class="token operator">*</span> val <span class="token operator">-</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>b <span class="token operator">*</span> <span class="token number">255.0f</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>c <span class="token operator">-</span> b<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>val <span class="token operator">></span> minTemp<span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token punctuation">(</span>val <span class="token operator">&lt;</span> a<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    green <span class="token operator">=</span> <span class="token function">constrain</span><span class="token punctuation">(</span><span class="token number">255.0f</span> <span class="token operator">/</span> <span class="token punctuation">(</span>a <span class="token operator">-</span> minTemp<span class="token punctuation">)</span> <span class="token operator">*</span> val <span class="token operator">-</span> <span class="token punctuation">(</span><span class="token number">255.0f</span> <span class="token operator">*</span> minTemp<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>a <span class="token operator">-</span> minTemp<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>val <span class="token operator">>=</span> a<span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token punctuation">(</span>val <span class="token operator">&lt;=</span> c<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    green <span class="token operator">=</span> <span class="token number">255</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>val <span class="token operator">></span> c<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    green <span class="token operator">=</span> <span class="token function">constrain</span><span class="token punctuation">(</span><span class="token number">255.0f</span> <span class="token operator">/</span> <span class="token punctuation">(</span>c <span class="token operator">-</span> d<span class="token punctuation">)</span> <span class="token operator">*</span> val <span class="token operator">-</span> <span class="token punctuation">(</span>d <span class="token operator">*</span> <span class="token number">255.0f</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>c <span class="token operator">-</span> d<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>val <span class="token operator">></span> d<span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token punctuation">(</span>val <span class="token operator">&lt;</span> a<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    green <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>val <span class="token operator">&lt;=</span> b<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    blue <span class="token operator">=</span> <span class="token function">constrain</span><span class="token punctuation">(</span><span class="token number">255.0f</span> <span class="token operator">/</span> <span class="token punctuation">(</span>a <span class="token operator">-</span> b<span class="token punctuation">)</span> <span class="token operator">*</span> val <span class="token operator">-</span> <span class="token punctuation">(</span><span class="token number">255.0f</span> <span class="token operator">*</span> b<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>a <span class="token operator">-</span> b<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>val <span class="token operator">></span> b<span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token punctuation">(</span>val <span class="token operator">&lt;=</span> d<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    blue <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>val <span class="token operator">></span> d<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    blue <span class="token operator">=</span> <span class="token function">constrain</span><span class="token punctuation">(</span><span class="token number">240.0f</span> <span class="token operator">/</span> <span class="token punctuation">(</span>maxTemp <span class="token operator">-</span> d<span class="token punctuation">)</span> <span class="token operator">*</span> val <span class="token operator">-</span> <span class="token punctuation">(</span>d <span class="token operator">*</span> <span class="token number">240.0f</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>maxTemp <span class="token operator">-</span> d<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">240</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+
+  <span class="token comment">// use the displays color mapping function to get 5-6-5 color palet (R=5 bits, G=6 bits, B-5 bits)</span>
+  <span class="token keyword">return</span> <span class="token function">BSP_LCD_GetColor565</span><span class="token punctuation">(</span>red<span class="token punctuation">,</span> green<span class="token punctuation">,</span> blue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>该传感器成图32x24像素，而使用的LCD是128x128的，于是我用4个像素作为一个大像素来填充，并增加了一个图例和一个最大最小值来提供量化，并填充一下屏幕留白</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">drawPicture</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">uint8_t</span> cell_size <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span> <span class="token comment">// 格子大小 4x4</span>
+    <span class="token class-name">uint8_t</span> start_x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>   <span class="token comment">// 水平居中（128 - 32*4 = 0）</span>
+    <span class="token class-name">uint8_t</span> start_y <span class="token operator">=</span> <span class="token number">16</span><span class="token punctuation">;</span>  <span class="token comment">// 垂直居中（(128 - 24*4)/2 = 16）</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> y <span class="token operator">&lt;</span> <span class="token number">24</span><span class="token punctuation">;</span> y<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> x <span class="token operator">&lt;</span> <span class="token number">32</span><span class="token punctuation">;</span> x<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token function">ST7735_FillRectangle</span><span class="token punctuation">(</span>
+                start_x <span class="token operator">+</span> x <span class="token operator">*</span> cell_size<span class="token punctuation">,</span>
+                start_y <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token number">23</span> <span class="token operator">-</span> y<span class="token punctuation">)</span> <span class="token operator">*</span> cell_size<span class="token punctuation">,</span>
+                cell_size<span class="token punctuation">,</span>
+                cell_size<span class="token punctuation">,</span>
+                <span class="token function">TempToColor</span><span class="token punctuation">(</span>tempValues<span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token number">31</span><span class="token operator">-</span> x<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token punctuation">(</span>y <span class="token operator">*</span> <span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">drawLegend</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">uint8_t</span> legend_height <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>               <span class="token comment">// 图例高度（像素）</span>
+    <span class="token class-name">uint8_t</span> legend_y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>                     <span class="token comment">// 图例顶部位置（y=0）</span>
+    <span class="token class-name">uint8_t</span> legend_width <span class="token operator">=</span> <span class="token number">120</span><span class="token punctuation">;</span>               <span class="token comment">// 图例宽度（留左右边距）</span>
+    <span class="token class-name">uint8_t</span> start_x <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>                      <span class="token comment">// 图例左侧起始位置（x=4）</span>
+
+    <span class="token comment">// 绘制温度颜色渐变条（水平方向）</span>
+    <span class="token keyword">float</span> temp_range <span class="token operator">=</span> maxTemp <span class="token operator">-</span> minTemp<span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">uint8_t</span> x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> x <span class="token operator">&lt;</span> legend_width<span class="token punctuation">;</span> x<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">float</span> temp <span class="token operator">=</span> minTemp <span class="token operator">+</span> temp_range <span class="token operator">*</span> <span class="token punctuation">(</span>x <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token keyword">float</span><span class="token punctuation">)</span>legend_width<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">uint16_t</span> color <span class="token operator">=</span> <span class="token function">TempToColor</span><span class="token punctuation">(</span>temp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 绘制水平线（从左到右）</span>
+        <span class="token function">ST7735_DrawLine</span><span class="token punctuation">(</span>start_x <span class="token operator">+</span> x<span class="token punctuation">,</span> legend_y<span class="token punctuation">,</span> start_x <span class="token operator">+</span> x<span class="token punctuation">,</span> legend_y <span class="token operator">+</span> legend_height<span class="token punctuation">,</span> color<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 显示最小/最大温度标签</span>
+<span class="token comment">//    memset(tempBuffer, 0, sizeof(tempBuffer));</span>
+    <span class="token function">sprintf</span><span class="token punctuation">(</span>tempBuffer<span class="token punctuation">,</span> <span class="token string">"&lt;%2.1f       "</span><span class="token punctuation">,</span> minTemp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">ST7735_WriteString</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">115</span><span class="token punctuation">,</span> tempBuffer<span class="token punctuation">,</span> Font_7x10<span class="token punctuation">,</span> ST7735_WHITE<span class="token punctuation">,</span> ST7735_BLACK<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">////    memset(tempBuffer, 0, sizeof(tempBuffer));</span>
+    <span class="token function">sprintf</span><span class="token punctuation">(</span>tempBuffer<span class="token punctuation">,</span> <span class="token string">"%2.1f>       "</span><span class="token punctuation">,</span> maxTemp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">ST7735_WriteString</span><span class="token punctuation">(</span><span class="token number">90</span><span class="token punctuation">,</span> <span class="token number">115</span><span class="token punctuation">,</span> tempBuffer<span class="token punctuation">,</span> Font_7x10<span class="token punctuation">,</span> ST7735_WHITE<span class="token punctuation">,</span> ST7735_BLACK<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>最后在主循环里轮询就可以了，屏幕刷新率一般，眨眼补帧。</p>
+<p>整体软件部分比较清晰，本来想加一些按键交互，修改颜色范围，存储图片到外部flash之类的功能，然后懒了。</p>
+<p>后续学了操作系统和LVGL库之后再搞点好玩的吧，感觉大部分DIY应用裸机完全够了…</p>
+<center>
+    <img src="/images/theramal_camera.webp" width="600">
+</center>
+
+<h3 id="小问题合集："><a href="#小问题合集：" class="headerlink" title="小问题合集："></a><strong>小问题合集：</strong></h3><h3 id="problem1：使用ST-Link下载过一次程序后发现无法继续下载"><a href="#problem1：使用ST-Link下载过一次程序后发现无法继续下载" class="headerlink" title="problem1：使用ST-Link下载过一次程序后发现无法继续下载"></a><strong>problem1：使用ST-Link下载过一次程序后发现无法继续下载</strong></h3><ol>
+<li>检查设备管理器，确保有正确的ST-Link驱动</li>
+<li>检查Keil软件配置，确保导入正确的型号版本</li>
+<li>检查引脚配置，发现问题：</li>
+</ol>
+<center>
+    <img src="/images/stlink_problem.webp" width="400">
+</center>
+
+<p>​    配置的IIC通信引脚占用了SWD下载引脚<em>（STM32默认的PA13 &amp;PA14）</em>，引脚输入输出模式不适配，显然后续无法下载，遂改之，问题解决。（图示仅供参考）</p>
+<h3 id="problem2：HardFault中断触发"><a href="#problem2：HardFault中断触发" class="headerlink" title="problem2：HardFault中断触发"></a><strong>problem2：HardFault中断触发</strong></h3><p>栈空间不足，多分配点就ok</p>
+]]></content>
+      <categories>
+        <category>DIY</category>
+      </categories>
+      <tags>
+        <tag>嵌入式</tag>
+        <tag>C</tag>
       </tags>
   </entry>
   <entry>
@@ -414,19 +553,92 @@ uint8_t startbegin2 = 0x00;
       </tags>
   </entry>
   <entry>
-    <title>STM32配置笔记参考</title>
-    <url>/2024/11/21/241121/</url>
-    <content><![CDATA[<p>大二时的笔记，upload当乐高说明书看</p>
-<span id="more"></span>
-<p><strong>pdf嵌入使用了pdf.js插件</strong>，hexo-pdf这个插件在移动端不能很好地显示</p>
-<iframe src="/pdfjs/web/viewer.html?file=/pdf/post1.pdf" style="width:100%;height:800px"></iframe>
+    <title>Xiaomi路由器BE3600快速救砖</title>
+    <url>/2025/02/13/250213/</url>
+    <content><![CDATA[<p>家里的路由器变砖了（具体原因不清楚）</p>
+<p>指示灯由蓝色常亮变成橙色常亮，对于家用路由器这种消费电子产品，一般重启一下能解决90%的故障</p>
+<p>但心血来潮想试一下给它刷个机</p>
+<p>型号是这个：</p>
+<center>
+    <img src="/images/miwifi1.webp" width="500">
+</center>
+
+<p>刷机需要一根网线，PC，以及变砖的路由器</p>
+<p>步骤如下：</p>
+<ul>
+<li>在网址<a href="https://www1.miwifi.com/miwifi_download.html">MiWiFi</a>中找到刷机软件与对应型号的ROM固件</li>
+<li>关闭PC的防火墙，将网线连接至路由器的LAN口，本型号WAN与LAN口二合一了,随便找个口插上就行</li>
+<li>打开刷机软件并载入对应的固件</li>
+</ul>
+<center>
+    <img src="/images/miwifi2.webp" width="500">
+</center>
+
+<ul>
+<li>用工具按住路由器的reset键后通电源，这一步非常像之前给单片机内部flash进行ISP下载程序的步骤，因此感觉很熟悉</li>
+<li>待指示灯闪烁后松开reset键，固件开始下载</li>
+</ul>
+<center>
+    <img src="/images/miwifi3.webp" width="500">
+</center>
+
+<ul>
+<li>路由器变为蓝灯闪烁，此时已经刷机完成，当新路由器用就行</li>
+</ul>
 ]]></content>
       <categories>
-        <category>学习记录</category>
+        <category>DIY</category>
       </categories>
       <tags>
-        <tag>嵌入式</tag>
-        <tag>C</tag>
+        <tag>改装</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo博客插入数学公式</title>
+    <url>/2025/03/27/250327/</url>
+    <content><![CDATA[<p>在写一些内容时，会遇到需要添加数学公式的地方，Hexo部分主题不支持公式的渲染，比如我正在使用的vivia主题，在查阅一些资料之后，我使用<strong>MathJax</strong>引擎实现了vivia主题下的数学公式渲染。</p>
+<p>MathJax简介：<a href="https://www.osgeo.cn/mathjax/basic/mathjax.html">https://www.osgeo.cn/mathjax/basic/mathjax.html</a> </p>
+<p>该引擎是一款可在所有现代浏览器中工作的开源js显示引擎，辅助页面作者编写含有数学公式的文档</p>
+<h4 id="Step-1-安装MathJax引擎并更换渲染引擎："><a href="#Step-1-安装MathJax引擎并更换渲染引擎：" class="headerlink" title="Step 1 : 安装MathJax引擎并更换渲染引擎："></a><strong>Step 1</strong> : 安装MathJax引擎并更换渲染引擎：</h4><p>​              操作包括卸载Hexo自带的Hexo-math，卸载默认的对MathJax不友好的marked引擎</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">npm uinstall hexo<span class="token operator">-</span>math <span class="token operator">--</span>save
+npm install hexo<span class="token operator">-</span>renderer<span class="token operator">-</span>mathjax <span class="token operator">--</span>save
+
+npm uinstall hexo<span class="token operator">-</span>renderer<span class="token operator">-</span>marked <span class="token operator">--</span>save
+npm install hexo<span class="token operator">-</span>renderer<span class="token operator">-</span>kramed <span class="token operator">--</span>save<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="Step-2-更新MathJax的cdn链接"><a href="#Step-2-更新MathJax的cdn链接" class="headerlink" title="Step 2 : 更新MathJax的cdn链接"></a><strong>Step 2</strong> : 更新MathJax的cdn链接</h4><h4 id="Step-3-更改部分转义规则"><a href="#Step-3-更改部分转义规则" class="headerlink" title="Step 3 : 更改部分转义规则"></a><strong>Step 3</strong> : 更改部分转义规则</h4><p> hexo 默认的转义规则会将一些字符进行转义，所以要对默认的规则进行修改。<br>首先， 打开/node_modules/kramed/lib/rules/inline.js</p>
+<p>把：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">escape</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\\([\\`*{}\[\]()#$+\-.!_&gt;])</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+<span class="token literal-property property">em</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>更改为：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">escape</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\\([`*\[\]()# +\-.!_&gt;])</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+<span class="token literal-property property">em</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\*((?:\*\*|[\s\S])+?)\*(?!\*)</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h4 id="Step-4-主题未预配置下使用Hexo-filter-mathjax"><a href="#Step-4-主题未预配置下使用Hexo-filter-mathjax" class="headerlink" title="Step 4 : 主题未预配置下使用Hexo-filter-mathjax"></a><strong>Step 4</strong> : 主题未预配置下使用Hexo-filter-mathjax</h4><p>对于已经配置MathJax的主题来说，在相关config文件里打开控件即可，对于未配置的主题，可以使用Hexo-filter-mathjax来帮助实现</p>
+<p>Hexo-filter-mathjax项目地址：<a href="https://github.com/next-theme/hexo-filter-mathjax">https://github.com/next-theme/hexo-filter-mathjax</a></p>
+<p>安装：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">npm install hexo<span class="token operator">-</span>filter<span class="token operator">-</span>mathjax <span class="token operator">--</span>save<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>对需要开启的博文，在其Front-Matter处增加mathjax: true这一行即可，如：</p>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token front-matter-block"><span class="token punctuation">---</span>
+<span class="token front-matter yaml language-yaml"><span class="token key atrule">title</span><span class="token punctuation">:</span> xxxxxx
+<span class="token key atrule">categories</span><span class="token punctuation">:</span> xxxxx
+<span class="token key atrule">date</span><span class="token punctuation">:</span> xxxx<span class="token punctuation">-</span>xx<span class="token punctuation">-</span>xx
+<span class="token key atrule">mathjax</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></span>
+<span class="token punctuation">---</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><p>公式：</p>
+<p><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -1.158ex;" xmlns="http://www.w3.org/2000/svg" width="24.416ex" height="3.755ex" role="img" focusable="false" viewbox="0 -1148.1 10791.8 1659.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="munderover"><g data-mml-node="mo"><path data-c="2211" d="M61 748Q64 750 489 750H913L954 640Q965 609 976 579T993 533T999 516H979L959 517Q936 579 886 621T777 682Q724 700 655 705T436 710H319Q183 710 183 709Q186 706 348 484T511 259Q517 250 513 244L490 216Q466 188 420 134T330 27L149 -187Q149 -188 362 -188Q388 -188 436 -188T506 -189Q679 -189 778 -162T936 -43Q946 -27 959 6H999L913 -249L489 -250Q65 -250 62 -248Q56 -246 56 -239Q56 -234 118 -161Q186 -81 245 -11L428 206Q428 207 242 462L57 717L56 728Q56 744 61 748Z"/></g><g data-mml-node="mi" transform="translate(1089,495) scale(0.707)"><text data-variant="double-struck" transform="scale(1,-1)" font-size="884px">𝕟</text></g><g data-mml-node="TeXAtom" transform="translate(1089,-356.7) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><text data-variant="double-struck" transform="scale(1,-1)" font-size="884px">𝕚</text></g><g data-mml-node="mo" transform="translate(600,0)"><path data-c="3D" d="M87 333Q64 343 64 362Q64 383 84 391Q89 393 448 393H807Q808 392 811 390T817 386T823 381T827 374T829 363Q829 345 807 333H87ZM87 109Q64 118 64 139Q64 159 86 168Q89 169 448 169H807L812 166Q816 163 818 162T823 157T827 149T829 139Q829 118 807 109H87Z"/></g><g data-mml-node="mn" transform="translate(1494,0)"><text data-variant="double-struck" transform="scale(1,-1)" font-size="884px">𝟘</text></g></g></g><g data-mml-node="msup" transform="translate(2786.3,0)"><g data-mml-node="mi"><text data-variant="double-struck" transform="scale(1,-1)" font-size="884px">𝕚</text></g><g data-mml-node="mn" transform="translate(633,363) scale(0.707)"><text data-variant="double-struck" transform="scale(1,-1)" font-size="884px">𝟚</text></g></g><g data-mml-node="mo" transform="translate(4171.4,0)"><path data-c="3D" d="M87 333Q64 343 64 362Q64 383 84 391Q89 393 448 393H807Q808 392 811 390T817 386T823 381T827 374T829 363Q829 345 807 333H87ZM87 109Q64 118 64 139Q64 159 86 168Q89 169 448 169H807L812 166Q816 163 818 162T823 157T827 149T829 139Q829 118 807 109H87Z"/></g><g data-mml-node="mfrac" transform="translate(5343.2,0)"><g data-mml-node="mrow" transform="translate(220,516.4) scale(0.707)"><g data-mml-node="mo" transform="translate(0 -0.5)"><path data-c="28" d="M103 166T103 251T121 412T165 541T225 639T287 708T341 750H356H361Q382 750 382 736Q382 732 365 714T323 661T274 576T232 439T214 250Q214 -62 381 -229Q382 -231 382 -234Q382 -249 360 -249H356H341Q314 -231 287 -207T226 -138T165 -41T121 89Z"/></g><g data-mml-node="msup" transform="translate(447,0)"><g data-mml-node="mi"><text data-variant="double-struck" transform="scale(1,-1)" font-size="884px">𝕟</text></g><g data-mml-node="mn" transform="translate(633,363) scale(0.707)"><text data-variant="double-struck" transform="scale(1,-1)" font-size="884px">𝟚</text></g></g><g data-mml-node="mo" transform="translate(1554.3,0)"><path data-c="2B" d="M64 232T64 250T87 281H416V444Q416 608 418 612Q426 633 446 633T475 613Q477 608 477 444V281H807Q808 280 811 278T817 274T823 269T827 262T829 251Q829 230 807 221L642 220H477V57Q477 -107 475 -112Q468 -131 446 -131Q425 -131 418 -112Q416 -107 416 57V220H251L87 221Q64 232 64 250Z"/></g><g data-mml-node="mi" transform="translate(2448.3,0)"><text data-variant="double-struck" transform="scale(1,-1)" font-size="884px">𝕟</text></g><g data-mml-node="mo" transform="translate(3048.3,0) translate(0 -0.5)"><path data-c="29" d="M231 251Q231 354 214 439T173 575T123 661T81 714T64 735Q64 744 73 749H75Q77 749 79 749T84 750T90 750H105Q132 732 159 708T220 639T281 542T325 413T343 251T325 89T281 -40T221 -138T159 -207T105 -249H90Q80 -249 76 -249T68 -245T64 -234Q64 -230 81 -212T123 -160T172 -75T214 61T231 251Z"/></g><g data-mml-node="mo" transform="translate(3495.3,0) translate(0 -0.5)"><path data-c="28" d="M103 166T103 251T121 412T165 541T225 639T287 708T341 750H356H361Q382 750 382 736Q382 732 365 714T323 661T274 576T232 439T214 250Q214 -62 381 -229Q382 -231 382 -234Q382 -249 360 -249H356H341Q314 -231 287 -207T226 -138T165 -41T121 89Z"/></g><g data-mml-node="mn" transform="translate(3942.3,0)"><text data-variant="double-struck" transform="scale(1,-1)" font-size="884px">𝟚</text></g><g data-mml-node="mi" transform="translate(4542.3,0)"><text data-variant="double-struck" transform="scale(1,-1)" font-size="884px">𝕟</text></g><g data-mml-node="mo" transform="translate(5142.3,0)"><path data-c="2B" d="M64 232T64 250T87 281H416V444Q416 608 418 612Q426 633 446 633T475 613Q477 608 477 444V281H807Q808 280 811 278T817 274T823 269T827 262T829 251Q829 230 807 221L642 220H477V57Q477 -107 475 -112Q468 -131 446 -131Q425 -131 418 -112Q416 -107 416 57V220H251L87 221Q64 232 64 250Z"/></g><g data-mml-node="mn" transform="translate(6036.3,0)"><text data-variant="double-struck" transform="scale(1,-1)" font-size="884px">𝟙</text></g><g data-mml-node="mo" transform="translate(6636.3,0) translate(0 -0.5)"><path data-c="29" d="M231 251Q231 354 214 439T173 575T123 661T81 714T64 735Q64 744 73 749H75Q77 749 79 749T84 750T90 750H105Q132 732 159 708T220 639T281 542T325 413T343 251T325 89T281 -40T221 -138T159 -207T105 -249H90Q80 -249 76 -249T68 -245T64 -234Q64 -230 81 -212T123 -160T172 -75T214 61T231 251Z"/></g></g><g data-mml-node="mn" transform="translate(2512.2,-370.3) scale(0.707)"><text data-variant="double-struck" transform="scale(1,-1)" font-size="884px">𝟞</text></g><rect width="5208.6" height="60" x="120" y="220"/></g></g></g></g></svg></mjx-container></p>
+<p><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.186ex;" xmlns="http://www.w3.org/2000/svg" width="35.835ex" height="1.84ex" role="img" focusable="false" viewbox="0 -731.2 15839.2 813.2"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="63" d="M370 305T349 305T313 320T297 358Q297 381 312 396Q317 401 317 402T307 404Q281 408 258 408Q209 408 178 376Q131 329 131 219Q131 137 162 90Q203 29 272 29Q313 29 338 55T374 117Q376 125 379 127T395 129H409Q415 123 415 120Q415 116 411 104T395 71T366 33T318 2T249 -11Q163 -11 99 53T34 214Q34 318 99 383T250 448T370 421T404 357Q404 334 387 320Z"/><path data-c="6F" d="M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z" transform="translate(444,0)"/><path data-c="73" d="M295 316Q295 356 268 385T190 414Q154 414 128 401Q98 382 98 349Q97 344 98 336T114 312T157 287Q175 282 201 278T245 269T277 256Q294 248 310 236T342 195T359 133Q359 71 321 31T198 -10H190Q138 -10 94 26L86 19L77 10Q71 4 65 -1L54 -11H46H42Q39 -11 33 -5V74V132Q33 153 35 157T45 162H54Q66 162 70 158T75 146T82 119T101 77Q136 26 198 26Q295 26 295 104Q295 133 277 151Q257 175 194 187T111 210Q75 227 54 256T33 318Q33 357 50 384T93 424T143 442T187 447H198Q238 447 268 432L283 424L292 431Q302 440 314 448H322H326Q329 448 335 442V310L329 304H301Q295 310 295 316Z" transform="translate(944,0)"/></g><g data-mml-node="mo" transform="translate(1338,0)"><path data-c="2061" d=""/></g><g data-mml-node="mn" transform="translate(1504.7,0)"><path data-c="32" d="M104 384Q115 394 133 409T199 449T281 474Q321 474 351 447T385 378Q385 328 333 255T228 127T176 72Q176 67 183 65Q184 65 203 65T260 67T331 69L475 73L484 67Q484 64 472 33L460 1H60V17L107 61Q210 159 249 208Q309 283 309 331Q309 363 285 389T228 415Q212 415 184 403T134 379L114 367L104 384Z"/></g><g data-mml-node="mi" transform="translate(2006.7,0)"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z"/></g><g data-mml-node="mo" transform="translate(2753.4,0)"><path data-c="3D" d="M725 366Q724 365 721 349T716 331V329H385Q54 329 54 331Q55 332 59 349T63 368H394Q725 368 725 366ZM725 169Q724 168 721 152T716 134V132H385Q54 132 54 134Q55 135 59 152T63 171H394Q725 171 725 169Z"/></g><g data-mml-node="msup" transform="translate(3787.2,0)"><g data-mml-node="mi"><path data-c="63" d="M370 305T349 305T313 320T297 358Q297 381 312 396Q317 401 317 402T307 404Q281 408 258 408Q209 408 178 376Q131 329 131 219Q131 137 162 90Q203 29 272 29Q313 29 338 55T374 117Q376 125 379 127T395 129H409Q415 123 415 120Q415 116 411 104T395 71T366 33T318 2T249 -11Q163 -11 99 53T34 214Q34 318 99 383T250 448T370 421T404 357Q404 334 387 320Z"/><path data-c="6F" d="M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z" transform="translate(444,0)"/><path data-c="73" d="M295 316Q295 356 268 385T190 414Q154 414 128 401Q98 382 98 349Q97 344 98 336T114 312T157 287Q175 282 201 278T245 269T277 256Q294 248 310 236T342 195T359 133Q359 71 321 31T198 -10H190Q138 -10 94 26L86 19L77 10Q71 4 65 -1L54 -11H46H42Q39 -11 33 -5V74V132Q33 153 35 157T45 162H54Q66 162 70 158T75 146T82 119T101 77Q136 26 198 26Q295 26 295 104Q295 133 277 151Q257 175 194 187T111 210Q75 227 54 256T33 318Q33 357 50 384T93 424T143 442T187 447H198Q238 447 268 432L283 424L292 431Q302 440 314 448H322H326Q329 448 335 442V310L329 304H301Q295 310 295 316Z" transform="translate(944,0)"/></g><g data-mml-node="mn" transform="translate(1371,363) scale(0.707)"><path data-c="32" d="M104 384Q115 394 133 409T199 449T281 474Q321 474 351 447T385 378Q385 328 333 255T228 127T176 72Q176 67 183 65Q184 65 203 65T260 67T331 69L475 73L484 67Q484 64 472 33L460 1H60V17L107 61Q210 159 249 208Q309 283 309 331Q309 363 285 389T228 415Q212 415 184 403T134 379L114 367L104 384Z"/></g></g><g data-mml-node="mo" transform="translate(5563.2,0)"><path data-c="2061" d=""/></g><g data-mml-node="mi" transform="translate(5729.9,0)"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z"/></g><g data-mml-node="mo" transform="translate(6421.1,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"/></g><g data-mml-node="msup" transform="translate(7421.3,0)"><g data-mml-node="mi"><path data-c="73" d="M295 316Q295 356 268 385T190 414Q154 414 128 401Q98 382 98 349Q97 344 98 336T114 312T157 287Q175 282 201 278T245 269T277 256Q294 248 310 236T342 195T359 133Q359 71 321 31T198 -10H190Q138 -10 94 26L86 19L77 10Q71 4 65 -1L54 -11H46H42Q39 -11 33 -5V74V132Q33 153 35 157T45 162H54Q66 162 70 158T75 146T82 119T101 77Q136 26 198 26Q295 26 295 104Q295 133 277 151Q257 175 194 187T111 210Q75 227 54 256T33 318Q33 357 50 384T93 424T143 442T187 447H198Q238 447 268 432L283 424L292 431Q302 440 314 448H322H326Q329 448 335 442V310L329 304H301Q295 310 295 316Z"/><path data-c="69" d="M69 609Q69 637 87 653T131 669Q154 667 171 652T188 609Q188 579 171 564T129 549Q104 549 87 564T69 609ZM247 0Q232 3 143 3Q132 3 106 3T56 1L34 0H26V46H42Q70 46 91 49Q100 53 102 60T104 102V205V293Q104 345 102 359T88 378Q74 385 41 385H30V408Q30 431 32 431L42 432Q52 433 70 434T106 436Q123 437 142 438T171 441T182 442H185V62Q190 52 197 50T232 46H255V0H247Z" transform="translate(394,0)"/><path data-c="6E" d="M41 46H55Q94 46 102 60V68Q102 77 102 91T102 122T103 161T103 203Q103 234 103 269T102 328V351Q99 370 88 376T43 385H25V408Q25 431 27 431L37 432Q47 433 65 434T102 436Q119 437 138 438T167 441T178 442H181V402Q181 364 182 364T187 369T199 384T218 402T247 421T285 437Q305 442 336 442Q450 438 463 329Q464 322 464 190V104Q464 66 466 59T477 49Q498 46 526 46H542V0H534L510 1Q487 2 460 2T422 3Q319 3 310 0H302V46H318Q379 46 379 62Q380 64 380 200Q379 335 378 343Q372 371 358 385T334 402T308 404Q263 404 229 370Q202 343 195 315T187 232V168V108Q187 78 188 68T191 55T200 49Q221 46 249 46H265V0H257L234 1Q210 2 183 2T145 3Q42 3 33 0H25V46H41Z" transform="translate(672,0)"/></g><g data-mml-node="mn" transform="translate(1261,396.1) scale(0.707)"><path data-c="32" d="M104 384Q115 394 133 409T199 449T281 474Q321 474 351 447T385 378Q385 328 333 255T228 127T176 72Q176 67 183 65Q184 65 203 65T260 67T331 69L475 73L484 67Q484 64 472 33L460 1H60V17L107 61Q210 159 249 208Q309 283 309 331Q309 363 285 389T228 415Q212 415 184 403T134 379L114 367L104 384Z"/></g></g><g data-mml-node="mo" transform="translate(9087.3,0)"><path data-c="2061" d=""/></g><g data-mml-node="mi" transform="translate(9253.9,0)"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z"/></g><g data-mml-node="mo" transform="translate(10000.7,0)"><path data-c="3D" d="M725 366Q724 365 721 349T716 331V329H385Q54 329 54 331Q55 332 59 349T63 368H394Q725 368 725 366ZM725 169Q724 168 721 152T716 134V132H385Q54 132 54 134Q55 135 59 152T63 171H394Q725 171 725 169Z"/></g><g data-mml-node="mn" transform="translate(11034.5,0)"><path data-c="32" d="M104 384Q115 394 133 409T199 449T281 474Q321 474 351 447T385 378Q385 328 333 255T228 127T176 72Q176 67 183 65Q184 65 203 65T260 67T331 69L475 73L484 67Q484 64 472 33L460 1H60V17L107 61Q210 159 249 208Q309 283 309 331Q309 363 285 389T228 415Q212 415 184 403T134 379L114 367L104 384Z"/></g><g data-mml-node="msup" transform="translate(11703.2,0)"><g data-mml-node="mi"><path data-c="63" d="M370 305T349 305T313 320T297 358Q297 381 312 396Q317 401 317 402T307 404Q281 408 258 408Q209 408 178 376Q131 329 131 219Q131 137 162 90Q203 29 272 29Q313 29 338 55T374 117Q376 125 379 127T395 129H409Q415 123 415 120Q415 116 411 104T395 71T366 33T318 2T249 -11Q163 -11 99 53T34 214Q34 318 99 383T250 448T370 421T404 357Q404 334 387 320Z"/><path data-c="6F" d="M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z" transform="translate(444,0)"/><path data-c="73" d="M295 316Q295 356 268 385T190 414Q154 414 128 401Q98 382 98 349Q97 344 98 336T114 312T157 287Q175 282 201 278T245 269T277 256Q294 248 310 236T342 195T359 133Q359 71 321 31T198 -10H190Q138 -10 94 26L86 19L77 10Q71 4 65 -1L54 -11H46H42Q39 -11 33 -5V74V132Q33 153 35 157T45 162H54Q66 162 70 158T75 146T82 119T101 77Q136 26 198 26Q295 26 295 104Q295 133 277 151Q257 175 194 187T111 210Q75 227 54 256T33 318Q33 357 50 384T93 424T143 442T187 447H198Q238 447 268 432L283 424L292 431Q302 440 314 448H322H326Q329 448 335 442V310L329 304H301Q295 310 295 316Z" transform="translate(944,0)"/></g><g data-mml-node="mn" transform="translate(1371,363) scale(0.707)"><path data-c="32" d="M104 384Q115 394 133 409T199 449T281 474Q321 474 351 447T385 378Q385 328 333 255T228 127T176 72Q176 67 183 65Q184 65 203 65T260 67T331 69L475 73L484 67Q484 64 472 33L460 1H60V17L107 61Q210 159 249 208Q309 283 309 331Q309 363 285 389T228 415Q212 415 184 403T134 379L114 367L104 384Z"/></g></g><g data-mml-node="mo" transform="translate(13479.1,0)"><path data-c="2061" d=""/></g><g data-mml-node="mi" transform="translate(13645.8,0)"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z"/></g><g data-mml-node="mo" transform="translate(14337,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"/></g><g data-mml-node="mn" transform="translate(15337.2,0)"><path data-c="31" d="M123 459Q145 459 170 460T217 462T256 464T284 466L295 467Q296 467 296 467T297 468Q299 468 302 466T307 462L309 459Q307 454 304 424T299 341T297 235Q297 139 298 101T302 55T313 44Q316 43 367 43L460 46Q460 35 459 22V-1H450Q402 2 281 6Q222 6 171 4T91 1T56 -1L47 -2V43H121H170Q195 43 201 45T209 56Q212 69 212 214Q212 333 209 365T194 409Q183 417 161 423T121 430L104 432Q103 432 103 446V459H123Z"/></g></g></g></g></svg></mjx-container></p>
+<p>矩阵运算：</p>
+<p><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -2.149ex;" xmlns="http://www.w3.org/2000/svg" width="31.623ex" height="5.43ex" role="img" focusable="false" viewbox="0 -1450 13977.2 2400"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mrow"><g data-mml-node="mo" transform="translate(0 -0.5)"><path data-c="28" d="M701 -940Q701 -943 695 -949H664Q662 -947 636 -922T591 -879T537 -818T475 -737T412 -636T350 -511T295 -362T250 -186T221 17T209 251Q209 962 573 1361Q596 1386 616 1405T649 1437T664 1450H695Q701 1444 701 1441Q701 1436 681 1415T629 1356T557 1261T476 1118T400 927T340 675T308 359Q306 321 306 250Q306 -139 400 -430T690 -924Q701 -936 701 -940Z"/></g><g data-mml-node="mtable" transform="translate(736,0)"><g data-mml-node="mtr" transform="translate(0,700)"><g data-mml-node="mtd"><g data-mml-node="mi"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"/></g></g></g><g data-mml-node="mtr" transform="translate(0,-700)"><g data-mml-node="mtd" transform="translate(54,0)"><g data-mml-node="mi"><path data-c="1D461" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"/></g></g></g></g><g data-mml-node="mo" transform="translate(1205,0) translate(0 -0.5)"><path data-c="29" d="M34 1438Q34 1446 37 1448T50 1450H56H71Q73 1448 99 1423T144 1380T198 1319T260 1238T323 1137T385 1013T440 864T485 688T514 485T526 251Q526 134 519 53Q472 -519 162 -860Q139 -885 119 -904T86 -936T71 -949H56Q43 -949 39 -947T34 -937Q88 -883 140 -813Q428 -430 428 251Q428 453 402 628T338 922T245 1146T145 1309T46 1425Q44 1427 42 1429T39 1433T36 1436L34 1438Z"/></g></g><g data-mml-node="mo" transform="translate(2218.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"/></g><g data-mml-node="mrow" transform="translate(3274.6,0)"><g data-mml-node="mo" transform="translate(0 -0.5)"><path data-c="28" d="M701 -940Q701 -943 695 -949H664Q662 -947 636 -922T591 -879T537 -818T475 -737T412 -636T350 -511T295 -362T250 -186T221 17T209 251Q209 962 573 1361Q596 1386 616 1405T649 1437T664 1450H695Q701 1444 701 1441Q701 1436 681 1415T629 1356T557 1261T476 1118T400 927T340 675T308 359Q306 321 306 250Q306 -139 400 -430T690 -924Q701 -936 701 -940Z"/></g><g data-mml-node="mtable" transform="translate(736,0)"><g data-mml-node="mtr" transform="translate(0,700)"><g data-mml-node="mtd" transform="translate(13.5,0)"><g data-mml-node="mi"><path data-c="1D450" d="M34 159Q34 268 120 355T306 442Q362 442 394 418T427 355Q427 326 408 306T360 285Q341 285 330 295T319 325T330 359T352 380T366 386H367Q367 388 361 392T340 400T306 404Q276 404 249 390Q228 381 206 359Q162 315 142 235T121 119Q121 73 147 50Q169 26 205 26H209Q321 26 394 111Q403 121 406 121Q410 121 419 112T429 98T420 83T391 55T346 25T282 0T202 -11Q127 -11 81 37T34 159Z"/></g><g data-mml-node="mi" transform="translate(433,0)"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"/></g><g data-mml-node="mi" transform="translate(918,0)"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"/></g><g data-mml-node="mo" transform="translate(1387,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"/></g><g data-mml-node="mi" transform="translate(1776,0)"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"/></g><g data-mml-node="mo" transform="translate(2205,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"/></g></g><g data-mml-node="mtd" transform="translate(3621,0)"><g data-mml-node="mo"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"/></g><g data-mml-node="mi" transform="translate(778,0)"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"/></g><g data-mml-node="mi" transform="translate(1247,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"/></g><g data-mml-node="mi" transform="translate(1592,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"/></g><g data-mml-node="mo" transform="translate(2192,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"/></g><g data-mml-node="mi" transform="translate(2581,0)"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"/></g><g data-mml-node="mo" transform="translate(3010,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"/></g></g></g><g data-mml-node="mtr" transform="translate(0,-700)"><g data-mml-node="mtd"><g data-mml-node="mi"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"/></g><g data-mml-node="mi" transform="translate(469,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"/></g><g data-mml-node="mi" transform="translate(814,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"/></g><g data-mml-node="mo" transform="translate(1414,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"/></g><g data-mml-node="mi" transform="translate(1803,0)"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"/></g><g data-mml-node="mo" transform="translate(2232,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"/></g></g><g data-mml-node="mtd" transform="translate(4023.5,0)"><g data-mml-node="mi"><path data-c="1D450" d="M34 159Q34 268 120 355T306 442Q362 442 394 418T427 355Q427 326 408 306T360 285Q341 285 330 295T319 325T330 359T352 380T366 386H367Q367 388 361 392T340 400T306 404Q276 404 249 390Q228 381 206 359Q162 315 142 235T121 119Q121 73 147 50Q169 26 205 26H209Q321 26 394 111Q403 121 406 121Q410 121 419 112T429 98T420 83T391 55T346 25T282 0T202 -11Q127 -11 81 37T34 159Z"/></g><g data-mml-node="mi" transform="translate(433,0)"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"/></g><g data-mml-node="mi" transform="translate(918,0)"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"/></g><g data-mml-node="mo" transform="translate(1387,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"/></g><g data-mml-node="mi" transform="translate(1776,0)"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"/></g><g data-mml-node="mo" transform="translate(2205,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"/></g></g></g></g><g data-mml-node="mo" transform="translate(7756,0) translate(0 -0.5)"><path data-c="29" d="M34 1438Q34 1446 37 1448T50 1450H56H71Q73 1448 99 1423T144 1380T198 1319T260 1238T323 1137T385 1013T440 864T485 688T514 485T526 251Q526 134 519 53Q472 -519 162 -860Q139 -885 119 -904T86 -936T71 -949H56Q43 -949 39 -947T34 -937Q88 -883 140 -813Q428 -430 428 251Q428 453 402 628T338 922T245 1146T145 1309T46 1425Q44 1427 42 1429T39 1433T36 1436L34 1438Z"/></g></g><g data-mml-node="mrow" transform="translate(11933.2,0)"><g data-mml-node="mo" transform="translate(0 -0.5)"><path data-c="28" d="M701 -940Q701 -943 695 -949H664Q662 -947 636 -922T591 -879T537 -818T475 -737T412 -636T350 -511T295 -362T250 -186T221 17T209 251Q209 962 573 1361Q596 1386 616 1405T649 1437T664 1450H695Q701 1444 701 1441Q701 1436 681 1415T629 1356T557 1261T476 1118T400 927T340 675T308 359Q306 321 306 250Q306 -139 400 -430T690 -924Q701 -936 701 -940Z"/></g><g data-mml-node="mtable" transform="translate(736,0)"><g data-mml-node="mtr" transform="translate(0,700)"><g data-mml-node="mtd"><g data-mml-node="mi"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"/></g></g></g><g data-mml-node="mtr" transform="translate(0,-700)"><g data-mml-node="mtd" transform="translate(41,0)"><g data-mml-node="mi"><path data-c="1D466" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"/></g></g></g></g><g data-mml-node="mo" transform="translate(1308,0) translate(0 -0.5)"><path data-c="29" d="M34 1438Q34 1446 37 1448T50 1450H56H71Q73 1448 99 1423T144 1380T198 1319T260 1238T323 1137T385 1013T440 864T485 688T514 485T526 251Q526 134 519 53Q472 -519 162 -860Q139 -885 119 -904T86 -936T71 -949H56Q43 -949 39 -947T34 -937Q88 -883 140 -813Q428 -430 428 251Q428 453 402 628T338 922T245 1146T145 1309T46 1425Q44 1427 42 1429T39 1433T36 1436L34 1438Z"/></g></g></g></g></svg></mjx-container>                </p>
+<p>*注意到有的cdn版本MathJax框架下公式字体对行间公式有一定影响，可能会一些字体会被渲染成主题相同字体，且移动端不能很好地显示</p>
+<p>参考资料：</p>
+<p><a href="https://www.cnblogs.com/wangxin37/p/8185688.html">https://www.cnblogs.com/wangxin37/p/8185688.html</a></p>
+<p><a href="https://heartlessly.github.io/others/latex-mathjax-gong-shi-zi-ti-mei-hua/">https://heartlessly.github.io/others/latex-mathjax-gong-shi-zi-ti-mei-hua/</a></p>
+]]></content>
+      <categories>
+        <category>DIY</category>
+      </categories>
+      <tags>
+        <tag>html</tag>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -1048,10 +1260,10 @@ sqlite&gt; SELECT * FROM shows JOIN ratings ON shows.id = ratings.show_id WHERE 
 </li>
 <li><p><strong>HTTP</strong> (hypertext transmit protocol) <strong>HTTPS</strong> (hypertext transmit protocol secure) <strong>Internet</strong> protocol that allows a web browser to request and receive information from a web server</p>
 </li>
-<li><p><strong>HTML:</strong> a really easy language that you can learn in 30 minutes. VSCode makes it even more convenient. but it can take a lot of effort to make good websites. </p>
+<li><p><strong>HTML: </strong> (hypertext marker language) a really easy language that you can learn in 30 minutes. VSCode makes it even more convenient. but it can take a lot of effort to make good websites. </p>
 <p>tags &amp; attributes: </p>
 <pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>  
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>  <span class="token comment">&lt;!--html: tag lang = "en": attributes --&gt;</span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>
             title
@@ -1062,6 +1274,11 @@ sqlite&gt; SELECT * FROM shows JOIN ratings ON shows.id = ratings.show_id WHERE 
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
+<li><p>regular expressions: 正则表达式 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions</a></p>
+<p>you can change your local copy of html by using developer tools</p>
+</li>
+<li><p><strong>CSS: </strong> </p>
+</li>
 </ul>
 <h3 id="Lecture-9-Flask"><a href="#Lecture-9-Flask" class="headerlink" title="Lecture 9 Flask"></a><strong>Lecture 9 Flask</strong></h3><h3 id="Lecture-10-Cybersecurity"><a href="#Lecture-10-Cybersecurity" class="headerlink" title="Lecture 10 Cybersecurity"></a><strong>Lecture 10 Cybersecurity</strong></h3><p><strong>Problem Set：</strong> <a href="https://cs50.harvard.edu/x/2024/psets/">https://cs50.harvard.edu/x/2024/psets/</a></p>
 <p>*看此课程以温习basic coding和补充一些计算机思维，老师讲的很有激情，时间花的还算比较有价值</p>
@@ -1071,194 +1288,6 @@ sqlite&gt; SELECT * FROM shows JOIN ratings ON shows.id = ratings.show_id WHERE 
       </categories>
       <tags>
         <tag>CS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo博客插入数学公式</title>
-    <url>/2025/03/27/250327/</url>
-    <content><![CDATA[<p>在写一些内容时，会遇到需要添加数学公式的地方，Hexo部分主题不支持公式的渲染，比如我正在使用的vivia主题，在查阅一些资料之后，我使用<strong>MathJax</strong>引擎实现了vivia主题下的数学公式渲染。</p>
-<p>MathJax简介：<a href="https://www.osgeo.cn/mathjax/basic/mathjax.html">https://www.osgeo.cn/mathjax/basic/mathjax.html</a> </p>
-<p>该引擎是一款可在所有现代浏览器中工作的开源js显示引擎，辅助页面作者编写含有数学公式的文档</p>
-<h4 id="Step-1-安装MathJax引擎并更换渲染引擎："><a href="#Step-1-安装MathJax引擎并更换渲染引擎：" class="headerlink" title="Step 1 : 安装MathJax引擎并更换渲染引擎："></a><strong>Step 1</strong> : 安装MathJax引擎并更换渲染引擎：</h4><p>​              操作包括卸载Hexo自带的Hexo-math，卸载默认的对MathJax不友好的marked引擎</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">npm uinstall hexo<span class="token operator">-</span>math <span class="token operator">--</span>save
-npm install hexo<span class="token operator">-</span>renderer<span class="token operator">-</span>mathjax <span class="token operator">--</span>save
-
-npm uinstall hexo<span class="token operator">-</span>renderer<span class="token operator">-</span>marked <span class="token operator">--</span>save
-npm install hexo<span class="token operator">-</span>renderer<span class="token operator">-</span>kramed <span class="token operator">--</span>save<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="Step-2-更新MathJax的cdn链接"><a href="#Step-2-更新MathJax的cdn链接" class="headerlink" title="Step 2 : 更新MathJax的cdn链接"></a><strong>Step 2</strong> : 更新MathJax的cdn链接</h4><h4 id="Step-3-更改部分转义规则"><a href="#Step-3-更改部分转义规则" class="headerlink" title="Step 3 : 更改部分转义规则"></a><strong>Step 3</strong> : 更改部分转义规则</h4><p> hexo 默认的转义规则会将一些字符进行转义，所以要对默认的规则进行修改。<br>首先， 打开/node_modules/kramed/lib/rules/inline.js</p>
-<p>把：</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">escape</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\\([\\`*{}\[\]()#$+\-.!_&gt;])</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
-<span class="token literal-property property">em</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>更改为：</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">escape</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\\([`*\[\]()# +\-.!_&gt;])</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
-<span class="token literal-property property">em</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\*((?:\*\*|[\s\S])+?)\*(?!\*)</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h4 id="Step-4-主题未预配置下使用Hexo-filter-mathjax"><a href="#Step-4-主题未预配置下使用Hexo-filter-mathjax" class="headerlink" title="Step 4 : 主题未预配置下使用Hexo-filter-mathjax"></a><strong>Step 4</strong> : 主题未预配置下使用Hexo-filter-mathjax</h4><p>对于已经配置MathJax的主题来说，在相关config文件里打开控件即可，对于未配置的主题，可以使用Hexo-filter-mathjax来帮助实现</p>
-<p>Hexo-filter-mathjax项目地址：<a href="https://github.com/next-theme/hexo-filter-mathjax">https://github.com/next-theme/hexo-filter-mathjax</a></p>
-<p>安装：</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">npm install hexo<span class="token operator">-</span>filter<span class="token operator">-</span>mathjax <span class="token operator">--</span>save<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>对需要开启的博文，在其Front-Matter处增加mathjax: true这一行即可，如：</p>
-<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token front-matter-block"><span class="token punctuation">---</span>
-<span class="token front-matter yaml language-yaml"><span class="token key atrule">title</span><span class="token punctuation">:</span> xxxxxx
-<span class="token key atrule">categories</span><span class="token punctuation">:</span> xxxxx
-<span class="token key atrule">date</span><span class="token punctuation">:</span> xxxx<span class="token punctuation">-</span>xx<span class="token punctuation">-</span>xx
-<span class="token key atrule">mathjax</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></span>
-<span class="token punctuation">---</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><p>公式：</p>
-<p><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -1.158ex;" xmlns="http://www.w3.org/2000/svg" width="24.416ex" height="3.755ex" role="img" focusable="false" viewbox="0 -1148.1 10791.8 1659.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="munderover"><g data-mml-node="mo"><path data-c="2211" d="M61 748Q64 750 489 750H913L954 640Q965 609 976 579T993 533T999 516H979L959 517Q936 579 886 621T777 682Q724 700 655 705T436 710H319Q183 710 183 709Q186 706 348 484T511 259Q517 250 513 244L490 216Q466 188 420 134T330 27L149 -187Q149 -188 362 -188Q388 -188 436 -188T506 -189Q679 -189 778 -162T936 -43Q946 -27 959 6H999L913 -249L489 -250Q65 -250 62 -248Q56 -246 56 -239Q56 -234 118 -161Q186 -81 245 -11L428 206Q428 207 242 462L57 717L56 728Q56 744 61 748Z"/></g><g data-mml-node="mi" transform="translate(1089,495) scale(0.707)"><text data-variant="double-struck" transform="scale(1,-1)" font-size="884px">𝕟</text></g><g data-mml-node="TeXAtom" transform="translate(1089,-356.7) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><text data-variant="double-struck" transform="scale(1,-1)" font-size="884px">𝕚</text></g><g data-mml-node="mo" transform="translate(600,0)"><path data-c="3D" d="M87 333Q64 343 64 362Q64 383 84 391Q89 393 448 393H807Q808 392 811 390T817 386T823 381T827 374T829 363Q829 345 807 333H87ZM87 109Q64 118 64 139Q64 159 86 168Q89 169 448 169H807L812 166Q816 163 818 162T823 157T827 149T829 139Q829 118 807 109H87Z"/></g><g data-mml-node="mn" transform="translate(1494,0)"><text data-variant="double-struck" transform="scale(1,-1)" font-size="884px">𝟘</text></g></g></g><g data-mml-node="msup" transform="translate(2786.3,0)"><g data-mml-node="mi"><text data-variant="double-struck" transform="scale(1,-1)" font-size="884px">𝕚</text></g><g data-mml-node="mn" transform="translate(633,363) scale(0.707)"><text data-variant="double-struck" transform="scale(1,-1)" font-size="884px">𝟚</text></g></g><g data-mml-node="mo" transform="translate(4171.4,0)"><path data-c="3D" d="M87 333Q64 343 64 362Q64 383 84 391Q89 393 448 393H807Q808 392 811 390T817 386T823 381T827 374T829 363Q829 345 807 333H87ZM87 109Q64 118 64 139Q64 159 86 168Q89 169 448 169H807L812 166Q816 163 818 162T823 157T827 149T829 139Q829 118 807 109H87Z"/></g><g data-mml-node="mfrac" transform="translate(5343.2,0)"><g data-mml-node="mrow" transform="translate(220,516.4) scale(0.707)"><g data-mml-node="mo" transform="translate(0 -0.5)"><path data-c="28" d="M103 166T103 251T121 412T165 541T225 639T287 708T341 750H356H361Q382 750 382 736Q382 732 365 714T323 661T274 576T232 439T214 250Q214 -62 381 -229Q382 -231 382 -234Q382 -249 360 -249H356H341Q314 -231 287 -207T226 -138T165 -41T121 89Z"/></g><g data-mml-node="msup" transform="translate(447,0)"><g data-mml-node="mi"><text data-variant="double-struck" transform="scale(1,-1)" font-size="884px">𝕟</text></g><g data-mml-node="mn" transform="translate(633,363) scale(0.707)"><text data-variant="double-struck" transform="scale(1,-1)" font-size="884px">𝟚</text></g></g><g data-mml-node="mo" transform="translate(1554.3,0)"><path data-c="2B" d="M64 232T64 250T87 281H416V444Q416 608 418 612Q426 633 446 633T475 613Q477 608 477 444V281H807Q808 280 811 278T817 274T823 269T827 262T829 251Q829 230 807 221L642 220H477V57Q477 -107 475 -112Q468 -131 446 -131Q425 -131 418 -112Q416 -107 416 57V220H251L87 221Q64 232 64 250Z"/></g><g data-mml-node="mi" transform="translate(2448.3,0)"><text data-variant="double-struck" transform="scale(1,-1)" font-size="884px">𝕟</text></g><g data-mml-node="mo" transform="translate(3048.3,0) translate(0 -0.5)"><path data-c="29" d="M231 251Q231 354 214 439T173 575T123 661T81 714T64 735Q64 744 73 749H75Q77 749 79 749T84 750T90 750H105Q132 732 159 708T220 639T281 542T325 413T343 251T325 89T281 -40T221 -138T159 -207T105 -249H90Q80 -249 76 -249T68 -245T64 -234Q64 -230 81 -212T123 -160T172 -75T214 61T231 251Z"/></g><g data-mml-node="mo" transform="translate(3495.3,0) translate(0 -0.5)"><path data-c="28" d="M103 166T103 251T121 412T165 541T225 639T287 708T341 750H356H361Q382 750 382 736Q382 732 365 714T323 661T274 576T232 439T214 250Q214 -62 381 -229Q382 -231 382 -234Q382 -249 360 -249H356H341Q314 -231 287 -207T226 -138T165 -41T121 89Z"/></g><g data-mml-node="mn" transform="translate(3942.3,0)"><text data-variant="double-struck" transform="scale(1,-1)" font-size="884px">𝟚</text></g><g data-mml-node="mi" transform="translate(4542.3,0)"><text data-variant="double-struck" transform="scale(1,-1)" font-size="884px">𝕟</text></g><g data-mml-node="mo" transform="translate(5142.3,0)"><path data-c="2B" d="M64 232T64 250T87 281H416V444Q416 608 418 612Q426 633 446 633T475 613Q477 608 477 444V281H807Q808 280 811 278T817 274T823 269T827 262T829 251Q829 230 807 221L642 220H477V57Q477 -107 475 -112Q468 -131 446 -131Q425 -131 418 -112Q416 -107 416 57V220H251L87 221Q64 232 64 250Z"/></g><g data-mml-node="mn" transform="translate(6036.3,0)"><text data-variant="double-struck" transform="scale(1,-1)" font-size="884px">𝟙</text></g><g data-mml-node="mo" transform="translate(6636.3,0) translate(0 -0.5)"><path data-c="29" d="M231 251Q231 354 214 439T173 575T123 661T81 714T64 735Q64 744 73 749H75Q77 749 79 749T84 750T90 750H105Q132 732 159 708T220 639T281 542T325 413T343 251T325 89T281 -40T221 -138T159 -207T105 -249H90Q80 -249 76 -249T68 -245T64 -234Q64 -230 81 -212T123 -160T172 -75T214 61T231 251Z"/></g></g><g data-mml-node="mn" transform="translate(2512.2,-370.3) scale(0.707)"><text data-variant="double-struck" transform="scale(1,-1)" font-size="884px">𝟞</text></g><rect width="5208.6" height="60" x="120" y="220"/></g></g></g></g></svg></mjx-container></p>
-<p><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.186ex;" xmlns="http://www.w3.org/2000/svg" width="35.835ex" height="1.84ex" role="img" focusable="false" viewbox="0 -731.2 15839.2 813.2"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="63" d="M370 305T349 305T313 320T297 358Q297 381 312 396Q317 401 317 402T307 404Q281 408 258 408Q209 408 178 376Q131 329 131 219Q131 137 162 90Q203 29 272 29Q313 29 338 55T374 117Q376 125 379 127T395 129H409Q415 123 415 120Q415 116 411 104T395 71T366 33T318 2T249 -11Q163 -11 99 53T34 214Q34 318 99 383T250 448T370 421T404 357Q404 334 387 320Z"/><path data-c="6F" d="M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z" transform="translate(444,0)"/><path data-c="73" d="M295 316Q295 356 268 385T190 414Q154 414 128 401Q98 382 98 349Q97 344 98 336T114 312T157 287Q175 282 201 278T245 269T277 256Q294 248 310 236T342 195T359 133Q359 71 321 31T198 -10H190Q138 -10 94 26L86 19L77 10Q71 4 65 -1L54 -11H46H42Q39 -11 33 -5V74V132Q33 153 35 157T45 162H54Q66 162 70 158T75 146T82 119T101 77Q136 26 198 26Q295 26 295 104Q295 133 277 151Q257 175 194 187T111 210Q75 227 54 256T33 318Q33 357 50 384T93 424T143 442T187 447H198Q238 447 268 432L283 424L292 431Q302 440 314 448H322H326Q329 448 335 442V310L329 304H301Q295 310 295 316Z" transform="translate(944,0)"/></g><g data-mml-node="mo" transform="translate(1338,0)"><path data-c="2061" d=""/></g><g data-mml-node="mn" transform="translate(1504.7,0)"><path data-c="32" d="M104 384Q115 394 133 409T199 449T281 474Q321 474 351 447T385 378Q385 328 333 255T228 127T176 72Q176 67 183 65Q184 65 203 65T260 67T331 69L475 73L484 67Q484 64 472 33L460 1H60V17L107 61Q210 159 249 208Q309 283 309 331Q309 363 285 389T228 415Q212 415 184 403T134 379L114 367L104 384Z"/></g><g data-mml-node="mi" transform="translate(2006.7,0)"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z"/></g><g data-mml-node="mo" transform="translate(2753.4,0)"><path data-c="3D" d="M725 366Q724 365 721 349T716 331V329H385Q54 329 54 331Q55 332 59 349T63 368H394Q725 368 725 366ZM725 169Q724 168 721 152T716 134V132H385Q54 132 54 134Q55 135 59 152T63 171H394Q725 171 725 169Z"/></g><g data-mml-node="msup" transform="translate(3787.2,0)"><g data-mml-node="mi"><path data-c="63" d="M370 305T349 305T313 320T297 358Q297 381 312 396Q317 401 317 402T307 404Q281 408 258 408Q209 408 178 376Q131 329 131 219Q131 137 162 90Q203 29 272 29Q313 29 338 55T374 117Q376 125 379 127T395 129H409Q415 123 415 120Q415 116 411 104T395 71T366 33T318 2T249 -11Q163 -11 99 53T34 214Q34 318 99 383T250 448T370 421T404 357Q404 334 387 320Z"/><path data-c="6F" d="M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z" transform="translate(444,0)"/><path data-c="73" d="M295 316Q295 356 268 385T190 414Q154 414 128 401Q98 382 98 349Q97 344 98 336T114 312T157 287Q175 282 201 278T245 269T277 256Q294 248 310 236T342 195T359 133Q359 71 321 31T198 -10H190Q138 -10 94 26L86 19L77 10Q71 4 65 -1L54 -11H46H42Q39 -11 33 -5V74V132Q33 153 35 157T45 162H54Q66 162 70 158T75 146T82 119T101 77Q136 26 198 26Q295 26 295 104Q295 133 277 151Q257 175 194 187T111 210Q75 227 54 256T33 318Q33 357 50 384T93 424T143 442T187 447H198Q238 447 268 432L283 424L292 431Q302 440 314 448H322H326Q329 448 335 442V310L329 304H301Q295 310 295 316Z" transform="translate(944,0)"/></g><g data-mml-node="mn" transform="translate(1371,363) scale(0.707)"><path data-c="32" d="M104 384Q115 394 133 409T199 449T281 474Q321 474 351 447T385 378Q385 328 333 255T228 127T176 72Q176 67 183 65Q184 65 203 65T260 67T331 69L475 73L484 67Q484 64 472 33L460 1H60V17L107 61Q210 159 249 208Q309 283 309 331Q309 363 285 389T228 415Q212 415 184 403T134 379L114 367L104 384Z"/></g></g><g data-mml-node="mo" transform="translate(5563.2,0)"><path data-c="2061" d=""/></g><g data-mml-node="mi" transform="translate(5729.9,0)"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z"/></g><g data-mml-node="mo" transform="translate(6421.1,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"/></g><g data-mml-node="msup" transform="translate(7421.3,0)"><g data-mml-node="mi"><path data-c="73" d="M295 316Q295 356 268 385T190 414Q154 414 128 401Q98 382 98 349Q97 344 98 336T114 312T157 287Q175 282 201 278T245 269T277 256Q294 248 310 236T342 195T359 133Q359 71 321 31T198 -10H190Q138 -10 94 26L86 19L77 10Q71 4 65 -1L54 -11H46H42Q39 -11 33 -5V74V132Q33 153 35 157T45 162H54Q66 162 70 158T75 146T82 119T101 77Q136 26 198 26Q295 26 295 104Q295 133 277 151Q257 175 194 187T111 210Q75 227 54 256T33 318Q33 357 50 384T93 424T143 442T187 447H198Q238 447 268 432L283 424L292 431Q302 440 314 448H322H326Q329 448 335 442V310L329 304H301Q295 310 295 316Z"/><path data-c="69" d="M69 609Q69 637 87 653T131 669Q154 667 171 652T188 609Q188 579 171 564T129 549Q104 549 87 564T69 609ZM247 0Q232 3 143 3Q132 3 106 3T56 1L34 0H26V46H42Q70 46 91 49Q100 53 102 60T104 102V205V293Q104 345 102 359T88 378Q74 385 41 385H30V408Q30 431 32 431L42 432Q52 433 70 434T106 436Q123 437 142 438T171 441T182 442H185V62Q190 52 197 50T232 46H255V0H247Z" transform="translate(394,0)"/><path data-c="6E" d="M41 46H55Q94 46 102 60V68Q102 77 102 91T102 122T103 161T103 203Q103 234 103 269T102 328V351Q99 370 88 376T43 385H25V408Q25 431 27 431L37 432Q47 433 65 434T102 436Q119 437 138 438T167 441T178 442H181V402Q181 364 182 364T187 369T199 384T218 402T247 421T285 437Q305 442 336 442Q450 438 463 329Q464 322 464 190V104Q464 66 466 59T477 49Q498 46 526 46H542V0H534L510 1Q487 2 460 2T422 3Q319 3 310 0H302V46H318Q379 46 379 62Q380 64 380 200Q379 335 378 343Q372 371 358 385T334 402T308 404Q263 404 229 370Q202 343 195 315T187 232V168V108Q187 78 188 68T191 55T200 49Q221 46 249 46H265V0H257L234 1Q210 2 183 2T145 3Q42 3 33 0H25V46H41Z" transform="translate(672,0)"/></g><g data-mml-node="mn" transform="translate(1261,396.1) scale(0.707)"><path data-c="32" d="M104 384Q115 394 133 409T199 449T281 474Q321 474 351 447T385 378Q385 328 333 255T228 127T176 72Q176 67 183 65Q184 65 203 65T260 67T331 69L475 73L484 67Q484 64 472 33L460 1H60V17L107 61Q210 159 249 208Q309 283 309 331Q309 363 285 389T228 415Q212 415 184 403T134 379L114 367L104 384Z"/></g></g><g data-mml-node="mo" transform="translate(9087.3,0)"><path data-c="2061" d=""/></g><g data-mml-node="mi" transform="translate(9253.9,0)"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z"/></g><g data-mml-node="mo" transform="translate(10000.7,0)"><path data-c="3D" d="M725 366Q724 365 721 349T716 331V329H385Q54 329 54 331Q55 332 59 349T63 368H394Q725 368 725 366ZM725 169Q724 168 721 152T716 134V132H385Q54 132 54 134Q55 135 59 152T63 171H394Q725 171 725 169Z"/></g><g data-mml-node="mn" transform="translate(11034.5,0)"><path data-c="32" d="M104 384Q115 394 133 409T199 449T281 474Q321 474 351 447T385 378Q385 328 333 255T228 127T176 72Q176 67 183 65Q184 65 203 65T260 67T331 69L475 73L484 67Q484 64 472 33L460 1H60V17L107 61Q210 159 249 208Q309 283 309 331Q309 363 285 389T228 415Q212 415 184 403T134 379L114 367L104 384Z"/></g><g data-mml-node="msup" transform="translate(11703.2,0)"><g data-mml-node="mi"><path data-c="63" d="M370 305T349 305T313 320T297 358Q297 381 312 396Q317 401 317 402T307 404Q281 408 258 408Q209 408 178 376Q131 329 131 219Q131 137 162 90Q203 29 272 29Q313 29 338 55T374 117Q376 125 379 127T395 129H409Q415 123 415 120Q415 116 411 104T395 71T366 33T318 2T249 -11Q163 -11 99 53T34 214Q34 318 99 383T250 448T370 421T404 357Q404 334 387 320Z"/><path data-c="6F" d="M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z" transform="translate(444,0)"/><path data-c="73" d="M295 316Q295 356 268 385T190 414Q154 414 128 401Q98 382 98 349Q97 344 98 336T114 312T157 287Q175 282 201 278T245 269T277 256Q294 248 310 236T342 195T359 133Q359 71 321 31T198 -10H190Q138 -10 94 26L86 19L77 10Q71 4 65 -1L54 -11H46H42Q39 -11 33 -5V74V132Q33 153 35 157T45 162H54Q66 162 70 158T75 146T82 119T101 77Q136 26 198 26Q295 26 295 104Q295 133 277 151Q257 175 194 187T111 210Q75 227 54 256T33 318Q33 357 50 384T93 424T143 442T187 447H198Q238 447 268 432L283 424L292 431Q302 440 314 448H322H326Q329 448 335 442V310L329 304H301Q295 310 295 316Z" transform="translate(944,0)"/></g><g data-mml-node="mn" transform="translate(1371,363) scale(0.707)"><path data-c="32" d="M104 384Q115 394 133 409T199 449T281 474Q321 474 351 447T385 378Q385 328 333 255T228 127T176 72Q176 67 183 65Q184 65 203 65T260 67T331 69L475 73L484 67Q484 64 472 33L460 1H60V17L107 61Q210 159 249 208Q309 283 309 331Q309 363 285 389T228 415Q212 415 184 403T134 379L114 367L104 384Z"/></g></g><g data-mml-node="mo" transform="translate(13479.1,0)"><path data-c="2061" d=""/></g><g data-mml-node="mi" transform="translate(13645.8,0)"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z"/></g><g data-mml-node="mo" transform="translate(14337,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"/></g><g data-mml-node="mn" transform="translate(15337.2,0)"><path data-c="31" d="M123 459Q145 459 170 460T217 462T256 464T284 466L295 467Q296 467 296 467T297 468Q299 468 302 466T307 462L309 459Q307 454 304 424T299 341T297 235Q297 139 298 101T302 55T313 44Q316 43 367 43L460 46Q460 35 459 22V-1H450Q402 2 281 6Q222 6 171 4T91 1T56 -1L47 -2V43H121H170Q195 43 201 45T209 56Q212 69 212 214Q212 333 209 365T194 409Q183 417 161 423T121 430L104 432Q103 432 103 446V459H123Z"/></g></g></g></g></svg></mjx-container></p>
-<p>矩阵运算：</p>
-<p><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -2.149ex;" xmlns="http://www.w3.org/2000/svg" width="31.623ex" height="5.43ex" role="img" focusable="false" viewbox="0 -1450 13977.2 2400"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mrow"><g data-mml-node="mo" transform="translate(0 -0.5)"><path data-c="28" d="M701 -940Q701 -943 695 -949H664Q662 -947 636 -922T591 -879T537 -818T475 -737T412 -636T350 -511T295 -362T250 -186T221 17T209 251Q209 962 573 1361Q596 1386 616 1405T649 1437T664 1450H695Q701 1444 701 1441Q701 1436 681 1415T629 1356T557 1261T476 1118T400 927T340 675T308 359Q306 321 306 250Q306 -139 400 -430T690 -924Q701 -936 701 -940Z"/></g><g data-mml-node="mtable" transform="translate(736,0)"><g data-mml-node="mtr" transform="translate(0,700)"><g data-mml-node="mtd"><g data-mml-node="mi"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"/></g></g></g><g data-mml-node="mtr" transform="translate(0,-700)"><g data-mml-node="mtd" transform="translate(54,0)"><g data-mml-node="mi"><path data-c="1D461" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"/></g></g></g></g><g data-mml-node="mo" transform="translate(1205,0) translate(0 -0.5)"><path data-c="29" d="M34 1438Q34 1446 37 1448T50 1450H56H71Q73 1448 99 1423T144 1380T198 1319T260 1238T323 1137T385 1013T440 864T485 688T514 485T526 251Q526 134 519 53Q472 -519 162 -860Q139 -885 119 -904T86 -936T71 -949H56Q43 -949 39 -947T34 -937Q88 -883 140 -813Q428 -430 428 251Q428 453 402 628T338 922T245 1146T145 1309T46 1425Q44 1427 42 1429T39 1433T36 1436L34 1438Z"/></g></g><g data-mml-node="mo" transform="translate(2218.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"/></g><g data-mml-node="mrow" transform="translate(3274.6,0)"><g data-mml-node="mo" transform="translate(0 -0.5)"><path data-c="28" d="M701 -940Q701 -943 695 -949H664Q662 -947 636 -922T591 -879T537 -818T475 -737T412 -636T350 -511T295 -362T250 -186T221 17T209 251Q209 962 573 1361Q596 1386 616 1405T649 1437T664 1450H695Q701 1444 701 1441Q701 1436 681 1415T629 1356T557 1261T476 1118T400 927T340 675T308 359Q306 321 306 250Q306 -139 400 -430T690 -924Q701 -936 701 -940Z"/></g><g data-mml-node="mtable" transform="translate(736,0)"><g data-mml-node="mtr" transform="translate(0,700)"><g data-mml-node="mtd" transform="translate(13.5,0)"><g data-mml-node="mi"><path data-c="1D450" d="M34 159Q34 268 120 355T306 442Q362 442 394 418T427 355Q427 326 408 306T360 285Q341 285 330 295T319 325T330 359T352 380T366 386H367Q367 388 361 392T340 400T306 404Q276 404 249 390Q228 381 206 359Q162 315 142 235T121 119Q121 73 147 50Q169 26 205 26H209Q321 26 394 111Q403 121 406 121Q410 121 419 112T429 98T420 83T391 55T346 25T282 0T202 -11Q127 -11 81 37T34 159Z"/></g><g data-mml-node="mi" transform="translate(433,0)"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"/></g><g data-mml-node="mi" transform="translate(918,0)"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"/></g><g data-mml-node="mo" transform="translate(1387,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"/></g><g data-mml-node="mi" transform="translate(1776,0)"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"/></g><g data-mml-node="mo" transform="translate(2205,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"/></g></g><g data-mml-node="mtd" transform="translate(3621,0)"><g data-mml-node="mo"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"/></g><g data-mml-node="mi" transform="translate(778,0)"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"/></g><g data-mml-node="mi" transform="translate(1247,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"/></g><g data-mml-node="mi" transform="translate(1592,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"/></g><g data-mml-node="mo" transform="translate(2192,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"/></g><g data-mml-node="mi" transform="translate(2581,0)"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"/></g><g data-mml-node="mo" transform="translate(3010,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"/></g></g></g><g data-mml-node="mtr" transform="translate(0,-700)"><g data-mml-node="mtd"><g data-mml-node="mi"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"/></g><g data-mml-node="mi" transform="translate(469,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"/></g><g data-mml-node="mi" transform="translate(814,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"/></g><g data-mml-node="mo" transform="translate(1414,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"/></g><g data-mml-node="mi" transform="translate(1803,0)"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"/></g><g data-mml-node="mo" transform="translate(2232,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"/></g></g><g data-mml-node="mtd" transform="translate(4023.5,0)"><g data-mml-node="mi"><path data-c="1D450" d="M34 159Q34 268 120 355T306 442Q362 442 394 418T427 355Q427 326 408 306T360 285Q341 285 330 295T319 325T330 359T352 380T366 386H367Q367 388 361 392T340 400T306 404Q276 404 249 390Q228 381 206 359Q162 315 142 235T121 119Q121 73 147 50Q169 26 205 26H209Q321 26 394 111Q403 121 406 121Q410 121 419 112T429 98T420 83T391 55T346 25T282 0T202 -11Q127 -11 81 37T34 159Z"/></g><g data-mml-node="mi" transform="translate(433,0)"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"/></g><g data-mml-node="mi" transform="translate(918,0)"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"/></g><g data-mml-node="mo" transform="translate(1387,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"/></g><g data-mml-node="mi" transform="translate(1776,0)"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"/></g><g data-mml-node="mo" transform="translate(2205,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"/></g></g></g></g><g data-mml-node="mo" transform="translate(7756,0) translate(0 -0.5)"><path data-c="29" d="M34 1438Q34 1446 37 1448T50 1450H56H71Q73 1448 99 1423T144 1380T198 1319T260 1238T323 1137T385 1013T440 864T485 688T514 485T526 251Q526 134 519 53Q472 -519 162 -860Q139 -885 119 -904T86 -936T71 -949H56Q43 -949 39 -947T34 -937Q88 -883 140 -813Q428 -430 428 251Q428 453 402 628T338 922T245 1146T145 1309T46 1425Q44 1427 42 1429T39 1433T36 1436L34 1438Z"/></g></g><g data-mml-node="mrow" transform="translate(11933.2,0)"><g data-mml-node="mo" transform="translate(0 -0.5)"><path data-c="28" d="M701 -940Q701 -943 695 -949H664Q662 -947 636 -922T591 -879T537 -818T475 -737T412 -636T350 -511T295 -362T250 -186T221 17T209 251Q209 962 573 1361Q596 1386 616 1405T649 1437T664 1450H695Q701 1444 701 1441Q701 1436 681 1415T629 1356T557 1261T476 1118T400 927T340 675T308 359Q306 321 306 250Q306 -139 400 -430T690 -924Q701 -936 701 -940Z"/></g><g data-mml-node="mtable" transform="translate(736,0)"><g data-mml-node="mtr" transform="translate(0,700)"><g data-mml-node="mtd"><g data-mml-node="mi"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"/></g></g></g><g data-mml-node="mtr" transform="translate(0,-700)"><g data-mml-node="mtd" transform="translate(41,0)"><g data-mml-node="mi"><path data-c="1D466" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"/></g></g></g></g><g data-mml-node="mo" transform="translate(1308,0) translate(0 -0.5)"><path data-c="29" d="M34 1438Q34 1446 37 1448T50 1450H56H71Q73 1448 99 1423T144 1380T198 1319T260 1238T323 1137T385 1013T440 864T485 688T514 485T526 251Q526 134 519 53Q472 -519 162 -860Q139 -885 119 -904T86 -936T71 -949H56Q43 -949 39 -947T34 -937Q88 -883 140 -813Q428 -430 428 251Q428 453 402 628T338 922T245 1146T145 1309T46 1425Q44 1427 42 1429T39 1433T36 1436L34 1438Z"/></g></g></g></g></svg></mjx-container>                </p>
-<p>*注意到有的cdn版本MathJax框架下公式字体对行间公式有一定影响，可能会一些字体会被渲染成主题相同字体，且移动端不能很好地显示</p>
-<p>参考资料：</p>
-<p><a href="https://www.cnblogs.com/wangxin37/p/8185688.html">https://www.cnblogs.com/wangxin37/p/8185688.html</a></p>
-<p><a href="https://heartlessly.github.io/others/latex-mathjax-gong-shi-zi-ti-mei-hua/">https://heartlessly.github.io/others/latex-mathjax-gong-shi-zi-ti-mei-hua/</a></p>
-]]></content>
-      <categories>
-        <category>DIY</category>
-      </categories>
-      <tags>
-        <tag>html</tag>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>基于MLX90640的手持红外热成像仪</title>
-    <url>/2025/02/26/250226/</url>
-    <content><![CDATA[<h2 id="项目背景："><a href="#项目背景：" class="headerlink" title="项目背景："></a>项目背景：</h2><ol>
-<li><p>DIY好玩捏</p>
-</li>
-<li><p>电路工作时有时需要检查元件发热情况，但用手触摸元件有一定的风险，因此需要一种无接触式的多点测温设备</p>
-</li>
-</ol>
-<p>于是开始了解到热成像这个测温方式，以下是软硬件方案</p>
-<h2 id="方案："><a href="#方案：" class="headerlink" title="方案："></a>方案：</h2><h3 id="硬件部分"><a href="#硬件部分" class="headerlink" title="硬件部分"></a>硬件部分</h3><p>​        采用上下两块板子对插组合，为了减少复杂度，留了排母方便直插LCD与传感器模组。</p>
-<h4 id="BOARD1-MCU与外设"><a href="#BOARD1-MCU与外设" class="headerlink" title="BOARD1: MCU与外设"></a>BOARD1: MCU与外设</h4><ul>
-<li>采用STM32F407作为主控，512KB  Flash，其实没特别注意选型，只是手上有这个开发板，要压缩成本的话用其他型号也可以</li>
-<li>红外传感模组为MLX90640 BAA，这个价格比较贵，比其他元件加起来都贵</li>
-<li>屏幕模组为1.44寸TFT-LCD，也是现成的，买了俩还剩一个，下次做别的东西的时候给用了吧</li>
-<li>留了串口测试点和烧录测试点</li>
-</ul>
-<center>
-    <img src="/images/tc_board1.webp" width="800">
-</center>
-
-<h4 id="BOARD2-POWER"><a href="#BOARD2-POWER" class="headerlink" title="BOARD2: POWER"></a>BOARD2: POWER</h4><ul>
-<li>3.7V锂电池供电，可通过USB接口经过LGS4084H电源管理芯片给锂电池充电</li>
-<li>经过一个LDO稳到3.3V给MCU整体供电，VDDA和VCC用磁珠滤波隔离了一下</li>
-</ul>
-<center>
-    <img src="/images/tc_board2.webp" width="800">
-</center>
-
-<p>电源板后续涉及锂电池供电DIY的倒是可以继续沿用</p>
-<center>
-    <img src="/images/battery.webp" width="600">
-</center>
-
-<p>立创打样PCB，自己贴片，PCB板框留了一些M3螺孔方便组装。</p>
-<h3 id="软件部分"><a href="#软件部分" class="headerlink" title="软件部分"></a><strong>软件部分</strong></h3><p>通讯接口涉及IIC与SPI，以及图像测试的时候用了一下UART，均比较基础。使用硬件IIC进行传感器模组与MCU间的通信，模组官方提供了接口可调用，可读取温度值。RGB转换用了开源的函数：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/*pass in value and figure out R G B
-    several published ways to do this I basically graphed R G B and developed simple linear equations
-    again a 5-6-5 color display will not need accurate temp to R G B color calculation
-    equations based on
-    http://web-tech.ga-usa.com/2012/05/creating-a-custom-hot-to-cold-temperature-color-gradient-for-use-with-rrdtool/index.html
-  */</span>
-<span class="token keyword">static</span> <span class="token class-name">uint16_t</span> <span class="token function">TempToColor</span><span class="token punctuation">(</span><span class="token keyword">float</span> val<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-  red <span class="token operator">=</span> <span class="token function">constrain</span><span class="token punctuation">(</span><span class="token number">255.0f</span> <span class="token operator">/</span> <span class="token punctuation">(</span>c <span class="token operator">-</span> b<span class="token punctuation">)</span> <span class="token operator">*</span> val <span class="token operator">-</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>b <span class="token operator">*</span> <span class="token number">255.0f</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>c <span class="token operator">-</span> b<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>val <span class="token operator">></span> minTemp<span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token punctuation">(</span>val <span class="token operator">&lt;</span> a<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    green <span class="token operator">=</span> <span class="token function">constrain</span><span class="token punctuation">(</span><span class="token number">255.0f</span> <span class="token operator">/</span> <span class="token punctuation">(</span>a <span class="token operator">-</span> minTemp<span class="token punctuation">)</span> <span class="token operator">*</span> val <span class="token operator">-</span> <span class="token punctuation">(</span><span class="token number">255.0f</span> <span class="token operator">*</span> minTemp<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>a <span class="token operator">-</span> minTemp<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span>
-  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>val <span class="token operator">>=</span> a<span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token punctuation">(</span>val <span class="token operator">&lt;=</span> c<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    green <span class="token operator">=</span> <span class="token number">255</span><span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span>
-  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>val <span class="token operator">></span> c<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    green <span class="token operator">=</span> <span class="token function">constrain</span><span class="token punctuation">(</span><span class="token number">255.0f</span> <span class="token operator">/</span> <span class="token punctuation">(</span>c <span class="token operator">-</span> d<span class="token punctuation">)</span> <span class="token operator">*</span> val <span class="token operator">-</span> <span class="token punctuation">(</span>d <span class="token operator">*</span> <span class="token number">255.0f</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>c <span class="token operator">-</span> d<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span>
-  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>val <span class="token operator">></span> d<span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token punctuation">(</span>val <span class="token operator">&lt;</span> a<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    green <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span>
-
-  <span class="token keyword">if</span> <span class="token punctuation">(</span>val <span class="token operator">&lt;=</span> b<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    blue <span class="token operator">=</span> <span class="token function">constrain</span><span class="token punctuation">(</span><span class="token number">255.0f</span> <span class="token operator">/</span> <span class="token punctuation">(</span>a <span class="token operator">-</span> b<span class="token punctuation">)</span> <span class="token operator">*</span> val <span class="token operator">-</span> <span class="token punctuation">(</span><span class="token number">255.0f</span> <span class="token operator">*</span> b<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>a <span class="token operator">-</span> b<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span>
-  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>val <span class="token operator">></span> b<span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token punctuation">(</span>val <span class="token operator">&lt;=</span> d<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    blue <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span>
-  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>val <span class="token operator">></span> d<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    blue <span class="token operator">=</span> <span class="token function">constrain</span><span class="token punctuation">(</span><span class="token number">240.0f</span> <span class="token operator">/</span> <span class="token punctuation">(</span>maxTemp <span class="token operator">-</span> d<span class="token punctuation">)</span> <span class="token operator">*</span> val <span class="token operator">-</span> <span class="token punctuation">(</span>d <span class="token operator">*</span> <span class="token number">240.0f</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>maxTemp <span class="token operator">-</span> d<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">240</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span>
-
-  <span class="token comment">// use the displays color mapping function to get 5-6-5 color palet (R=5 bits, G=6 bits, B-5 bits)</span>
-  <span class="token keyword">return</span> <span class="token function">BSP_LCD_GetColor565</span><span class="token punctuation">(</span>red<span class="token punctuation">,</span> green<span class="token punctuation">,</span> blue<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>该传感器成图32x24像素，而使用的LCD是128x128的，于是我用4个像素作为一个大像素来填充，并增加了一个图例和一个最大最小值来提供量化，并填充一下屏幕留白</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">drawPicture</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token class-name">uint8_t</span> cell_size <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span> <span class="token comment">// 格子大小 4x4</span>
-    <span class="token class-name">uint8_t</span> start_x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>   <span class="token comment">// 水平居中（128 - 32*4 = 0）</span>
-    <span class="token class-name">uint8_t</span> start_y <span class="token operator">=</span> <span class="token number">16</span><span class="token punctuation">;</span>  <span class="token comment">// 垂直居中（(128 - 24*4)/2 = 16）</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span>y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> y <span class="token operator">&lt;</span> <span class="token number">24</span><span class="token punctuation">;</span> y<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span>x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> x <span class="token operator">&lt;</span> <span class="token number">32</span><span class="token punctuation">;</span> x<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            <span class="token function">ST7735_FillRectangle</span><span class="token punctuation">(</span>
-                start_x <span class="token operator">+</span> x <span class="token operator">*</span> cell_size<span class="token punctuation">,</span>
-                start_y <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token number">23</span> <span class="token operator">-</span> y<span class="token punctuation">)</span> <span class="token operator">*</span> cell_size<span class="token punctuation">,</span>
-                cell_size<span class="token punctuation">,</span>
-                cell_size<span class="token punctuation">,</span>
-                <span class="token function">TempToColor</span><span class="token punctuation">(</span>tempValues<span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token number">31</span><span class="token operator">-</span> x<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token punctuation">(</span>y <span class="token operator">*</span> <span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-            <span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">drawLegend</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token class-name">uint8_t</span> legend_height <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>               <span class="token comment">// 图例高度（像素）</span>
-    <span class="token class-name">uint8_t</span> legend_y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>                     <span class="token comment">// 图例顶部位置（y=0）</span>
-    <span class="token class-name">uint8_t</span> legend_width <span class="token operator">=</span> <span class="token number">120</span><span class="token punctuation">;</span>               <span class="token comment">// 图例宽度（留左右边距）</span>
-    <span class="token class-name">uint8_t</span> start_x <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>                      <span class="token comment">// 图例左侧起始位置（x=4）</span>
-
-    <span class="token comment">// 绘制温度颜色渐变条（水平方向）</span>
-    <span class="token keyword">float</span> temp_range <span class="token operator">=</span> maxTemp <span class="token operator">-</span> minTemp<span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">uint8_t</span> x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> x <span class="token operator">&lt;</span> legend_width<span class="token punctuation">;</span> x<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">float</span> temp <span class="token operator">=</span> minTemp <span class="token operator">+</span> temp_range <span class="token operator">*</span> <span class="token punctuation">(</span>x <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token keyword">float</span><span class="token punctuation">)</span>legend_width<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token class-name">uint16_t</span> color <span class="token operator">=</span> <span class="token function">TempToColor</span><span class="token punctuation">(</span>temp<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment">// 绘制水平线（从左到右）</span>
-        <span class="token function">ST7735_DrawLine</span><span class="token punctuation">(</span>start_x <span class="token operator">+</span> x<span class="token punctuation">,</span> legend_y<span class="token punctuation">,</span> start_x <span class="token operator">+</span> x<span class="token punctuation">,</span> legend_y <span class="token operator">+</span> legend_height<span class="token punctuation">,</span> color<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-
-    <span class="token comment">// 显示最小/最大温度标签</span>
-<span class="token comment">//    memset(tempBuffer, 0, sizeof(tempBuffer));</span>
-    <span class="token function">sprintf</span><span class="token punctuation">(</span>tempBuffer<span class="token punctuation">,</span> <span class="token string">"&lt;%2.1f       "</span><span class="token punctuation">,</span> minTemp<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">ST7735_WriteString</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">115</span><span class="token punctuation">,</span> tempBuffer<span class="token punctuation">,</span> Font_7x10<span class="token punctuation">,</span> ST7735_WHITE<span class="token punctuation">,</span> ST7735_BLACK<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment">////    memset(tempBuffer, 0, sizeof(tempBuffer));</span>
-    <span class="token function">sprintf</span><span class="token punctuation">(</span>tempBuffer<span class="token punctuation">,</span> <span class="token string">"%2.1f>       "</span><span class="token punctuation">,</span> maxTemp<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">ST7735_WriteString</span><span class="token punctuation">(</span><span class="token number">90</span><span class="token punctuation">,</span> <span class="token number">115</span><span class="token punctuation">,</span> tempBuffer<span class="token punctuation">,</span> Font_7x10<span class="token punctuation">,</span> ST7735_WHITE<span class="token punctuation">,</span> ST7735_BLACK<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>最后在主循环里轮询就可以了，屏幕刷新率一般，眨眼补帧。</p>
-<p>整体软件部分比较清晰，本来想加一些按键交互，修改颜色范围，存储图片到外部flash之类的功能，然后懒了。</p>
-<p>后续学了操作系统和LVGL库之后再搞点好玩的吧，感觉大部分DIY应用裸机完全够了…</p>
-<center>
-    <img src="/images/theramal_camera.webp" width="600">
-</center>
-
-<h3 id="小问题合集："><a href="#小问题合集：" class="headerlink" title="小问题合集："></a><strong>小问题合集：</strong></h3><h3 id="problem1：使用ST-Link下载过一次程序后发现无法继续下载"><a href="#problem1：使用ST-Link下载过一次程序后发现无法继续下载" class="headerlink" title="problem1：使用ST-Link下载过一次程序后发现无法继续下载"></a><strong>problem1：使用ST-Link下载过一次程序后发现无法继续下载</strong></h3><ol>
-<li>检查设备管理器，确保有正确的ST-Link驱动</li>
-<li>检查Keil软件配置，确保导入正确的型号版本</li>
-<li>检查引脚配置，发现问题：</li>
-</ol>
-<center>
-    <img src="/images/stlink_problem.webp" width="400">
-</center>
-
-<p>​    配置的IIC通信引脚占用了SWD下载引脚<em>（STM32默认的PA13 &amp;PA14）</em>，引脚输入输出模式不适配，显然后续无法下载，遂改之，问题解决。（图示仅供参考）</p>
-<h3 id="problem2：HardFault中断触发"><a href="#problem2：HardFault中断触发" class="headerlink" title="problem2：HardFault中断触发"></a><strong>problem2：HardFault中断触发</strong></h3><p>栈空间不足，多分配点就ok</p>
-]]></content>
-      <categories>
-        <category>DIY</category>
-      </categories>
-      <tags>
-        <tag>嵌入式</tag>
-        <tag>C</tag>
       </tags>
   </entry>
   <entry>
@@ -1280,30 +1309,6 @@ npm install hexo<span class="token operator">-</span>renderer<span class="token 
       <tags>
         <tag>算法</tag>
         <tag>图像处理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Reflections on my undergraduate life</title>
-    <url>/2023/12/31/231231/</url>
-    <content><![CDATA[<p>2020秋入学至今，我已进入我的Senior Year，成为学校中离毕业最近的那批人之一。</p>
-<p>藏不住高考的阴霾，我在一个潮湿的周末办理了入学报到。对学校本身，我并没有太多想象，只是机械地和别人一样走着搬宿舍，入住，参观学校，军训的流程，对自己将要呆的地方没有丝毫好奇心，not to mention “归属感”。在做题多年所带来的优绩主义思想残留和想要改变现状的迫切心理交叉影响下，刚入学的我便决定好好学习，达到保研要求，去一个更好的平台读研。除此之外，我又想多尝试一些事情，当一个斜杠man，不想变成nerd，并且和这些人划清界线。</p>
-<p>这两个指导思想，贯穿着我的大学生活。</p>
-<p>对于保研去往更好的平台，这个目的本身并没有问题，我现在也认为，学习本身也是为了更好的生活。从当时和现在看来，保研无疑是比较平稳且有效的选择，是“本手”。</p>
-<p>只是受限于达到保研要求这个悬在头顶的宝剑，我的目光和精力被束缚在GPA，加分政策等一系列数字与文书上，于是这三年，我并没有对自己的兴趣爱好进行充分的发掘，也并没有从埋头学习中收获太多的乐趣。或者说，我对自己想要成为一个什么样的人，完全没有进行过深度思考。即使是现在大四的我，也只是能说出几个模糊的未来愿景。依稀记得之前看到过一个视频，记者采访一个白人小女孩，她规划了一整套人生流程，从参加议会到参加总统选举，清晰明了，令人咋舌。Lockdown期间，我在家上网课，虽然缺失了一部分大学生活，好在发展了几个持续且有输出性质的爱好，比如这个site。然而，我认为三年时间我应该达到的远不止这些。</p>
-<p>前人常说，读大学应该提升专业技能和社交能力。就社交能力而言，我确实提升了很多，这和参加了很多活动不无关系，一开始我是一个socially awkward的人，过于在意别人的感受，把自己搞得十分拘谨，现在好很多，这是我最显著的成长之一。当然不一定要在校园里，三年时间，在哪里都能成长很多。</p>
-<p>就专业技能方面，我应该是比较欠缺，由于没有参与正儿八经的科研项目，我的从问题出发，逐步改进方案的方法论还处于发育阶段，之前参与的一些比赛倒是帮助了一些，不过总体上还是在一个固定的框架下进行问题求解，遑论创新性的培养。可能我比其他nerd会变通一些，不过也好不到哪里去。这是很大的一个问题，创新思维很重要，这在ai取代低级工人的发展前景下是可预见的。希望未来我可以好好改进。</p>
-<p>思想上，我一直有在通过chat&amp;chill进行一些非刻意的同龄人观察，不自觉地划分出：沾沾自喜的网络表层用户，焦虑的做题家，自命不凡的巨婴，沉迷塑造人设的封面人物，乐子人及其拥趸，暴躁的理想主义者等，当然也有淳朴的怀旧主义者，阳光而正常的普通人。后现代解构思潮将我推往人类与社会的本质，没等我看清，又一下子推开。对我来说，有一种把一盘五颜六色的M&amp;m豆翻倒，按碎在玻璃桌上，迸溅出一般底色的踉跄美感。回头看看这种带有先入为主色彩和刻板印象的分类，会感觉自己确实是这些类型的混合体，某一时间段的人格形象只是某一种特质占比升高的产物。只是感慨自己书读的太少，又缺少行万里路的资本和机遇，还不能做到摆脱而洒脱。或许时机未到，或许不需要摆脱，然后“沉浸在这种恶无限的倒错游戏里”。</p>
-<p><strong><em>Γνῶθι σεαυτόν</em></strong>  认识你自己，本科我没有做到，这是遗憾，也是契机。</p>
-<p>不过，现在我坐在宿舍里，毕业前只想简单地在这城乡结合部体验一下烂俗文学中享乐主义横行的校园生活，好好在没有走过几遍的苏城小路上来回踱一踱步，在去往下一场折腾前，大口呼吸。</p>
-<center>
-    <img src="/images/yangchenghu.webp" width="400">
-</center>
-]]></content>
-      <categories>
-        <category>Being</category>
-      </categories>
-      <tags>
-        <tag>自言自语</tag>
       </tags>
   </entry>
 </search>
