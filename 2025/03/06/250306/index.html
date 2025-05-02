@@ -40,8 +40,9 @@
 <meta property="og:image" content="https://miustannis.github.io/images/flask1.webp">
 <meta property="og:image" content="https://miustannis.github.io/images/flask2.webp">
 <meta property="og:image" content="https://miustannis.github.io/images/flask3.webp">
+<meta property="og:image" content="https://miustannis.github.io/images/cybersalt.webp">
 <meta property="article:published_time" content="2025-03-06T12:39:18.000Z">
-<meta property="article:modified_time" content="2025-05-01T08:53:04.852Z">
+<meta property="article:modified_time" content="2025-05-02T03:30:23.119Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="CS">
 <meta name="twitter:card" content="summary">
@@ -268,14 +269,14 @@ mjx-container[display="true"] + br {
     <div class="widget">
       <h3 class="widget-title">分类</h3>
       <div class="category-box">
-            <a class="category-link" href="/categories/DIY/">
-                DIY
-                <div class="category-count">5</div>
-            </a>
-        
             <a class="category-link" href="/categories/Being/">
                 Being
                 <div class="category-count">6</div>
+            </a>
+        
+            <a class="category-link" href="/categories/DIY/">
+                DIY
+                <div class="category-count">5</div>
             </a>
         
             <a class="category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
@@ -424,7 +425,7 @@ mjx-container[display="true"] + br {
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            13k 词 
+            14k 词 
           </div>
         </div>
         
@@ -1142,8 +1143,10 @@ sqlite&gt; SELECT * FROM shows JOIN ratings ON shows.id = ratings.show_id WHERE 
 <center>
     <img src="/images/flask2.webp" width="400">
 </center>
+- **more web app examples**
 
-<p>There two other web examples for sports register and library system, which are more realistic with more functions and more html files. Data can be managed in a better way using <strong>SQL</strong>, other than just in SRAM.</p>
+  There two other web examples for sports register and library system, which are more realistic with more functions and more html files. Data can be managed in a better way using **SQL**, other than just in SRAM.
+
 <center>
     <img src="/images/flask3.webp" width="400">
 </center>
@@ -1151,11 +1154,57 @@ sqlite&gt; SELECT * FROM shows JOIN ratings ON shows.id = ratings.show_id WHERE 
 <ul>
 <li><p><strong>cookies</strong></p>
 <p>tools that websites use to keep staying stateful. Server needs to remember something about the user, cookies will be <strong>sent back to server</strong> <strong>by browsers</strong> every time a user log in.</p>
-<p>problems: cookies may be used for ads and tracking</p>
+<p>problems: cookies may be used for ads and tracking.</p>
 </li>
 </ul>
-<h3 id="Lecture-10-Cybersecurity"><a href="#Lecture-10-Cybersecurity" class="headerlink" title="Lecture 10 Cybersecurity"></a><strong>Lecture 10 Cybersecurity</strong></h3><p><strong>Problem Set：</strong> <a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2024/psets/">https://cs50.harvard.edu/x/2024/psets/</a></p>
+<h3 id="Lecture-10-Cybersecurity"><a href="#Lecture-10-Cybersecurity" class="headerlink" title="Lecture 10 Cybersecurity"></a><strong>Lecture 10 Cybersecurity</strong></h3><ul>
+<li><p>passwords</p>
+<ul>
+<li><p>brute-force attack</p>
+</li>
+<li><p>two-factor authentication (mostly hardware equipment)</p>
+</li>
+<li><p>one-time passwords</p>
+</li>
+<li><p>server uses hash function to compare passwords</p>
+<center>
+    <img src="/images/cybersalt.webp" width="400">
+</center>
+</li>
+<li><p>cryptography: public key &amp; private key (HTTPS)</p>
+</li>
+<li><p>passkeys: generate public key and send it to the company, and a private one for verifying your signature combining the public key.</p>
+</li>
+<li><p>secure deletion -&gt; full disk encryption</p>
+</li>
+</ul>
+</li>
+</ul>
 <p>*看此课程以温习basic coding和补充一些计算机思维，老师讲的很有激情，时间花的还算比较有价值</p>
+<pre class="line-numbers language-tex" data-language="tex"><code class="language-tex">  ______
+| see you |
+  ======
+        \
+         \
+          \
+           \
+                                 / \\  //\\
+                  |\\___/|      /   \\//  \\\\
+                  /0  0  \\__  /    //  | \\ \\
+                 /     /  \\/_/    //   |  \\  \\
+                 \@_^_\@'/   \\/_   //    |   \\   \\
+                 //_^_/     \\/_ //     |    \\    \\
+              ( //) |        \\///      |     \\     \\
+            ( / /) _|_ /   )  //       |      \\     _\\
+          ( // /) '/,_ _ _/  ( ; -.    |    _ _\\.-~        .-~~~^-.
+        (( / / )) ,-{        _      `-.|.-~-.           .~         `.
+       (( // / ))  '/\\      /                 ~-. _ .-~      .-~^-.  \\
+       (( /// ))      `.   {            }                   /      \\  \\
+        (( / ))     .----~-.\\        \\-'                 .~         \\  `. \\^-.
+                   ///.----..&gt;        \\             _ -~             `.  ^-`  ^-_
+                     ///-._ _ _ _ _ _ _}^ - - - - ~                     ~-- ,.-~
+                                                                        /.-~
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
         
       </div>
