@@ -30,9 +30,12 @@
 <meta property="og:image" content="https://miustannis.github.io/images/lena.webp">
 <meta property="og:image" content="https://miustannis.github.io/images/pixel_depth.webp">
 <meta property="og:image" content="https://miustannis.github.io/images/pixel_neighbor.webp">
+<meta property="og:image" content="https://miustannis.github.io/images/D4.webp">
+<meta property="og:image" content="https://miustannis.github.io/images/D8.webp">
+<meta property="og:image" content="https://miustannis.github.io/images/halftone.webp">
 <meta property="og:image" content="https://miustannis.github.io/images/DVD.webp">
 <meta property="article:published_time" content="2025-03-28T03:38:44.000Z">
-<meta property="article:modified_time" content="2025-05-07T03:53:56.069Z">
+<meta property="article:modified_time" content="2025-05-07T07:58:14.619Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="图像处理">
 <meta name="twitter:card" content="summary">
@@ -303,7 +306,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            1.8k 词 
+            3.1k 词 
           </div>
         </div>
         
@@ -395,26 +398,120 @@ f_{(N-1)*0} & f_{(N-1)*1} & \cdots & f_{(N-1)*(N-1)}
 </center>
 
 <h4 id="像素间的基本关系"><a href="#像素间的基本关系" class="headerlink" title="像素间的基本关系"></a>像素间的基本关系</h4><ul>
-<li>neighbor 邻域：4-邻域；D-邻域；8-邻域</li>
+<li><strong>neighbor 邻域</strong>：4-邻域；D-邻域；8-邻域</li>
 </ul>
 <center>
     <img src="/images/pixel_neighbor.webp" width="500">
 </center>
 
 <ul>
-<li>adjacency 连通性</li>
+<li><strong>adjacency 连接性</strong></li>
 </ul>
-<p>​    两个像素连通的两个必要条件：</p>
+<p>​    两个像素连接的两个必要条件：</p>
 <ol>
-<li><p>两个像素的位置邻接（按上述neighbor种类可划分为 4-连接、8-连接）</p>
+<li><p>两个像素的位置邻接（按上述neighbor种类可划分为 4-连接、8-连接，以及m-连接）</p>
 </li>
-<li><p>两个像素的灰度值满足特定的相似性准则</p>
-<p>*特殊情况：m-连接</p>
+<li><p>两个像素的灰度值满足特定的相似性准则（值要在某一范围内近似相等）</p>
+<p><em>特殊情况：<em>*m-连接</em></em>，包括两种情况（视觉上看不允许有三角阶梯形的连接图案）</p>
+<ol>
+<li>4-连接</li>
+<li>像素A∈像素B的D-邻域，且两个像素的4-邻域不包含同样值的像素</li>
+</ol>
 </li>
 </ol>
 <ul>
-<li>距离</li>
+<li><p><strong>距离</strong>（像素A到像素B的路径，是不同像素的序列）可用定义连接的方法定义路径，其中m-连接所得的m-路径更适用于边缘提取。</p>
+</li>
+<li><p><strong>connection 像素在图像子集中连通</strong></p>
+<p>两个像素在图像中能有一条完全由像素组成的路径，则两个像素连通，连接是连通的一种特殊情况</p>
+</li>
+<li><p><strong>connected component 连通成分</strong></p>
+<p>对于图像中的任意像素A，图像中所有<strong>连接</strong>到A的像素的集合被称为图像的连通成分，同样可按连接方式划分</p>
+</li>
 </ul>
+<h4 id="像素间的距离"><a href="#像素间的距离" class="headerlink" title="像素间的距离"></a><strong>像素间的距离</strong></h4><ul>
+<li><strong>欧几里得距离</strong></li>
+</ul>
+<p>p与q之间的欧几里得距离定义为：</p>
+<center>
+    $De(p,q) = [(x-s)^2 + (y-t)^2]^{(1/2)}$
+</center>
+
+
+<p>对于图像来说计算量太大，一般不用。</p>
+<ul>
+<li><strong>D4距离/街区距离/城市距离</strong></li>
+</ul>
+<center>
+    $D4(p,q) = |x-s| + |y-t|$
+</center>
+
+<p>区别于欧几里得距离（到某像素距离等于某个值的像素形成一个圆形），到某像素D4距离小于等于某个值的像素形成一个菱形</p>
+<center>
+    <img src="/images/D4.webp" width="200">
+</center>
+
+<ul>
+<li><strong>D8距离/棋盘距离</strong>：用于边缘提取时设置距离的阈值</li>
+</ul>
+<center>
+    $D8(p,q) =max(|x-s| , |y-t|) $
+</center>
+
+<p>如下图所示：</p>
+<center>
+    <img src="/images/D8.webp" width="200">
+</center>
+
+<h4 id="印刷品中的半调输出技术"><a href="#印刷品中的半调输出技术" class="headerlink" title="印刷品中的半调输出技术"></a><strong>印刷品中的半调输出技术</strong></h4><ul>
+<li><strong>节选自维基百科：半色调</strong>（Halftone）是指为了模拟出连续调影像（色阶）的视觉感觉，一般用墨点（半色调网点）的大小或频率的改变，来模拟明暗的变化。半色调技术是传统印刷中用来处理阶调并模拟连续调（continue tone）的方法，通常也称为过网（screening）技术。半色调是相对于连续调表示阶调的一种方法，一般我们所看到银盐相片上的影像是由连续的层次所构成，像这样的影像称之为连续调影像。相对而言，印刷机或打印机上所打印的图像，只能借由着墨或不着墨两种阶调来表现层次，像这样的两值化影像称为半色调影像。只要借由调整不同形式、不同大小的墨点，利用人眼可以将图像中邻近墨点进行视觉积分的原理，在一定的距离观察下，便可以使二值化影像重现连续调的感觉。也就是说，当这些墨点越小时，二值化影像就可以在越短的观测距离下，被人眼观测积分成近似连续调的影像。</li>
+</ul>
+<center>
+    <img src="/images/halftone.webp" width="200">
+</center>
+
+<h4 id="图像坐标变换"><a href="#图像坐标变换" class="headerlink" title="图像坐标变换"></a><strong>图像坐标变换</strong></h4><p>可借助矩阵写为</p>
+<center>
+    $\boldsymbol{v}^{\prime}=\boldsymbol{A} \boldsymbol{v}$
+</center>
+
+<p>其中A为变换矩阵，v‘为变换后的坐标矢量，v为变换前的坐标矢量</p>
+<p><strong>平移变换</strong></p>
+<center>
+    $\boldsymbol{T}=\left[\begin{array}{ccc}
+1 & 0 & x_{0} \\
+0 & 1 & y_{0} \\
+0 & 0 & 1
+\end{array}\right]$
+</center>
+
+<p><strong>尺度变换</strong></p>
+<center>
+    $\boldsymbol{S}=\left[\begin{array}{ccc}
+S_{x} & 0 & 0 \\
+0 & S_{y} & 0 \\
+0 & 0 & 1
+\end{array}\right]$
+</center>
+
+<p><strong>旋转变换</strong></p>
+<center>
+    $\boldsymbol{R}=\left[\begin{array}{ccc}
+\cos \gamma & \sin \gamma & 0 \\
+-\sin \gamma & \cos \gamma & 0 \\
+0 & 0 & 1
+\end{array}\right]$
+</center>
+
+
+
+<h4 id="图像的质量"><a href="#图像的质量" class="headerlink" title="图像的质量"></a><strong>图像的质量</strong></h4><p>清晰度：亮度，对比度，主题内容的大小，细微层次，颜色饱和度</p>
+<p>对比度 = 最大亮度 / 最小亮度</p>
+<h4 id="图像储存的数据结构"><a href="#图像储存的数据结构" class="headerlink" title="图像储存的数据结构"></a><strong>图像储存的数据结构</strong></h4><ol>
+<li>一维数组，行列储存</li>
+<li>多波段储存</li>
+</ol>
+<h4 id="图像文件格式"><a href="#图像文件格式" class="headerlink" title="图像文件格式"></a><strong>图像文件格式</strong></h4><p>BMP, GIF, TIFF, JPEG等</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <h3 id="Ch3-空间域图像增强"><a href="#Ch3-空间域图像增强" class="headerlink" title="Ch3 空间域图像增强"></a><strong>Ch3 空间域图像增强</strong></h3><h4 id="光盘读取原理"><a href="#光盘读取原理" class="headerlink" title="*光盘读取原理"></a>*光盘读取原理</h4><p>无论是CD光盘还是DVD光盘，其存储方式与磁盘一样，都是以二进制数据的形式来存储信息。要在这些光盘上存储数据，需要借助激光把二进制数据刻在扁平、具有反射能力的盘片上。为了识别数据，定义激光刻出的小坑就代表二进制的“1”，而空白处则代表二进制的“0”。（凹坑和平坦区域的 <strong>边缘变化</strong>【如从凹坑到平坦，或反之】代表”1”，无变化代表”0”）DVD的记录凹坑比CD小，且螺旋存储凹坑之间的距离也更小。</p>
