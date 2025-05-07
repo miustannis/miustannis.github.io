@@ -249,14 +249,14 @@ mjx-container[display="true"] + br {
     <div class="widget">
       <h3 class="widget-title">分类</h3>
       <div class="category-box">
-            <a class="category-link" href="/categories/Being/">
-                Being
-                <div class="category-count">6</div>
-            </a>
-        
             <a class="category-link" href="/categories/DIY/">
                 DIY
                 <div class="category-count">5</div>
+            </a>
+        
+            <a class="category-link" href="/categories/Being/">
+                Being
+                <div class="category-count">6</div>
             </a>
         
             <a class="category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
@@ -404,7 +404,7 @@ mjx-container[display="true"] + br {
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            1.1k 词 
+            1.8k 词 
           </div>
         </div>
         
@@ -421,7 +421,6 @@ mjx-container[display="true"] + br {
 像：人的视觉系统对图的接收在大脑中形成的印象或认识—主观
 图像处理：是对图像信息进行加工处理，以满足人的视觉心理和实际应用的需求。包括光学和电子学两种方法
 图像分类：模拟图像 &amp; 数字图像
-
 模拟图像：理论上不存在，即使高密度胶片成像也无法称为模拟图像，个人认为可将人眼获得的像近似为模拟图像
 
 数字图像：
@@ -431,11 +430,10 @@ mjx-container[display="true"] + br {
 
 
 数字图像处理的基本特点：
-
 信息量大
 占用频带宽：电视图像的带宽为5~6MHz（细节越多，画质越高带宽越大，不过现代数字编码技术可以通过压缩方法，比如MPEG-4、H.265等方式大幅减少带宽需求），语音的带宽只有4kHz，频带越宽，技术实现难度就越大
 
-数字图像处理的基本内容 （部...
+数字图像处理的基本内容 （部分内...
             
           </div>
         
@@ -1095,5 +1093,22 @@ uint8_t rx_buffer...
 
   </div>
   <script src="/js/light-dark-switch.js"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
 </body>
 </html>
