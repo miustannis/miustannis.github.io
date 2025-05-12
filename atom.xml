@@ -6,7 +6,7 @@
   <link href="https://miustannis.github.io/atom.xml" rel="self"/>
   
   <link href="https://miustannis.github.io/"/>
-  <updated>2025-05-12T03:16:32.941Z</updated>
+  <updated>2025-05-12T08:59:06.549Z</updated>
   <id>https://miustannis.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>冈萨雷斯 《数字图像处理》Study Log (2) 空间域与频域滤波</title>
+    <link href="https://miustannis.github.io/2025/04/20/250512/"/>
+    <id>https://miustannis.github.io/2025/04/20/250512/</id>
+    <published>2025-04-20T03:38:44.000Z</published>
+    <updated>2025-05-12T08:59:06.549Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;Ch3-空间域图像增强&quot;&gt;&lt;a href=&quot;#Ch3-空间域图像增强&quot; class=&quot;headerlink&quot; title=&quot;Ch3 空间域图像增强&quot;&gt;&lt;/a&gt;&lt;strong&gt;Ch3 空间域图像增强&lt;/strong&gt;&lt;/h3&gt;&lt;p&gt;定义：直接作用于像素的增强方法，根</summary>
+      
+    
+    
+    
+    <category term="学习记录" scheme="https://miustannis.github.io/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"/>
+    
+    
+    <category term="图像处理" scheme="https://miustannis.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
+    
+  </entry>
   
   <entry>
     <title>冈萨雷斯 《数字图像处理》Study Log (1) 图像技术基础</title>
@@ -68,7 +90,7 @@
     <link href="https://miustannis.github.io/2025/03/06/250306/"/>
     <id>https://miustannis.github.io/2025/03/06/250306/</id>
     <published>2025-03-06T12:39:18.000Z</published>
-    <updated>2025-05-12T03:24:28.322Z</updated>
+    <updated>2025-05-12T03:29:08.667Z</updated>
     
     
       
@@ -109,33 +131,6 @@
     <category term="嵌入式" scheme="https://miustannis.github.io/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
     
     <category term="C" scheme="https://miustannis.github.io/tags/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Xiaomi路由器BE3600快速救砖</title>
-    <link href="https://miustannis.github.io/2025/02/13/250213/"/>
-    <id>https://miustannis.github.io/2025/02/13/250213/</id>
-    <published>2025-02-13T10:25:24.000Z</published>
-    <updated>2025-02-14T16:19:47.813Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;家里的路由器变砖了（具体原因不清楚）&lt;/p&gt;
-&lt;p&gt;指示灯由蓝色常亮变成橙色常亮，对于家用路由器这种消费电子产品，一般重启一下能解决90%的故障&lt;/p&gt;
-&lt;p&gt;但心血来潮想试一下给它刷个机&lt;/p&gt;
-&lt;p&gt;型号是这个：&lt;/p&gt;
-&lt;center&gt;
-    &lt;img src=&quot;/</summary>
-      
-    
-    
-    
-    <category term="DIY" scheme="https://miustannis.github.io/categories/DIY/"/>
-    
-    
-    <category term="改装" scheme="https://miustannis.github.io/tags/%E6%94%B9%E8%A3%85/"/>
     
   </entry>
   
