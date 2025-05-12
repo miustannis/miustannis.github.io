@@ -23,7 +23,7 @@
   <meta name="description" content="Ch3 空间域图像增强定义：直接作用于像素的增强方法，根据具体操作是在像素点位置上还是像素点的邻域上可分为点操作和模板操作（邻域操作） 灰度映射通过映射函数:$ t&#x3D; T(s)$（可根据增强的目的来设计映射函数）将原始图像中的每个像素的灰度都映射到新的灰度。 图像求反（负片）一一对应           幂次变换$t&#x3D; cs^{γ}$  $γ&lt;1$时在正比函数上方，使得图像变亮，把输入窄带暗">
 <meta property="og:type" content="article">
 <meta property="og:title" content="冈萨雷斯 《数字图像处理》Study Log (2) 空间域与频域滤波">
-<meta property="og:url" content="https://miustannis.github.io/2025/04/20/250512/index.html">
+<meta property="og:url" content="https://miustannis.github.io/2025/04/20/250420/index.html">
 <meta property="og:site_name" content="Miao&#39;s Blog">
 <meta property="og:description" content="Ch3 空间域图像增强定义：直接作用于像素的增强方法，根据具体操作是在像素点位置上还是像素点的邻域上可分为点操作和模板操作（邻域操作） 灰度映射通过映射函数:$ t&#x3D; T(s)$（可根据增强的目的来设计映射函数）将原始图像中的每个像素的灰度都映射到新的灰度。 图像求反（负片）一一对应           幂次变换$t&#x3D; cs^{γ}$  $γ&lt;1$时在正比函数上方，使得图像变亮，把输入窄带暗">
 <meta property="og:locale" content="zh_CN">
@@ -34,8 +34,11 @@
 <meta property="og:image" content="https://miustannis.github.io/images/dip/dip2_5.webp">
 <meta property="og:image" content="https://miustannis.github.io/images/dip/dip2_6.webp">
 <meta property="og:image" content="https://miustannis.github.io/images/dip/dip2_7.webp">
+<meta property="og:image" content="https://miustannis.github.io/images/dip/dip2_8.webp">
+<meta property="og:image" content="https://miustannis.github.io/images/dip/dip2_9.webp">
+<meta property="og:image" content="https://miustannis.github.io/images/dip/dip2_10.webp">
 <meta property="article:published_time" content="2025-04-20T03:38:44.000Z">
-<meta property="article:modified_time" content="2025-05-12T08:59:06.549Z">
+<meta property="article:modified_time" content="2025-05-12T13:32:56.415Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="图像处理">
 <meta name="twitter:card" content="summary">
@@ -237,7 +240,7 @@
       <h3 class="widget-title">最新文章</h3>
       <ul>
         
-          <a class="recent-link" href="/2025/04/20/250512/" title="冈萨雷斯 《数字图像处理》Study Log (2) 空间域与频域滤波" >
+          <a class="recent-link" href="/2025/04/20/250420/" title="冈萨雷斯 《数字图像处理》Study Log (2) 空间域与频域滤波" >
             <div class="recent-link-text">
               冈萨雷斯 《数字图像处理》Study Log (2) 空间域与频域滤波
             </div>
@@ -279,7 +282,7 @@
        
 
 
-<article id="post-250512" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+<article id="post-250420" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
     
    
@@ -311,7 +314,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            2.3k 词 
+            4k 词 
           </div>
         </div>
         
@@ -392,17 +395,15 @@
 <li><p>$T(s)$是单调递增函数，且$0≤T(s)≤1$：保证变换后的灰度值保持从黑到白的变换顺序，避免灰度值反转，保证变换后的灰度值在0~1的范围内（归一化后）</p>
 <p>原始图像的累积分布函数(CDF，即概率密度曲线包围的面积)可满足以上条件</p>
 <center>
-    $t = T(s) = \int_{0}^{s}p_{s}(w)dw$
+    $t = T(s) = \int_{0}^{s}p(w)dw,  p(w)是概率值$
 </center>
-
-<p>$p(s)$是s的概率密度函数</p>
 </li>
 <li><p>$T^{-1}(s)$存在且单调递增，允许均衡化后的灰度值t反向映射回原始灰度值，反函数单调递增可以保证反向映射时仍然保持灰度顺序不变，避免引入新的非线性失真</p>
 <p>$T(s)$是CDF，其反函数可以通过查找或者数值方式求得</p>
 </li>
 </ol>
 <p><strong>因为数字图像处理是离散化的，因此需要对上述方法离散化：</strong></p>
-<p>设一幅图像的像素总数为n，分L个灰度级，其中第k个灰度级出现的概率为$P(s_{k}) = n_{k}/n$，其中$0≤s_k≤1,k = 0,1,2,…L-1$. 离散CDF为$T(s_k) = \sum_{j=0}^{k} n_j/n$</p>
+<p>设一幅图像的像素总数为n，分L个灰度级，其中第k个灰度级出现的概率为$p(s_{k}) = n_{k}/n$，其中$0≤s_k≤1,k = 0,1,2,…L-1$. 变换函数，即离散CDF为$T(s_k) = \sum_{j=0}^{k} p(s_{k}) = \sum_{j=0}^{k} n_j/n$</p>
 <p>算法步骤：</p>
 <ul>
 <li><font color="Blue">计算每个灰度级的像素个数在整个图像中所占的概率</font>
@@ -415,7 +416,7 @@
 </ul>
 <p>拟合后会合并部分灰度级，宏观上对灰度级分布均衡化，微观上不可能拉平，灰度级层次减少，对比度提高</p>
 <p>这种方法使得原本集中在狭窄区间的像素值变换到更广的范围内，增加了像素灰度值的<strong>有效</strong>动态范围</p>
-<p>优点：自动得到近似均匀分布的直方图，但由于变换函数采用CDF，只能近似，因此在一些有特定需求的场景下采用直方图规定化方法</p>
+<p>优点：自动得到近似均匀分布的直方图，但由于变换函数采用CDF，只能近似，因此在一些有特定需求的场景下采用<strong>直方图规定化方法</strong></p>
 <p>&nbsp;</p>
 <h5 id="直方图规定化方法："><a href="#直方图规定化方法：" class="headerlink" title="*直方图规定化方法："></a>*直方图规定化方法：</h5><p>将原始直方图转换为期望直方图</p>
 <p>算法步骤：</p>
@@ -440,7 +441,127 @@
 <li>时空切片分析（颜色和纹理的不连续）</li>
 </ul>
 <p>&nbsp;</p>
-<h4 id="空间平滑滤波增强"><a href="#空间平滑滤波增强" class="headerlink" title="空间平滑滤波增强"></a>空间平滑滤波增强</h4>
+<h4 id="图像空间平滑滤波增强"><a href="#图像空间平滑滤波增强" class="headerlink" title="图像空间平滑滤波增强"></a>图像空间平滑滤波增强</h4><h5 id="图像中的噪声"><a href="#图像中的噪声" class="headerlink" title="图像中的噪声"></a>图像中的噪声</h5><p><strong>引起原因：</strong>敏感元器件的内部噪声，传输通道的干扰以及量化噪声</p>
+<p><strong>噪声分类：</strong></p>
+<ul>
+<li>加性噪声：与图像信号无关。信道噪声、扫描时产生的噪声</li>
+<li>乘性噪声：某像素处的噪声只与该像素处的图像信号有关（或者与其邻域信号也有关）</li>
+<li>根据噪声的分布特性可以分为：椒盐噪声（泊松噪声）、高斯噪声、颗粒噪声等</li>
+</ul>
+<h5 id="邻域平均线性滤波（均值滤波）"><a href="#邻域平均线性滤波（均值滤波）" class="headerlink" title="邻域平均线性滤波（均值滤波）"></a>邻域平均线性滤波（均值滤波）</h5><ul>
+<li>思想：将一个像素及其邻域内的所有像素的平均灰度值赋给平滑图像中对应的像素，从而达到平滑的目的</li>
+</ul>
+<p>常用的邻域有4-邻域和8-邻域</p>
+<ul>
+<li>作用：减噪，去除不相干的细节，对灰度级不足引起的伪轮廓进行平滑</li>
+</ul>
+<p>example：非加权3*3邻域均值滤波器模板</p>
+<center>
+    $H_{0}=\frac{1}{9}\left[\begin{array}{ccc}
+1 & 1 & 1 \\
+1 & 1 & 1 \\
+1 & 1 & 1
+\end{array}\right]$
+</center>
+
+<p>加权3*3均值滤波器模板</p>
+<center>
+    $H_{0}=\frac{1}{10}\left[\begin{array}{ccc}
+1 & 1 & 1 \\
+1 & 2 & 1 \\
+1 & 1 & 1
+\end{array}\right]$
+</center>
+
+<p>中心像素为待处理像素</p>
+<p>那么可知道，当像素处于图像边缘时，这个滤波器有一部分是没有值对应的，此时有两种方法进行补充：</p>
+<ol>
+<li>镜像反射</li>
+<li>补0</li>
+</ol>
+<p><strong>邻域平均法算法步骤：</strong></p>
+<ul>
+<li><font color="Blue">确定mask大小</font>
+</li>
+<li><font color="Blue">对待处理的图像边缘进行扩充</font>
+</li>
+<li><font color="Blue">将mask在图像中游走，计算平均</font>
+</li>
+<li><font color="Blue">用均值代替中心像素值</font>
+
+</li>
+</ul>
+<p>*模板越大，对图像的模糊作用就越强，但也可以在提取较大目标之前先去除太小的细节或噪声</p>
+<p>*加权邻域平均可以一定程度上缓解非加权滤波导致的边缘模糊的问题，其中心元素占的比例越小，越平滑，图像越模糊</p>
+<p>&nbsp;</p>
+<h5 id="中值滤波法"><a href="#中值滤波法" class="headerlink" title="中值滤波法"></a>中值滤波法</h5><p>虽然邻域平均法可以平滑图像，但在消除噪声的同时，会使得图像中的一些细节变得模糊。中值滤波则在消除噪声的同时还能保持图像中的细节部分。</p>
+<ul>
+<li>思想：对模板内的像素进行大小顺序排列，如此最亮的和最暗的点会排在两侧，用中间位置像素值代替原灰度值</li>
+<li>作用：消除噪声，保留图像细节，防止边缘模糊。对脉冲噪声和椒盐噪声的抑制效果好</li>
+</ul>
+<p><strong>中值滤波算法步骤：</strong></p>
+<ul>
+<li><font color="Blue">确定mask大小与形状</font>
+</li>
+<li><font color="Blue">对待处理的图像边缘进行扩充</font>
+</li>
+<li><font color="Blue">将mask在图像中游走，对模板内像素值进行排序</font>
+</li>
+<li><font color="Blue">用中间值代替中心像素值</font>
+
+</li>
+</ul>
+<p>mask形状一般有方形与十字形</p>
+<p>注：</p>
+<ul>
+<li>有尖顶角几何结构的图像，一般采用十字窗，大小不超过最小有效物体的尺寸</li>
+<li>有较多的点、线细节的结构，一般不用中值滤波</li>
+<li>由中值滤波推广到统计排序滤波器：最大值滤波器（寻找最亮点）&amp; 最小值滤波器（寻找最暗点）</li>
+</ul>
+<p>&nbsp;</p>
+<h4 id="空间域滤波推广"><a href="#空间域滤波推广" class="headerlink" title="空间域滤波推广"></a><strong>空间域滤波推广</strong></h4><ul>
+<li><strong>钝化滤波器-平滑滤波器</strong>：低通滤波 &amp; 中值滤波</li>
+<li><strong>锐化滤波器</strong>：高通滤波 &amp; 微分滤波 &amp; 高增益滤波</li>
+</ul>
+<h5 id="基本低通滤波器设计原则："><a href="#基本低通滤波器设计原则：" class="headerlink" title="基本低通滤波器设计原则："></a>基本低通滤波器设计原则：</h5><p>如同邻域平均法，模板系数需大于0，都选1或者中间选1，周围选0.5</p>
+<center>
+    <img src="/images/dip/dip2_8.webp" , width="400">
+</center>
+
+<p><strong>图像锐化：</strong></p>
+<p>补偿图像的轮廓，突出图像中物体的边缘或细节，使得图像更为清晰</p>
+<ul>
+<li>思想：图像模糊的原因——图像被平均或积分，因此为实现图像的锐化，需要进行反运算“微分”——&gt;以此增强高频分量，使图像边缘变得清晰，但同时也增强了噪声</li>
+<li>条件：原始图像信噪比质量要高</li>
+<li>边缘检测原理：图像中物体边缘是灰度值发生突变的地方，常用差分或者梯度计算来检测边缘</li>
+</ul>
+<p><strong>基本高通滤波设计原则：</strong></p>
+<p>1)系数中心为正值，外周为负值 2)滤波器各系数之和为0</p>
+<center>
+    <img src="/images/dip/dip2_9.webp" , width="400">
+</center>
+
+<p>注：</p>
+<ul>
+<li>计算时会出现负值，常用归0处理</li>
+<li>像素值相同或者变化平缓的区域，结果为0或者很小，图像亮度降低</li>
+</ul>
+<p><strong>微分滤波器</strong></p>
+<p>引入微分算子的概念</p>
+<p>已知：一阶偏导数没有各向同性</p>
+<center>
+    $\frac{\partial f}{\partial x} ≠ \frac{\partial f}{\partial y}$
+</center>
+
+<p>而数学上可以证明：<strong>偏导数的平方和是各向同性的</strong>，因此梯度运算、拉普拉斯运算都符合与方向无关性。即：无论边界是什么走向，只要幅度相同，算子的输出就相同。</p>
+<p><strong>梯度法：</strong> $G[f(x,y)] = [\frac{\partial f}{\partial x} \frac{\partial f}{\partial y}]^{T}$ </p>
+<p>梯度的方向是$f(x,y)$变化率最大的方向</p>
+<p>梯度的偏导数可以用该处偏导数的平方和开根号表示。</p>
+<p>对于数字图像，显然是要用差分来代替微分的</p>
+<center>
+    <img src="/images/dip/dip2_10.webp" , width="400">
+</center>
+
         
       </div>
 
