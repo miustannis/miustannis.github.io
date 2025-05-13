@@ -27,18 +27,14 @@
 <meta property="og:site_name" content="Miao&#39;s Blog">
 <meta property="og:description" content="项目背景： DIY好玩捏  电路工作时有时需要检查元件发热情况，但用手触摸元件有一定的风险，因此需要一种无接触式的多点测温设备   于是开始了解到热成像这个测温方式，以下是软硬件方案 方案：硬件部分​        采用上下两块板子对插组合，为了减少复杂度，留了排母方便直插LCD与传感器模组。 BOARD1: MCU与外设 采用STM32F407作为主控，512KB  Flash，其实没特别注意选">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://miustannis.github.io/images/tc_board1.webp">
-<meta property="og:image" content="https://miustannis.github.io/images/tc_board2.webp">
-<meta property="og:image" content="https://miustannis.github.io/images/battery.webp">
-<meta property="og:image" content="https://miustannis.github.io/images/theramal_camera.webp">
-<meta property="og:image" content="https://miustannis.github.io/images/stlink_problem.webp">
+<meta property="og:image" content="https://miustannis.github.io/images/thermal_camera/thermal_camera1.webp">
 <meta property="article:published_time" content="2025-02-26T02:05:52.000Z">
-<meta property="article:modified_time" content="2025-05-06T01:55:42.991Z">
+<meta property="article:modified_time" content="2025-05-13T02:33:44.160Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="嵌入式">
 <meta property="article:tag" content="C">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://miustannis.github.io/images/tc_board1.webp">
+<meta name="twitter:image" content="https://miustannis.github.io/images/thermal_camera/thermal_camera1.webp">
   
     <link rel="alternate" href="/atom.xml" title="Miao's Blog" type="application/atom+xml">
   
@@ -149,14 +145,14 @@
     <div class="widget">
       <h3 class="widget-title">分类</h3>
       <div class="category-box">
-            <a class="category-link" href="/categories/Being/">
-                Being
-                <div class="category-count">6</div>
-            </a>
-        
             <a class="category-link" href="/categories/DIY/">
                 DIY
                 <div class="category-count">5</div>
+            </a>
+        
+            <a class="category-link" href="/categories/Being/">
+                Being
+                <div class="category-count">6</div>
             </a>
         
             <a class="category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
@@ -179,98 +175,6 @@
 
 
     
-      
-  <div class="widget-wrap">
-    <div class="widget">
-      <h3 class="widget-title">归档</h3>
-      
-      
-        <a class="archive-link" href="/archives/2025/04 ">
-          四月 2025 
-          <div class="archive-count">1 </div>
-        </a>
-      
-        <a class="archive-link" href="/archives/2025/03 ">
-          三月 2025 
-          <div class="archive-count">3 </div>
-        </a>
-      
-        <a class="archive-link" href="/archives/2025/02 ">
-          二月 2025 
-          <div class="archive-count">3 </div>
-        </a>
-      
-        <a class="archive-link" href="/archives/2024/11 ">
-          十一月 2024 
-          <div class="archive-count">1 </div>
-        </a>
-      
-        <a class="archive-link" href="/archives/2024/10 ">
-          十月 2024 
-          <div class="archive-count">1 </div>
-        </a>
-      
-        <a class="archive-link" href="/archives/2024/09 ">
-          九月 2024 
-          <div class="archive-count">2 </div>
-        </a>
-      
-        <a class="archive-link" href="/archives/2023/12 ">
-          十二月 2023 
-          <div class="archive-count">2 </div>
-        </a>
-      
-        <a class="archive-link" href="/archives/2022/03 ">
-          三月 2022 
-          <div class="archive-count">4 </div>
-        </a>
-      
-    </div>
-  </div>
-
-
-    
-      
-  <div class="widget-wrap">
-    <div class="widget">
-      <h3 class="widget-title">最新文章</h3>
-      <ul>
-        
-          <a class="recent-link" href="/2025/04/20/250420/" title="冈萨雷斯 《数字图像处理》Study Log (2) 空间域图像增强" >
-            <div class="recent-link-text">
-              冈萨雷斯 《数字图像处理》Study Log (2) 空间域图像增强
-            </div>
-          </a>
-        
-          <a class="recent-link" href="/2025/03/28/250328/" title="冈萨雷斯 《数字图像处理》Study Log (1) 图像技术基础" >
-            <div class="recent-link-text">
-              冈萨雷斯 《数字图像处理》Study Log (1) 图像技术基础
-            </div>
-          </a>
-        
-          <a class="recent-link" href="/2025/03/27/250327/" title="Hexo博客插入数学公式" >
-            <div class="recent-link-text">
-              Hexo博客插入数学公式
-            </div>
-          </a>
-        
-          <a class="recent-link" href="/2025/03/06/250306/" title="Harvard CS50 Study Log" >
-            <div class="recent-link-text">
-              Harvard CS50 Study Log
-            </div>
-          </a>
-        
-          <a class="recent-link" href="/2025/02/26/250226/" title="基于MLX90640的手持红外热成像仪" >
-            <div class="recent-link-text">
-              基于MLX90640的手持红外热成像仪
-            </div>
-          </a>
-        
-      </ul>
-    </div>
-  </div>
-
-    
   </div>
 </sidebar>
     </div>
@@ -281,6 +185,16 @@
 <article id="post-250226" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
     
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img" rel="gallery_cmalxkvq50010n8uq1kdtbv8j">
+        <img src="/images/thermal_camera/thermal_camera1.webp" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
    
   <div class="article-inner">
     <div class="article-main">
@@ -334,21 +248,24 @@
 <li>留了串口测试点和烧录测试点</li>
 </ul>
 <center>
-    <img src="/images/tc_board1.webp" width="800">
+    <img src="/images/thermal_camera/tc_board1.webp" width="800">
 </center>
+
 
 <h4 id="BOARD2-POWER"><a href="#BOARD2-POWER" class="headerlink" title="BOARD2: POWER"></a>BOARD2: POWER</h4><ul>
 <li>3.7V锂电池供电，可通过USB接口经过LGS4084H电源管理芯片给锂电池充电</li>
 <li>经过一个LDO稳到3.3V给MCU整体供电，VDDA和VCC用磁珠滤波隔离了一下</li>
 </ul>
 <center>
-    <img src="/images/tc_board2.webp" width="800">
+    <img src="/images/thermal_camera/tc_board2.webp" width="800">
 </center>
+
 
 <p>电源板后续涉及锂电池供电DIY的倒是可以继续沿用</p>
 <center>
-    <img src="/images/battery.webp" width="600">
+    <img src="/images/thermal_camera/battery.webp" width="600">
 </center>
+
 
 <p>立创打样PCB，自己贴片，PCB板框留了一些M3螺孔方便组装。</p>
 <h3 id="软件部分"><a href="#软件部分" class="headerlink" title="软件部分"></a><strong>软件部分</strong></h3><p>通讯接口涉及IIC与SPI，以及图像测试的时候用了一下UART，均比较基础。使用硬件IIC进行传感器模组与MCU间的通信，模组官方提供了接口可调用，可读取温度值。RGB转换用了开源的函数：</p>
@@ -433,8 +350,9 @@
 <p>整体软件部分比较清晰，本来想加一些按键交互，修改颜色范围，存储图片到外部flash之类的功能，然后懒了。</p>
 <p>后续学了操作系统和LVGL库之后再搞点好玩的吧，感觉大部分DIY应用裸机完全够了…</p>
 <center>
-    <img src="/images/theramal_camera.webp" width="600">
+    <img src="/images/thermal_camera/theramal_camera.webp" width="600">
 </center>
+
 
 <h3 id="小问题合集："><a href="#小问题合集：" class="headerlink" title="小问题合集："></a><strong>小问题合集：</strong></h3><h3 id="problem1：使用ST-Link下载过一次程序后发现无法继续下载"><a href="#problem1：使用ST-Link下载过一次程序后发现无法继续下载" class="headerlink" title="problem1：使用ST-Link下载过一次程序后发现无法继续下载"></a><strong>problem1：使用ST-Link下载过一次程序后发现无法继续下载</strong></h3><ol>
 <li>检查设备管理器，确保有正确的ST-Link驱动</li>
@@ -442,8 +360,9 @@
 <li>检查引脚配置，发现问题：</li>
 </ol>
 <center>
-    <img src="/images/stlink_problem.webp" width="400">
+    <img src="/images/thermal_camera/stlink_problem.webp" width="400">
 </center>
+
 
 <p>​    配置的IIC通信引脚占用了SWD下载引脚<em>（STM32默认的PA13 &amp;PA14）</em>，引脚输入输出模式不适配，显然后续无法下载，遂改之，问题解决。（图示仅供参考）</p>
 <h3 id="problem2：HardFault中断触发"><a href="#problem2：HardFault中断触发" class="headerlink" title="problem2：HardFault中断触发"></a><strong>problem2：HardFault中断触发</strong></h3><p>栈空间不足，多分配点就ok</p>

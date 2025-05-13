@@ -249,14 +249,14 @@ mjx-container[display="true"] + br {
     <div class="widget">
       <h3 class="widget-title">分类</h3>
       <div class="category-box">
-            <a class="category-link" href="/categories/Being/">
-                Being
-                <div class="category-count">6</div>
-            </a>
-        
             <a class="category-link" href="/categories/DIY/">
                 DIY
                 <div class="category-count">5</div>
+            </a>
+        
+            <a class="category-link" href="/categories/Being/">
+                Being
+                <div class="category-count">6</div>
             </a>
         
             <a class="category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
@@ -277,98 +277,6 @@ mjx-container[display="true"] + br {
     </div>
   </div>
 
-
-    
-      
-  <div class="widget-wrap">
-    <div class="widget">
-      <h3 class="widget-title">归档</h3>
-      
-      
-        <a class="archive-link" href="/archives/2025/04 ">
-          四月 2025 
-          <div class="archive-count">1 </div>
-        </a>
-      
-        <a class="archive-link" href="/archives/2025/03 ">
-          三月 2025 
-          <div class="archive-count">3 </div>
-        </a>
-      
-        <a class="archive-link" href="/archives/2025/02 ">
-          二月 2025 
-          <div class="archive-count">3 </div>
-        </a>
-      
-        <a class="archive-link" href="/archives/2024/11 ">
-          十一月 2024 
-          <div class="archive-count">1 </div>
-        </a>
-      
-        <a class="archive-link" href="/archives/2024/10 ">
-          十月 2024 
-          <div class="archive-count">1 </div>
-        </a>
-      
-        <a class="archive-link" href="/archives/2024/09 ">
-          九月 2024 
-          <div class="archive-count">2 </div>
-        </a>
-      
-        <a class="archive-link" href="/archives/2023/12 ">
-          十二月 2023 
-          <div class="archive-count">2 </div>
-        </a>
-      
-        <a class="archive-link" href="/archives/2022/03 ">
-          三月 2022 
-          <div class="archive-count">4 </div>
-        </a>
-      
-    </div>
-  </div>
-
-
-    
-      
-  <div class="widget-wrap">
-    <div class="widget">
-      <h3 class="widget-title">最新文章</h3>
-      <ul>
-        
-          <a class="recent-link" href="/2025/04/20/250420/" title="冈萨雷斯 《数字图像处理》Study Log (2) 空间域图像增强" >
-            <div class="recent-link-text">
-              冈萨雷斯 《数字图像处理》Study Log (2) 空间域图像增强
-            </div>
-          </a>
-        
-          <a class="recent-link" href="/2025/03/28/250328/" title="冈萨雷斯 《数字图像处理》Study Log (1) 图像技术基础" >
-            <div class="recent-link-text">
-              冈萨雷斯 《数字图像处理》Study Log (1) 图像技术基础
-            </div>
-          </a>
-        
-          <a class="recent-link" href="/2025/03/27/250327/" title="Hexo博客插入数学公式" >
-            <div class="recent-link-text">
-              Hexo博客插入数学公式
-            </div>
-          </a>
-        
-          <a class="recent-link" href="/2025/03/06/250306/" title="Harvard CS50 Study Log" >
-            <div class="recent-link-text">
-              Harvard CS50 Study Log
-            </div>
-          </a>
-        
-          <a class="recent-link" href="/2025/02/26/250226/" title="基于MLX90640的手持红外热成像仪" >
-            <div class="recent-link-text">
-              基于MLX90640的手持红外热成像仪
-            </div>
-          </a>
-        
-      </ul>
-    </div>
-  </div>
 
     
   </div>
@@ -711,7 +619,7 @@ Time Complexity is an important metric used to measure the relationship between 
     
      
     <a class="right-panel  with-pic  "
-       style="background-image: url(/images/CS50_pic.webp)" 
+       style="background-image: url(/images/cs50/CS50_pic.webp)" 
       href="/2025/03/06/250306/" 
     >
        
@@ -792,6 +700,7 @@ BOARD1: MCU与外设
     
 
 
+
 BOARD2: POWER
 3.7V锂电池供电，可通过USB接口经过LGS4084H电源管理芯片给锂电池充电
 经过一个LDO稳到3.3V给MCU整体供电，VDDA和VCC用磁珠滤波隔离了一下
@@ -800,12 +709,14 @@ BOARD2: POWER
     
 
 
+
 电源板后续涉及锂电池供电DIY的倒是可以继续沿用
 
     
 
 
-立创打样PCB，自己贴片，PCB板框留了一...
+
+立创打样PCB，自己贴片，PCB板框...
             
           </div>
         
@@ -815,12 +726,14 @@ BOARD2: POWER
     </div>
     
      
-    <a class="right-panel  non-pic  "
-      
+    <a class="right-panel  with-pic  "
+       style="background-image: url(/images/thermal_camera/thermal_camera1.webp)" 
       href="/2025/02/26/250226/" 
     >
        
-      <i class="fa-solid fa-angle-right non-pic"></i>
+      <div class="overlay">
+        <i class="fa-solid fa-angle-right with-pic"></i>
+      </div>
        
     </a>
      
@@ -885,6 +798,7 @@ BOARD2: POWER
     
 
 
+
 刷机需要一根网线，PC，以及变砖的路由器
 步骤如下：
 
@@ -897,11 +811,13 @@ BOARD2: POWER
 
 
 
+
 用工具按住路由器的reset键后通电源，这一步非常像之前给单片机内部flash进行ISP下载程序的步骤，因此感觉很熟悉
 待指示灯闪烁后松开reset键，固件开始下载
 
 
     
+
 
 
 
@@ -1060,12 +976,14 @@ For Record在2023年我看到一些博主，使用一种叫手账的方式记录
     </div>
     
      
-    <a class="right-panel  non-pic  "
-      
+    <a class="right-panel  with-pic  "
+       style="background-image: url(/images/embeded_sys/notes.webp)" 
       href="/2024/11/21/241121/" 
     >
        
-      <i class="fa-solid fa-angle-right non-pic"></i>
+      <div class="overlay">
+        <i class="fa-solid fa-angle-right with-pic"></i>
+      </div>
        
     </a>
      
