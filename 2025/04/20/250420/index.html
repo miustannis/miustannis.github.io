@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://miustannis.github.io/images/dip/dip2_9.webp">
 <meta property="og:image" content="https://miustannis.github.io/images/dip/dip2_10.webp">
 <meta property="article:published_time" content="2025-04-20T03:38:44.000Z">
-<meta property="article:modified_time" content="2025-05-12T13:34:37.580Z">
+<meta property="article:modified_time" content="2025-05-13T02:16:31.080Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="图像处理">
 <meta name="twitter:card" content="summary">
@@ -153,14 +153,14 @@
     <div class="widget">
       <h3 class="widget-title">分类</h3>
       <div class="category-box">
-            <a class="category-link" href="/categories/DIY/">
-                DIY
-                <div class="category-count">5</div>
-            </a>
-        
             <a class="category-link" href="/categories/Being/">
                 Being
                 <div class="category-count">6</div>
+            </a>
+        
+            <a class="category-link" href="/categories/DIY/">
+                DIY
+                <div class="category-count">5</div>
             </a>
         
             <a class="category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
@@ -314,7 +314,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            4k 词 
+            4.9k 词 
           </div>
         </div>
         
@@ -527,16 +527,18 @@
 <center>
     <img src="/images/dip/dip2_8.webp" , width="400">
 </center>
+**图像锐化：**
 
-<p><strong>图像锐化：</strong></p>
-<p>补偿图像的轮廓，突出图像中物体的边缘或细节，使得图像更为清晰</p>
-<ul>
-<li>思想：图像模糊的原因——图像被平均或积分，因此为实现图像的锐化，需要进行反运算“微分”——&gt;以此增强高频分量，使图像边缘变得清晰，但同时也增强了噪声</li>
-<li>条件：原始图像信噪比质量要高</li>
-<li>边缘检测原理：图像中物体边缘是灰度值发生突变的地方，常用差分或者梯度计算来检测边缘</li>
-</ul>
-<p><strong>基本高通滤波设计原则：</strong></p>
-<p>1)系数中心为正值，外周为负值 2)滤波器各系数之和为0</p>
+补偿图像的轮廓，突出图像中物体的边缘或细节，使得图像更为清晰
+
+- 思想：图像模糊的原因——图像被平均或积分，因此为实现图像的锐化，需要进行反运算“微分”——>以此增强高频分量，使图像边缘变得清晰，但同时也增强了噪声
+- 条件：原始图像信噪比质量要高
+- 边缘检测原理：图像中物体边缘是灰度值发生突变的地方，常用差分或者梯度计算来检测边缘
+
+**基本高通滤波设计原则：**
+
+1)系数中心为正值，外周为负值 2)滤波器各系数之和为0
+
 <center>
     <img src="/images/dip/dip2_9.webp" , width="400">
 </center>
@@ -561,6 +563,85 @@
 <center>
     <img src="/images/dip/dip2_10.webp" , width="400">
 </center>
+
+
+<p>同时用<strong>绝对值</strong>来近似<strong>平方和</strong>的表达</p>
+<p>如上图所示两种方法，第一种是用4-邻域进行近似，第二种是交叉差(Roberts梯度法)</p>
+<h5 id="微分滤波器模板系数设计"><a href="#微分滤波器模板系数设计" class="headerlink" title="微分滤波器模板系数设计"></a>微分滤波器模板系数设计</h5><ul>
+<li>Roberts交叉梯度算子</li>
+</ul>
+  <center>
+      $H_{0}=\left[\begin{array}{ccc}
+  1 & 0  \\
+  0 & -1 
+  \end{array}\right],
+      H_{1}=\left[\begin{array}{ccc}
+  0 & 1  \\
+  -1 & 0 
+  \end{array}\right]$
+  </center>
+
+<ul>
+<li><p>Prewitt梯度算子</p>
+<center>
+    $H_{0}=\left[\begin{array}{ccc}
+-1 & -1 & -1  \\
+0 & 0 & 0 \\
+1 & 1 & 1
+\end{array}\right],
+    H_{1}=\left[\begin{array}{ccc}
+-1 & 0 & 1  \\
+-1 & 0 & 1 \\
+-1 & 0 & 1
+\end{array}\right]$
+</center>
+</li>
+<li><p>Sobel梯度算子：有一定的平滑作用</p>
+<center>
+    $H_{0}=\left[\begin{array}{ccc}
+-1 & -2 & -1  \\
+0 & 0 & 0 \\
+1 & 2 & 1
+\end{array}\right],
+    H_{1}=\left[\begin{array}{ccc}
+-1 & 0 & 1  \\
+-2 & 0 & 2 \\
+-1 & 0 & 1
+\end{array}\right]$
+</center>
+</li>
+<li><p>Scharr梯度算子：更加精确</p>
+<center>
+    $H_{0}=\left[\begin{array}{ccc}
+-3 & -10 & -3  \\
+0 & 0 & 0 \\
+3 & 10 & 3
+\end{array}\right],
+    H_{1}=\left[\begin{array}{ccc}
+-3 & 0 & 3  \\
+-10 & 0 & 10 \\
+-3 & 0 & 3
+\end{array}\right]$
+</center>
+
+</li>
+</ul>
+<p>所有锐化算子的系数之和为0</p>
+<p>拉普拉斯算子：求二阶微分，适用于改善因为光线的漫反射造成的图像模糊</p>
+<font color="Blue">应用</font>
+
+<font color="Blue">经过梯度算子计算后的值：</font>
+
+<ol>
+<li><font color="Blue">若梯度大于25，则给原像素赋最大值255，否则赋原值——边增强且背景保留</font></li>
+<li><font color="Blue">若梯度大于25，则给原像素赋最大值255，否则赋0——边增强且图像二值化</font>
+
+</li>
+</ol>
+<p>&nbsp;</p>
+<h5 id="高增益滤波"><a href="#高增益滤波" class="headerlink" title="高增益滤波"></a>高增益滤波</h5><p>思想：弥补高通滤波的缺陷，在增强边缘和细节的同时，不丢失原图像的低频成分，即增加一部分原图像到高通之中，算子可在高通基础上增益</p>
+<p><strong>高通 = 原图 - 低通</strong></p>
+<p><strong>高增益  = A原图 - 低通</strong></p>
 
         
       </div>
