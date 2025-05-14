@@ -261,7 +261,7 @@ mjx-container[display="true"] + br {
         
             <a class="category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
                 学习记录
-                <div class="category-count">6</div>
+                <div class="category-count">7</div>
             </a>
         </div>
     </div>
@@ -377,6 +377,93 @@ $γ&gt;1$时在正比函数下方，使得图像变暗，把输入窄带亮值�
     <a class="right-panel  non-pic  "
       
       href="/2025/04/20/250420/" 
+    >
+       
+      <i class="fa-solid fa-angle-right non-pic"></i>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+
+
+
+
+
+   
+
+
+<article id="post-250514" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2025/04/20/250514/">冈萨雷斯 《数字图像处理》Study Log (3) 频域图像增强</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2025-04-20T03:38:44.000Z" itemprop="datePublished">2025-04-20</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            2.7k 词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">图像处理</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="truncate-text">
+            
+              Ch4 频域图像增强理论基础空间域图像变换到频域的具体实现——图像离散傅里叶变换与反变换
+频域图像的表达特点——经过中心变换后，低频位于中心，高频在外
+空间频率的定义：图像灰度值随空间坐标变化的快慢也可以用频率来度量，称为空间频率
+二维卷积对于二维平面函数，二维卷积定义：
+
+    $ h(x, y)=f^{*} g=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} f(u, v) g(x-u, y-v) d u d v $
+
+
+*注：
+深度学习中，CNN中的卷积其实是“互相关运算”，即kernel不翻转，与上面的二维卷积定义无法完全对应。
+在数字图像中，需要离散化，离散二维卷积：
+
+    $ h(x, y)=f^{*} g=\sum_{m} \sum_{n} f(m, n) g(x-m, y-n) $
+
+
+二维离散傅里叶变换\begin{array}{l}F(u, v)=\frac{1}{M N} \sum_{x=0}^{M-1} \sum_{y=0}^{N-1} f(x, y) \mathrm{e}^{[-\mathrm{j} 2...
+            
+          </div>
+        
+      </div>
+
+         
+    </div>
+    
+     
+    <a class="right-panel  non-pic  "
+      
+      href="/2025/04/20/250514/" 
     >
        
       <i class="fa-solid fa-angle-right non-pic"></i>
@@ -926,76 +1013,6 @@ For Record在2023年我看到一些博主，使用一种叫手账的方式记录
 
 
 
-   
-
-
-<article id="post-241121" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2024/11/21/241121/">STM32配置笔记参考</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2024-11-21T10:45:34.000Z" itemprop="datePublished">2024-11-21</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-  <a class="meta-cate-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a>
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            70 词 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <p>大二学习STM32G4系列的笔记，upload当乐高说明书看</p>
-        
-      </div>
-
-         
-    </div>
-    
-     
-    <a class="right-panel  with-pic  "
-       style="background-image: url(/images/embeded_sys/notes.webp)" 
-      href="/2024/11/21/241121/" 
-    >
-       
-      <div class="overlay">
-        <i class="fa-solid fa-angle-right with-pic"></i>
-      </div>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
-
-
-
-
-
 
   <nav id="page-nav">
     <!-- 在第二页时 page.prev_link 不知为何无法返回正确的链接 -->
@@ -1049,22 +1066,5 @@ For Record在2023年我看到一些博主，使用一种叫手账的方式记录
 
   </div>
   <script src="/js/light-dark-switch.js"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-
 </body>
 </html>

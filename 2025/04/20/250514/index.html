@@ -14,23 +14,27 @@
   
 
   
-  <title>About | Miao&#39;s Blog</title>
+  <title>冈萨雷斯 《数字图像处理》Study Log (3) 频域图像增强 | Miao&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
-  <meta name="description" content="Education：B.Eng.    Electrical Engineering and Automation    Soochow University  Hobbies：STEM ( Math | Engineering ) ART ( Music | Painting | Movies | Video Games ) DIY ( Model Crafting | Electronic P">
-<meta property="og:type" content="website">
-<meta property="og:title" content="About">
-<meta property="og:url" content="https://miustannis.github.io/about/index.html">
+  <meta name="description" content="Ch4 频域图像增强理论基础空间域图像变换到频域的具体实现——图像离散傅里叶变换与反变换 频域图像的表达特点——经过中心变换后，低频位于中心，高频在外 空间频率的定义：图像灰度值随空间坐标变化的快慢也可以用频率来度量，称为空间频率 二维卷积对于二维平面函数，二维卷积定义：      $ h(x, y)&#x3D;f^{*} g&#x3D;\int_{-\infty}^{\infty}\int_{-\infty}^{\">
+<meta property="og:type" content="article">
+<meta property="og:title" content="冈萨雷斯 《数字图像处理》Study Log (3) 频域图像增强">
+<meta property="og:url" content="https://miustannis.github.io/2025/04/20/250514/index.html">
 <meta property="og:site_name" content="Miao&#39;s Blog">
-<meta property="og:description" content="Education：B.Eng.    Electrical Engineering and Automation    Soochow University  Hobbies：STEM ( Math | Engineering ) ART ( Music | Painting | Movies | Video Games ) DIY ( Model Crafting | Electronic P">
+<meta property="og:description" content="Ch4 频域图像增强理论基础空间域图像变换到频域的具体实现——图像离散傅里叶变换与反变换 频域图像的表达特点——经过中心变换后，低频位于中心，高频在外 空间频率的定义：图像灰度值随空间坐标变化的快慢也可以用频率来度量，称为空间频率 二维卷积对于二维平面函数，二维卷积定义：      $ h(x, y)&#x3D;f^{*} g&#x3D;\int_{-\infty}^{\infty}\int_{-\infty}^{\">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-03-23T16:01:54.000Z">
-<meta property="article:modified_time" content="2025-05-13T02:52:25.341Z">
+<meta property="og:image" content="https://miustannis.github.io/images/dip/dip3_1.webp">
+<meta property="og:image" content="https://miustannis.github.io/images/dip/dip3_2.webp">
+<meta property="article:published_time" content="2025-04-20T03:38:44.000Z">
+<meta property="article:modified_time" content="2025-05-14T03:54:18.940Z">
 <meta property="article:author" content="miao">
+<meta property="article:tag" content="图像处理">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://miustannis.github.io/images/dip/dip3_1.webp">
   
     <link rel="alternate" href="/atom.xml" title="Miao's Blog" type="application/atom+xml">
   
@@ -178,7 +182,9 @@
        
 
 
-<article id="about-" class="h-entry article article-type-about" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+<article id="post-250514" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
    
   <div class="article-inner">
     <div class="article-main">
@@ -189,7 +195,7 @@
   
     
       <h1 class="p-name article-title" itemprop="headline name">
-        About
+        冈萨雷斯 《数字图像处理》Study Log (3) 频域图像增强
       </h1>
     
   
@@ -197,40 +203,106 @@
 
         <div class='meta-info-bar'>
           <div class="meta-info">
-  <time class="dt-published" datetime="2022-03-23T16:01:54.000Z" itemprop="datePublished">2022-03-24</time>
+  <time class="dt-published" datetime="2025-04-20T03:38:44.000Z" itemprop="datePublished">2025-04-20</time>
 </div>
           <div class="need-seperator meta-info">
             <div class="meta-cate-flex">
   
-    未分类 
+  <a class="meta-cate-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a>
    
 </div>
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            401 词 
+            2.7k 词 
           </div>
         </div>
         
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">图像处理</a></li></ul>
+
       </header>
       <div class="e-content article-entry" itemprop="articleBody">
         
-          <h2 id="Education："><a href="#Education：" class="headerlink" title="Education："></a><strong>Education：</strong></h2><p>B.Eng.    Electrical Engineering and Automation    Soochow University</p>
-<hr>
-<h2 id="Hobbies："><a href="#Hobbies：" class="headerlink" title="Hobbies："></a><strong>Hobbies：</strong></h2><p>STEM ( Math | Engineering )</p>
-<p>ART ( Music | Painting | Movies | Video Games )</p>
-<p>DIY ( Model Crafting | Electronic Products )</p>
-<hr>
-<h2 id="Current-Goals："><a href="#Current-Goals：" class="headerlink" title="Current Goals："></a><strong>Current Goals：</strong></h2><ul>
-<li>Get an Ph.D. </li>
-<li>publish 5 papers  (0/5)</li>
-<li>write a song by myself</li>
-</ul>
-<hr>
-<h2 id="Reasons-why-I-start-blogging："><a href="#Reasons-why-I-start-blogging：" class="headerlink" title="Reasons why I start blogging："></a><strong>Reasons why I start blogging：</strong></h2><p><u>LIFE NOTES:</u>    to record daily life</p>
-<p><u>TECH/STUDY NOTES:</u>    to discipline myself with Feynman Technique</p>
-<p><u>PROJ NOTES:</u>    to check learning progress and to provide a sense of fulfillment</p>
+          <h3 id="Ch4-频域图像增强"><a href="#Ch4-频域图像增强" class="headerlink" title="Ch4 频域图像增强"></a><strong>Ch4 频域图像增强</strong></h3><h4 id="理论基础"><a href="#理论基础" class="headerlink" title="理论基础"></a><strong>理论基础</strong></h4><p>空间域图像变换到频域的具体实现——<strong>图像离散傅里叶变换与反变换</strong></p>
+<p>频域图像的表达特点——<strong>经过中心变换后，低频位于中心，高频在外</strong></p>
+<p>空间频率的定义：图像灰度值随空间坐标变化的快慢也可以用频率来度量，称为<strong>空间频率</strong></p>
+<h5 id="二维卷积"><a href="#二维卷积" class="headerlink" title="二维卷积"></a>二维卷积</h5><p>对于二维平面函数，二维卷积定义：</p>
+<center>
+    $ h(x, y)=f^{*} g=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} f(u, v) g(x-u, y-v) d u d v $
+</center>
 
+<p><strong>*注：</strong></p>
+<p>深度学习中，CNN中的<font color="red">卷积</font>其实是“互相关运算”，即kernel不翻转，与上面的二维卷积定义无法完全对应。</p>
+<p>在数字图像中，需要离散化，离散二维卷积：</p>
+<center>
+    $ h(x, y)=f^{*} g=\sum_{m} \sum_{n} f(m, n) g(x-m, y-n) $
+</center>
+
+<h5 id="二维离散傅里叶变换"><a href="#二维离散傅里叶变换" class="headerlink" title="二维离散傅里叶变换"></a>二维离散傅里叶变换</h5><p>\begin{array}{l}<br>F(u, v)=\frac{1}{M N} \sum_{x=0}^{M-1} \sum_{y=0}^{N-1} f(x, y) \mathrm{e}^{[-\mathrm{j} 2 \pi(u x / M+v y / N)]} \\<br>f(x, y)=\sum_{u=0}^{M-1} \sum_{v=0}^{N-1} F(u, v) \mathrm{e}^{[\mathrm{j} 2 \pi(u x / M+v y / N)]}<br>\end{array}</p>
+<p>M，N表示图像在x，y方向上的大小</p>
+<h5 id="基本性质"><a href="#基本性质" class="headerlink" title="基本性质"></a><strong>基本性质</strong></h5><ul>
+<li><p><strong>可分离性：</strong>可以将二维DFT转换成一维计算，先做一个方向上的：</p>
+<p>\begin{aligned}<br>F(u, v) &amp; =\frac{1}{N^{2}} \sum_{x=0}^{N-1} \mathrm{e}^{-\mathrm{j} 2 \pi u x / N} \bullet \sum_{y=0}^{N-1} f(x, y) \mathrm{e}^{-\mathrm{j} 2 \pi v y / N} \\<br>f(x, y) &amp; =\sum_{u=0}^{N-1} \mathrm{e}^{-\mathrm{j} 2 \pi u x / N} \bullet \sum_{v=0}^{N-1} F(u, v) \mathrm{e}^{-\mathrm{j} 2 \pi v y / N}<br>\end{aligned}</p>
+<p>再做第二个方向上的：</p>
+<p>\begin{array}{l}<br>F(u, v)=F_{x}\left\{F_{y}[f(x, y)]\right\}=F_{y}\left\{F_{x}[f(x, y)]\right\} \\<br>f(x, y)=F_{u}^{-1}\left\{F_{v}^{-1}[F(u, v)]\right\}=F_{v}^{-1}\left\{F_{u}^{-1}[F(u, v)]\right\} \\<br>F(u, v)=\frac{1}{N} \sum_{x=0}^{N-1} F(x, v) \mathrm{e}^{-\mathrm{j} 2 \pi u x / N} \\<br>\text { 其中: } F(x, v)=N\left[\frac{1}{N} \sum_{y=0}^{N-1} f(x, y) \mathrm{e}^{-\mathrm{j} 2 \pi v x / N}\right]<br>\end{array}</p>
+</li>
+<li><p><strong>平移性</strong>——&gt;图像中心化</p>
+<p>\begin{aligned}<br>f(x, y) e^{j 2 \pi\left(\frac{u_{0} x}{M}+\frac{v_{0} y}{N}\right)} &amp; \Leftrightarrow F\left(u-u_{0}, v-v_{0}\right) \\<br>f\left(x-x_{0}, y-y_{0}\right) &amp; \Leftrightarrow F(u, v) e^{-j 2 \pi\left(\frac{u x_{0}}{M}+\frac{v y_{0}}{N}\right)}<br>\end{aligned}</p>
+<p>第一个公式表明，将f(x,y)与一个指数项相乘就相当于把其变换后的频域中心移动到新的位置。</p>
+<p>第二个公式表明，将F(u,v)与一个指数项相乘，相当于把其变换后的空间域中心移动到新的位置。</p>
+<p>同时可以看出，对f(x,y)的平移不会影响其傅里叶变换的幅值，将u0 = M/2 和 v0 = N/2代入公式，指数部分就变成：$e^{j 2 \pi\left(\frac{u_{0} x}{M}+\frac{\nu_{0} y}{N}\right)}=e^{j \pi(x+y)}=(-1)^{(x+y)} $</p>
+<p>代入上面的公式有：</p>
+<p>\begin{array}{ll}<br>f(x, y)(-1)^{(x+y)} &amp; \Leftrightarrow F(u-M / 2, v-N / 2) \\<br>f(x-M / 2, y-N / 2) &amp; \Leftrightarrow F(u, v)(-1)^{(u+v)}<br>\end{array}</p>
+<p>因此有结论，对数字图像的每一个像素点的取值直接乘上$(-1)^{x+y}$，之后在做傅里叶变换，可以得到中心化后的频域图。这和在频域移动M/2和N/2是一样的效果。 </p>
+<center>
+    <img src="/images/dip/dip3_1.webp" , width="400">
+</center>
+
+
+
+</li>
+</ul>
+<ul>
+<li><strong>周期性：</strong>DFT和他的逆变换是以M，N为周期的</li>
+<li><strong>共轭对称性</strong></li>
+<li><strong>旋转不变性</strong></li>
+<li><strong>加法有分配性，乘法有比例性</strong></li>
+<li><strong>平均值：</strong>将$u = v = 0$代入二维DFT公式，可得原图像均值就是该DFT在$(0,0)$处的值</li>
+</ul>
+<h5 id="DFT的问题"><a href="#DFT的问题" class="headerlink" title="DFT的问题"></a>DFT的问题</h5><p>计算量大，收敛慢</p>
+<p>引入<strong>FFT</strong>：对于任何N = 2m的DFT，通过计算两个N/2的DFT，来计算N的DFT</p>
+<p>有按位倒序排列等方法</p>
+<p><strong>小结：</strong>二维离散傅里叶变换在图像处理中是一个比较基本的数学工具，利用这个工具，可以对图像的频谱进行各种各样的处理，比如滤波、降噪、增强等。</p>
+<p>除离散傅里叶变换之外，还有沃尔什和哈达玛变换这两种重要的正交变换，他们将信号从时域或者空间域转换到一种由二进制函数(如矩形波)构成的频域，类似于傅里叶变换，但计算更加高效(只涉及加减运算，无需复数运算)</p>
+<p>&nbsp;</p>
+<h4 id="频域图像增强"><a href="#频域图像增强" class="headerlink" title="频域图像增强"></a>频域图像增强</h4><p>有了二维离散傅里叶变换的基础，下面可以考虑具体的应用了</p>
+<h5 id="一般步骤"><a href="#一般步骤" class="headerlink" title="一般步骤"></a>一般步骤</h5><p>有被处理图像f(x,y)， 变换函数h(x,y)，以及最终的目标图像g(x,y)</p>
+<ul>
+<li><font color="blue">首先对上述原始图像进行线性位置操作，比如利用DFT的平移性质进行图像中心化</font>
+</li>
+<li><font color="blue">然后根据自己的需求确定变换函数</font>
+</li>
+<li><font color="blue">空间域的卷积等于频域的乘积</font>
+
+<font color="blue">$g(x,y) = h(x,y)* f(x,y),G(u,v) = H(u,v)F(u,v)$</font>
+</li>
+<li><font color="blue">最后对目标图像的傅里叶变换进行傅里叶反变换</font><font color="green">(也利用平移性质，具体可见上一小节的公式)</font><font color="blue">，即可得到目标图像的空间域信号</font>
+
+
+
+</li>
+</ul>
+<center>
+    <img src="/images/dip/dip3_2.webp" , width="600">
+</center>
+
+
+
+<h5 id="频域平面与图像空域特性的关系"><a href="#频域平面与图像空域特性的关系" class="headerlink" title="频域平面与图像空域特性的关系"></a>频域平面与图像空域特性的关系</h5><ul>
+<li>图像变化平缓的部分(低频区域)靠近频率平面的圆心</li>
+<li>图像中边界，噪声，变化陡峭的部分，以放射方向离开频率平面的圆心，称为高频区域</li>
+</ul>
+<h5 id="滤波器"><a href="#滤波器" class="headerlink" title="滤波器"></a>滤波器</h5>
         
       </div>
 
@@ -241,6 +313,34 @@
   </div>
   
     
+<nav id="article-nav">
+  <a class="article-nav-btn left "
+    
+      href="/2025/04/20/250420/"
+      title="冈萨雷斯 《数字图像处理》Study Log (2) 空间域图像增强"
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+      
+        冈萨雷斯 《数字图像处理》Study Log (2) 空间域图像增强
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2025/03/28/250328/"
+      title="冈萨雷斯 《数字图像处理》Study Log (1) 图像技术基础"
+     >
+
+    <p class="title-text">
+      
+        冈萨雷斯 《数字图像处理》Study Log (1) 图像技术基础
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
 
   
 </article>
