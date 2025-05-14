@@ -6,7 +6,7 @@
   <link href="https://miustannis.github.io/atom.xml" rel="self"/>
   
   <link href="https://miustannis.github.io/"/>
-  <updated>2025-05-14T07:41:43.160Z</updated>
+  <updated>2025-05-14T08:46:59.532Z</updated>
   <id>https://miustannis.github.io/</id>
   
   <author>
@@ -17,9 +17,30 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>手持红外热成像仪V2.0-TinyML嵌入轻量级神经网络(on going)</title>
+    <link href="https://miustannis.github.io/2025/05/10/250510/"/>
+    <id>https://miustannis.github.io/2025/05/10/250510/</id>
+    <published>2025-05-10T02:05:52.000Z</published>
+    <updated>2025-05-14T08:46:59.532Z</updated>
+    
+    
+    
+    
+    <category term="DIY" scheme="https://miustannis.github.io/categories/DIY/"/>
+    
+    
+    <category term="嵌入式" scheme="https://miustannis.github.io/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    <category term="C" scheme="https://miustannis.github.io/tags/C/"/>
+    
+    <category term="Algorithm" scheme="https://miustannis.github.io/tags/Algorithm/"/>
+    
+  </entry>
+  
+  <entry>
     <title>冈萨雷斯 《数字图像处理》Study Log (3) 频域图像增强</title>
-    <link href="https://miustannis.github.io/2025/04/25/250514/"/>
-    <id>https://miustannis.github.io/2025/04/25/250514/</id>
+    <link href="https://miustannis.github.io/2025/04/25/250425/"/>
+    <id>https://miustannis.github.io/2025/04/25/250425/</id>
     <published>2025-04-25T03:38:44.000Z</published>
     <updated>2025-05-14T07:41:43.160Z</updated>
     
@@ -104,28 +125,6 @@
     <category term="html" scheme="https://miustannis.github.io/tags/html/"/>
     
     <category term="Hexo" scheme="https://miustannis.github.io/tags/Hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Harvard CS50 Study Log</title>
-    <link href="https://miustannis.github.io/2025/03/06/250306/"/>
-    <id>https://miustannis.github.io/2025/03/06/250306/</id>
-    <published>2025-03-06T12:39:18.000Z</published>
-    <updated>2025-05-13T02:37:58.393Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;Lecture-0-Scratch&quot;&gt;&lt;a href=&quot;#Lecture-0-Scratch&quot; class=&quot;headerlink&quot; title=&quot;Lecture 0 Scratch&quot;&gt;&lt;/a&gt;&lt;strong&gt;Lecture 0 Scratch&lt;/strong&gt;&lt;</summary>
-      
-    
-    
-    
-    <category term="学习记录" scheme="https://miustannis.github.io/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"/>
-    
-    
-    <category term="CS" scheme="https://miustannis.github.io/tags/CS/"/>
     
   </entry>
   

@@ -23,7 +23,7 @@
   <meta name="description" content="Ch4 频域图像增强理论基础空间域图像变换到频域的具体实现——图像离散傅里叶变换与反变换 频域图像的表达特点——经过中心变换后，低频位于中心，高频在外 空间频率的定义：图像灰度值随空间坐标变化的快慢也可以用频率来度量，称为空间频率 二维卷积对于二维平面函数，二维卷积定义：      $ h(x, y)&#x3D;f^{*} g&#x3D;\int_{-\infty}^{\infty}\int_{-\infty}^{\">
 <meta property="og:type" content="article">
 <meta property="og:title" content="冈萨雷斯 《数字图像处理》Study Log (3) 频域图像增强">
-<meta property="og:url" content="https://miustannis.github.io/2025/04/25/250514/index.html">
+<meta property="og:url" content="https://miustannis.github.io/2025/04/25/250425/index.html">
 <meta property="og:site_name" content="Miao&#39;s Blog">
 <meta property="og:description" content="Ch4 频域图像增强理论基础空间域图像变换到频域的具体实现——图像离散傅里叶变换与反变换 频域图像的表达特点——经过中心变换后，低频位于中心，高频在外 空间频率的定义：图像灰度值随空间坐标变化的快慢也可以用频率来度量，称为空间频率 二维卷积对于二维平面函数，二维卷积定义：      $ h(x, y)&#x3D;f^{*} g&#x3D;\int_{-\infty}^{\infty}\int_{-\infty}^{\">
 <meta property="og:locale" content="zh_CN">
@@ -153,7 +153,7 @@
         
             <a class="category-link" href="/categories/DIY/">
                 DIY
-                <div class="category-count">5</div>
+                <div class="category-count">6</div>
             </a>
         
             <a class="category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
@@ -170,7 +170,7 @@
   <div class="widget-wrap">
     <div class="widget">
       <h3 class="widget-title">标签</h3>
-      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/CS/" rel="tag">CS</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/MATLAB/" rel="tag">MATLAB</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/yaml/" rel="tag">yaml</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">图像处理</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%91%84%E5%BD%B1/" rel="tag">摄影</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%94%B9%E8%A3%85/" rel="tag">改装</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%BB%98%E7%94%BB/" rel="tag">绘画</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E8%87%AA%E8%A8%80%E8%87%AA%E8%AF%AD/" rel="tag">自言自语</a></li></ul>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/CS/" rel="tag">CS</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/MATLAB/" rel="tag">MATLAB</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/yaml/" rel="tag">yaml</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">图像处理</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%91%84%E5%BD%B1/" rel="tag">摄影</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%94%B9%E8%A3%85/" rel="tag">改装</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%BB%98%E7%94%BB/" rel="tag">绘画</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E8%87%AA%E8%A8%80%E8%87%AA%E8%AF%AD/" rel="tag">自言自语</a></li></ul>
     </div>
   </div>
 
@@ -183,7 +183,7 @@
        
 
 
-<article id="post-250514" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+<article id="post-250425" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
     
    
@@ -371,10 +371,15 @@
   
     
 <nav id="article-nav">
-  <a class="article-nav-btn left  disabled "
+  <a class="article-nav-btn left "
+    
+      href="/2025/05/10/250510/"
+      title="手持红外热成像仪V2.0-TinyML嵌入轻量级神经网络(on going)"
      >
     <i class="fa-solid fa-angle-left"></i>
     <p class="title-text">
+      
+        手持红外热成像仪V2.0-TinyML嵌入轻量级神经网络(on going)
         
     </p>
   </a>
