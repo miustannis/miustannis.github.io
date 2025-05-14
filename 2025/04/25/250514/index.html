@@ -23,14 +23,15 @@
   <meta name="description" content="Ch4 频域图像增强理论基础空间域图像变换到频域的具体实现——图像离散傅里叶变换与反变换 频域图像的表达特点——经过中心变换后，低频位于中心，高频在外 空间频率的定义：图像灰度值随空间坐标变化的快慢也可以用频率来度量，称为空间频率 二维卷积对于二维平面函数，二维卷积定义：      $ h(x, y)&#x3D;f^{*} g&#x3D;\int_{-\infty}^{\infty}\int_{-\infty}^{\">
 <meta property="og:type" content="article">
 <meta property="og:title" content="冈萨雷斯 《数字图像处理》Study Log (3) 频域图像增强">
-<meta property="og:url" content="https://miustannis.github.io/2025/04/20/250514/index.html">
+<meta property="og:url" content="https://miustannis.github.io/2025/04/25/250514/index.html">
 <meta property="og:site_name" content="Miao&#39;s Blog">
 <meta property="og:description" content="Ch4 频域图像增强理论基础空间域图像变换到频域的具体实现——图像离散傅里叶变换与反变换 频域图像的表达特点——经过中心变换后，低频位于中心，高频在外 空间频率的定义：图像灰度值随空间坐标变化的快慢也可以用频率来度量，称为空间频率 二维卷积对于二维平面函数，二维卷积定义：      $ h(x, y)&#x3D;f^{*} g&#x3D;\int_{-\infty}^{\infty}\int_{-\infty}^{\">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://miustannis.github.io/images/dip/dip3_1.webp">
 <meta property="og:image" content="https://miustannis.github.io/images/dip/dip3_2.webp">
-<meta property="article:published_time" content="2025-04-20T03:38:44.000Z">
-<meta property="article:modified_time" content="2025-05-14T03:54:18.940Z">
+<meta property="og:image" content="https://miustannis.github.io/images/dip/dip3_3.webp">
+<meta property="article:published_time" content="2025-04-25T03:38:44.000Z">
+<meta property="article:modified_time" content="2025-05-14T07:41:43.160Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="图像处理">
 <meta name="twitter:card" content="summary">
@@ -203,7 +204,7 @@
 
         <div class='meta-info-bar'>
           <div class="meta-info">
-  <time class="dt-published" datetime="2025-04-20T03:38:44.000Z" itemprop="datePublished">2025-04-20</time>
+  <time class="dt-published" datetime="2025-04-25T03:38:44.000Z" itemprop="datePublished">2025-04-25</time>
 </div>
           <div class="need-seperator meta-info">
             <div class="meta-cate-flex">
@@ -214,7 +215,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            2.7k 词 
+            3.8k 词 
           </div>
         </div>
         
@@ -259,7 +260,6 @@
 </center>
 
 
-
 </li>
 </ul>
 <ul>
@@ -302,7 +302,64 @@
 <li>图像变化平缓的部分(低频区域)靠近频率平面的圆心</li>
 <li>图像中边界，噪声，变化陡峭的部分，以放射方向离开频率平面的圆心，称为高频区域</li>
 </ul>
-<h5 id="滤波器"><a href="#滤波器" class="headerlink" title="滤波器"></a>滤波器</h5>
+<h5 id="滤波器"><a href="#滤波器" class="headerlink" title="滤波器"></a>滤波器</h5><h6 id="理想低通滤波器的定义"><a href="#理想低通滤波器的定义" class="headerlink" title="理想低通滤波器的定义"></a>理想低通滤波器的定义</h6><center>
+    $H(u, v)=\left\{\begin{array}{ll}
+1 & \operatorname{,D}(u, v) \leq D_{0} \\
+0 & \operatorname{,D}(u, v)>D_{0}
+\end{array}\right.$
+</center>
+
+<p>其中，D0为截止频率在频率平面内到原点的距离，D(u,v)为距离函数$D(u,v) = (u^2+v^2)^{\frac{1}{2}}$<br>不过因为是在频域，说是距离有些问题，应该可以把这个说成是水平空间频率u和垂直空间频率v组成的向量的模</p>
+<h6 id="理想低通滤波器的分析"><a href="#理想低通滤波器的分析" class="headerlink" title="理想低通滤波器的分析"></a>理想低通滤波器的分析</h6><ul>
+<li>整个能量的90%都被一个很小的小圆周包含，大部分尖锐的细节信息都存在于被去掉的10%的能量中</li>
+<li>被钝化的图像有一种非常严重的振铃效果</li>
+</ul>
+<h6 id="Butterworth低通滤波器"><a href="#Butterworth低通滤波器" class="headerlink" title="Butterworth低通滤波器"></a>Butterworth低通滤波器</h6><p>定义：一个截止频率在与原点距离为D0的n阶butterworth滤波器的变换函数如下：</p>
+<center>
+    $H(u, v)=\frac{1}{1+\left[D(u, v) / D_{0}\right]^{2 n}}$
+</center>
+
+<p>其中，D0为截止频率在频率平面内到原点的距离，D(u,v)为距离函数$D(u,v) = (u^2+v^2)^{\frac{1}{2}}$</p>
+<p>与理想低通滤波器的区别是，巴特沃斯低通滤波器在通带与被滤除的频率之间没有明显的截断，可以缓解振铃效果</p>
+<p>在某些文献中，巴特沃斯滤波器的传递函数可能是指数形式，例如：</p>
+<center>
+    $H(u, v)=e^{-\left(\frac{D(u, v)}{D_{0}}\right)^{2 n}}$
+</center>
+
+<p>这是因为在x较大时，两种传递函数的主体部分衰减的趋势相似，且指数形式在某些情况下计算更为方便。</p>
+<p>这时可以把巴特沃斯滤波器看作<strong>高斯滤波器</strong>的一种推广。</p>
+<h6 id="理想高通滤波器及其分析"><a href="#理想高通滤波器及其分析" class="headerlink" title="理想高通滤波器及其分析"></a>理想高通滤波器及其分析</h6><p>可根据低通滤波器特性类比</p>
+<h6 id="Butterworth高通滤波器"><a href="#Butterworth高通滤波器" class="headerlink" title="Butterworth高通滤波器"></a>Butterworth高通滤波器</h6><center>
+    $H(u, v)=\frac{1}{1+\left[{D}_{0} / {D}({u}, {v})\right]^{2 n}}$
+</center>
+
+<p>Butterworth高通滤波器的分析</p>
+<ul>
+<li>低频成分被严重地削弱，使图像失去层次</li>
+<li>改进措施：<ol>
+<li>加一个常数项到变换函数中</li>
+<li>为解决变暗地趋势，在变换后地图像上再进行一次直方图均衡化（后滤波处理）</li>
+</ol>
+</li>
+</ul>
+<h6 id="同形滤波器"><a href="#同形滤波器" class="headerlink" title="同形滤波器"></a>同形滤波器</h6><p>消除图像上照明不均的问题，增加暗区的图像细节，同时又不损失亮区的图像细节，它在频域中同时将亮度范围进行压缩，且将图像对比度进行增强</p>
+<p>首先，一个图像也可以用其亮度和反射分量的乘积来表示：</p>
+<center>
+    $f(x,y) = i(x,y)r(x,y)$
+</center>
+
+<p>同形滤波器针对上面两个分量，同时进行滤波处理，但因为两个函数乘积的傅里叶变换是不可以分离的，所以采用取对数ln来操作</p>
+<center>
+    <img src="/images/dip/dip3_3.webp" ,width="600">
+</center>
+
+<p>个人认为可以理解同形滤波器是一定程度上的图像带通滤波</p>
+<h5 id="空间域滤波和频域滤波之间的关系"><a href="#空间域滤波和频域滤波之间的关系" class="headerlink" title="空间域滤波和频域滤波之间的关系"></a><font color="blue">空间域滤波和频域滤波之间的关系</font></h5><ul>
+<li>频域低通滤波器越窄，滤除的低频成分就越多，图像越模糊；在空间域，这意味着低通滤波器越宽，模板越大</li>
+<li>频域可以凭借直观指定滤波器</li>
+<li>空间域滤波器效果取决于空间模板的大小</li>
+</ul>
+
         
       </div>
 
