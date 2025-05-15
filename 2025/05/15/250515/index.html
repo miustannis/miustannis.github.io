@@ -27,11 +27,13 @@
 <meta property="og:site_name" content="Miao&#39;s Blog">
 <meta property="og:description" content="Ch5 图像复原与恢复图像复原的基本概念图像退化定义：图像的质量下降叫做退化 形式：模糊、失真、有噪声等 原因：无论是由光学、光电或者电子方法获得的图像，均会有不同程度的退化。比如传感器噪声，物体与摄像设备之间的相对移动等 在图像采集过程中产生的许多退化常称为模糊，在图像记录过程中产生的退化常称为噪声 如果对退化的类型、机制和过程都十分清楚，就可以利用其反过程来复原图像 图像复原对降质了的图像恢复">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://miustannis.github.io/images/dip/dip4_1.webp">
 <meta property="article:published_time" content="2025-05-15T03:38:44.000Z">
-<meta property="article:modified_time" content="2025-05-15T04:34:32.173Z">
+<meta property="article:modified_time" content="2025-05-15T09:26:26.538Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="图像处理">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://miustannis.github.io/images/dip/dip4_1.webp">
   
     <link rel="alternate" href="/atom.xml" title="Miao's Blog" type="application/atom+xml">
   
@@ -211,7 +213,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            1.7k 词 
+            5.1k 词 
           </div>
         </div>
         
@@ -272,7 +274,192 @@
 <p>若略去噪音，有$F(u,v)  = \frac{G(u,v)}{H(u,v)}$</p>
 <p>对上式进行傅里叶反变换，可以求得空间域恢复图像</p>
 <p>*在数字图像中，需要对上述所有内容进行离散化处理</p>
-<h5 id="噪声介绍"><a href="#噪声介绍" class="headerlink" title="噪声介绍"></a>噪声介绍</h5>
+<p>&nbsp;</p>
+<h5 id="噪声介绍"><a href="#噪声介绍" class="headerlink" title="噪声介绍"></a>噪声介绍</h5><p>噪声概率密度函数</p>
+<p>高斯噪声 </p>
+<center>
+    $p(z)=\frac{1}{\sqrt{2 \pi} \sigma} \exp \left[-\frac{(z-\mu)^{2}}{2 \sigma^{2}}\right]$
+</center>
+
+<p>均匀噪声 </p>
+<center>
+    $p(z)=\left\{\begin{array}{ll}
+1 /(b-a) & \text { 如果 } \quad a \leqslant z \leqslant b \\
+0 & \text { 其他 }
+\end{array}\right.$
+</center>
+
+<p>椒盐噪声（脉冲噪声）</p>
+<center>
+    $
+    p(z)=\left\{\begin{array}{lll}
+P_{a} & \text { 如果 } & z=a \\
+P_{b} & \text { 如果 } & z=b \\
+0 & \text { 其他 } &
+\end{array}\right.
+    $
+</center>
+
+<ol>
+<li>高斯噪声源于电子电路噪声和由低照明度或高温带来的传感器噪声</li>
+<li>瑞利噪声对分布再图像范围内特征化噪声有用</li>
+<li>gamma分布和指数分布用于激光成像的噪声</li>
+<li>均匀密度分布作为模拟随机数产生器的基础</li>
+<li>脉冲噪声用于成像中的短暂停留中，比如错误的开关操作</li>
+</ol>
+<center>
+    <img src="/images/dip/dip4_1.webp" , width="500">
+</center>
+
+
+
+<p>&nbsp;</p>
+<h4 id="图像复原的方法"><a href="#图像复原的方法" class="headerlink" title="图像复原的方法"></a>图像复原的方法</h4><h5 id="无约束还原法"><a href="#无约束还原法" class="headerlink" title="无约束还原法"></a>无约束还原法</h5><h6 id="反向滤波法"><a href="#反向滤波法" class="headerlink" title="反向滤波法"></a>反向滤波法</h6><p>有退化模型：$g(x,y) = h(x,y)*f(x,y)+n(x,y)$</p>
+<p>无约束的反向滤波法过程如下：</p>
+<center>
+    $ \begin{array}{l}
+\hat{f}(x, y)=g(x, y)^{*} h_{I}(x, y)=\left[h(x, y)^{*} f(x, y)+n(x, y)\right]^{*} h_{I}(x, y) \\
+\hat{F}(u, v)=[H(u, v) F(u, v)+N(u, v)] H_{I}(u, v) \\
+\text { 设: } \quad H_{I}(u, v)=\frac{1}{H(u, v)} \Rightarrow \hat{F}(u, v)=F(u, v)+\frac{N(u, v)}{H(u, v)}
+\end{array}$
+</center>
+
+<p>当$H(u,v)$为0或者很小时，复原图像的傅里叶变换趋近于正无穷，噪声完全淹没图像</p>
+<p>解决退化函数为0或者非常小的方法：限制滤波的频率，使其接近原点</p>
+<h6 id="维纳滤波-最小均方误差滤波"><a href="#维纳滤波-最小均方误差滤波" class="headerlink" title="维纳滤波/最小均方误差滤波"></a><strong>维纳滤波/最小均方误差滤波</strong></h6><p>维纳滤波恢复正是在假定图像信号可以近似看作平稳随机过程的前提下，按照使原图像$f(x,y)$和恢复后的图像$\hat{f}(x,y)$之间的均方误差达到最小的准则，来实现图像恢复，如下：</p>
+<center>
+    $e^{2}=\min exp\left\{[f(x, y)-\hat{f}(x, y)]^{2}\right\}$
+</center>
+
+<p>满足这一要求的转移函数为：</p>
+<center>
+    $H_{w}(u, v)=\frac{H^{*}(u, v)}{|H(u, v)|^{2}+\frac{S_{n}(u, v)}{S_{f}(u, v)}}$
+</center>
+
+<p>其中，$H^{*}(u, v)$是退化函数的复共轭函数，$S_n$是噪声图像功率谱，$S_f$是原始图像功率谱</p>
+<p>推广到最小均方误差滤波器：</p>
+<center>
+    $\hat{F}(u, v)=\left[\frac{1}{H(u, v)} \times \frac{|H(u, v)|^{2}}{|H(u, v)|^{2}+s\left[S_{n}(u, v) / S_{f}(u, v)\right]}\right] G(u, v)$
+</center>
+
+
+
+<ul>
+<li>如果 $s = 1$，方括号内的项就是维纳滤波器</li>
+<li>如果s是变量，此时该滤波器被称为参数维纳滤波器</li>
+<li>当没有噪声，$S_n(u,v) = 0$时，维纳滤波器退化成反向滤波器中的理想滤波器</li>
+</ul>
+<h5 id="有约束还原法"><a href="#有约束还原法" class="headerlink" title="有约束还原法"></a>有约束还原法</h5><h6 id="最大平滑复原"><a href="#最大平滑复原" class="headerlink" title="最大平滑复原"></a>最大平滑复原</h6><p>准则：以函数平滑为基础</p>
+<ol>
+<li>使得函数的二阶导数为最小</li>
+<li>用内积来考察函数的平滑性</li>
+</ol>
+<p>&nbsp;</p>
+<h4 id="运动模糊图像的复原"><a href="#运动模糊图像的复原" class="headerlink" title="运动模糊图像的复原"></a>运动模糊图像的复原</h4><h5 id="根据先验知识（退化的原因为已知）"><a href="#根据先验知识（退化的原因为已知）" class="headerlink" title="根据先验知识（退化的原因为已知）"></a>根据先验知识（退化的原因为已知）</h5><h6 id="大气湍流造成的传递函数"><a href="#大气湍流造成的传递函数" class="headerlink" title="大气湍流造成的传递函数"></a>大气湍流造成的传递函数</h6><center>
+    $H(u, v)=\exp \left[-c\left(u^{2}+v^{2}\right)^{5 / 6}\right]$
+</center>
+
+<p>c是与湍流性质有关的常数</p>
+<h6 id="光学系统散焦的传递函数"><a href="#光学系统散焦的传递函数" class="headerlink" title="光学系统散焦的传递函数"></a>光学系统散焦的传递函数</h6><center>
+    $
+H(u, v)=J_{1}(\pi \mathrm{~d} \rho) / \pi \mathrm{d} \rho \\
+$
+</center>
+
+<p>此处$\rho=\sqrt{u^{2}+v^{2}} $，d是光学系统散焦点扩散函数的直径</p>
+<p>$J_1()$是第一类一阶贝塞尔函数</p>
+<center>
+    $ J_{1}(Z)=\frac{Z}{2} \sum_{k=0}^{\infty} \frac{(-1)^{k} Z^{2 k}}{2^{2 k} \cdot k(k+1)}  $
+</center>
+
+
+
+<p>当光学系统散焦时，点光源的像将变成圆盘。从公式可以看出，散焦系统的传递函数在以原点为中心，d为半径处存在零点，形成一些同心的暗环，由散焦图像的频谱上估计出这些同心圆的半径，可以得到$H(u,v)$</p>
+<h6 id="匀速直线运动模糊下的传递函数"><a href="#匀速直线运动模糊下的传递函数" class="headerlink" title="匀速直线运动模糊下的传递函数"></a>匀速直线运动模糊下的传递函数</h6><p>相机与景物之间相对运动造成图像降质</p>
+<p>设相机不动，对象运动，运动分量x，y分别为$x_0(t),y_0(t)$，相机快门速度是理想的，快门开启时间（曝光时间为$T_0$, 这里的模糊后的图像值为：</p>
+<center>
+    $
+    g(x, y)=\int_{0}^{T} f\left[x-x_{0}(t), y-y_{0}(t)\right] \mathrm{d} t
+    $
+</center>
+
+<p>模糊传递函数为</p>
+<center>
+    $H(u,v) = \frac{sin\pi l w}{\pi l w}$
+</center>
+
+<p>这里的l为由于运动造成的点位移的长度，$w = ucons\phi + v sin\phi$</p>
+<p>&nbsp;</p>
+<h5 id="根据图像中的点或者线估计-后验知识"><a href="#根据图像中的点或者线估计-后验知识" class="headerlink" title="根据图像中的点或者线估计(后验知识)"></a>根据图像中的点或者线估计(后验知识)</h5><h5 id="由功率谱估计传递函数"><a href="#由功率谱估计传递函数" class="headerlink" title="由功率谱估计传递函数"></a>由功率谱估计传递函数</h5><h5 id="噪声的确定"><a href="#噪声的确定" class="headerlink" title="噪声的确定"></a>噪声的确定</h5><p>只要噪声带宽远大于图像带宽即可作白噪声处理</p>
+<p>&nbsp;</p>
+<h4 id="图像的几何校正"><a href="#图像的几何校正" class="headerlink" title="图像的几何校正"></a>图像的几何校正</h4><p>概念：几何校正是一种几何变换，是图像的几何畸变的反运算，与几何变换类似。</p>
+<p>步骤：空间变换，灰度插值</p>
+<p>几何基准图像的坐标系统用$(x,y)$来表示，需要校正的图像的坐标系统用 $(x^{‘},y^{‘})$表示，两个坐标系统之间的关系用解析式表示：</p>
+<center>
+    $\begin{array}{l}
+x^{\prime}=h_{1}(x, y) \\
+y^{\prime}=h_{2}(x, y)
+\end{array}$
+</center>
+
+<p>通常可以用多项式表示</p>
+<center>
+    $\begin{aligned}
+x^{\prime} & =\sum_{i=0}^{N-1} \sum_{j=0}^{N-1} a_{i j} x^{i} y^{j} \\
+y^{\prime} & =\sum_{i=0}^{N-1} \sum_{j=0}^{N-1} b_{i j} x^{i} y^{j}
+\end{aligned}$
+</center>
+
+<h6 id="空间变换"><a href="#空间变换" class="headerlink" title="空间变换"></a>空间变换</h6><p>对于空间变换，通常可以用线性畸变来近似较小的几何畸变</p>
+<center>
+    $\begin{array}{l}
+x^{\prime}=a_{0}+a_{1} x+a_{2} y \\
+y^{\prime}=b_{0}+b_{1} x+b_{2} y
+\end{array}$
+</center>
+
+<p>也可以用更精确一些的二次型来近似</p>
+<p>对于线性畸变，可以在基准图上找出三个点，在畸变图上也找出对应的三个点</p>
+<p>联立解出上面的6个系数</p>
+<p>二次畸变方程与系数量更多</p>
+<h6 id="灰度插值"><a href="#灰度插值" class="headerlink" title="灰度插值"></a>灰度插值</h6><p>由输出图像坐标反算出输入图像坐标时，若该坐标并非整数，需要进行灰度再采样</p>
+<p>有以下几种方法：</p>
+<ul>
+<li>最邻近插值：最简单，但会有块状效应</li>
+<li>双线性插值：2*2邻域采样点的平均值</li>
+<li>双三次插值：4*4邻域，计算函数为三次函数，效果最好，计算量最大</li>
+</ul>
+<p>&nbsp;</p>
+<h4 id="图像复原的应用"><a href="#图像复原的应用" class="headerlink" title="图像复原的应用"></a>图像复原的应用</h4><h5 id="图像复原的空间滤波器（只存在噪声）"><a href="#图像复原的空间滤波器（只存在噪声）" class="headerlink" title="图像复原的空间滤波器（只存在噪声）"></a>图像复原的空间滤波器（只存在噪声）</h5><ul>
+<li><p>均值滤波器（可见图像增强笔记）</p>
+</li>
+<li><p>顺序统计滤波器（可见图像增强笔记）</p>
+</li>
+<li><p>自适应滤波器</p>
+<p>行为变化基于由mxn矩形窗口定义的区域$S_{xy}$内的图像统计特性</p>
+<p>与前述滤波器相比，性能更优，但也增加了算法复杂度</p>
+<p>包括自适应局部噪声消除滤波器和自适应中值滤波器</p>
+</li>
+</ul>
+<h6 id="自适应局部噪声消除滤波器"><a href="#自适应局部噪声消除滤波器" class="headerlink" title="自适应局部噪声消除滤波器"></a>自适应局部噪声消除滤波器</h6><p>滤波器响应基于以下4个量：</p>
+<ol>
+<li>$g(x,y)$,表示噪声图像在点$(x,y)$上的值</li>
+<li>$\sigma_{\eta}^{2}$，$g(x,y)$的噪声方差</li>
+<li>$m_L$，在$S_{xy}$上像素点的局部均值</li>
+<li>$\sigma_{L}^{2}$，在$S_{xy}$上像素点的局部方差</li>
+</ol>
+<p>有：</p>
+<center>
+    $\hat{f}(x, y)=g(x, y)-\frac{\sigma_{\eta}^{2}}{\sigma_{L}^{2}}\left[g(x, y)-m_{L}\right]$
+</center>
+
+<p>唯一需要知道或者估计的未知量是噪声方差$\sigma_{\eta}^{2}$，其他参数可以从$S_{xy}$中的像素计算出来</p>
+<h6 id="自适应中值滤波器"><a href="#自适应中值滤波器" class="headerlink" title="自适应中值滤波器"></a>自适应中值滤波器</h6><p>两个进程，是推理窗口扩大的过程</p>
+<h5 id="图像复原的频率域滤波器"><a href="#图像复原的频率域滤波器" class="headerlink" title="图像复原的频率域滤波器"></a>图像复原的频率域滤波器</h5><h6 id="带通滤波器"><a href="#带通滤波器" class="headerlink" title="带通滤波器"></a>带通滤波器</h6><h6 id="带阻滤波器"><a href="#带阻滤波器" class="headerlink" title="带阻滤波器"></a>带阻滤波器</h6><h6 id="陷波滤波器"><a href="#陷波滤波器" class="headerlink" title="陷波滤波器"></a>陷波滤波器</h6><p>理想滤波器 &amp; 巴特沃斯滤波器 &amp; 高斯滤波器，同图像增强章节</p>
+<p>&nbsp;</p>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><p>图像增强与图像复原有交叉部分</p>
+<p>图像增强主要是<strong>主观</strong>过程，而图像复原主要是<strong>客观</strong>过程</p>
+
         
       </div>
 
@@ -352,5 +539,22 @@
 
   </div>
   <script src="/js/light-dark-switch.js"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
 </body>
 </html>
