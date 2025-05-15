@@ -14,18 +14,23 @@
   
 
   
-  <title>归档: 2024/10 | Miao&#39;s Blog</title>
+  <title>冈萨雷斯 《数字图像处理》Study Log (4) 图像复原 | Miao&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Miao&#39;s Blog">
-<meta property="og:url" content="https://miustannis.github.io/archives/2024/10/index.html">
+  <meta name="description" content="Ch5 图像复原与恢复图像复原的基本概念图像退化定义：图像的质量下降叫做退化 形式：模糊、失真、有噪声等 原因：无论是由光学、光电或者电子方法获得的图像，均会有不同程度的退化。比如传感器噪声，物体与摄像设备之间的相对移动等 在图像采集过程中产生的许多退化常称为模糊，在图像记录过程中产生的退化常称为噪声 如果对退化的类型、机制和过程都十分清楚，就可以利用其反过程来复原图像 图像复原对降质了的图像恢复">
+<meta property="og:type" content="article">
+<meta property="og:title" content="冈萨雷斯 《数字图像处理》Study Log (4) 图像复原">
+<meta property="og:url" content="https://miustannis.github.io/2025/05/15/250515/index.html">
 <meta property="og:site_name" content="Miao&#39;s Blog">
+<meta property="og:description" content="Ch5 图像复原与恢复图像复原的基本概念图像退化定义：图像的质量下降叫做退化 形式：模糊、失真、有噪声等 原因：无论是由光学、光电或者电子方法获得的图像，均会有不同程度的退化。比如传感器噪声，物体与摄像设备之间的相对移动等 在图像采集过程中产生的许多退化常称为模糊，在图像记录过程中产生的退化常称为噪声 如果对退化的类型、机制和过程都十分清楚，就可以利用其反过程来复原图像 图像复原对降质了的图像恢复">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-05-15T03:38:44.000Z">
+<meta property="article:modified_time" content="2025-05-15T04:09:10.325Z">
 <meta property="article:author" content="miao">
+<meta property="article:tag" content="图像处理">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Miao's Blog" type="application/atom+xml">
@@ -173,44 +178,142 @@
     <div id="content-body">
        
 
-<div class="archive-main-card">
-    <div class="archive-top">
-      <div class="main-title-bar">
-        <div class="main-title-dot"></div>
-        <h1 class="article-title">归档</h1>
-      </div>    
+
+<article id="post-250515" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        冈萨雷斯 《数字图像处理》Study Log (4) 图像复原
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2025-05-15T03:38:44.000Z" itemprop="datePublished">2025-05-15</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            1.7k 词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">图像处理</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <h3 id="Ch5-图像复原与恢复"><a href="#Ch5-图像复原与恢复" class="headerlink" title="Ch5 图像复原与恢复"></a><strong>Ch5 图像复原与恢复</strong></h3><h4 id="图像复原的基本概念"><a href="#图像复原的基本概念" class="headerlink" title="图像复原的基本概念"></a>图像复原的基本概念</h4><h5 id="图像退化"><a href="#图像退化" class="headerlink" title="图像退化"></a>图像退化</h5><p><strong>定义：</strong>图像的质量下降叫做退化</p>
+<p><strong>形式：</strong>模糊、失真、有噪声等</p>
+<p><strong>原因：</strong>无论是由光学、光电或者电子方法获得的图像，均会有不同程度的退化。比如传感器噪声，物体与摄像设备之间的相对移动等</p>
+<p>在图像<strong>采集过程</strong>中产生的许多退化常称为模糊，在图像记录过程中产生的退化常称为噪声</p>
+<p>如果对退化的类型、机制和过程都十分清楚，就可以利用其反过程来复原图像</p>
+<h5 id="图像复原"><a href="#图像复原" class="headerlink" title="图像复原"></a>图像复原</h5><p>对降质了的图像恢复成原来的图像。具体方法：<font color="blue">针对引起图像退化的原因，以及降质过程的某先验知识，建立起退化模型，再针对降质过程采取相反的方向，恢复图像。</font>本质上是一种逆过程。</p>
+<p>一般来讲，复原的好坏有一个规定的客观标准，以便对复原的结果作出某种最佳的评估。</p>
+<p>&nbsp;</p>
+<h4 id="图像退化模型"><a href="#图像退化模型" class="headerlink" title="图像退化模型"></a>图像退化模型</h4><p>退化过程可以看作对原图像作线性运算</p>
+<center>
+    $ g(x,y) = H f(x,y) + n(x,y)$ 
+</center>
+
+<p>其中H是退化模型，n(x,y)是噪声，退化模型被建模为一个退化函数和一个加性噪声项</p>
+<p>在后续的讨论中，对退化模型H作出以下的假设：</p>
+<ol>
+<li>H是线性的</li>
+<li>H是空间（或位移）不变的</li>
+</ol>
+<p>在这里先省略噪声项，可将一幅图像看作是由一系列冲激函数组成的，由冲激函数的抽样性质：$\int_{-\infty}^{+\infty} f(t) \delta\left(t-t_{0}\right) d t=f\left(t_{0}\right)$，可推广到二维空间：$f(x, y)=\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(\alpha, \beta) \delta(x-\alpha, y-\beta) \mathrm{d} \alpha \mathrm{~d} \beta$，则有$g(x, y)=H \cdot \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(\alpha, \beta) \delta(x-\alpha, y-\beta) \mathrm{d} \alpha \mathrm{~d} \beta$</p>
+<p>由模型H的两个假设性质可得：</p>
+<ol>
+<li><p>H是线性的：$g(x,y) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty}H f(\alpha, \beta) \delta(x-\alpha, y-\beta) \mathrm{d} \alpha \mathrm{~d} \beta$</p>
+</li>
+<li><p>H是空间位移不变的：</p>
+<p>$g(x,y) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty}f(\alpha, \beta) H \delta(x-\alpha, y-\beta) \mathrm{d} \alpha \mathrm{~d} \beta$</p>
+<p>$= \int_{-\infty}^{\infty} \int_{-\infty}^{\infty}f(\alpha, \beta) h(x-\alpha, y-\beta) \mathrm{d} \alpha \mathrm{~d} \beta$</p>
+</li>
+</ol>
+<p>称$h(x,\alpha;y,\beta)$为扩散函数(PSF)或者系统冲激响应</p>
+<p>在光学中冲激为一个光点，退化可以理解为系统冲激响应造成的图像的降质</p>
+<p>上述公式符合二维卷积的定义，有：</p>
+<center>
+    $g(x,y) = f(x,y)* h(x,y)$
+</center>
+
+<p>如果H是一个可分离系统，即$h(x,\alpha;y,\beta) = h_1(x,\alpha)h_2(y,\beta)$，则二维运算可以分解为列和行两次一维运算来代替</p>
+<p>此时在加上噪声：</p>
+<center>
+    $g(x,y) = f(x,y)+h(x,y) + n(x,y)$
+</center>
+
+<p><strong>结论：</strong>一个线性系统完全可以由它的点扩散函数PSF来表征。若系统的点扩散函数已知，则系统在(x,y)处的输出响应可以看成是不同坐标$(\alpha,\beta)$处输入函数$f(\alpha,\beta)$所产生的脉冲响应在$(x,y)$处的叠加。</p>
+<p><strong>恢复方法：</strong></p>
+<p>空间域中的卷积等于频域中的乘积，频域表示为</p>
+<center>
+    $G(u,v) = H(u,v)F(u,v)+N(u,v)$
+</center>
+
+<p>若略去噪音，有$F(u,v)  = \frac{G(u,v)}{H(u,v)}$</p>
+<p>对上式进行傅里叶反变换，可以求得空间域恢复图像</p>
+<p>*在数字图像中，需要对上述所有内容进行离散化处理</p>
+<h5 id="噪声介绍"><a href="#噪声介绍" class="headerlink" title="噪声介绍"></a>噪声介绍</h5>
+        
+      </div>
+
+         
     </div>
     
-    
-      
-      
-        
-        <div class="year-line">
-            <div class="year-num">2024</div>
-            <div class="dot-wrapper">
-                <div class="dot"></div>
-            </div>
-            <div class="article-count">1 篇文章</div>
-        </div>
-      
-      <a class="archive-article-link" href="/2024/10/20/241020/" title="UART收发处理函数">
-        <div class="date">10-20</div>
-        <div class="line">
-            <div class="dot"></div>
-        </div>
-        <div class="title">
-            <div class="title-inner">
-                
-                    UART收发处理函数
-                
-            </div>
-        </div>
-        <div class="tags">
-            #嵌入式 #C
-        </div>
-      </a>
-    
+     
   </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left  disabled "
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2025/05/10/250510/"
+      title="手持红外热成像仪V2.0-TinyML嵌入轻量级神经网络(on going)"
+     >
+
+    <p class="title-text">
+      
+        手持红外热成像仪V2.0-TinyML嵌入轻量级神经网络(on going)
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+
+
+
+
     </div>
     <div id="footer-wrapper">
       <footer id="footer">

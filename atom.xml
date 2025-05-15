@@ -6,7 +6,7 @@
   <link href="https://miustannis.github.io/atom.xml" rel="self"/>
   
   <link href="https://miustannis.github.io/"/>
-  <updated>2025-05-14T08:46:59.532Z</updated>
+  <updated>2025-05-15T04:09:10.325Z</updated>
   <id>https://miustannis.github.io/</id>
   
   <author>
@@ -17,11 +17,33 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>冈萨雷斯 《数字图像处理》Study Log (4) 图像复原</title>
+    <link href="https://miustannis.github.io/2025/05/15/250515/"/>
+    <id>https://miustannis.github.io/2025/05/15/250515/</id>
+    <published>2025-05-15T03:38:44.000Z</published>
+    <updated>2025-05-15T04:09:10.325Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;Ch5-图像复原与恢复&quot;&gt;&lt;a href=&quot;#Ch5-图像复原与恢复&quot; class=&quot;headerlink&quot; title=&quot;Ch5 图像复原与恢复&quot;&gt;&lt;/a&gt;&lt;strong&gt;Ch5 图像复原与恢复&lt;/strong&gt;&lt;/h3&gt;&lt;h4 id=&quot;图像复原的基本概念&quot;&gt;&lt;</summary>
+      
+    
+    
+    
+    <category term="学习记录" scheme="https://miustannis.github.io/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"/>
+    
+    
+    <category term="图像处理" scheme="https://miustannis.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
     <title>手持红外热成像仪V2.0-TinyML嵌入轻量级神经网络(on going)</title>
     <link href="https://miustannis.github.io/2025/05/10/250510/"/>
     <id>https://miustannis.github.io/2025/05/10/250510/</id>
     <published>2025-05-10T02:05:52.000Z</published>
-    <updated>2025-05-14T08:46:59.532Z</updated>
+    <updated>2025-05-15T03:15:20.656Z</updated>
     
     
     
@@ -100,31 +122,6 @@
     
     
     <category term="图像处理" scheme="https://miustannis.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo博客插入数学公式</title>
-    <link href="https://miustannis.github.io/2025/03/27/250327/"/>
-    <id>https://miustannis.github.io/2025/03/27/250327/</id>
-    <published>2025-03-27T04:22:29.000Z</published>
-    <updated>2025-04-28T07:56:37.921Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;在写一些内容时，会遇到需要添加数学公式的地方，Hexo部分主题不支持公式的渲染，比如我正在使用的vivia主题，在查阅一些资料之后，我使用&lt;strong&gt;MathJax&lt;/strong&gt;引擎实现了vivia主题下的数学公式渲染。&lt;/p&gt;
-&lt;p&gt;MathJax简介：&lt;a hr</summary>
-      
-    
-    
-    
-    <category term="DIY" scheme="https://miustannis.github.io/categories/DIY/"/>
-    
-    
-    <category term="html" scheme="https://miustannis.github.io/tags/html/"/>
-    
-    <category term="Hexo" scheme="https://miustannis.github.io/tags/Hexo/"/>
     
   </entry>
   
