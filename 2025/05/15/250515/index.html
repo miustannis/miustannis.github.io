@@ -28,7 +28,7 @@
 <meta property="og:description" content="Ch5 图像复原与恢复图像复原的基本概念图像退化定义：图像的质量下降叫做退化 形式：模糊、失真、有噪声等 原因：无论是由光学、光电或者电子方法获得的图像，均会有不同程度的退化。比如传感器噪声，物体与摄像设备之间的相对移动等 在图像采集过程中产生的许多退化常称为模糊，在图像记录过程中产生的退化常称为噪声 如果对退化的类型、机制和过程都十分清楚，就可以利用其反过程来复原图像 图像复原对降质了的图像恢复">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-05-15T03:38:44.000Z">
-<meta property="article:modified_time" content="2025-05-15T04:09:10.325Z">
+<meta property="article:modified_time" content="2025-05-15T04:34:32.173Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="图像处理">
 <meta name="twitter:card" content="summary">
@@ -239,7 +239,7 @@
 <li>H是线性的</li>
 <li>H是空间（或位移）不变的</li>
 </ol>
-<p>在这里先省略噪声项，可将一幅图像看作是由一系列冲激函数组成的，由冲激函数的抽样性质：$\int_{-\infty}^{+\infty} f(t) \delta\left(t-t_{0}\right) d t=f\left(t_{0}\right)$，可推广到二维空间：$f(x, y)=\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(\alpha, \beta) \delta(x-\alpha, y-\beta) \mathrm{d} \alpha \mathrm{~d} \beta$，则有$g(x, y)=H \cdot \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(\alpha, \beta) \delta(x-\alpha, y-\beta) \mathrm{d} \alpha \mathrm{~d} \beta$</p>
+<p>在这里先省略噪声项，可将一幅图像看作是由一系列冲激函数组成的，利用冲激函数的偶函数性质与抽样性质：$\int_{-\infty}^{+\infty} f(t) \delta\left(t-t_{0}\right) d t=f\left(t_{0}\right)$，可推广到二维空间：$f(x, y)=\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(\alpha, \beta) \delta(x-\alpha, y-\beta) \mathrm{d} \alpha \mathrm{~d} \beta$，则有$g(x, y)=H \cdot \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(\alpha, \beta) \delta(x-\alpha, y-\beta) \mathrm{d} \alpha \mathrm{~d} \beta$</p>
 <p>由模型H的两个假设性质可得：</p>
 <ol>
 <li><p>H是线性的：$g(x,y) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty}H f(\alpha, \beta) \delta(x-\alpha, y-\beta) \mathrm{d} \alpha \mathrm{~d} \beta$</p>
