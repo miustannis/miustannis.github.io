@@ -328,7 +328,7 @@ mjx-container[display="true"] + br {
         
           <div class="truncate-text">
             
-              Ch5 彩色图像处理彩色图像处理可以分为：v
+              Ch5 彩色图像处理彩色图像处理可以分为：
 全彩色处理：数码相机，彩色扫描仪
 伪彩色处理：对不同灰度或灰度范围赋予不同的颜色
 &nbsp;
@@ -353,7 +353,7 @@ YIQ &amp; YUV
 Y指亮度，即灰度值
 I和Q指色调，描述色彩及饱和度，U和V也指色调，与前者不同
 用于彩色电视广播，YIQ被北美的电视系统所采用，YUV被欧洲的电视系统所采用
-Y分量可提供黑白电视机的所有影像信...
+Y分量可提供黑白电视机的所有影像信息...
             
           </div>
         
@@ -1038,5 +1038,22 @@ Time Complexity is an important metric used to measure the relationship between 
 
   </div>
   <script src="/js/light-dark-switch.js"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
 </body>
 </html>
