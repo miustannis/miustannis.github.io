@@ -20,18 +20,21 @@
   <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
-  <meta name="description" content="Ch6 彩色图像处理">
+  <meta name="description" content="Ch6 彩色图像处理彩色图像处理可以分为：v 全彩色处理：数码相机，彩色扫描仪 伪彩色处理：对不同灰度或灰度范围赋予不同的颜色 &amp;nbsp; 彩色空间——也称为彩色模型或者彩色系统 ——example: RGB \ CMY &amp; CMYK \ HSI \ YIQ \ YUV \ YCbCr  RGB CCD或者CMOS技术直接感知RGB三个分量（本身光电传感器无法识别颜色，增加滤光片之后可以">
 <meta property="og:type" content="article">
 <meta property="og:title" content="冈萨雷斯 《数字图像处理》Study Log (5) 彩色图像处理 &amp; 小波与多分辨率处理">
 <meta property="og:url" content="https://miustannis.github.io/2025/05/16/250516/index.html">
 <meta property="og:site_name" content="Miao&#39;s Blog">
-<meta property="og:description" content="Ch6 彩色图像处理">
+<meta property="og:description" content="Ch6 彩色图像处理彩色图像处理可以分为：v 全彩色处理：数码相机，彩色扫描仪 伪彩色处理：对不同灰度或灰度范围赋予不同的颜色 &amp;nbsp; 彩色空间——也称为彩色模型或者彩色系统 ——example: RGB \ CMY &amp; CMYK \ HSI \ YIQ \ YUV \ YCbCr  RGB CCD或者CMOS技术直接感知RGB三个分量（本身光电传感器无法识别颜色，增加滤光片之后可以">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://miustannis.github.io/images/dip/dip5_1.webp">
+<meta property="og:image" content="https://miustannis.github.io/images/dip/dip5_2.webp">
 <meta property="article:published_time" content="2025-05-16T03:38:44.000Z">
-<meta property="article:modified_time" content="2025-05-16T02:02:23.727Z">
+<meta property="article:modified_time" content="2025-05-18T03:32:08.772Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="图像处理">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://miustannis.github.io/images/dip/dip5_1.webp">
   
     <link rel="alternate" href="/atom.xml" title="Miao's Blog" type="application/atom+xml">
   
@@ -142,18 +145,18 @@
     <div class="widget">
       <h3 class="widget-title">分类</h3>
       <div class="category-box">
-            <a class="category-link" href="/categories/Being/">
-                Being
+            <a class="category-link" href="/categories/II-DIY/">
+                II. DIY
                 <div class="category-count">6</div>
             </a>
         
-            <a class="category-link" href="/categories/DIY/">
-                DIY
+            <a class="category-link" href="/categories/III-Being/">
+                III. Being
                 <div class="category-count">6</div>
             </a>
         
-            <a class="category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
-                学习记录
+            <a class="category-link" href="/categories/I-Learning-Record/">
+                I. Learning Record
                 <div class="category-count">9</div>
             </a>
         </div>
@@ -205,13 +208,13 @@
           <div class="need-seperator meta-info">
             <div class="meta-cate-flex">
   
-  <a class="meta-cate-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a>
+  <a class="meta-cate-link" href="/categories/I-Learning-Record/">I. Learning Record</a>
    
 </div>
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            9 词 
+            2.3k 词 
           </div>
         </div>
         
@@ -220,7 +223,140 @@
       </header>
       <div class="e-content article-entry" itemprop="articleBody">
         
-          <h3 id="Ch6-彩色图像处理"><a href="#Ch6-彩色图像处理" class="headerlink" title="Ch6 彩色图像处理"></a>Ch6 彩色图像处理</h3>
+          <h3 id="Ch6-彩色图像处理"><a href="#Ch6-彩色图像处理" class="headerlink" title="Ch6 彩色图像处理"></a>Ch6 彩色图像处理</h3><p>彩色图像处理可以分为：v</p>
+<p><strong>全彩色处理：</strong>数码相机，彩色扫描仪</p>
+<p><strong>伪彩色处理：</strong>对不同灰度或灰度范围赋予不同的颜色</p>
+<p>&nbsp;</p>
+<h4 id="彩色空间"><a href="#彩色空间" class="headerlink" title="彩色空间"></a>彩色空间</h4><p>——也称为彩色模型或者彩色系统</p>
+<p>——example: <strong>RGB</strong> \ <strong>CMY &amp; CMYK</strong> \ <strong>HSI</strong> \ <strong>YIQ</strong> \ <strong>YUV</strong> \ <strong>YCbCr</strong></p>
+<ul>
+<li><p>RGB</p>
+<p>CCD或者CMOS技术直接感知RGB三个分量（本身光电传感器无法识别颜色，增加滤光片之后可以分辨）</p>
+</li>
+<li><p>CMY &amp; CMYK</p>
+<p>CMY（青色，品红，黄）CMYK（青、品红、黄、黑）</p>
+<p>大多数在纸上沉积彩色颜料的设备，比如彩色打印机和复印机、印刷设备</p>
+<p>打印中的主要颜色是黑色，等量的CMY原色可以产生黑色，但不纯</p>
+</li>
+<li><p>HSI</p>
+<p>HSI（色调，饱和度，亮度）</p>
+<p>I分量与图像的彩色信息无关</p>
+<p>H和S分量与人感受颜色的方式是紧密相连的</p>
+<p>广泛用于计算机视觉、图像检索和视频检索</p>
+</li>
+<li><p>YIQ &amp; YUV</p>
+<p>Y指亮度，即灰度值</p>
+<p>I和Q指色调，描述色彩及饱和度，U和V也指色调，与前者不同</p>
+<p>用于彩色电视广播，YIQ被北美的电视系统所采用，YUV被欧洲的电视系统所采用</p>
+<p>Y分量可提供黑白电视机的所有影像信息</p>
+</li>
+<li><p>YCbCr</p>
+<p>Y指亮度</p>
+<p>Cb和Cr由U和V调整得到</p>
+<p>JPEG采用的彩色空间</p>
+</li>
+</ul>
+<p>&nbsp;</p>
+<h5 id="彩色空间的转换（RGB与其他）"><a href="#彩色空间的转换（RGB与其他）" class="headerlink" title="彩色空间的转换（RGB与其他）"></a>彩色空间的转换（RGB与其他）</h5><p>CMY</p>
+<p>将所有值都归一化之后：</p>
+<center>
+    $
+    \left[\begin{array}{l}
+C \\
+M \\
+Y
+\end{array}\right]=\left[\begin{array}{l}
+1 \\
+1 \\
+1
+\end{array}\right]-\left[\begin{array}{l}
+R \\
+G \\
+B
+\end{array}\right]
+    $
+</center>
+
+<p>RGB-&gt;HSI</p>
+<center>
+    $
+    \begin{array}{l}
+H=\left\{\begin{array}{ll}
+\theta & B \leq G \\
+360-\theta & B>G
+\end{array}\right. \\
+\theta=\arccos \left\{\frac{\frac{1}{2}[(R-G)+(R-B)]}{\left[(R-G)^{2}+(R-G)(G-B)\right]^{\frac{1}{2}}}\right\} \\
+S=1-\frac{3}{(R+G+B)}[\min (R, G, B)] \\
+I=\frac{1}{3}(R+G+B)
+\end{array}$
+</center>
+
+<p>HSI-&gt;RGB</p>
+<p>$\begin{array}{l}<br>0^{0} \leq H&lt;120^{\circ} \\<br>R=I\left[1+\frac{S \cos H}{\cos \left(60^{\circ}-H\right)}\right] \quad G=1-(R+B) \quad B=I(1-s)<br>\end{array}$</p>
+<p>$\begin{array}{l}<br>120^{0} \leq H&lt;240^{\circ} \\<br>G=I\left[1+\frac{S \cos H}{\cos \left(60^{\circ}-H\right)}\right] \quad B=1-(R+G) \quad R=I(1-s)<br>\end{array}$</p>
+<p>$\begin{array}{l}<br>240^{0} \leq H&lt;360^{\circ} \\<br>B=I\left[1+\frac{S \cos H}{\cos \left(60^{\circ}-H\right)}\right] \quad R=1-(G+B) \quad G=I(1-s)<br>\end{array}$</p>
+<p>其他</p>
+<p>需要数值矩阵</p>
+<p>&nbsp;</p>
+<h4 id="伪彩色图像处理"><a href="#伪彩色图像处理" class="headerlink" title="伪彩色图像处理"></a>伪彩色图像处理</h4><p>思想：根据一定的准则对灰度值赋值以彩色的处理</p>
+<p>为什么需要：人类可以辨别上千种颜色和强度，但只能辨别二十几种灰度，因此需要一种能够帮助人类观察与解释灰度图像的技术</p>
+<p>如何：强度分层技术 &amp; 灰度级到彩色转换技术</p>
+<h5 id="强度分层技术"><a href="#强度分层技术" class="headerlink" title="强度分层技术"></a>强度分层技术</h5><p>简单来说就是对图像灰度分层切割之后分配彩色值</p>
+<center>
+    <img src="/images/dip/dip5_1.webp" , width="400">
+</center>
+
+
+
+<p>灰度级到彩色的转换</p>
+<p>对任何输入像素的灰度级执行3个独立变换</p>
+<p>3个变换结果分别送入彩色监视器的红绿蓝三个通道，产生一幅合成图像</p>
+<center>
+    <img src="/images/dip/dip5_2.webp" , width="400">
+</center>
+
+
+
+<p>应用：X光扫描行李箱</p>
+<p>&nbsp;</p>
+<h4 id="全彩色图像处理"><a href="#全彩色图像处理" class="headerlink" title="全彩色图像处理"></a>全彩色图像处理</h4><p>分为两大类：</p>
+<ol>
+<li>分别处理每一个分量的图像后合成彩色图像</li>
+<li>直接对彩色图像处理：3个颜色分量表示像素向量</li>
+</ol>
+<p>&nbsp;</p>
+<h4 id="彩色变换"><a href="#彩色变换" class="headerlink" title="彩色变换"></a>彩色变换</h4><p>彩色变换函数：</p>
+<center>
+    $
+g(x, y)=T[f(x, y)]\\
+ f(x, y)  是彩色输入图像 \\ g(x, y)  是变换或处理过的彩色输出图像  \\T  是在空间邻域  (x, y)  上对 f 的操作
+  $
+</center>
+
+<p>对于某一个点处彩色分量的变量：</p>
+<center>
+    $
+s_{i}=T_{i}\left(r_{1}, r_{2}, \ldots, r_{n}\right) \quad i=1,2, \ldots, n\\
+
+ r_{i}  和  S_{i}  是  f(x, y)  和  g(x, y)  在任何点处彩色分量的变量\\
+ \left\{T_{1}, T_{2}, \ldots T_{n}\right\}  是一个对  r_{i}  操作产生  s_{i}  的变换或彩色映射函数集$
+</center>
+
+<p><strong>补色：</strong>在彩色环上，与一种色调直接相对立的另一种色调称为补色</p>
+<p><strong>色调校正：</strong>实验性地调整图像亮度和对比度</p>
+<p><strong>彩色平衡：</strong></p>
+<p><strong>偏色：</strong></p>
+<p>采样过程中，由于设备、环境的原因会造成图象的三个颜色分量不同的变换关系，使图象中所有物体的颜色偏离了其原有的真实色彩，这种现象被称为偏色。</p>
+<p>如何检查彩色图像的偏色问题：即检查在现实种应该是灰色的物体，在图像中是否是灰色</p>
+<p>色彩平衡算法：需要选取灰色区域，<font color="blue">按某一个RGB分量作为线性校正的基准</font></p>
+<p>&nbsp;</p>
+<h4 id="彩色图像平滑和尖锐化"><a href="#彩色图像平滑和尖锐化" class="headerlink" title="彩色图像平滑和尖锐化"></a>彩色图像平滑和尖锐化</h4><p>同灰度图像，有空间域滤波与频率微分，只是输入通道换成了对应彩色空间的n个分量</p>
+<p>彩色空间分割：</p>
+<p><strong>HSI：</strong>可用直方图分割</p>
+<p><strong>RGB：</strong>可用不同像素的颜色向量与分割样本的颜色向量之间的欧氏距离为判据</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3 id="Ch7-小波与多分辨率处理"><a href="#Ch7-小波与多分辨率处理" class="headerlink" title="Ch7 小波与多分辨率处理"></a>Ch7 小波与多分辨率处理</h3>
         
       </div>
 
