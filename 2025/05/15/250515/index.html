@@ -20,16 +20,16 @@
   <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
-  <meta name="description" content="Ch5 图像复原与恢复图像复原的基本概念图像退化定义：图像的质量下降叫做退化 形式：模糊、失真、有噪声等 原因：无论是由光学、光电或者电子方法获得的图像，均会有不同程度的退化。比如传感器噪声，物体与摄像设备之间的相对移动等 在图像采集过程中产生的许多退化常称为模糊，在图像记录过程中产生的退化常称为噪声 如果对退化的类型、机制和过程都十分清楚，就可以利用其反过程来复原图像 图像复原对降质了的图像恢复">
+  <meta name="description" content="Ch4 图像复原与恢复图像复原的基本概念图像退化定义：图像的质量下降叫做退化 形式：模糊、失真、有噪声等 原因：无论是由光学、光电或者电子方法获得的图像，均会有不同程度的退化。比如传感器噪声，物体与摄像设备之间的相对移动等 在图像采集过程中产生的许多退化常称为模糊，在图像记录过程中产生的退化常称为噪声 如果对退化的类型、机制和过程都十分清楚，就可以利用其反过程来复原图像 图像复原对降质了的图像恢复">
 <meta property="og:type" content="article">
 <meta property="og:title" content="冈萨雷斯 《数字图像处理》Study Log (4) 图像复原">
 <meta property="og:url" content="https://miustannis.github.io/2025/05/15/250515/index.html">
 <meta property="og:site_name" content="Miao&#39;s Blog">
-<meta property="og:description" content="Ch5 图像复原与恢复图像复原的基本概念图像退化定义：图像的质量下降叫做退化 形式：模糊、失真、有噪声等 原因：无论是由光学、光电或者电子方法获得的图像，均会有不同程度的退化。比如传感器噪声，物体与摄像设备之间的相对移动等 在图像采集过程中产生的许多退化常称为模糊，在图像记录过程中产生的退化常称为噪声 如果对退化的类型、机制和过程都十分清楚，就可以利用其反过程来复原图像 图像复原对降质了的图像恢复">
+<meta property="og:description" content="Ch4 图像复原与恢复图像复原的基本概念图像退化定义：图像的质量下降叫做退化 形式：模糊、失真、有噪声等 原因：无论是由光学、光电或者电子方法获得的图像，均会有不同程度的退化。比如传感器噪声，物体与摄像设备之间的相对移动等 在图像采集过程中产生的许多退化常称为模糊，在图像记录过程中产生的退化常称为噪声 如果对退化的类型、机制和过程都十分清楚，就可以利用其反过程来复原图像 图像复原对降质了的图像恢复">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://miustannis.github.io/images/dip/dip4_1.webp">
 <meta property="article:published_time" content="2025-05-15T03:38:44.000Z">
-<meta property="article:modified_time" content="2025-05-18T06:56:23.003Z">
+<meta property="article:modified_time" content="2025-05-18T07:20:25.047Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="图像处理">
 <meta name="twitter:card" content="summary">
@@ -144,13 +144,13 @@
     <div class="widget">
       <h3 class="widget-title">分类</h3>
       <div class="category-box">
-            <a class="category-link" href="/categories/DIY/">
-                DIY
+            <a class="category-link" href="/categories/Being/">
+                Being
                 <div class="category-count">6</div>
             </a>
         
-            <a class="category-link" href="/categories/Being/">
-                Being
+            <a class="category-link" href="/categories/DIY/">
+                DIY
                 <div class="category-count">6</div>
             </a>
         
@@ -222,7 +222,7 @@
       </header>
       <div class="e-content article-entry" itemprop="articleBody">
         
-          <h3 id="Ch5-图像复原与恢复"><a href="#Ch5-图像复原与恢复" class="headerlink" title="Ch5 图像复原与恢复"></a><strong>Ch5 图像复原与恢复</strong></h3><h4 id="图像复原的基本概念"><a href="#图像复原的基本概念" class="headerlink" title="图像复原的基本概念"></a>图像复原的基本概念</h4><h5 id="图像退化"><a href="#图像退化" class="headerlink" title="图像退化"></a>图像退化</h5><p><strong>定义：</strong>图像的质量下降叫做退化</p>
+          <h3 id="Ch4-图像复原与恢复"><a href="#Ch4-图像复原与恢复" class="headerlink" title="Ch4 图像复原与恢复"></a><strong>Ch4 图像复原与恢复</strong></h3><h4 id="图像复原的基本概念"><a href="#图像复原的基本概念" class="headerlink" title="图像复原的基本概念"></a>图像复原的基本概念</h4><h5 id="图像退化"><a href="#图像退化" class="headerlink" title="图像退化"></a>图像退化</h5><p><strong>定义：</strong>图像的质量下降叫做退化</p>
 <p><strong>形式：</strong>模糊、失真、有噪声等</p>
 <p><strong>原因：</strong>无论是由光学、光电或者电子方法获得的图像，均会有不同程度的退化。比如传感器噪声，物体与摄像设备之间的相对移动等</p>
 <p>在图像<strong>采集过程</strong>中产生的许多退化常称为模糊，在图像记录过程中产生的退化常称为噪声</p>
@@ -544,22 +544,5 @@ y^{\prime}=b_{0}+b_{1} x+b_{2} y
 
   </div>
   <script src="/js/light-dark-switch.js"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-
 </body>
 </html>
