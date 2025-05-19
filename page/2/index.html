@@ -36,119 +36,7 @@
   
 <link rel="stylesheet" href="/css/style.css">
 
-<meta name="generator" content="Hexo 6.1.0"><style>mjx-container[jax="SVG"] {
-  direction: ltr;
-}
-
-mjx-container[jax="SVG"] > svg {
-  overflow: visible;
-}
-
-mjx-container[jax="SVG"][display="true"] {
-  display: block;
-  text-align: center;
-  margin: 1em 0;
-}
-
-mjx-container[jax="SVG"][justify="left"] {
-  text-align: left;
-}
-
-mjx-container[jax="SVG"][justify="right"] {
-  text-align: right;
-}
-
-g[data-mml-node="merror"] > g {
-  fill: red;
-  stroke: red;
-}
-
-g[data-mml-node="merror"] > rect[data-background] {
-  fill: yellow;
-  stroke: none;
-}
-
-g[data-mml-node="mtable"] > line[data-line] {
-  stroke-width: 70px;
-  fill: none;
-}
-
-g[data-mml-node="mtable"] > rect[data-frame] {
-  stroke-width: 70px;
-  fill: none;
-}
-
-g[data-mml-node="mtable"] > .mjx-dashed {
-  stroke-dasharray: 140;
-}
-
-g[data-mml-node="mtable"] > .mjx-dotted {
-  stroke-linecap: round;
-  stroke-dasharray: 0,140;
-}
-
-g[data-mml-node="mtable"] > svg {
-  overflow: visible;
-}
-
-[jax="SVG"] mjx-tool {
-  display: inline-block;
-  position: relative;
-  width: 0;
-  height: 0;
-}
-
-[jax="SVG"] mjx-tool > mjx-tip {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-mjx-tool > mjx-tip {
-  display: inline-block;
-  padding: .2em;
-  border: 1px solid #888;
-  font-size: 70%;
-  background-color: #F8F8F8;
-  color: black;
-  box-shadow: 2px 2px 5px #AAAAAA;
-}
-
-g[data-mml-node="maction"][data-toggle] {
-  cursor: pointer;
-}
-
-mjx-status {
-  display: block;
-  position: fixed;
-  left: 1em;
-  bottom: 1em;
-  min-width: 25%;
-  padding: .2em .4em;
-  border: 1px solid #888;
-  font-size: 90%;
-  background-color: #F8F8F8;
-  color: black;
-}
-
-foreignObject[data-mjx-xml] {
-  font-family: initial;
-  line-height: normal;
-  overflow: visible;
-}
-
-.MathJax path {
-  stroke-width: 3;
-}
-
-mjx-container[display="true"] {
-  overflow: auto hidden;
-}
-
-mjx-container[display="true"] + br {
-  display: none;
-}
-</style></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
 
 <body>
   
@@ -249,19 +137,19 @@ mjx-container[display="true"] + br {
     <div class="widget">
       <h3 class="widget-title">分类</h3>
       <div class="category-box">
-            <a class="category-link" href="/categories/Being/">
-                Being
-                <div class="category-count">6</div>
-            </a>
-        
             <a class="category-link" href="/categories/Projects-DIY/">
                 Projects & DIY
                 <div class="category-count">6</div>
             </a>
         
+            <a class="category-link" href="/categories/Being/">
+                Being
+                <div class="category-count">6</div>
+            </a>
+        
             <a class="category-link" href="/categories/Learning-Record/">
                 Learning Record
-                <div class="category-count">11</div>
+                <div class="category-count">5</div>
             </a>
         </div>
     </div>
@@ -284,520 +172,6 @@ mjx-container[display="true"] + br {
     </div>
     <div id="content-body">
       
-   
-
-
-<article id="post-250327" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2025/03/27/250327/">Hexo博客插入数学公式</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2025-03-27T04:22:29.000Z" itemprop="datePublished">2025-03-27</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-  <a class="meta-cate-link" href="/categories/Projects-DIY/">Projects & DIY</a>
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            1.5k 词 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html/" rel="tag">html</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            
-              在写一些内容时，会遇到需要添加数学公式的地方，Hexo部分主题不支持公式的渲染，比如我正在使用的vivia主题，在查阅一些资料之后，我使用MathJax引擎实现了vivia主题下的数学公式渲染。
-MathJax简介：https://www.osgeo.cn/mathjax/basic/mathjax.html 
-该引擎是一款可在所有现代浏览器中工作的开源js显示引擎，辅助页面作者编写含有数学公式的文档
-Step 1 : 安装MathJax引擎并更换渲染引擎：​              操作包括卸载Hexo自带的Hexo-math，卸载默认的对MathJax不友好的marked引擎
-npm uinstall hexo-math --save
-npm install hexo-renderer-mathjax --save
-
-npm uinstall hexo-renderer-marked --save
-npm install hexo-renderer-kramed --save
-Step 2 : 更新MathJax的cdn链接Step 3 : 更改部分转义规则 hexo 默认...
-            
-          </div>
-        
-      </div>
-
-         
-    </div>
-    
-     
-    <a class="right-panel  non-pic  "
-      
-      href="/2025/03/27/250327/" 
-    >
-       
-      <i class="fa-solid fa-angle-right non-pic"></i>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
-
-
-
-
-
-   
-
-
-<article id="post-250306" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2025/03/06/250306/">Harvard CS50 Study Log</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2025-03-06T12:39:18.000Z" itemprop="datePublished">2025-03-06</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-  <a class="meta-cate-link" href="/categories/Learning-Record/">Learning Record</a>
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            14k 词 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CS/" rel="tag">CS</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            
-              Lecture 0 ScratchLecture 1 CLecture 2 ArraysLecture 3 Algorithms
-Time Complexity is an important metric used to measure the relationship between the running time of an algorithm and the size of the input. It describes how the execution time of an algorithm increases as the input size grows. Time complexity helps us assess the efficiency of an algorithm under different problem sizes, allowing us to choose the most appropriate algorithm. Time complexity is usually expressed using Big  notation....
-            
-          </div>
-        
-      </div>
-
-         
-    </div>
-    
-     
-    <a class="right-panel  with-pic  "
-       style="background-image: url(/images/cs50/CS50_pic.webp)" 
-      href="/2025/03/06/250306/" 
-    >
-       
-      <div class="overlay">
-        <i class="fa-solid fa-angle-right with-pic"></i>
-      </div>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
-
-
-
-
-
-   
-
-
-<article id="post-250226" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2025/02/26/250226/">基于MLX90640的手持红外热成像仪</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2025-02-26T02:05:52.000Z" itemprop="datePublished">2025-02-26</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-  <a class="meta-cate-link" href="/categories/Projects-DIY/">Projects & DIY</a>
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            3.1k 词 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            
-              项目背景：
-DIY好玩捏
-
-电路工作时有时需要检查元件发热情况，但用手触摸元件有一定的风险，因此需要一种无接触式的多点测温设备
-
-
-于是开始了解到热成像这个测温方式，以下是软硬件方案
-方案：硬件部分​        采用上下两块板子对插组合，为了减少复杂度，留了排母方便直插LCD与传感器模组。
-BOARD1: MCU与外设
-采用STM32F407作为主控，512KB  Flash，其实没特别注意选型，只是手上有这个开发板，要压缩成本的话用其他型号也可以
-红外传感模组为MLX90640 BAA，这个价格比较贵，比其他元件加起来都贵
-屏幕模组为1.44寸TFT-LCD，也是现成的，买了俩还剩一个，下次做别的东西的时候给用了吧
-留了串口测试点和烧录测试点
-
-
-    
-
-
-
-BOARD2: POWER
-3.7V锂电池供电，可通过USB接口经过LGS4084H电源管理芯片给锂电池充电
-经过一个LDO稳到3.3V给MCU整体供电，VDDA和VCC用磁珠滤波隔离了一下
-
-
-    
-
-
-
-电源板后续涉及锂电池供电DIY的倒是可以继续沿用
-
-    
-
-
-
-立创打样PCB，自己贴片，PCB板框...
-            
-          </div>
-        
-      </div>
-
-         
-    </div>
-    
-     
-    <a class="right-panel  with-pic  "
-       style="background-image: url(/images/thermal_camera/thermal_camera1.webp)" 
-      href="/2025/02/26/250226/" 
-    >
-       
-      <div class="overlay">
-        <i class="fa-solid fa-angle-right with-pic"></i>
-      </div>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
-
-
-
-
-
-   
-
-
-<article id="post-250213" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2025/02/13/250213/">Xiaomi路由器BE3600快速救砖</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2025-02-13T10:25:24.000Z" itemprop="datePublished">2025-02-13</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-  <a class="meta-cate-link" href="/categories/Projects-DIY/">Projects & DIY</a>
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            307 词 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%94%B9%E8%A3%85/" rel="tag">改装</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            
-              家里的路由器变砖了（具体原因不清楚）
-指示灯由蓝色常亮变成橙色常亮，对于家用路由器这种消费电子产品，一般重启一下能解决90%的故障
-但心血来潮想试一下给它刷个机
-型号是这个：
-
-    
-
-
-
-刷机需要一根网线，PC，以及变砖的路由器
-步骤如下：
-
-在网址MiWiFi中找到刷机软件与对应型号的ROM固件
-关闭PC的防火墙，将网线连接至路由器的LAN口，本型号WAN与LAN口二合一了,随便找个口插上就行
-打开刷机软件并载入对应的固件
-
-
-    
-
-
-
-
-用工具按住路由器的reset键后通电源，这一步非常像之前给单片机内部flash进行ISP下载程序的步骤，因此感觉很熟悉
-待指示灯闪烁后松开reset键，固件开始下载
-
-
-    
-
-
-
-
-路由器变为蓝灯闪烁，此时已经刷机完成，当新路由器用就行
-
-
-            
-          </div>
-        
-      </div>
-
-         
-    </div>
-    
-     
-    <a class="right-panel  non-pic  "
-      
-      href="/2025/02/13/250213/" 
-    >
-       
-      <i class="fa-solid fa-angle-right non-pic"></i>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
-
-
-
-
-
-   
-
-
-<article id="post-250212" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2025/02/12/250212/">2025 Feb Packing Up &amp; Personal Step to Decluttering</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2025-02-12T11:12:26.000Z" itemprop="datePublished">2025-02-12</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-  <a class="meta-cate-link" href="/categories/Being/">Being</a>
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            1.1k 词 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%87%AA%E8%A8%80%E8%87%AA%E8%AF%AD/" rel="tag">自言自语</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            
-              Overview寒假从公寓打包东西回家时，我感受到自己的行李数量过多，直观的表现是我用了四个大号搬家盒邮寄，但剩余的物品还是将我的行李箱塞得很满，导致拉链都很难拉上。
-我有收藏的癖好，包括各种证件，证书，徽章等。很多时候我觉得这个习惯帮助自己成为一个有条理的人，因为对于收纳好的物品，我很少出现找不到东西的情况；但也有很多时候我感觉自己在已经过去的事情上花费了过多的精力，一定程度上影响了自己的生活节奏。
-然而我始终认为很多东西是有纪念意义的，因此有必要在实现这个意义的方法上进行一些变通。近期，我在收纳整理方面做了一些思考与改变。
-For Record在2023年我看到一些博主，使用一种叫手账的方式记录自己的日常生活，他们会在一些记事本（通常外观看起来比较好看）上通过文字，绘画与粘贴物品等方式呈现一种比日记更丰富的格式，个人风格十分鲜明。当时正值保研结束的暑假，是我大学以来最放松的一段时间，对现实与未来没有过多的想象与焦虑，仿佛生活随风而起，处处是可以随手采撷的格桑花。于是我一眼看上这种“生活的艺术”，买了一个手账本，一台用于打印照片的 Canon CP1500，以及一些用来切割的工...
-            
-          </div>
-        
-      </div>
-
-         
-    </div>
-    
-     
-    <a class="right-panel  non-pic  "
-      
-      href="/2025/02/12/250212/" 
-    >
-       
-      <i class="fa-solid fa-angle-right non-pic"></i>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
-
-
-
-
-
-   
-
-
-<article id="post-241121" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2024/11/21/241121/">STM32配置笔记</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2024-11-21T10:45:34.000Z" itemprop="datePublished">2024-11-21</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-  <a class="meta-cate-link" href="/categories/Learning-Record/">Learning Record</a>
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            70 词 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <p>大二学习STM32G4系列的笔记，upload当乐高说明书看</p>
-        
-      </div>
-
-         
-    </div>
-    
-     
-    <a class="right-panel  with-pic  "
-       style="background-image: url(/images/embeded_sys/notes.webp)" 
-      href="/2024/11/21/241121/" 
-    >
-       
-      <div class="overlay">
-        <i class="fa-solid fa-angle-right with-pic"></i>
-      </div>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
-
-
-
-
-
    
 
 
@@ -948,6 +322,476 @@ void ST7735_DrawImage(uint16_t x, uint16_t y, uint16_t w, uint16_t h, const uint
     >
        
       <i class="fa-solid fa-angle-right non-pic"></i>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+
+
+
+
+
+   
+
+
+<article id="post-240916" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2024/09/16/240916/">西南风光</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2024-09-15T17:01:33.000Z" itemprop="datePublished">2024-09-16</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/Being/">Being</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            39 词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%91%84%E5%BD%B1/" rel="tag">摄影</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <p>2024年8月</p>
+<p>迟来的fine  journey 稍纵即逝</p>
+        
+      </div>
+
+         
+    </div>
+    
+     
+    <a class="right-panel  with-pic  "
+       style="background-image: url(/images/being/6.webp)" 
+      href="/2024/09/16/240916/" 
+    >
+       
+      <div class="overlay">
+        <i class="fa-solid fa-angle-right with-pic"></i>
+      </div>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+
+
+
+
+
+   
+
+
+<article id="post-231231" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2023/12/31/231231/">Reflections on my undergraduate life</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2023-12-31T11:31:43.000Z" itemprop="datePublished">2023-12-31</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/Being/">Being</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            1.4k 词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%87%AA%E8%A8%80%E8%87%AA%E8%AF%AD/" rel="tag">自言自语</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="truncate-text">
+            
+              2020秋入学至今，我已进入我的Senior Year，成为学校中离毕业最近的那批人之一。
+藏不住高考的阴霾，我在一个潮湿的周末办理了入学报到。对学校本身，我并没有太多想象，只是机械地和别人一样走着搬宿舍，入住，参观学校，军训的流程，对自己将要呆的地方没有丝毫好奇心，not to mention “归属感”。在做题多年所带来的优绩主义思想残留和想要改变现状的迫切心理交叉影响下，刚入学的我便决定好好学习，达到保研要求，去一个更好的平台读研。除此之外，我又想多尝试一些事情，当一个斜杠man，不想变成nerd，并且和这些人划清界线。
+这两个指导思想，贯穿着我的大学生活。
+对于保研去往更好的平台，这个目的本身并没有问题，我现在也认为，学习本身也是为了更好的生活。从当时和现在看来，保研无疑是比较平稳且有效的选择，是“本手”。
+只是受限于达到保研要求这个悬在头顶的宝剑，我的目光和精力被束缚在GPA，加分政策等一系列数字与文书上，于是这三年，我并没有对自己的兴趣爱好进行充分的发掘，也并没有从埋头学习中收获太多的乐趣。或者说，我对自己想要成为一个什么样的人，完全没有进行过深度思考。即使是现在大四...
+            
+          </div>
+        
+      </div>
+
+         
+    </div>
+    
+     
+    <a class="right-panel  non-pic  "
+      
+      href="/2023/12/31/231231/" 
+    >
+       
+      <i class="fa-solid fa-angle-right non-pic"></i>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+
+
+
+
+
+   
+
+
+<article id="post-231216" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2023/12/16/231216/">寒山寺闲逛</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2023-12-16T02:38:29.000Z" itemprop="datePublished">2023-12-16</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/Being/">Being</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            76 词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%91%84%E5%BD%B1/" rel="tag">摄影</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="truncate-text">
+            
+              有《枫桥夜泊》钟声的加持，也算名气不小的景点实际乏善可陈，没什么特点
+
+    
+
+
+
+
+    
+
+
+
+
+张继的雕像侧躺在现代枫桥旁边手脚部位被游客盘得发亮，据说摸一摸家里小孩就能考上好大学
+
+            
+          </div>
+        
+      </div>
+
+         
+    </div>
+    
+     
+    <a class="right-panel  non-pic  "
+      
+      href="/2023/12/16/231216/" 
+    >
+       
+      <i class="fa-solid fa-angle-right non-pic"></i>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+
+
+
+
+
+   
+
+
+<article id="post-220321" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2022/03/21/220321/">Hexo博客插入图片</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2022-03-21T01:32:46.000Z" itemprop="datePublished">2022-03-21</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/Projects-DIY/">Projects & DIY</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            1.2k 词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yaml/" rel="tag">yaml</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <h2 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h2><p>之前打算在文章中插入图片，配置的过程中遇到了一些问题。</p>
+        
+      </div>
+
+         
+    </div>
+    
+     
+    <a class="right-panel  non-pic  "
+      
+      href="/2022/03/21/220321/" 
+    >
+       
+      <i class="fa-solid fa-angle-right non-pic"></i>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+
+
+
+
+
+   
+
+
+<article id="post-220317" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2022/03/17/220317/">procreate社团设计x3</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2022-03-17T12:50:00.000Z" itemprop="datePublished">2022-03-17</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/Being/">Being</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            184 词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BB%98%E7%94%BB/" rel="tag">绘画</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="truncate-text">
+            
+              翻了翻之前的文件夹，自己在在本科社团宣传部一年好像也没什么创作成果
+首先是两个养老院的徽章，记得当时是在画第一个徽章的过程中错删了一个图层，然后碰巧搞出了一个镂空的效果，感觉还不错，就在第二个徽章里故技重施了一下，但没有原来的效果了
+
+
+
+
+
+
+
+
+下图是大二上学期一次活动的海报设计，for苏州大学独墅湖校区冬至灯会
+
+
+
+
+
+
+以上作品均由iPad绘画软件procreate绘制，方便使用，新手友好
+
+            
+          </div>
+        
+      </div>
+
+         
+    </div>
+    
+     
+    <a class="right-panel  with-pic  "
+       style="background-image: url(/images/painting/2.webp)" 
+      href="/2022/03/17/220317/" 
+    >
+       
+      <div class="overlay">
+        <i class="fa-solid fa-angle-right with-pic"></i>
+      </div>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+
+
+
+
+
+   
+
+
+<article id="post-220316" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2022/03/16/220316/">procreate绘画x3</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2022-03-16T11:32:26.000Z" itemprop="datePublished">2022-03-16</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/Being/">Being</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            7 词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BB%98%E7%94%BB/" rel="tag">绘画</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="truncate-text">
+            
+              或许有点蒸汽波
+
+
+
+
+            
+          </div>
+        
+      </div>
+
+         
+    </div>
+    
+     
+    <a class="right-panel  with-pic  "
+       style="background-image: url(/images/painting/3.webp)" 
+      href="/2022/03/16/220316/" 
+    >
+       
+      <div class="overlay">
+        <i class="fa-solid fa-angle-right with-pic"></i>
+      </div>
        
     </a>
      

@@ -6,7 +6,7 @@
   <link href="https://miustannis.github.io/atom.xml" rel="self"/>
   
   <link href="https://miustannis.github.io/"/>
-  <updated>2025-05-19T09:16:46.280Z</updated>
+  <updated>2025-05-19T11:52:34.764Z</updated>
   <id>https://miustannis.github.io/</id>
   
   <author>
@@ -17,83 +17,16 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>冈萨雷斯 《数字图像处理》Study Log (7) 图像分割</title>
+    <title>冈萨雷斯 《数字图像处理》Study Log</title>
     <link href="https://miustannis.github.io/2025/05/19/250519/"/>
     <id>https://miustannis.github.io/2025/05/19/250519/</id>
     <published>2025-05-19T03:38:44.000Z</published>
-    <updated>2025-05-19T09:16:46.280Z</updated>
+    <updated>2025-05-19T11:52:34.764Z</updated>
     
     
       
       
-    <summary type="html">&lt;h3 id=&quot;Ch7-图像分割&quot;&gt;&lt;a href=&quot;#Ch7-图像分割&quot; class=&quot;headerlink&quot; title=&quot;Ch7 图像分割&quot;&gt;&lt;/a&gt;Ch7 图像分割&lt;/h3&gt;&lt;h4 id=&quot;基础知识&quot;&gt;&lt;a href=&quot;#基础知识&quot; class=&quot;headerlink&quot; </summary>
-      
-    
-    
-    
-    <category term="Learning Record" scheme="https://miustannis.github.io/categories/Learning-Record/"/>
-    
-    
-    <category term="图像处理" scheme="https://miustannis.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>冈萨雷斯 《数字图像处理》Study Log (6) 形态学图像处理</title>
-    <link href="https://miustannis.github.io/2025/05/18/250518/"/>
-    <id>https://miustannis.github.io/2025/05/18/250518/</id>
-    <published>2025-05-18T03:38:44.000Z</published>
-    <updated>2025-05-19T08:21:51.678Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;Ch6-形态学图像处理&quot;&gt;&lt;a href=&quot;#Ch6-形态学图像处理&quot; class=&quot;headerlink&quot; title=&quot;Ch6 形态学图像处理&quot;&gt;&lt;/a&gt;Ch6 形态学图像处理&lt;/h3&gt;&lt;h4 id=&quot;基础知识&quot;&gt;&lt;a href=&quot;#基础知识&quot; class=&quot;</summary>
-      
-    
-    
-    
-    <category term="Learning Record" scheme="https://miustannis.github.io/categories/Learning-Record/"/>
-    
-    
-    <category term="图像处理" scheme="https://miustannis.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>冈萨雷斯 《数字图像处理》Study Log (5) 彩色图像处理</title>
-    <link href="https://miustannis.github.io/2025/05/16/250516/"/>
-    <id>https://miustannis.github.io/2025/05/16/250516/</id>
-    <published>2025-05-16T03:38:44.000Z</published>
-    <updated>2025-05-18T07:23:03.473Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;Ch5-彩色图像处理&quot;&gt;&lt;a href=&quot;#Ch5-彩色图像处理&quot; class=&quot;headerlink&quot; title=&quot;Ch5 彩色图像处理&quot;&gt;&lt;/a&gt;Ch5 彩色图像处理&lt;/h3&gt;&lt;p&gt;彩色图像处理可以分为：&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;全彩色处理：&lt;/str</summary>
-      
-    
-    
-    
-    <category term="Learning Record" scheme="https://miustannis.github.io/categories/Learning-Record/"/>
-    
-    
-    <category term="图像处理" scheme="https://miustannis.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>冈萨雷斯 《数字图像处理》Study Log (4) 图像复原</title>
-    <link href="https://miustannis.github.io/2025/05/15/250515/"/>
-    <id>https://miustannis.github.io/2025/05/15/250515/</id>
-    <published>2025-05-15T03:38:44.000Z</published>
-    <updated>2025-05-18T07:20:25.047Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;Ch4-图像复原与恢复&quot;&gt;&lt;a href=&quot;#Ch4-图像复原与恢复&quot; class=&quot;headerlink&quot; title=&quot;Ch4 图像复原与恢复&quot;&gt;&lt;/a&gt;&lt;strong&gt;Ch4 图像复原与恢复&lt;/strong&gt;&lt;/h3&gt;&lt;h4 id=&quot;图像复原的基本概念&quot;&gt;&lt;</summary>
+    <summary type="html">&lt;h3 id=&quot;Ch0-数字图像的概念&quot;&gt;&lt;a href=&quot;#Ch0-数字图像的概念&quot; class=&quot;headerlink&quot; title=&quot;Ch0 数字图像的概念&quot;&gt;&lt;/a&gt;&lt;strong&gt;Ch0 数字图像的概念&lt;/strong&gt;&lt;/h3&gt;&lt;p&gt;观察系统使用的光波段：可见光、红外</summary>
       
     
     
@@ -122,9 +55,83 @@
     
     <category term="C" scheme="https://miustannis.github.io/tags/C/"/>
     
+    <category term="Algorithm" scheme="https://miustannis.github.io/tags/Algorithm/"/>
+    
     <category term="图像处理" scheme="https://miustannis.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
     
-    <category term="Algorithm" scheme="https://miustannis.github.io/tags/Algorithm/"/>
+  </entry>
+  
+  <entry>
+    <title>Hexo博客插入数学公式</title>
+    <link href="https://miustannis.github.io/2025/03/27/250327/"/>
+    <id>https://miustannis.github.io/2025/03/27/250327/</id>
+    <published>2025-03-27T04:22:29.000Z</published>
+    <updated>2025-05-19T01:17:34.916Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;在写一些内容时，会遇到需要添加数学公式的地方，Hexo部分主题不支持公式的渲染，比如我正在使用的vivia主题，在查阅一些资料之后，我使用&lt;strong&gt;MathJax&lt;/strong&gt;引擎实现了vivia主题下的数学公式渲染。&lt;/p&gt;
+&lt;p&gt;MathJax简介：&lt;a hr</summary>
+      
+    
+    
+    
+    <category term="Projects &amp; DIY" scheme="https://miustannis.github.io/categories/Projects-DIY/"/>
+    
+    
+    <category term="html" scheme="https://miustannis.github.io/tags/html/"/>
+    
+    <category term="Hexo" scheme="https://miustannis.github.io/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Harvard CS50 Study Log</title>
+    <link href="https://miustannis.github.io/2025/03/06/250306/"/>
+    <id>https://miustannis.github.io/2025/03/06/250306/</id>
+    <published>2025-03-06T12:39:18.000Z</published>
+    <updated>2025-05-18T06:57:16.487Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;Lecture-0-Scratch&quot;&gt;&lt;a href=&quot;#Lecture-0-Scratch&quot; class=&quot;headerlink&quot; title=&quot;Lecture 0 Scratch&quot;&gt;&lt;/a&gt;&lt;strong&gt;Lecture 0 Scratch&lt;/strong&gt;&lt;</summary>
+      
+    
+    
+    
+    <category term="Learning Record" scheme="https://miustannis.github.io/categories/Learning-Record/"/>
+    
+    
+    <category term="CS" scheme="https://miustannis.github.io/tags/CS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基于MLX90640的手持红外热成像仪</title>
+    <link href="https://miustannis.github.io/2025/02/26/250226/"/>
+    <id>https://miustannis.github.io/2025/02/26/250226/</id>
+    <published>2025-02-26T02:05:52.000Z</published>
+    <updated>2025-05-19T01:17:44.941Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;项目背景：&quot;&gt;&lt;a href=&quot;#项目背景：&quot; class=&quot;headerlink&quot; title=&quot;项目背景：&quot;&gt;&lt;/a&gt;项目背景：&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;DIY好玩捏&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;电路工作时有时需要检查元件发热情况，但用手触摸元件</summary>
+      
+    
+    
+    
+    <category term="Projects &amp; DIY" scheme="https://miustannis.github.io/categories/Projects-DIY/"/>
+    
+    
+    <category term="嵌入式" scheme="https://miustannis.github.io/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    <category term="C" scheme="https://miustannis.github.io/tags/C/"/>
     
   </entry>
   

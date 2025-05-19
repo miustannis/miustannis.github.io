@@ -249,19 +249,19 @@ mjx-container[display="true"] + br {
     <div class="widget">
       <h3 class="widget-title">分类</h3>
       <div class="category-box">
-            <a class="category-link" href="/categories/Being/">
-                Being
-                <div class="category-count">6</div>
-            </a>
-        
             <a class="category-link" href="/categories/Projects-DIY/">
                 Projects & DIY
                 <div class="category-count">6</div>
             </a>
         
+            <a class="category-link" href="/categories/Being/">
+                Being
+                <div class="category-count">6</div>
+            </a>
+        
             <a class="category-link" href="/categories/Learning-Record/">
                 Learning Record
-                <div class="category-count">11</div>
+                <div class="category-count">5</div>
             </a>
         </div>
     </div>
@@ -298,7 +298,7 @@ mjx-container[display="true"] + br {
   
     
       <h1 itemprop="name">
-        <a class="p-name article-title" href="/2025/05/19/250519/">冈萨雷斯 《数字图像处理》Study Log (7) 图像分割</a>
+        <a class="p-name article-title" href="/2025/05/19/250519/">冈萨雷斯 《数字图像处理》Study Log</a>
       </h1>
     
   
@@ -317,7 +317,7 @@ mjx-container[display="true"] + br {
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            2.7k 词 
+            26k 词 
           </div>
         </div>
         
@@ -328,31 +328,25 @@ mjx-container[display="true"] + br {
         
           <div class="truncate-text">
             
-              Ch7 图像分割基础知识图像分割是指把图像分成各个具有相应特性的区域并提取出感兴趣目标的技术和过程
-特性包括：灰度、颜色、纹理等，目标可以对应单个区域，也可以对应多个区域
-分类：
-按幅度不同分割：幅度分割
-按边缘不同分割：边缘检测
-按形状不同分割：区域检测
+              Ch0 数字图像的概念观察系统使用的光波段：可见光、红外、射线、微波、超声波等
+视觉在人类获取信息来源中占70%
+图：反射光或者透射光的分布，或物体自身发出的能量—客观
+像：人的视觉系统对图的接收在大脑中形成的印象或认识—主观
+图像处理：是对图像信息进行加工处理，以满足人的视觉心理和实际应用的需求。包括光学和电子学两种方法
+图像分类：模拟图像 &amp; 数字图像
+模拟图像：理论上不存在，即使高密度胶片成像也无法称为模拟图像，个人认为可将人眼获得的像近似为模拟图像
 
-对灰度图像的分割常可以基于像素灰度值的两个性质： 不连续性和相似性。区域内部的像素一般具有灰度相似性，而在区域之间的边界上一般具有灰度不连续性。不连续性-&gt;基于边界的分割；相似性-&gt;基于区域的分割
-&nbsp;
-间断检测点检测使用模板
-
-    $R = w_1z_1+w_2z_2+w_3z_3+...+w_9z_9 = \sum_{i=1}^{9}w_iz_i$
-
-
-人为设置阈值，且如果模板的响应为0，则表示在灰度级为常数的区域
-线检测有4个线检测模板，分别在水平，+45°，垂直以及-45°方向上有最大响应
-
-    
+数字图像：
+由连续的模拟图像通过采样和量化得到。数字图像的基本单位是像素，所以数字图像是像素的集合
+数字图像是以像素为元素的矩阵，像素的值代表图像在该位置的亮度/色度，称为图像的灰度值/色度值
+数字图像像素具有整数坐标与整数灰度值
 
 
-边缘检测
-边缘是一组相连的像素集合，这些像素位于两个区域的边界上。灰度边缘是灰度值不连续的结果。
-一阶导数与二阶导数在识别图像的边缘中具有重要的作用
+数字图像处理的基本特点：
+信息量大
+占用频带宽：电视图像的带宽为5~6MHz（细节越多，画质越高带宽越大，不过现代数字编码技术可以通过压缩方法，比如MPEG-4、H.265等方式大幅减少带宽需求），语音的带宽只有4kHz，频带越宽，技术实现难度就越大
 
-数字边缘的模型有：理想数字边缘模型 &...
+数字图像处理的基本内容 （部分内...
             
           </div>
         
@@ -365,284 +359,6 @@ mjx-container[display="true"] + br {
     <a class="right-panel  non-pic  "
       
       href="/2025/05/19/250519/" 
-    >
-       
-      <i class="fa-solid fa-angle-right non-pic"></i>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
-
-
-
-
-
-   
-
-
-<article id="post-250518" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2025/05/18/250518/">冈萨雷斯 《数字图像处理》Study Log (6) 形态学图像处理</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2025-05-18T03:38:44.000Z" itemprop="datePublished">2025-05-18</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-  <a class="meta-cate-link" href="/categories/Learning-Record/">Learning Record</a>
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            2.3k 词 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">图像处理</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            
-              Ch6 形态学图像处理基础知识形态学：是生物学中研究动物和植物结构的一个分支。
-数学形态学（图像代数）：以形态为基础对图像进行分析的数学工具。
-形态学图像处理的应用：可以简化图像数据，保持它们基本的形状特性，并除去不相干的结构。
-思想：用具有一定形态的结构元素，去度量和提取图像中的对应形状，以达到对图像分析和识别的目的
-发展：初期的数学形态学方法仅可以应用于二值图像，所以需要将灰度图像先进行二值化。后来灰度形态学得到发展，使得数学形态学方法不仅可以用于二值图像，也可以应用于各种灰度与彩色图像。
-&nbsp;
-二值形态学中的运算对象是集合，但实际运算中当涉及两个集合时并不把他们看作是互相对等的，一般设A为图像集合，B为结构元素，数学形态学运算是用B对A进行操作。
-结构元素本身实际上也是一个图像集合。对每个结构元素，先要指定一个原点，它是结构元素参与形态学运算的参考点。注意原点可以包含在结构元素中，也可以不包含在结构元素中（即原点并不一定要属于结构元素），但两种情况下的运算结果常不相同 。
-集合论中的基本概念：并，交，补，差
-
-    
-
-
-
-
-
-有公式：
-
-集合A的平移，平移到z(...
-            
-          </div>
-        
-      </div>
-
-         
-    </div>
-    
-     
-    <a class="right-panel  non-pic  "
-      
-      href="/2025/05/18/250518/" 
-    >
-       
-      <i class="fa-solid fa-angle-right non-pic"></i>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
-
-
-
-
-
-   
-
-
-<article id="post-250516" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2025/05/16/250516/">冈萨雷斯 《数字图像处理》Study Log (5) 彩色图像处理</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2025-05-16T03:38:44.000Z" itemprop="datePublished">2025-05-16</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-  <a class="meta-cate-link" href="/categories/Learning-Record/">Learning Record</a>
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            2.3k 词 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">图像处理</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            
-              Ch5 彩色图像处理彩色图像处理可以分为：
-全彩色处理：数码相机，彩色扫描仪
-伪彩色处理：对不同灰度或灰度范围赋予不同的颜色
-&nbsp;
-彩色空间——也称为彩色模型或者彩色系统
-——example: RGB \ CMY &amp; CMYK \ HSI \ YIQ \ YUV \ YCbCr
-
-RGB
-CCD或者CMOS技术直接感知RGB三个分量（本身光电传感器无法识别颜色，增加滤光片之后可以分辨）
-
-CMY &amp; CMYK
-CMY（青色，品红，黄）CMYK（青、品红、黄、黑）
-大多数在纸上沉积彩色颜料的设备，比如彩色打印机和复印机、印刷设备
-打印中的主要颜色是黑色，等量的CMY原色可以产生黑色，但不纯
-
-HSI
-HSI（色调，饱和度，亮度）
-I分量与图像的彩色信息无关
-H和S分量与人感受颜色的方式是紧密相连的
-广泛用于计算机视觉、图像检索和视频检索
-
-YIQ &amp; YUV
-Y指亮度，即灰度值
-I和Q指色调，描述色彩及饱和度，U和V也指色调，与前者不同
-用于彩色电视广播，YIQ被北美的电视系统所采用，YUV被欧洲的电视系统所采用
-Y分量可提供黑白电视机的所有影像信息...
-            
-          </div>
-        
-      </div>
-
-         
-    </div>
-    
-     
-    <a class="right-panel  non-pic  "
-      
-      href="/2025/05/16/250516/" 
-    >
-       
-      <i class="fa-solid fa-angle-right non-pic"></i>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
-
-
-
-
-
-   
-
-
-<article id="post-250515" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2025/05/15/250515/">冈萨雷斯 《数字图像处理》Study Log (4) 图像复原</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2025-05-15T03:38:44.000Z" itemprop="datePublished">2025-05-15</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-  <a class="meta-cate-link" href="/categories/Learning-Record/">Learning Record</a>
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            5.1k 词 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">图像处理</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            
-              Ch4 图像复原与恢复图像复原的基本概念图像退化定义：图像的质量下降叫做退化
-形式：模糊、失真、有噪声等
-原因：无论是由光学、光电或者电子方法获得的图像，均会有不同程度的退化。比如传感器噪声，物体与摄像设备之间的相对移动等
-在图像采集过程中产生的许多退化常称为模糊，在图像记录过程中产生的退化常称为噪声
-如果对退化的类型、机制和过程都十分清楚，就可以利用其反过程来复原图像
-图像复原对降质了的图像恢复成原来的图像。具体方法：针对引起图像退化的原因，以及降质过程的某先验知识，建立起退化模型，再针对降质过程采取相反的方向，恢复图像。本质上是一种逆过程。
-一般来讲，复原的好坏有一个规定的客观标准，以便对复原的结果作出某种最佳的评估。
-&nbsp;
-图像退化模型退化过程可以看作对原图像作线性运算
-
-    $ g(x,y) = H f(x,y) + n(x,y)$ 
-
-
-其中H是退化模型，n(x,y)是噪声，退化模型被建模为一个退化函数和一个加性噪声项
-在后续的讨论中，对退化模型H作出以下的假设：
-
-H是线性的
-H是空间（或位移）不变的
-
-在这里先省略噪声项，可将一幅图像看作是由一系列冲激函...
-            
-          </div>
-        
-      </div>
-
-         
-    </div>
-    
-     
-    <a class="right-panel  non-pic  "
-      
-      href="/2025/05/15/250515/" 
     >
        
       <i class="fa-solid fa-angle-right non-pic"></i>
@@ -733,7 +449,7 @@ H是空间（或位移）不变的
    
 
 
-<article id="post-250425" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+<article id="post-250327" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
    
   <div class="article-inner">
     <div class="article-main">
@@ -744,7 +460,7 @@ H是空间（或位移）不变的
   
     
       <h1 itemprop="name">
-        <a class="p-name article-title" href="/2025/04/25/250425/">冈萨雷斯 《数字图像处理》Study Log (3) 频域图像增强</a>
+        <a class="p-name article-title" href="/2025/03/27/250327/">Hexo博客插入数学公式</a>
       </h1>
     
   
@@ -752,44 +468,38 @@ H是空间（或位移）不变的
 
         <div class='meta-info-bar'>
           <div class="meta-info">
-  <time class="dt-published" datetime="2025-04-25T03:38:44.000Z" itemprop="datePublished">2025-04-25</time>
+  <time class="dt-published" datetime="2025-03-27T04:22:29.000Z" itemprop="datePublished">2025-03-27</time>
 </div>
           <div class="need-seperator meta-info">
             <div class="meta-cate-flex">
   
-  <a class="meta-cate-link" href="/categories/Learning-Record/">Learning Record</a>
+  <a class="meta-cate-link" href="/categories/Projects-DIY/">Projects & DIY</a>
    
 </div>
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            3.8k 词 
+            1.5k 词 
           </div>
         </div>
         
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">图像处理</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html/" rel="tag">html</a></li></ul>
 
       </header>
       <div class="e-content article-entry" itemprop="articleBody">
         
           <div class="truncate-text">
             
-              Ch3 频域图像增强理论基础空间域图像变换到频域的具体实现——图像离散傅里叶变换与反变换
-频域图像的表达特点——经过中心变换后，低频位于中心，高频在外
-空间频率的定义：图像灰度值随空间坐标变化的快慢也可以用频率来度量，称为空间频率
-二维卷积对于二维平面函数，二维卷积定义：
+              在写一些内容时，会遇到需要添加数学公式的地方，Hexo部分主题不支持公式的渲染，比如我正在使用的vivia主题，在查阅一些资料之后，我使用MathJax引擎实现了vivia主题下的数学公式渲染。
+MathJax简介：https://www.osgeo.cn/mathjax/basic/mathjax.html 
+该引擎是一款可在所有现代浏览器中工作的开源js显示引擎，辅助页面作者编写含有数学公式的文档
+Step 1 : 安装MathJax引擎并更换渲染引擎：​              操作包括卸载Hexo自带的Hexo-math，卸载默认的对MathJax不友好的marked引擎
+npm uinstall hexo-math --save
+npm install hexo-renderer-mathjax --save
 
-    $ h(x, y)=f^{*} g=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} f(u, v) g(x-u, y-v) d u d v $
-
-
-*注：
-深度学习中，CNN中的卷积其实是“互相关运算”，即kernel不翻转，与上面的二维卷积定义无法完全对应。
-在数字图像中，需要离散化，离散二维卷积：
-
-    $ h(x, y)=f^{*} g=\sum_{m} \sum_{n} f(m, n) g(x-m, y-n) $
-
-
-二维离散傅里叶变换\begin{array}{l}F(u, v)=\frac{1}{M N} \sum_{x=0}^{M-1} \sum_{y=0}^{N-1} f(x, y) \mathrm{e}^{[-\mathrm{j} 2...
+npm uinstall hexo-renderer-marked --save
+npm install hexo-renderer-kramed --save
+Step 2 : 更新MathJax的cdn链接Step 3 : 更改部分转义规则 hexo 默认...
             
           </div>
         
@@ -801,7 +511,7 @@ H是空间（或位移）不变的
      
     <a class="right-panel  non-pic  "
       
-      href="/2025/04/25/250425/" 
+      href="/2025/03/27/250327/" 
     >
        
       <i class="fa-solid fa-angle-right non-pic"></i>
@@ -820,7 +530,7 @@ H是空间（或位移）不变的
    
 
 
-<article id="post-250420" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+<article id="post-250306" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
    
   <div class="article-inner">
     <div class="article-main">
@@ -831,7 +541,7 @@ H是空间（或位移）不变的
   
     
       <h1 itemprop="name">
-        <a class="p-name article-title" href="/2025/04/20/250420/">冈萨雷斯 《数字图像处理》Study Log (2) 空间域图像增强</a>
+        <a class="p-name article-title" href="/2025/03/06/250306/">Harvard CS50 Study Log</a>
       </h1>
     
   
@@ -839,7 +549,7 @@ H是空间（或位移）不变的
 
         <div class='meta-info-bar'>
           <div class="meta-info">
-  <time class="dt-published" datetime="2025-04-20T03:38:44.000Z" itemprop="datePublished">2025-04-20</time>
+  <time class="dt-published" datetime="2025-03-06T12:39:18.000Z" itemprop="datePublished">2025-03-06</time>
 </div>
           <div class="need-seperator meta-info">
             <div class="meta-cate-flex">
@@ -850,54 +560,19 @@ H是空间（或位移）不变的
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            4.9k 词 
+            14k 词 
           </div>
         </div>
         
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">图像处理</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CS/" rel="tag">CS</a></li></ul>
 
       </header>
       <div class="e-content article-entry" itemprop="articleBody">
         
           <div class="truncate-text">
             
-              Ch2 空间域图像增强定义：直接作用于像素的增强方法，根据具体操作是在像素点位置上还是像素点的邻域上可分为点操作和模板操作（邻域操作）
-灰度映射通过映射函数:$ t= T(s)$（可根据增强的目的来设计映射函数）将原始图像中的每个像素的灰度都映射到新的灰度。
-图像求反（负片）一一对应
-
-    
-
-
-
-
-幂次变换$t= cs^{γ}$ 
-$γ&lt;1$时在正比函数上方，使得图像变亮，把输入窄带暗值映射到宽带输出；
-$γ&gt;1$时在正比函数下方，使得图像变暗，把输入窄带亮值映射到宽带输出。
-
-    
-
-
-动态范围压缩由于某些设备的局限性，采用动态范围压缩，目标与增强图片的对比度相反（同等范围的原始灰度级数变换后范围变化减小）
-
-    
-
-
-阶梯量化将图像灰度分范围量化，变成数据量较少的级数，获得数据量压缩的效果（有点像素化风格）
-
-    
-
-
-灰度切分/阈值切分只留下两个灰度值，获得最大的对比度以及最少的细节
-
-    
-
-
-*分段变换：
-
-    
-
-
-位平面切片以256灰度级图像为例，该图像的灰度级可以用8位表示。可假设图像是由8个1位平面组成，即位平面0~7，其中...
+              Lecture 0 ScratchLecture 1 CLecture 2 ArraysLecture 3 Algorithms
+Time Complexity is an important metric used to measure the relationship between the running time of an algorithm and the size of the input. It describes how the execution time of an algorithm increases as the input size grows. Time complexity helps us assess the efficiency of an algorithm under different problem sizes, allowing us to choose the most appropriate algorithm. Time complexity is usually expressed using Big  notation....
             
           </div>
         
@@ -907,12 +582,14 @@ $γ&gt;1$时在正比函数下方，使得图像变暗，把输入窄带亮值�
     </div>
     
      
-    <a class="right-panel  non-pic  "
-      
-      href="/2025/04/20/250420/" 
+    <a class="right-panel  with-pic  "
+       style="background-image: url(/images/cs50/CS50_pic.webp)" 
+      href="/2025/03/06/250306/" 
     >
        
-      <i class="fa-solid fa-angle-right non-pic"></i>
+      <div class="overlay">
+        <i class="fa-solid fa-angle-right with-pic"></i>
+      </div>
        
     </a>
      
@@ -928,7 +605,7 @@ $γ&gt;1$时在正比函数下方，使得图像变暗，把输入窄带亮值�
    
 
 
-<article id="post-250328" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+<article id="post-250226" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
    
   <div class="article-inner">
     <div class="article-main">
@@ -939,7 +616,7 @@ $γ&gt;1$时在正比函数下方，使得图像变暗，把输入窄带亮值�
   
     
       <h1 itemprop="name">
-        <a class="p-name article-title" href="/2025/03/28/250328/">冈萨雷斯 《数字图像处理》Study Log (1) 图像技术基础</a>
+        <a class="p-name article-title" href="/2025/02/26/250226/">基于MLX90640的手持红外热成像仪</a>
       </h1>
     
   
@@ -947,12 +624,12 @@ $γ&gt;1$时在正比函数下方，使得图像变暗，把输入窄带亮值�
 
         <div class='meta-info-bar'>
           <div class="meta-info">
-  <time class="dt-published" datetime="2025-03-28T03:38:44.000Z" itemprop="datePublished">2025-03-28</time>
+  <time class="dt-published" datetime="2025-02-26T02:05:52.000Z" itemprop="datePublished">2025-02-26</time>
 </div>
           <div class="need-seperator meta-info">
             <div class="meta-cate-flex">
   
-  <a class="meta-cate-link" href="/categories/Learning-Record/">Learning Record</a>
+  <a class="meta-cate-link" href="/categories/Projects-DIY/">Projects & DIY</a>
    
 </div>
   
@@ -962,32 +639,155 @@ $γ&gt;1$时在正比函数下方，使得图像变暗，把输入窄带亮值�
           </div>
         </div>
         
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">图像处理</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a></li></ul>
 
       </header>
       <div class="e-content article-entry" itemprop="articleBody">
         
           <div class="truncate-text">
             
-              Ch0 数字图像的概念观察系统使用的光波段：可见光、红外、射线、微波、超声波等
-视觉在人类获取信息来源中占70%
-图：反射光或者透射光的分布，或物体自身发出的能量—客观
-像：人的视觉系统对图的接收在大脑中形成的印象或认识—主观
-图像处理：是对图像信息进行加工处理，以满足人的视觉心理和实际应用的需求。包括光学和电子学两种方法
-图像分类：模拟图像 &amp; 数字图像
-模拟图像：理论上不存在，即使高密度胶片成像也无法称为模拟图像，个人认为可将人眼获得的像近似为模拟图像
+              项目背景：
+DIY好玩捏
 
-数字图像：
-由连续的模拟图像通过采样和量化得到。数字图像的基本单位是像素，所以数字图像是像素的集合
-数字图像是以像素为元素的矩阵，像素的值代表图像在该位置的亮度/色度，称为图像的灰度值/色度值
-数字图像像素具有整数坐标与整数灰度值
+电路工作时有时需要检查元件发热情况，但用手触摸元件有一定的风险，因此需要一种无接触式的多点测温设备
 
 
-数字图像处理的基本特点：
-信息量大
-占用频带宽：电视图像的带宽为5~6MHz（细节越多，画质越高带宽越大，不过现代数字编码技术可以通过压缩方法，比如MPEG-4、H.265等方式大幅减少带宽需求），语音的带宽只有4kHz，频带越宽，技术实现难度就越大
+于是开始了解到热成像这个测温方式，以下是软硬件方案
+方案：硬件部分​        采用上下两块板子对插组合，为了减少复杂度，留了排母方便直插LCD与传感器模组。
+BOARD1: MCU与外设
+采用STM32F407作为主控，512KB  Flash，其实没特别注意选型，只是手上有这个开发板，要压缩成本的话用其他型号也可以
+红外传感模组为MLX90640 BAA，这个价格比较贵，比其他元件加起来都贵
+屏幕模组为1.44寸TFT-LCD，也是现成的，买了俩还剩一个，下次做别的东西的时候给用了吧
+留了串口测试点和烧录测试点
 
-数字图像处理的基本内容 （部分内...
+
+    
+
+
+
+BOARD2: POWER
+3.7V锂电池供电，可通过USB接口经过LGS4084H电源管理芯片给锂电池充电
+经过一个LDO稳到3.3V给MCU整体供电，VDDA和VCC用磁珠滤波隔离了一下
+
+
+    
+
+
+
+电源板后续涉及锂电池供电DIY的倒是可以继续沿用
+
+    
+
+
+
+立创打样PCB，自己贴片，PCB板框...
+            
+          </div>
+        
+      </div>
+
+         
+    </div>
+    
+     
+    <a class="right-panel  with-pic  "
+       style="background-image: url(/images/thermal_camera/thermal_camera1.webp)" 
+      href="/2025/02/26/250226/" 
+    >
+       
+      <div class="overlay">
+        <i class="fa-solid fa-angle-right with-pic"></i>
+      </div>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+
+
+
+
+
+   
+
+
+<article id="post-250213" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2025/02/13/250213/">Xiaomi路由器BE3600快速救砖</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2025-02-13T10:25:24.000Z" itemprop="datePublished">2025-02-13</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/Projects-DIY/">Projects & DIY</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            307 词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%94%B9%E8%A3%85/" rel="tag">改装</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="truncate-text">
+            
+              家里的路由器变砖了（具体原因不清楚）
+指示灯由蓝色常亮变成橙色常亮，对于家用路由器这种消费电子产品，一般重启一下能解决90%的故障
+但心血来潮想试一下给它刷个机
+型号是这个：
+
+    
+
+
+
+刷机需要一根网线，PC，以及变砖的路由器
+步骤如下：
+
+在网址MiWiFi中找到刷机软件与对应型号的ROM固件
+关闭PC的防火墙，将网线连接至路由器的LAN口，本型号WAN与LAN口二合一了,随便找个口插上就行
+打开刷机软件并载入对应的固件
+
+
+    
+
+
+
+
+用工具按住路由器的reset键后通电源，这一步非常像之前给单片机内部flash进行ISP下载程序的步骤，因此感觉很熟悉
+待指示灯闪烁后松开reset键，固件开始下载
+
+
+    
+
+
+
+
+路由器变为蓝灯闪烁，此时已经刷机完成，当新路由器用就行
+
+
             
           </div>
         
@@ -999,10 +799,155 @@ $γ&gt;1$时在正比函数下方，使得图像变暗，把输入窄带亮值�
      
     <a class="right-panel  non-pic  "
       
-      href="/2025/03/28/250328/" 
+      href="/2025/02/13/250213/" 
     >
        
       <i class="fa-solid fa-angle-right non-pic"></i>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+
+
+
+
+
+   
+
+
+<article id="post-250212" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2025/02/12/250212/">2025 Feb Packing Up &amp; Personal Step to Decluttering</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2025-02-12T11:12:26.000Z" itemprop="datePublished">2025-02-12</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/Being/">Being</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            1.1k 词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%87%AA%E8%A8%80%E8%87%AA%E8%AF%AD/" rel="tag">自言自语</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="truncate-text">
+            
+              Overview寒假从公寓打包东西回家时，我感受到自己的行李数量过多，直观的表现是我用了四个大号搬家盒邮寄，但剩余的物品还是将我的行李箱塞得很满，导致拉链都很难拉上。
+我有收藏的癖好，包括各种证件，证书，徽章等。很多时候我觉得这个习惯帮助自己成为一个有条理的人，因为对于收纳好的物品，我很少出现找不到东西的情况；但也有很多时候我感觉自己在已经过去的事情上花费了过多的精力，一定程度上影响了自己的生活节奏。
+然而我始终认为很多东西是有纪念意义的，因此有必要在实现这个意义的方法上进行一些变通。近期，我在收纳整理方面做了一些思考与改变。
+For Record在2023年我看到一些博主，使用一种叫手账的方式记录自己的日常生活，他们会在一些记事本（通常外观看起来比较好看）上通过文字，绘画与粘贴物品等方式呈现一种比日记更丰富的格式，个人风格十分鲜明。当时正值保研结束的暑假，是我大学以来最放松的一段时间，对现实与未来没有过多的想象与焦虑，仿佛生活随风而起，处处是可以随手采撷的格桑花。于是我一眼看上这种“生活的艺术”，买了一个手账本，一台用于打印照片的 Canon CP1500，以及一些用来切割的工...
+            
+          </div>
+        
+      </div>
+
+         
+    </div>
+    
+     
+    <a class="right-panel  non-pic  "
+      
+      href="/2025/02/12/250212/" 
+    >
+       
+      <i class="fa-solid fa-angle-right non-pic"></i>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+
+
+
+
+
+   
+
+
+<article id="post-241121" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2024/11/21/241121/">STM32配置笔记</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2024-11-21T10:45:34.000Z" itemprop="datePublished">2024-11-21</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/Learning-Record/">Learning Record</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            70 词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <p>大二学习STM32G4系列的笔记，upload当乐高说明书看</p>
+        
+      </div>
+
+         
+    </div>
+    
+     
+    <a class="right-panel  with-pic  "
+       style="background-image: url(/images/embeded_sys/notes.webp)" 
+      href="/2024/11/21/241121/" 
+    >
+       
+      <div class="overlay">
+        <i class="fa-solid fa-angle-right with-pic"></i>
+      </div>
        
     </a>
      
