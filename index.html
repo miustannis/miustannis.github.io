@@ -249,13 +249,13 @@ mjx-container[display="true"] + br {
     <div class="widget">
       <h3 class="widget-title">分类</h3>
       <div class="category-box">
-            <a class="category-link" href="/categories/Projects-DIY/">
-                Projects & DIY
+            <a class="category-link" href="/categories/Being/">
+                Being
                 <div class="category-count">6</div>
             </a>
         
-            <a class="category-link" href="/categories/Being/">
-                Being
+            <a class="category-link" href="/categories/Projects-DIY/">
+                Projects & DIY
                 <div class="category-count">6</div>
             </a>
         
@@ -317,7 +317,7 @@ mjx-container[display="true"] + br {
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            7 词 
+            2.7k 词 
           </div>
         </div>
         
@@ -328,7 +328,31 @@ mjx-container[display="true"] + br {
         
           <div class="truncate-text">
             
-              Ch7 图像分割
+              Ch7 图像分割基础知识图像分割是指把图像分成各个具有相应特性的区域并提取出感兴趣目标的技术和过程
+特性包括：灰度、颜色、纹理等，目标可以对应单个区域，也可以对应多个区域
+分类：
+按幅度不同分割：幅度分割
+按边缘不同分割：边缘检测
+按形状不同分割：区域检测
+
+对灰度图像的分割常可以基于像素灰度值的两个性质： 不连续性和相似性。区域内部的像素一般具有灰度相似性，而在区域之间的边界上一般具有灰度不连续性。不连续性-&gt;基于边界的分割；相似性-&gt;基于区域的分割
+&nbsp;
+间断检测点检测使用模板
+
+    $R = w_1z_1+w_2z_2+w_3z_3+...+w_9z_9 = \sum_{i=1}^{9}w_iz_i$
+
+
+人为设置阈值，且如果模板的响应为0，则表示在灰度级为常数的区域
+线检测有4个线检测模板，分别在水平，+45°，垂直以及-45°方向上有最大响应
+
+    
+
+
+边缘检测
+边缘是一组相连的像素集合，这些像素位于两个区域的边界上。灰度边缘是灰度值不连续的结果。
+一阶导数与二阶导数在识别图像的边缘中具有重要的作用
+
+数字边缘的模型有：理想数字边缘模型 &...
             
           </div>
         
@@ -415,9 +439,10 @@ mjx-container[display="true"] + br {
 
 
 
+
 有公式：
 
-集合A的平移，平移到z(z...
+集合A的平移，平移到z(...
             
           </div>
         
@@ -670,7 +695,7 @@ H是空间（或位移）不变的
           </div>
         </div>
         
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">图像处理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a></li></ul>
 
       </header>
       <div class="e-content article-entry" itemprop="articleBody">

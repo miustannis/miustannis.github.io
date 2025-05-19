@@ -20,18 +20,21 @@
   <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
-  <meta name="description" content="Ch7 图像分割">
+  <meta name="description" content="Ch7 图像分割基础知识图像分割是指把图像分成各个具有相应特性的区域并提取出感兴趣目标的技术和过程 特性包括：灰度、颜色、纹理等，目标可以对应单个区域，也可以对应多个区域 分类： 按幅度不同分割：幅度分割 按边缘不同分割：边缘检测 按形状不同分割：区域检测  对灰度图像的分割常可以基于像素灰度值的两个性质： 不连续性和相似性。区域内部的像素一般具有灰度相似性，而在区域之间的边界上一般具有灰度不连续">
 <meta property="og:type" content="article">
 <meta property="og:title" content="冈萨雷斯 《数字图像处理》Study Log (7) 图像分割">
 <meta property="og:url" content="https://miustannis.github.io/2025/05/19/250519/index.html">
 <meta property="og:site_name" content="Miao&#39;s Blog">
-<meta property="og:description" content="Ch7 图像分割">
+<meta property="og:description" content="Ch7 图像分割基础知识图像分割是指把图像分成各个具有相应特性的区域并提取出感兴趣目标的技术和过程 特性包括：灰度、颜色、纹理等，目标可以对应单个区域，也可以对应多个区域 分类： 按幅度不同分割：幅度分割 按边缘不同分割：边缘检测 按形状不同分割：区域检测  对灰度图像的分割常可以基于像素灰度值的两个性质： 不连续性和相似性。区域内部的像素一般具有灰度相似性，而在区域之间的边界上一般具有灰度不连续">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://miustannis.github.io/images/dip/dip7_1.webp">
+<meta property="og:image" content="https://miustannis.github.io/images/dip/dip7_2.webp">
 <meta property="article:published_time" content="2025-05-19T03:38:44.000Z">
-<meta property="article:modified_time" content="2025-05-19T01:32:49.178Z">
+<meta property="article:modified_time" content="2025-05-19T09:16:46.280Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="图像处理">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://miustannis.github.io/images/dip/dip7_1.webp">
   
     <link rel="alternate" href="/atom.xml" title="Miao's Blog" type="application/atom+xml">
   
@@ -142,13 +145,13 @@
     <div class="widget">
       <h3 class="widget-title">分类</h3>
       <div class="category-box">
-            <a class="category-link" href="/categories/Projects-DIY/">
-                Projects & DIY
+            <a class="category-link" href="/categories/Being/">
+                Being
                 <div class="category-count">6</div>
             </a>
         
-            <a class="category-link" href="/categories/Being/">
-                Being
+            <a class="category-link" href="/categories/Projects-DIY/">
+                Projects & DIY
                 <div class="category-count">6</div>
             </a>
         
@@ -211,7 +214,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            7 词 
+            2.7k 词 
           </div>
         </div>
         
@@ -220,7 +223,154 @@
       </header>
       <div class="e-content article-entry" itemprop="articleBody">
         
-          <h3 id="Ch7-图像分割"><a href="#Ch7-图像分割" class="headerlink" title="Ch7 图像分割"></a>Ch7 图像分割</h3>
+          <h3 id="Ch7-图像分割"><a href="#Ch7-图像分割" class="headerlink" title="Ch7 图像分割"></a>Ch7 图像分割</h3><h4 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h4><p>图像分割是指把图像分成各个具有相应特性的区域并提取出感兴趣目标的技术和过程</p>
+<p>特性包括：灰度、颜色、纹理等，目标可以对应单个区域，也可以对应多个区域</p>
+<h6 id="分类："><a href="#分类：" class="headerlink" title="分类："></a>分类：</h6><ul>
+<li>按幅度不同分割：幅度分割</li>
+<li>按边缘不同分割：边缘检测</li>
+<li>按形状不同分割：区域检测</li>
+</ul>
+<p>对灰度图像的分割常可以基于像素灰度值的两个性质： <strong>不连续性</strong>和<strong>相似性</strong>。区域内部的像素一般具有灰度相似性，而在区域之间的边界上一般具有灰度不连续性。不连续性-&gt;基于边界的分割；相似性-&gt;基于区域的分割</p>
+<p>&nbsp;</p>
+<h4 id="间断检测"><a href="#间断检测" class="headerlink" title="间断检测"></a>间断检测</h4><h5 id="点检测"><a href="#点检测" class="headerlink" title="点检测"></a>点检测</h5><p>使用模板</p>
+<center>
+    $R = w_1z_1+w_2z_2+w_3z_3+...+w_9z_9 = \sum_{i=1}^{9}w_iz_i$
+</center>
+
+<p>人为设置阈值，且如果模板的响应为0，则表示在灰度级为常数的区域</p>
+<h5 id="线检测"><a href="#线检测" class="headerlink" title="线检测"></a>线检测</h5><p>有4个线检测模板，分别在水平，+45°，垂直以及-45°方向上有最大响应</p>
+<center>
+    <img src="/images/dip/dip7_1.webp" width="400">
+</center>
+
+<h5 id="边缘检测"><a href="#边缘检测" class="headerlink" title="边缘检测"></a>边缘检测</h5><ul>
+<li>边缘是一组相连的像素集合，这些像素位于两个区域的边界上。灰度边缘是灰度值不连续的结果。</li>
+<li>一阶导数与二阶导数在识别图像的边缘中具有重要的作用</li>
+</ul>
+<p>数字边缘的模型有：理想数字边缘模型 &amp; 斜坡数字边缘模型。理想数字边缘模型是一种阶跃型的信号，而斜坡数字边缘模型与边缘的模糊程度成比例关系。</p>
+<center>
+    <img src="/images/dip/dip7_2.webp" width="400">
+</center>
+
+<p>如上图所示，以斜坡数字边缘模型为例，可对其求导，在边缘斜面上，一阶导数为正，其他区域为0；在边缘与黑色交界处，二阶导数为正，在边缘与亮色交界处，二阶导数为负；沿着斜坡和灰度为常数的区域为0。</p>
+<p>因此有：</p>
+<ul>
+<li>一阶导数可以用于检测图像中的一个点是否在边缘上</li>
+<li>二阶导数的符号可以判断一个边缘像素是在边缘的亮侧还是在边缘的暗侧</li>
+<li>一阶导数使用<strong>梯度算子</strong>，二阶导数使用<strong>拉普拉斯算子</strong></li>
+</ul>
+<p><strong>*微弱的噪声对导数的影像非常严重，所以预处理要先降噪/平滑处理</strong></p>
+<p>边缘检测算子</p>
+<ul>
+<li>梯度算子 or 差分算子</li>
+<li>Laplace算子 </li>
+<li>Canny算子</li>
+</ul>
+<p>&nbsp;</p>
+<h5 id="梯度算子"><a href="#梯度算子" class="headerlink" title="梯度算子"></a>梯度算子</h5><p>$\nabla f(x, y) = G[f(x,y)] = [\frac{\partial f}{\partial x} \frac{\partial f}{\partial y}]^{T}$ </p>
+<p>梯度的模：$|\nabla f(x, y)|=\sqrt{\left(\frac{\partial f}{\partial x}\right)^{2}+\left(\frac{\partial f}{\partial y}\right)^{2}}$</p>
+<p>方向角：$\phi(x, y)=\arctan \left(G_{x} / G_{y}\right)$</p>
+<p>离散化后为：$\nabla f(x, y)=|f(x, y)-f(x+1, y+1)|+|f(x+1, y)-f(x, y+1)|$</p>
+<p>在空间域图像增强的基础上增加梯度算子<strong>Kirsch</strong>：</p>
+<p>由8个方向模板组成，每个模板的值有不同的趋向性，将8个模板分别与图像相乘，选取最大的一个值，作为中央像素的边缘强度。使得梯度算子一定程度上具有了<strong>方向性</strong>。</p>
+<p>&nbsp;</p>
+<h5 id="拉普拉斯算子"><a href="#拉普拉斯算子" class="headerlink" title="拉普拉斯算子"></a>拉普拉斯算子</h5><p>公式与模板：</p>
+<center>
+    $
+    \begin{array}{l} 
+\nabla^{2} f(x, y)=\frac{\partial^{2} f(x, y)}{\partial x^{2}}+\frac{\partial^{2} f(x, y)}{\partial y^{2}} \\
+=f(x+1, y)+f(x-1, y)+f(x, y-1)+4 f(x, y) \\\\
+{\left[\begin{array}{ccc}
+0 & -1 & 0 \\
+-1 & 4 & -1 \\
+0 & -1 & 0
+\end{array}\right] \quad\left[\begin{array}{ccc}
+-1 & -1 & -1 \\
+-1 & 8 & -1 \\
+-1 & -1 & -1
+\end{array}\right] \quad\left[\begin{array}{ccc}
+1 & -2 & 1 \\
+-2 & 4 & -2 \\
+1 & -2 & 1
+\end{array}\right] }
+\end{array}
+    $
+</center>
+
+<p>推广：</p>
+<p>为减少噪声对拉普拉斯算子的影响，在其基础上实现的<strong>马尔算子</strong>，它先用一个2D的高斯平滑模板与源图像进行卷积，之后再进行拉普拉斯算子套用。</p>
+<p>&nbsp;</p>
+<p><strong>最优边缘检测算法——Canny算子</strong></p>
+<p>好的图像边缘检测需要满足下面两个条件：</p>
+<ol>
+<li><p>能有效地抑制噪声</p>
+</li>
+<li><p>能精确地定位到边缘的位置</p>
+<p>类似于马尔算子，Canny算子也属于先平滑后求导的方法</p>
+</li>
+</ol>
+<p><strong><font color="blue">算法步骤</font></strong></p>
+<ul>
+<li>用高斯滤波器平滑图像：</li>
+</ul>
+<center>
+    <font color="blue">
+    $G(x, y)=f(x, y) * H(x, y)$
+    </font>
+</center>
+
+<ul>
+<li>用一阶偏导的有限差分来计算梯度的幅值和方向</li>
+</ul>
+<center>
+    <font color="blue">
+    $\begin{array}{l}
+H_{1}=\left|\begin{array}{cc}
+-1 & -1 \\
+1 & 1
+\end{array}\right| \quad H_{2}=\left|\begin{array}{ll}
+1 & -1 \\
+1 & -1
+\end{array}\right| \\
+\varphi_{1}(m, n)=f(m, n) * H_{1}(m, n) \\
+\varphi_{2}(m, n)=f(m, n) * H_{2}(m, n) \\
+\varphi(m, n)=\sqrt{\varphi_{1}^{2}(m, n)+\varphi_{2}^{2}(m, n)} \\
+\theta_{\varphi}(m, n)=\tan ^{-1} \frac{\varphi_{2}(m, n)}{\varphi_{1}(m, n)}
+\end{array}$
+    </font>
+</center>
+
+<ul>
+<li>非极大值抑制——细化边缘</li>
+</ul>
+<p>利用梯度的方向，保留局部梯度最大的点</p>
+<center>
+    <font color="blue">
+    $\xi[\mathbf{i}, \mathbf{j}]=\operatorname{Sector}(\theta[\mathbf{i}, \mathbf{j}])$
+    </font>
+</center>
+
+<p>在一个3x3的邻域中，4种类型的边缘方向的边缘法线有一定的角度范围，在每一点上，邻域的中心像素M与沿着梯度线的两个像素相比。如果M的梯度值不比沿梯度线的两个相邻像素梯度值大，则令M = 0.</p>
+<center>
+    <font color="blue">
+    $\mathbf{N}[\mathbf{i}, \mathbf{j}]=\mathbf{N M S}(\mathbf{M}[\mathbf{i}, \mathbf{j}], \xi[\mathbf{i}, \mathbf{j}])$
+    </font>
+</center>
+
+
+
+<ul>
+<li>阈值化</li>
+</ul>
+<p>对N使用一个阈值，将低于阈值的所有值赋0，解决方法为双阈值算法</p>
+<p>&nbsp;</p>
+<h4 id="边缘连接"><a href="#边缘连接" class="headerlink" title="边缘连接"></a>边缘连接</h4><p>在边缘检测后，仅仅得到位置在边缘上的像素点，实际上得到的这些像素点由于各种原因很少能完整地组成一条边缘，因此在使用边缘检测算法之后，需要使用连接过程将边缘像素组合成有意义的边缘。</p>
+<h6 id="局部处理"><a href="#局部处理" class="headerlink" title="局部处理"></a>局部处理</h6><p><strong>如何确定边缘像素的相似性</strong></p>
+<p>对于两个边缘像素，若以下两个值：</p>
+<p>边缘像素梯度算子的响应强度</p>
+<p>边缘像素梯度算子的方向</p>
+<p>在自己设定的阈值范围内，则可以将两点连接起来</p>
+<h6 id="轮廓跟踪和图搜索"><a href="#轮廓跟踪和图搜索" class="headerlink" title="轮廓跟踪和图搜索"></a>轮廓跟踪和图搜索</h6>
         
       </div>
 
