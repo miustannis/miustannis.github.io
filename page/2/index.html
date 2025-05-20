@@ -142,11 +142,6 @@
                 <div class="category-count">6</div>
             </a>
         
-            <a class="category-link" href="/categories/Being/">
-                Being
-                <div class="category-count">6</div>
-            </a>
-        
             <a class="category-link" href="/categories/Learning-Record/">
                 Learning Record
                 <div class="category-count">5</div>
@@ -161,7 +156,7 @@
   <div class="widget-wrap">
     <div class="widget">
       <h3 class="widget-title">标签</h3>
-      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/CS/" rel="tag">CS</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/MATLAB/" rel="tag">MATLAB</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/yaml/" rel="tag">yaml</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">图像处理</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%91%84%E5%BD%B1/" rel="tag">摄影</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%94%B9%E8%A3%85/" rel="tag">改装</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%BB%98%E7%94%BB/" rel="tag">绘画</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E8%87%AA%E8%A8%80%E8%87%AA%E8%AF%AD/" rel="tag">自言自语</a></li></ul>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/CS/" rel="tag">CS</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/MATLAB/" rel="tag">MATLAB</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/yaml/" rel="tag">yaml</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">图像处理</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%94%B9%E8%A3%85/" rel="tag">改装</a></li></ul>
     </div>
   </div>
 
@@ -172,84 +167,6 @@
     </div>
     <div id="content-body">
       
-   
-
-
-<article id="post-241020" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2024/10/20/241020/">UART收发处理函数</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2024-10-20T02:51:00.000Z" itemprop="datePublished">2024-10-20</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-  <a class="meta-cate-link" href="/categories/Learning-Record/">Learning Record</a>
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            1.8k 词 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            
-              UART（Universal Asynchronous Receiver/Transmitter）是一种串行通信协议，在嵌入式系统和微控制器间数据传输中发挥着核心作用。UART协议通过异步方式传输数据，不依赖于共享时钟信号，简化了通信线路的需求。每次传输包括起始位、数据位、可选的奇偶校验位以及停止位，这种结构支持从简单的传感器到复杂的处理器之间的可靠数据交换。
-其重要性还体现在其广泛的兼容性和低成本实现上。它可以通过简单的两线（TX和RX）接口实现全双工通信，极大地降低了系统的硬件复杂性。此外，UART通信协议可以适应不同的波特率设置，使其能够灵活地调整以匹配特定应用的速度要求。在许多工业和消费电子产品中，UART仍然是实现可靠串行通信的首选技术，尤其在资源受限的环境中显示出其高效和经济的优势。（以上均为GPT生成）
-在进行传感器测试时，常用到UART，这里mark一下自己常用的HAL库函数封装，免得后续一直翻之前的程序
-函数需要用到的全局变量如下：
-char send[20] = &#123;0&#125;; //传输用字符数组，储存字符串
-
-uint8_t rx_buffer...
-            
-          </div>
-        
-      </div>
-
-         
-    </div>
-    
-     
-    <a class="right-panel  non-pic  "
-      
-      href="/2024/10/20/241020/" 
-    >
-       
-      <i class="fa-solid fa-angle-right non-pic"></i>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
-
-
-
-
-
    
 
 
@@ -311,7 +228,6 @@ void ST7735_DrawImage(uint16_t x, uint16_t y, uint16_t w, uint16_t h, const uint
           </div>
         
       </div>
-
          
     </div>
     
@@ -319,238 +235,6 @@ void ST7735_DrawImage(uint16_t x, uint16_t y, uint16_t w, uint16_t h, const uint
     <a class="right-panel  non-pic  "
       
       href="/2024/09/28/240928/" 
-    >
-       
-      <i class="fa-solid fa-angle-right non-pic"></i>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
-
-
-
-
-
-   
-
-
-<article id="post-240916" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2024/09/16/240916/">西南风光</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2024-09-15T17:01:33.000Z" itemprop="datePublished">2024-09-16</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-  <a class="meta-cate-link" href="/categories/Being/">Being</a>
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            39 词 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%91%84%E5%BD%B1/" rel="tag">摄影</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <p>2024年8月</p>
-<p>迟来的fine  journey 稍纵即逝</p>
-        
-      </div>
-
-         
-    </div>
-    
-     
-    <a class="right-panel  with-pic  "
-       style="background-image: url(/images/being/6.webp)" 
-      href="/2024/09/16/240916/" 
-    >
-       
-      <div class="overlay">
-        <i class="fa-solid fa-angle-right with-pic"></i>
-      </div>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
-
-
-
-
-
-   
-
-
-<article id="post-231231" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2023/12/31/231231/">Reflections on my undergraduate life</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2023-12-31T11:31:43.000Z" itemprop="datePublished">2023-12-31</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-  <a class="meta-cate-link" href="/categories/Being/">Being</a>
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            1.4k 词 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%87%AA%E8%A8%80%E8%87%AA%E8%AF%AD/" rel="tag">自言自语</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            
-              2020秋入学至今，我已进入我的Senior Year，成为学校中离毕业最近的那批人之一。
-藏不住高考的阴霾，我在一个潮湿的周末办理了入学报到。对学校本身，我并没有太多想象，只是机械地和别人一样走着搬宿舍，入住，参观学校，军训的流程，对自己将要呆的地方没有丝毫好奇心，not to mention “归属感”。在做题多年所带来的优绩主义思想残留和想要改变现状的迫切心理交叉影响下，刚入学的我便决定好好学习，达到保研要求，去一个更好的平台读研。除此之外，我又想多尝试一些事情，当一个斜杠man，不想变成nerd，并且和这些人划清界线。
-这两个指导思想，贯穿着我的大学生活。
-对于保研去往更好的平台，这个目的本身并没有问题，我现在也认为，学习本身也是为了更好的生活。从当时和现在看来，保研无疑是比较平稳且有效的选择，是“本手”。
-只是受限于达到保研要求这个悬在头顶的宝剑，我的目光和精力被束缚在GPA，加分政策等一系列数字与文书上，于是这三年，我并没有对自己的兴趣爱好进行充分的发掘，也并没有从埋头学习中收获太多的乐趣。或者说，我对自己想要成为一个什么样的人，完全没有进行过深度思考。即使是现在大四...
-            
-          </div>
-        
-      </div>
-
-         
-    </div>
-    
-     
-    <a class="right-panel  non-pic  "
-      
-      href="/2023/12/31/231231/" 
-    >
-       
-      <i class="fa-solid fa-angle-right non-pic"></i>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
-
-
-
-
-
-   
-
-
-<article id="post-231216" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2023/12/16/231216/">寒山寺闲逛</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2023-12-16T02:38:29.000Z" itemprop="datePublished">2023-12-16</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-  <a class="meta-cate-link" href="/categories/Being/">Being</a>
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            76 词 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%91%84%E5%BD%B1/" rel="tag">摄影</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            
-              有《枫桥夜泊》钟声的加持，也算名气不小的景点实际乏善可陈，没什么特点
-
-    
-
-
-
-
-    
-
-
-
-
-张继的雕像侧躺在现代枫桥旁边手脚部位被游客盘得发亮，据说摸一摸家里小孩就能考上好大学
-
-            
-          </div>
-        
-      </div>
-
-         
-    </div>
-    
-     
-    <a class="right-panel  non-pic  "
-      
-      href="/2023/12/16/231216/" 
     >
        
       <i class="fa-solid fa-angle-right non-pic"></i>
@@ -611,7 +295,6 @@ void ST7735_DrawImage(uint16_t x, uint16_t y, uint16_t w, uint16_t h, const uint
           <h2 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h2><p>之前打算在文章中插入图片，配置的过程中遇到了一些问题。</p>
         
       </div>
-
          
     </div>
     
@@ -637,7 +320,7 @@ void ST7735_DrawImage(uint16_t x, uint16_t y, uint16_t w, uint16_t h, const uint
    
 
 
-<article id="post-220317" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+<article id="post-220314" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
    
   <div class="article-inner">
     <div class="article-main">
@@ -648,7 +331,7 @@ void ST7735_DrawImage(uint16_t x, uint16_t y, uint16_t w, uint16_t h, const uint
   
     
       <h1 itemprop="name">
-        <a class="p-name article-title" href="/2022/03/17/220317/">procreate社团设计x3</a>
+        <a class="p-name article-title" href="/2022/03/14/220314/">Hexo博客启用测试</a>
       </h1>
     
   
@@ -656,142 +339,47 @@ void ST7735_DrawImage(uint16_t x, uint16_t y, uint16_t w, uint16_t h, const uint
 
         <div class='meta-info-bar'>
           <div class="meta-info">
-  <time class="dt-published" datetime="2022-03-17T12:50:00.000Z" itemprop="datePublished">2022-03-17</time>
+  <time class="dt-published" datetime="2022-03-14T07:08:39.000Z" itemprop="datePublished">2022-03-14</time>
 </div>
           <div class="need-seperator meta-info">
             <div class="meta-cate-flex">
   
-  <a class="meta-cate-link" href="/categories/Being/">Being</a>
+  <a class="meta-cate-link" href="/categories/Projects-DIY/">Projects & DIY</a>
    
 </div>
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            184 词 
+            11 词 
           </div>
         </div>
         
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BB%98%E7%94%BB/" rel="tag">绘画</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html/" rel="tag">html</a></li></ul>
 
       </header>
       <div class="e-content article-entry" itemprop="articleBody">
         
           <div class="truncate-text">
             
-              翻了翻之前的文件夹，自己在在本科社团宣传部一年好像也没什么创作成果
-首先是两个养老院的徽章，记得当时是在画第一个徽章的过程中错删了一个图层，然后碰巧搞出了一个镂空的效果，感觉还不错，就在第二个徽章里故技重施了一下，但没有原来的效果了
-
-
-
-
-
-
-
-
-下图是大二上学期一次活动的海报设计，for苏州大学独墅湖校区冬至灯会
-
-
-
-
-
-
-以上作品均由iPad绘画软件procreate绘制，方便使用，新手友好
+              test
+测试
+試験
+テスト
 
             
           </div>
         
       </div>
-
          
     </div>
     
      
-    <a class="right-panel  with-pic  "
-       style="background-image: url(/images/painting/2.webp)" 
-      href="/2022/03/17/220317/" 
+    <a class="right-panel  non-pic  "
+      
+      href="/2022/03/14/220314/" 
     >
        
-      <div class="overlay">
-        <i class="fa-solid fa-angle-right with-pic"></i>
-      </div>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
-
-
-
-
-
-   
-
-
-<article id="post-220316" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2022/03/16/220316/">procreate绘画x3</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2022-03-16T11:32:26.000Z" itemprop="datePublished">2022-03-16</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-  <a class="meta-cate-link" href="/categories/Being/">Being</a>
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            7 词 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BB%98%E7%94%BB/" rel="tag">绘画</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            
-              或许有点蒸汽波
-
-
-
-
-            
-          </div>
-        
-      </div>
-
-         
-    </div>
-    
-     
-    <a class="right-panel  with-pic  "
-       style="background-image: url(/images/painting/3.webp)" 
-      href="/2022/03/16/220316/" 
-    >
-       
-      <div class="overlay">
-        <i class="fa-solid fa-angle-right with-pic"></i>
-      </div>
+      <i class="fa-solid fa-angle-right non-pic"></i>
        
     </a>
      
@@ -811,9 +399,9 @@ void ST7735_DrawImage(uint16_t x, uint16_t y, uint16_t w, uint16_t h, const uint
       <i class="fa-solid fa-angle-left"></i>
     </a>
     <div id="num-bar">
-      <a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a>  
+      <a class="page-number" href="/">1</a><span class="page-number current">2</span>  
     </div>
-    <a id="next-btn" class="page-nav-btn " href="/page/3/">
+    <a id="next-btn" class="page-nav-btn disabled" href="/">
       <i class="fa-solid fa-angle-right"></i>
     </a>
   </nav>
@@ -857,22 +445,5 @@ void ST7735_DrawImage(uint16_t x, uint16_t y, uint16_t w, uint16_t h, const uint
 
   </div>
   <script src="/js/light-dark-switch.js"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-
 </body>
 </html>
