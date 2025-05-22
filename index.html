@@ -36,119 +36,7 @@
   
 <link rel="stylesheet" href="/css/style.css">
 
-<meta name="generator" content="Hexo 6.1.0"><style>mjx-container[jax="SVG"] {
-  direction: ltr;
-}
-
-mjx-container[jax="SVG"] > svg {
-  overflow: visible;
-}
-
-mjx-container[jax="SVG"][display="true"] {
-  display: block;
-  text-align: center;
-  margin: 1em 0;
-}
-
-mjx-container[jax="SVG"][justify="left"] {
-  text-align: left;
-}
-
-mjx-container[jax="SVG"][justify="right"] {
-  text-align: right;
-}
-
-g[data-mml-node="merror"] > g {
-  fill: red;
-  stroke: red;
-}
-
-g[data-mml-node="merror"] > rect[data-background] {
-  fill: yellow;
-  stroke: none;
-}
-
-g[data-mml-node="mtable"] > line[data-line] {
-  stroke-width: 70px;
-  fill: none;
-}
-
-g[data-mml-node="mtable"] > rect[data-frame] {
-  stroke-width: 70px;
-  fill: none;
-}
-
-g[data-mml-node="mtable"] > .mjx-dashed {
-  stroke-dasharray: 140;
-}
-
-g[data-mml-node="mtable"] > .mjx-dotted {
-  stroke-linecap: round;
-  stroke-dasharray: 0,140;
-}
-
-g[data-mml-node="mtable"] > svg {
-  overflow: visible;
-}
-
-[jax="SVG"] mjx-tool {
-  display: inline-block;
-  position: relative;
-  width: 0;
-  height: 0;
-}
-
-[jax="SVG"] mjx-tool > mjx-tip {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-mjx-tool > mjx-tip {
-  display: inline-block;
-  padding: .2em;
-  border: 1px solid #888;
-  font-size: 70%;
-  background-color: #F8F8F8;
-  color: black;
-  box-shadow: 2px 2px 5px #AAAAAA;
-}
-
-g[data-mml-node="maction"][data-toggle] {
-  cursor: pointer;
-}
-
-mjx-status {
-  display: block;
-  position: fixed;
-  left: 1em;
-  bottom: 1em;
-  min-width: 25%;
-  padding: .2em .4em;
-  border: 1px solid #888;
-  font-size: 90%;
-  background-color: #F8F8F8;
-  color: black;
-}
-
-foreignObject[data-mjx-xml] {
-  font-family: initial;
-  line-height: normal;
-  overflow: visible;
-}
-
-.MathJax path {
-  stroke-width: 3;
-}
-
-mjx-container[display="true"] {
-  overflow: auto hidden;
-}
-
-mjx-container[display="true"] + br {
-  display: none;
-}
-</style></head>
+<meta name="generator" content="Hexo 6.3.0"></head>
 
 <body>
   
@@ -487,12 +375,12 @@ mjx-container[display="true"] + br {
 MathJax简介：https://www.osgeo.cn/mathjax/basic/mathjax.html 
 该引擎是一款可在所有现代浏览器中工作的开源js显示引擎，辅助页面作者编写含有数学公式的文档
 Step 1 : 安装MathJax引擎并更换渲染引擎：​              操作包括卸载Hexo自带的Hexo-math，卸载默认的对MathJax不友好的marked引擎
-npm uinstall hexo-math --save
+npm uninstall hexo-math --save
 npm install hexo-renderer-mathjax --save
 
-npm uinstall hexo-renderer-marked --save
+npm uninstall hexo-renderer-marked --save
 npm install hexo-renderer-kramed --save
-Step 2 : 更新MathJax的cdn链接Step 3 : 更改部分转义规则 hexo 默认...
+Step 2 : 更新MathJax的cdn链接Step 3 : 更改部分转义规则 hexo ...
             
           </div>
         
@@ -552,7 +440,7 @@ Step 2 : 更新MathJax的cdn链接Step 3 : 更改部分转义规则 hexo 默认.
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            14k 词 
+            13k 词 
           </div>
         </div>
         
@@ -564,7 +452,7 @@ Step 2 : 更新MathJax的cdn链接Step 3 : 更改部分转义规则 hexo 默认.
           <div class="truncate-text">
             
               Lecture 0 ScratchLecture 1 CLecture 2 ArraysLecture 3 Algorithms
-Time Complexity is an important metric used to measure the relationship between the running time of an algorithm and the size of the input. It describes how the execution time of an algorithm increases as the input size grows. Time complexity helps us assess the efficiency of an algorithm under different problem sizes, allowing us to choose the most appropriate algorithm. Time complexity is usually expressed using Big  notation....
+Time Complexity is an important metric used to measure the relationship between the running time of an algorithm and the size of the input. It describes how the execution time of an algorithm increases as the input size grows. Time complexity helps us assess the efficiency of an algorithm under different problem sizes, allowing us to choose the most appropriate algorithm. Time complexity is usually expressed using Big $O$ notati...
             
           </div>
         
@@ -1003,5 +891,22 @@ uint8_t rx_buffer...
 
   </div>
   <script src="/js/light-dark-switch.js"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
 </body>
 </html>
