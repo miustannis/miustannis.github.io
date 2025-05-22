@@ -28,7 +28,7 @@
 <meta property="og:description" content="在写一些内容时，会遇到需要添加数学公式的地方，Hexo部分主题不支持公式的渲染，比如我正在使用的vivia主题，在查阅一些资料之后，我使用MathJax引擎实现了vivia主题下的数学公式渲染。 MathJax简介：https:&#x2F;&#x2F;www.osgeo.cn&#x2F;mathjax&#x2F;basic&#x2F;mathjax.html  该引擎是一款可在所有现代浏览器中工作的开源js显示引擎，辅助页面作者编写含有数学公式的">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-03-27T04:22:29.000Z">
-<meta property="article:modified_time" content="2025-05-22T02:32:03.860Z">
+<meta property="article:modified_time" content="2025-05-22T02:49:08.363Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="html">
 <meta property="article:tag" content="Hexo">
@@ -232,7 +232,7 @@ npm install hexo<span class="token operator">-</span>renderer<span class="token 
 <p>更改为：</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">escape</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\\([`*\[\]()# +\-.!_>])</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
 <span class="token literal-property property">em</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\*((?:\*\*|[\s\S])+?)\*(?!\*)</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h4 id="Step-4-主题未预配置下使用Hexo-filter-mathjax"><a href="#Step-4-主题未预配置下使用Hexo-filter-mathjax" class="headerlink" title="Step 4 : 主题未预配置下使用Hexo-filter-mathjax"></a><strong>Step 4</strong> : 主题未预配置下使用Hexo-filter-mathjax</h4><p>对于已经配置MathJax的主题来说，在相关config文件里打开控件即可，对于未配置的主题，可以使用Hexo-filter-mathjax来帮助实现</p>
+<h4 id="Step-4-可选-主题未预配置下使用Hexo-filter-mathjax"><a href="#Step-4-可选-主题未预配置下使用Hexo-filter-mathjax" class="headerlink" title="Step 4 (可选) : 主题未预配置下使用Hexo-filter-mathjax"></a><strong>Step 4</strong> (可选) : 主题未预配置下使用Hexo-filter-mathjax</h4><p>对于已经配置MathJax的主题来说，在相关config文件里打开控件即可，对于未配置的主题，可以使用Hexo-filter-mathjax来帮助实现</p>
 <p>Hexo-filter-mathjax项目地址：<a target="_blank" rel="noopener" href="https://github.com/next-theme/hexo-filter-mathjax">https://github.com/next-theme/hexo-filter-mathjax</a></p>
 <p>安装：</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">npm install hexo<span class="token operator">-</span>filter<span class="token operator">-</span>mathjax <span class="token operator">--</span>save<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -243,6 +243,7 @@ npm install hexo<span class="token operator">-</span>renderer<span class="token 
 <span class="token key atrule">date</span><span class="token punctuation">:</span> xxxx<span class="token punctuation">-</span>xx<span class="token punctuation">-</span>xx
 <span class="token key atrule">mathjax</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></span>
 <span class="token punctuation">---</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&nbsp;</p>
 <h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><p>公式：</p>
 <p>$\Bbb{\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6} }$</p>
 <p>$\frak{\cos 2\theta = \cos^2 \theta - \sin^2 \theta = 2 \cos^2 \theta-1}$</p>
