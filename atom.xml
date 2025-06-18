@@ -43,8 +43,17 @@
     <link href="https://miustannis.github.io/2025/05/10/250510/"/>
     <id>https://miustannis.github.io/2025/05/10/250510/</id>
     <published>2025-05-10T02:05:52.000Z</published>
-    <updated>2025-05-19T07:48:07.887Z</updated>
+    <updated>2025-06-18T01:58:46.716Z</updated>
     
+    
+      
+      
+    <summary type="html">&lt;p&gt;在之前的基础上改进了一部分&lt;/p&gt;
+&lt;p&gt;硬件上把串口和SWD下载口引出来了，夹具下载有点不稳定&lt;/p&gt;
+&lt;p&gt;同时把手头上的LCD模组和红外传感器模组给用了，没有额外购买物资，成品图如下：&lt;/p&gt;
+&lt;center&gt;
+    &lt;img src=&quot;/images/therma</summary>
+      
     
     
     
@@ -55,9 +64,9 @@
     
     <category term="C" scheme="https://miustannis.github.io/tags/C/"/>
     
-    <category term="Algorithm" scheme="https://miustannis.github.io/tags/Algorithm/"/>
-    
     <category term="图像处理" scheme="https://miustannis.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
+    
+    <category term="Algorithm" scheme="https://miustannis.github.io/tags/Algorithm/"/>
     
   </entry>
   

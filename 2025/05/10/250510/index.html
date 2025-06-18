@@ -20,19 +20,23 @@
   <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
-  <meta property="og:type" content="article">
+  <meta name="description" content="在之前的基础上改进了一部分 硬件上把串口和SWD下载口引出来了，夹具下载有点不稳定 同时把手头上的LCD模组和红外传感器模组给用了，没有额外购买物资，成品图如下：          左边是V1，右边是V2 &amp;nbsp; 软件部分增加了一些图像处理的功能： 图像平滑：双线性插值 void interpolateTemperature(float *src, float *dst, uint8_t s">
+<meta property="og:type" content="article">
 <meta property="og:title" content="手持红外热成像仪V2.0-TinyML嵌入轻量级神经网络(on going)">
 <meta property="og:url" content="https://miustannis.github.io/2025/05/10/250510/index.html">
 <meta property="og:site_name" content="Miao&#39;s Blog">
+<meta property="og:description" content="在之前的基础上改进了一部分 硬件上把串口和SWD下载口引出来了，夹具下载有点不稳定 同时把手头上的LCD模组和红外传感器模组给用了，没有额外购买物资，成品图如下：          左边是V1，右边是V2 &amp;nbsp; 软件部分增加了一些图像处理的功能： 图像平滑：双线性插值 void interpolateTemperature(float *src, float *dst, uint8_t s">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://miustannis.github.io/images/thermal_camera/thermal_camera2.webp">
 <meta property="article:published_time" content="2025-05-10T02:05:52.000Z">
-<meta property="article:modified_time" content="2025-05-19T07:48:07.887Z">
+<meta property="article:modified_time" content="2025-06-18T01:58:46.716Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="嵌入式">
 <meta property="article:tag" content="C">
-<meta property="article:tag" content="Algorithm">
 <meta property="article:tag" content="图像处理">
+<meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://miustannis.github.io/images/thermal_camera/thermal_camera2.webp">
   
     <link rel="alternate" href="/atom.xml" title="Miao's Blog" type="application/atom+xml">
   
@@ -178,6 +182,16 @@
 <article id="post-250510" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
     
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img" rel="gallery_cmc1b0lnp001hfsuq548m6uhg">
+        <img src="/images/thermal_camera/thermal_camera2.webp" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
    
   <div class="article-inner">
     <div class="article-main">
@@ -207,7 +221,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            0 词 
+            2.4k 词 
           </div>
         </div>
         
@@ -216,7 +230,120 @@
       </header>
       <div class="e-content article-entry" itemprop="articleBody">
         
-          
+          <p>在之前的基础上改进了一部分</p>
+<p>硬件上把串口和SWD下载口引出来了，夹具下载有点不稳定</p>
+<p>同时把手头上的LCD模组和红外传感器模组给用了，没有额外购买物资，成品图如下：</p>
+<center>
+    <img src="/images/thermal_camera/new_hardware.webp" width="500">
+</center>
+
+
+<p>左边是V1，右边是V2</p>
+<p>&nbsp;</p>
+<p>软件部分增加了一些图像处理的功能：</p>
+<h3 id="图像平滑："><a href="#图像平滑：" class="headerlink" title="图像平滑："></a>图像平滑：</h3><p>双线性插值</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">interpolateTemperature</span><span class="token punctuation">(</span><span class="token keyword">float</span> <span class="token operator">*</span>src<span class="token punctuation">,</span> <span class="token keyword">float</span> <span class="token operator">*</span>dst<span class="token punctuation">,</span> <span class="token class-name">uint8_t</span> src_w<span class="token punctuation">,</span> <span class="token class-name">uint8_t</span> src_h<span class="token punctuation">,</span> <span class="token class-name">uint8_t</span> dst_w<span class="token punctuation">,</span> <span class="token class-name">uint8_t</span> dst_h<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">float</span> x_ratio <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">float</span><span class="token punctuation">)</span><span class="token punctuation">(</span>src_w<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">/</span> dst_w<span class="token punctuation">;</span>
+    <span class="token keyword">float</span> y_ratio <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">float</span><span class="token punctuation">)</span><span class="token punctuation">(</span>src_h<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">/</span> dst_h<span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> y <span class="token operator">&lt;</span> dst_h<span class="token punctuation">;</span> y<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> x <span class="token operator">&lt;</span> dst_w<span class="token punctuation">;</span> x<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">float</span> x_src <span class="token operator">=</span> x <span class="token operator">*</span> x_ratio<span class="token punctuation">;</span>
+            <span class="token keyword">float</span> y_src <span class="token operator">=</span> y <span class="token operator">*</span> y_ratio<span class="token punctuation">;</span>
+            <span class="token keyword">int</span> x0 <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span>x_src<span class="token punctuation">,</span> y0 <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span>y_src<span class="token punctuation">;</span>
+            <span class="token keyword">float</span> x_diff <span class="token operator">=</span> x_src <span class="token operator">-</span> x0<span class="token punctuation">;</span>
+            <span class="token keyword">float</span> y_diff <span class="token operator">=</span> y_src <span class="token operator">-</span> y0<span class="token punctuation">;</span>
+            
+            <span class="token keyword">float</span> val <span class="token operator">=</span> src<span class="token punctuation">[</span>y0<span class="token operator">*</span>src_w <span class="token operator">+</span> x0<span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">-</span>x_diff<span class="token punctuation">)</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">-</span>y_diff<span class="token punctuation">)</span>
+                      <span class="token operator">+</span> src<span class="token punctuation">[</span>y0<span class="token operator">*</span>src_w <span class="token operator">+</span> x0<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">*</span> x_diff<span class="token operator">*</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">-</span>y_diff<span class="token punctuation">)</span>
+                      <span class="token operator">+</span> src<span class="token punctuation">[</span><span class="token punctuation">(</span>y0<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">*</span>src_w <span class="token operator">+</span> x0<span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">-</span>x_diff<span class="token punctuation">)</span><span class="token operator">*</span>y_diff
+                      <span class="token operator">+</span> src<span class="token punctuation">[</span><span class="token punctuation">(</span>y0<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">*</span>src_w <span class="token operator">+</span> x0<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">*</span> x_diff<span class="token operator">*</span>y_diff<span class="token punctuation">;</span>
+            dst<span class="token punctuation">[</span>y<span class="token operator">*</span>dst_w <span class="token operator">+</span> x<span class="token punctuation">]</span> <span class="token operator">=</span> val<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>最近邻插值</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">nearestNeighborInterpolate</span><span class="token punctuation">(</span><span class="token keyword">float</span> <span class="token operator">*</span>src<span class="token punctuation">,</span> <span class="token keyword">float</span> <span class="token operator">*</span>dst<span class="token punctuation">,</span> <span class="token class-name">uint8_t</span> src_w<span class="token punctuation">,</span> <span class="token class-name">uint8_t</span> src_h<span class="token punctuation">,</span> <span class="token class-name">uint8_t</span> dst_w<span class="token punctuation">,</span> <span class="token class-name">uint8_t</span> dst_h<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">float</span> x_ratio <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">float</span><span class="token punctuation">)</span>src_w <span class="token operator">/</span> dst_w<span class="token punctuation">;</span>
+    <span class="token keyword">float</span> y_ratio <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">float</span><span class="token punctuation">)</span>src_h <span class="token operator">/</span> dst_h<span class="token punctuation">;</span>
+    
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> y <span class="token operator">&lt;</span> dst_h<span class="token punctuation">;</span> y<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> x <span class="token operator">&lt;</span> dst_w<span class="token punctuation">;</span> x<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">int</span> src_x <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">(</span>x <span class="token operator">*</span> x_ratio<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">int</span> src_y <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">(</span>y <span class="token operator">*</span> y_ratio<span class="token punctuation">)</span><span class="token punctuation">;</span>            
+            <span class="token comment">// 防止越界</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>src_x <span class="token operator">>=</span> src_w<span class="token punctuation">)</span> src_x <span class="token operator">=</span> src_w <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>src_y <span class="token operator">>=</span> src_h<span class="token punctuation">)</span> src_y <span class="token operator">=</span> src_h <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            
+            dst<span class="token punctuation">[</span>y <span class="token operator">*</span> dst_w <span class="token operator">+</span> x<span class="token punctuation">]</span> <span class="token operator">=</span> src<span class="token punctuation">[</span>src_y <span class="token operator">*</span> src_w <span class="token operator">+</span> src_x<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="边缘提取"><a href="#边缘提取" class="headerlink" title="边缘提取"></a>边缘提取</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">// Sobel 算子卷积核</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> sobel_x<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token punctuation">&#123;</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#123;</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#123;</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token keyword">int</span> sobel_y<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token punctuation">&#123;</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#123;</span> <span class="token number">0</span><span class="token punctuation">,</span>  <span class="token number">0</span><span class="token punctuation">,</span>  <span class="token number">0</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#123;</span> <span class="token number">1</span><span class="token punctuation">,</span>  <span class="token number">2</span><span class="token punctuation">,</span>  <span class="token number">1</span><span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">void</span> <span class="token function">detectEdges</span><span class="token punctuation">(</span><span class="token keyword">float</span> <span class="token operator">*</span>input<span class="token punctuation">,</span> <span class="token class-name">uint8_t</span> <span class="token operator">*</span>output<span class="token punctuation">,</span> <span class="token class-name">uint8_t</span> width<span class="token punctuation">,</span> <span class="token class-name">uint8_t</span> height<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> y <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> y <span class="token operator">&lt;</span> height <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> y<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>       
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> x <span class="token operator">&lt;</span> width <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> x<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">float</span> gx <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> gy <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>          
+            <span class="token comment">// 3x3 邻域卷积</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;=</span> <span class="token number">1</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                    <span class="token keyword">float</span> pixel <span class="token operator">=</span> input<span class="token punctuation">[</span><span class="token punctuation">(</span>y <span class="token operator">+</span> j<span class="token punctuation">)</span> <span class="token operator">*</span> width <span class="token operator">+</span> <span class="token punctuation">(</span>x <span class="token operator">+</span> i<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+                    gx <span class="token operator">+=</span> pixel <span class="token operator">*</span> sobel_x<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+                    gy <span class="token operator">+=</span> pixel <span class="token operator">*</span> sobel_y<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token class-name">uint8_t</span> edge_strength <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token function">fabs</span><span class="token punctuation">(</span>gx<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">fabs</span><span class="token punctuation">(</span>gy<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            edge_strength <span class="token operator">=</span> <span class="token punctuation">(</span>edge_strength <span class="token operator">></span> <span class="token number">255</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token number">255</span> <span class="token operator">:</span> edge_strength<span class="token punctuation">;</span>
+            output<span class="token punctuation">[</span>y <span class="token operator">*</span> width <span class="token operator">+</span> x<span class="token punctuation">]</span> <span class="token operator">=</span> edge_strength<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+
+<span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">drawPicture3</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">uint8_t</span> cell_size <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>
+    <span class="token class-name">uint8_t</span> start_x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token class-name">uint8_t</span> start_y <span class="token operator">=</span> <span class="token number">16</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">float</span> interpolated_temp<span class="token punctuation">[</span><span class="token number">32</span> <span class="token operator">*</span> <span class="token number">24</span><span class="token punctuation">]</span><span class="token punctuation">;</span>  
+    <span class="token class-name">uint8_t</span> edge_map<span class="token punctuation">[</span><span class="token number">32</span> <span class="token operator">*</span> <span class="token number">24</span><span class="token punctuation">]</span><span class="token punctuation">;</span>         
+    
+    <span class="token comment">//双线性插值</span>
+    <span class="token function">interpolateTemperature</span><span class="token punctuation">(</span>tempValues<span class="token punctuation">,</span> interpolated_temp<span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">24</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">24</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//边缘检测</span>
+    <span class="token function">detectEdges</span><span class="token punctuation">(</span>interpolated_temp<span class="token punctuation">,</span> edge_map<span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">24</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token comment">//只绘制边缘（白色），其余区域黑色</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> y <span class="token operator">&lt;</span> <span class="token number">24</span><span class="token punctuation">;</span> y<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> x <span class="token operator">&lt;</span> <span class="token number">32</span><span class="token punctuation">;</span> x<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token class-name">uint16_t</span> color <span class="token operator">=</span> ST7735_BLACK<span class="token punctuation">;</span>  <span class="token comment">// 默认黑色</span>
+            <span class="token comment">// 如果边缘强度足够高，则显示白色</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>edge_map<span class="token punctuation">[</span>y <span class="token operator">*</span> <span class="token number">32</span> <span class="token operator">+</span> x<span class="token punctuation">]</span> <span class="token operator">></span> <span class="token number">10</span>  <span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>edge_map<span class="token punctuation">[</span>y <span class="token operator">*</span> <span class="token number">32</span> <span class="token operator">+</span> x<span class="token punctuation">]</span> <span class="token operator">&lt;</span> <span class="token number">40</span>  <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>  <span class="token comment">// 阈值可调</span>
+                color <span class="token operator">=</span> ST7735_WHITE<span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token function">ST7735_FillRectangle</span><span class="token punctuation">(</span>
+                start_x <span class="token operator">+</span> x <span class="token operator">*</span> cell_size<span class="token punctuation">,</span>
+                start_y <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token number">23</span> <span class="token operator">-</span> y<span class="token punctuation">)</span> <span class="token operator">*</span> cell_size<span class="token punctuation">,</span>
+                cell_size<span class="token punctuation">,</span>
+                cell_size<span class="token punctuation">,</span>
+                color
+            <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="图像识别"><a href="#图像识别" class="headerlink" title="图像识别"></a>图像识别</h3><p>准备往设备里嵌一个轻量级的神经网络</p>
+
         
       </div>
          
@@ -300,22 +427,5 @@
 
   </div>
   <script src="/js/light-dark-switch.js"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-
 </body>
 </html>

@@ -289,7 +289,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            0 词 
+            2.4k 词 
           </div>
         </div>
         
@@ -300,7 +300,25 @@
         
           <div class="truncate-text">
             
-              
+              在之前的基础上改进了一部分
+硬件上把串口和SWD下载口引出来了，夹具下载有点不稳定
+同时把手头上的LCD模组和红外传感器模组给用了，没有额外购买物资，成品图如下：
+
+    
+
+
+
+左边是V1，右边是V2
+&nbsp;
+软件部分增加了一些图像处理的功能：
+图像平滑：双线性插值
+void interpolateTemperature(float *src, float *dst, uint8_t src_w, uint8_t src_h, uint8_t dst_w, uint8_t dst_h) &#123;
+    float x_ratio = (float)(src_w-1) / dst_w;
+    float y_ratio = (float)(src_h-1) / dst_h;
+    for (int y = 0; y &lt; dst_h; y++) &#123;
+        for (int x = 0; x &lt; dst_w; x++) &#123;
+            float x_src = x * x_ratio;
+            ...
             
           </div>
         
@@ -309,12 +327,14 @@
     </div>
     
      
-    <a class="right-panel  non-pic  "
-      
+    <a class="right-panel  with-pic  "
+       style="background-image: url(/images/thermal_camera/thermal_camera2.webp)" 
       href="/2025/05/10/250510/" 
     >
        
-      <i class="fa-solid fa-angle-right non-pic"></i>
+      <div class="overlay">
+        <i class="fa-solid fa-angle-right with-pic"></i>
+      </div>
        
     </a>
      
@@ -891,22 +911,5 @@ uint8_t rx_buffer...
 
   </div>
   <script src="/js/light-dark-switch.js"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-
 </body>
 </html>
