@@ -183,7 +183,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img" rel="gallery_cmc74vh6n000av8uq4y7g93yv">
+      <a class="article-gallery-img" rel="gallery_cmcm6r6je000lb0uqg8esco3i">
         <img src="/images/thermal_camera/thermal_camera1.webp" itemprop="image">
       </a>
     
@@ -228,15 +228,15 @@
       </header>
       <div class="e-content article-entry" itemprop="articleBody">
         
-          <h2 id="项目背景："><a href="#项目背景：" class="headerlink" title="项目背景："></a>项目背景：</h2><ol>
+          <h2><span id="项目背景">项目背景：</span></h2><ol>
 <li><p>DIY好玩捏</p>
 </li>
 <li><p>电路工作时有时需要检查元件发热情况，但用手触摸元件有一定的风险，因此需要一种无接触式的多点测温设备</p>
 </li>
 </ol>
 <p>于是开始了解到热成像这个测温方式，以下是软硬件方案</p>
-<h2 id="方案："><a href="#方案：" class="headerlink" title="方案："></a>方案：</h2><h3 id="硬件部分"><a href="#硬件部分" class="headerlink" title="硬件部分"></a>硬件部分</h3><p>​        采用上下两块板子对插组合，为了减少复杂度，留了排母方便直插LCD与传感器模组。</p>
-<h4 id="BOARD1-MCU与外设"><a href="#BOARD1-MCU与外设" class="headerlink" title="BOARD1: MCU与外设"></a>BOARD1: MCU与外设</h4><ul>
+<h2><span id="方案">方案：</span></h2><h3><span id="硬件部分">硬件部分</span></h3><p>​        采用上下两块板子对插组合，为了减少复杂度，留了排母方便直插LCD与传感器模组。</p>
+<h4><span id="board1-mcu与外设">BOARD1: MCU与外设</span></h4><ul>
 <li>采用STM32F407作为主控，512KB  Flash，其实没特别注意选型，只是手上有这个开发板，要压缩成本的话用其他型号也可以</li>
 <li>红外传感模组为MLX90640 BAA，这个价格比较贵，比其他元件加起来都贵</li>
 <li>屏幕模组为1.44寸TFT-LCD，也是现成的，买了俩还剩一个，下次做别的东西的时候给用了吧</li>
@@ -247,7 +247,7 @@
 </center>
 
 
-<h4 id="BOARD2-POWER"><a href="#BOARD2-POWER" class="headerlink" title="BOARD2: POWER"></a>BOARD2: POWER</h4><ul>
+<h4><span id="board2-power">BOARD2: POWER</span></h4><ul>
 <li>3.7V锂电池供电，可通过USB接口经过LGS4084H电源管理芯片给锂电池充电</li>
 <li>经过一个LDO稳到3.3V给MCU整体供电，VDDA和VCC用磁珠滤波隔离了一下</li>
 </ul>
@@ -263,7 +263,7 @@
 
 
 <p>立创打样PCB，自己贴片，PCB板框留了一些M3螺孔方便组装。</p>
-<h3 id="软件部分"><a href="#软件部分" class="headerlink" title="软件部分"></a><strong>软件部分</strong></h3><p>通讯接口涉及IIC与SPI，以及图像测试的时候用了一下UART，均比较基础。使用硬件IIC进行传感器模组与MCU间的通信，模组官方提供了接口可调用，可读取温度值。RGB转换用了开源的函数：</p>
+<h3><span id="软件部分"><strong>软件部分</strong></span></h3><p>通讯接口涉及IIC与SPI，以及图像测试的时候用了一下UART，均比较基础。使用硬件IIC进行传感器模组与MCU间的通信，模组官方提供了接口可调用，可读取温度值。RGB转换用了开源的函数：</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/*pass in value and figure out R G B
     several published ways to do this I basically graphed R G B and developed simple linear equations
     again a 5-6-5 color display will not need accurate temp to R G B color calculation
@@ -349,7 +349,7 @@
 </center>
 
 
-<h3 id="小问题合集："><a href="#小问题合集：" class="headerlink" title="小问题合集："></a><strong>小问题合集：</strong></h3><h3 id="problem1：使用ST-Link下载过一次程序后发现无法继续下载"><a href="#problem1：使用ST-Link下载过一次程序后发现无法继续下载" class="headerlink" title="problem1：使用ST-Link下载过一次程序后发现无法继续下载"></a><strong>problem1：使用ST-Link下载过一次程序后发现无法继续下载</strong></h3><ol>
+<h3><span id="小问题合集"><strong>小问题合集：</strong></span></h3><h3><span id="problem1使用st-link下载过一次程序后发现无法继续下载"><strong>problem1：使用ST-Link下载过一次程序后发现无法继续下载</strong></span></h3><ol>
 <li>检查设备管理器，确保有正确的ST-Link驱动</li>
 <li>检查Keil软件配置，确保导入正确的型号版本</li>
 <li>检查引脚配置，发现问题：</li>
@@ -360,7 +360,7 @@
 
 
 <p>​    配置的IIC通信引脚占用了SWD下载引脚<em>（STM32默认的PA13 &amp;PA14）</em>，引脚输入输出模式不适配，显然后续无法下载，遂改之，问题解决。（图示仅供参考）</p>
-<h3 id="problem2：HardFault中断触发"><a href="#problem2：HardFault中断触发" class="headerlink" title="problem2：HardFault中断触发"></a><strong>problem2：HardFault中断触发</strong></h3><p>栈空间不足，多分配点就ok</p>
+<h3><span id="problem2hardfault中断触发"><strong>problem2：HardFault中断触发</strong></span></h3><p>栈空间不足，多分配点就ok</p>
 <div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
     <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=114448530415517&bvid=BV1GiVwzCEJM&cid=29784345814&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position:absolute; height: 100%; width: 100%;"> </iframe>
 </div>

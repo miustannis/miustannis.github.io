@@ -185,7 +185,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img" rel="gallery_cmc74vh6p000iv8uqh3aifax1">
+      <a class="article-gallery-img" rel="gallery_cmcm6r6ji001nb0uq8g4663wn">
         <img src="/images/thermal_camera/thermal_camera2.webp" itemprop="image">
       </a>
     
@@ -241,7 +241,7 @@
 <p>左边是V1，右边是V2</p>
 <p>&nbsp;</p>
 <p>软件部分增加了一些图像处理的功能：</p>
-<h3 id="图像平滑："><a href="#图像平滑：" class="headerlink" title="图像平滑："></a>图像平滑：</h3><p>双线性插值</p>
+<h3><span id="图像平滑">图像平滑：</span></h3><p>双线性插值</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">interpolateTemperature</span><span class="token punctuation">(</span><span class="token keyword">float</span> <span class="token operator">*</span>src<span class="token punctuation">,</span> <span class="token keyword">float</span> <span class="token operator">*</span>dst<span class="token punctuation">,</span> <span class="token class-name">uint8_t</span> src_w<span class="token punctuation">,</span> <span class="token class-name">uint8_t</span> src_h<span class="token punctuation">,</span> <span class="token class-name">uint8_t</span> dst_w<span class="token punctuation">,</span> <span class="token class-name">uint8_t</span> dst_h<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">float</span> x_ratio <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">float</span><span class="token punctuation">)</span><span class="token punctuation">(</span>src_w<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">/</span> dst_w<span class="token punctuation">;</span>
     <span class="token keyword">float</span> y_ratio <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">float</span><span class="token punctuation">)</span><span class="token punctuation">(</span>src_h<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">/</span> dst_h<span class="token punctuation">;</span>
@@ -278,7 +278,7 @@
         <span class="token punctuation">&#125;</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="边缘提取"><a href="#边缘提取" class="headerlink" title="边缘提取"></a>边缘提取</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">// Sobel 算子卷积核</span>
+<h3><span id="边缘提取">边缘提取</span></h3><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">// Sobel 算子卷积核</span>
 <span class="token keyword">const</span> <span class="token keyword">int</span> sobel_x<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
     <span class="token punctuation">&#123;</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
     <span class="token punctuation">&#123;</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
@@ -342,7 +342,7 @@
         <span class="token punctuation">&#125;</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="图像识别"><a href="#图像识别" class="headerlink" title="图像识别"></a>图像识别</h3><p>准备往设备里嵌一个轻量级的神经网络</p>
+<h3><span id="图像识别">图像识别</span></h3><p>准备往设备里嵌一个轻量级的神经网络</p>
 
         
       </div>

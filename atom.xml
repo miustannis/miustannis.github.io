@@ -6,7 +6,7 @@
   <link href="https://miustannis.github.io/atom.xml" rel="self"/>
   
   <link href="https://miustannis.github.io/"/>
-  <updated>2025-05-22T01:03:39.590Z</updated>
+  <updated>2025-07-02T16:42:34.699Z</updated>
   <id>https://miustannis.github.io/</id>
   
   <author>
@@ -21,12 +21,16 @@
     <link href="https://miustannis.github.io/2025/05/19/250519/"/>
     <id>https://miustannis.github.io/2025/05/19/250519/</id>
     <published>2025-05-19T03:38:44.000Z</published>
-    <updated>2025-05-22T01:03:39.590Z</updated>
+    <updated>2025-07-02T16:42:34.699Z</updated>
     
     
       
       
-    <summary type="html">&lt;h3 id=&quot;Ch0-数字图像的概念&quot;&gt;&lt;a href=&quot;#Ch0-数字图像的概念&quot; class=&quot;headerlink&quot; title=&quot;Ch0 数字图像的概念&quot;&gt;&lt;/a&gt;&lt;strong&gt;Ch0 数字图像的概念&lt;/strong&gt;&lt;/h3&gt;&lt;p&gt;观察系统使用的光波段：可见光、红外</summary>
+    <summary type="html">&lt;p&gt;目录：&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#ch0-数字图像的概念&quot;&gt;&lt;strong&gt;Ch0 数字图像的概念&lt;/strong&gt;&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#图像分类模拟图像与数字图像&quot;&gt;图像分类：模拟图像与数字图像&lt;/a&gt;</summary>
       
     
     
@@ -105,7 +109,7 @@
     
       
       
-    <summary type="html">&lt;h3 id=&quot;Lecture-0-Scratch&quot;&gt;&lt;a href=&quot;#Lecture-0-Scratch&quot; class=&quot;headerlink&quot; title=&quot;Lecture 0 Scratch&quot;&gt;&lt;/a&gt;&lt;strong&gt;Lecture 0 Scratch&lt;/strong&gt;&lt;</summary>
+    <summary type="html">&lt;h3&gt;&lt;span id=&quot;lecture-0-scratch&quot;&gt;&lt;strong&gt;Lecture 0 Scratch&lt;/strong&gt;&lt;/span&gt;&lt;/h3&gt;&lt;h3&gt;&lt;span id=&quot;lecture-1-c&quot;&gt;&lt;strong&gt;Lecture 1 C&lt;/strong&gt;&lt;/span</summary>
       
     
     
@@ -127,10 +131,13 @@
     
       
       
-    <summary type="html">&lt;h2 id=&quot;项目背景：&quot;&gt;&lt;a href=&quot;#项目背景：&quot; class=&quot;headerlink&quot; title=&quot;项目背景：&quot;&gt;&lt;/a&gt;项目背景：&lt;/h2&gt;&lt;ol&gt;
+    <summary type="html">&lt;h2&gt;&lt;span id=&quot;项目背景&quot;&gt;项目背景：&lt;/span&gt;&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;&lt;p&gt;DIY好玩捏&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;电路工作时有时需要检查元件发热情况，但用手触摸元件</summary>
+&lt;li&gt;&lt;p&gt;电路工作时有时需要检查元件发热情况，但用手触摸元件有一定的风险，因此需要一种无接触式的多点测温设备&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;</summary>
       
     
     

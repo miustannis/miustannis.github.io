@@ -217,12 +217,12 @@
       </header>
       <div class="e-content article-entry" itemprop="articleBody">
         
-          <h2 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h2><p>之前打算在文章中插入图片，配置的过程中遇到了一些问题。</p>
+          <h2><span id="插入图片">插入图片</span></h2><p>之前打算在文章中插入图片，配置的过程中遇到了一些问题。</p>
 <span id="more"></span>
 <p>想在博客中引用外站图片问题不大，但<strong>Hexo</strong>默认插入图片只有这一个方法，对有本地化需求的人群来说不够方便，此时可以安装一个满足本地图片引用的插件，在国内某知名（<strong>c</strong>）专业（<strong>s</strong>）开发者（<strong>d</strong>）社区（<strong>n</strong>）里提供的90%的方案为以下命令：<br><code>npm install hexo-asset-image –save</code><br>该论坛上相互借鉴蔚然成风的壮景对我这个刚入门的小白真是非常险恶，此指令安装版本落后，无法有效显示图片，有效的版本安装命令如下：<br><code>npm install https://github.com/CodeFalling/hexo-asset-image –save</code></p>
 <p>修改<code>_config.yml</code>文件，将<code>post_asset_folder:</code>值改为<strong>true</strong>。</p>
 <p>之后在新建一个博客的同时会生成同名文件夹，将需插入的图片放入该文件夹即可。文章中的具体引用代码为以下格式：(后来发现在<code>source</code>文件夹里新建一个名为<code>images</code>的文件夹存放图片也行)<br><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">]</span>(1/image.jpg)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></p>
-<h2 id="更改相对位置"><a href="#更改相对位置" class="headerlink" title="更改相对位置"></a>更改相对位置</h2><p>但这种方法在PC端有一个默认的问题就是图片插入后会自动左对齐，想要实现居中对齐，可以在<strong>markdown</strong>引用代码外部添加<strong>center</strong>元素，或者直接添加<strong>html</strong>元素，如下所示：<br><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">&lt;center<span class="token punctuation">></span>
+<h2><span id="更改相对位置">更改相对位置</span></h2><p>但这种方法在PC端有一个默认的问题就是图片插入后会自动左对齐，想要实现居中对齐，可以在<strong>markdown</strong>引用代码外部添加<strong>center</strong>元素，或者直接添加<strong>html</strong>元素，如下所示：<br><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">&lt;center<span class="token punctuation">></span>
 
 <span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">...</span><span class="token punctuation">]</span>(xxx)
 
