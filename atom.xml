@@ -6,7 +6,7 @@
   <link href="https://miustannis.github.io/atom.xml" rel="self"/>
   
   <link href="https://miustannis.github.io/"/>
-  <updated>2025-07-02T16:42:34.699Z</updated>
+  <updated>2025-07-04T07:47:13.916Z</updated>
   <id>https://miustannis.github.io/</id>
   
   <author>
@@ -21,16 +21,15 @@
     <link href="https://miustannis.github.io/2025/05/19/250519/"/>
     <id>https://miustannis.github.io/2025/05/19/250519/</id>
     <published>2025-05-19T03:38:44.000Z</published>
-    <updated>2025-07-02T16:42:34.699Z</updated>
+    <updated>2025-07-04T07:47:13.916Z</updated>
     
     
       
       
-    <summary type="html">&lt;p&gt;目录：&lt;/p&gt;
-&lt;!-- toc --&gt;
+    <summary type="html">&lt;h2&gt;&lt;span id=&quot;目录&quot;&gt;&lt;strong&gt;目录：&lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;&lt;!-- toc --&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#ch0-数字图像的概念&quot;&gt;&lt;strong&gt;Ch0 数字图像的概念&lt;/strong&gt;&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#图像分类模拟图像与数字图像&quot;&gt;图像分类：模拟图像与数字图像&lt;/a&gt;</summary>
+&lt;li&gt;&lt;a h</summary>
       
     
     
@@ -79,13 +78,14 @@
     <link href="https://miustannis.github.io/2025/03/27/250327/"/>
     <id>https://miustannis.github.io/2025/03/27/250327/</id>
     <published>2025-03-27T04:22:29.000Z</published>
-    <updated>2025-05-22T02:49:08.363Z</updated>
+    <updated>2025-07-04T07:47:19.189Z</updated>
     
     
       
       
-    <summary type="html">&lt;p&gt;在写一些内容时，会遇到需要添加数学公式的地方，Hexo部分主题不支持公式的渲染，比如我正在使用的vivia主题，在查阅一些资料之后，我使用&lt;strong&gt;MathJax&lt;/strong&gt;引擎实现了vivia主题下的数学公式渲染。&lt;/p&gt;
-&lt;p&gt;MathJax简介：&lt;a hr</summary>
+    <summary type="html">&lt;h2&gt;&lt;span id=&quot;目录&quot;&gt;&lt;strong&gt;目录：&lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#step-1-安装mathjax引擎并更换渲染引擎&quot;&gt;&lt;strong&gt;Step 1&lt;/strong&gt; : 安装Mat</summary>
       
     
     
@@ -104,12 +104,14 @@
     <link href="https://miustannis.github.io/2025/03/06/250306/"/>
     <id>https://miustannis.github.io/2025/03/06/250306/</id>
     <published>2025-03-06T12:39:18.000Z</published>
-    <updated>2025-05-22T01:05:36.423Z</updated>
+    <updated>2025-07-04T07:49:40.106Z</updated>
     
     
       
       
-    <summary type="html">&lt;h3&gt;&lt;span id=&quot;lecture-0-scratch&quot;&gt;&lt;strong&gt;Lecture 0 Scratch&lt;/strong&gt;&lt;/span&gt;&lt;/h3&gt;&lt;h3&gt;&lt;span id=&quot;lecture-1-c&quot;&gt;&lt;strong&gt;Lecture 1 C&lt;/strong&gt;&lt;/span</summary>
+    <summary type="html">&lt;h2&gt;&lt;span id=&quot;目录&quot;&gt;&lt;strong&gt;目录：&lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#lecture-0-scratch&quot;&gt;&lt;strong&gt;Lecture 0 Scratch&lt;/strong&gt;&lt;/a&gt;&lt;</summary>
       
     
     
