@@ -6,7 +6,7 @@
   <link href="https://miustannis.github.io/atom.xml" rel="self"/>
   
   <link href="https://miustannis.github.io/"/>
-  <updated>2025-07-04T07:47:13.916Z</updated>
+  <updated>2025-07-15T13:38:11.494Z</updated>
   <id>https://miustannis.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C++ 基础语法练习</title>
+    <link href="https://miustannis.github.io/2025/07/15/250715/"/>
+    <id>https://miustannis.github.io/2025/07/15/250715/</id>
+    <published>2025-07-15T13:19:05.000Z</published>
+    <updated>2025-07-15T13:38:11.494Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#1-数据操作&quot;&gt;1. 数据操作&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#2-数组操作&quot;&gt;2. 数组操作&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#3-字符串操作&quot;&gt;3. 字符串操作&lt;/a&gt;&lt;/li&gt;
+&lt;li</summary>
+      
+    
+    
+    
+    <category term="Learning Record" scheme="https://miustannis.github.io/categories/Learning-Record/"/>
+    
+    
+    <category term="CS" scheme="https://miustannis.github.io/tags/CS/"/>
+    
+    <category term="Cpp" scheme="https://miustannis.github.io/tags/Cpp/"/>
+    
+  </entry>
   
   <entry>
     <title>冈萨雷斯 《数字图像处理》Study Log</title>
@@ -120,36 +149,6 @@
     
     
     <category term="CS" scheme="https://miustannis.github.io/tags/CS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>基于MLX90640的手持红外热成像仪</title>
-    <link href="https://miustannis.github.io/2025/02/26/250226/"/>
-    <id>https://miustannis.github.io/2025/02/26/250226/</id>
-    <published>2025-02-26T02:05:52.000Z</published>
-    <updated>2025-05-19T01:17:44.941Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;h2&gt;&lt;span id=&quot;项目背景&quot;&gt;项目背景：&lt;/span&gt;&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;DIY好玩捏&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;电路工作时有时需要检查元件发热情况，但用手触摸元件有一定的风险，因此需要一种无接触式的多点测温设备&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;</summary>
-      
-    
-    
-    
-    <category term="Projects &amp; DIY" scheme="https://miustannis.github.io/categories/Projects-DIY/"/>
-    
-    
-    <category term="嵌入式" scheme="https://miustannis.github.io/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
-    
-    <category term="C" scheme="https://miustannis.github.io/tags/C/"/>
     
   </entry>
   
