@@ -6,7 +6,7 @@
   <link href="https://miustannis.github.io/atom.xml" rel="self"/>
   
   <link href="https://miustannis.github.io/"/>
-  <updated>2025-07-18T13:14:10.151Z</updated>
+  <updated>2025-07-28T11:38:08.056Z</updated>
   <id>https://miustannis.github.io/</id>
   
   <author>
@@ -17,21 +17,20 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>C++ 基础语法练习</title>
+    <title>Pulp Compilation</title>
     <link href="https://miustannis.github.io/2025/06/21/250621/"/>
     <id>https://miustannis.github.io/2025/06/21/250621/</id>
     <published>2025-06-21T13:19:05.000Z</published>
-    <updated>2025-07-18T13:14:10.151Z</updated>
+    <updated>2025-07-28T11:38:08.056Z</updated>
     
     
       
       
-    <summary type="html">&lt;!-- toc --&gt;
+    <summary type="html">&lt;p&gt;&lt;em&gt;“Say ‘segmentation fault’ again! SAY IT AGAIN!”&lt;/em&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#1-数据操作&quot;&gt;1. 数据操作&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#2-数组操作&quot;&gt;2. 数组操作&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#3-字符串操作&quot;&gt;3. 字符串操作&lt;/a&gt;&lt;/li&gt;
-&lt;li</summary>
+&lt;li&gt;&lt;a href=&quot;#2-数组操</summary>
       
     
     
@@ -96,9 +95,9 @@
     
     <category term="C" scheme="https://miustannis.github.io/tags/C/"/>
     
-    <category term="图像处理" scheme="https://miustannis.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
-    
     <category term="Algorithm" scheme="https://miustannis.github.io/tags/Algorithm/"/>
+    
+    <category term="图像处理" scheme="https://miustannis.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
     
   </entry>
   
