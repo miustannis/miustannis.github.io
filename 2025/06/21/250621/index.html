@@ -28,7 +28,7 @@
 <meta property="og:description" content="“Say ‘segmentation fault’ again! SAY IT AGAIN!”   1. 数据 2. 数组 3. 字符串 4. 链表 5. 哈希散列   1. 数据有一天, 小明收到一张奇怪的信, 信上要小明计算出给定数各个位上数字为偶数的和。例如：5548，结果为12，等于 4 + 8 。小明很苦恼，想请你帮忙解决这个问题 #include &lt;iostream&gt; using">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-06-21T13:19:05.000Z">
-<meta property="article:modified_time" content="2025-07-30T16:26:33.911Z">
+<meta property="article:modified_time" content="2025-07-31T15:50:41.005Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="CS">
 <meta property="article:tag" content="Cpp">
@@ -837,7 +837,7 @@ using namespace std<span class="token punctuation">;</span>
   <span class="token punctuation">&#125;</span>
   <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3><span id="5-哈希散列">5. 哈希散列</span></h3><h2><span id="51">5.1</span></h2><p>给定一个只包含小写字母的字符串，统计字符串中每个字母出现的频率，并找出出现频率最高的字母，如果最高频率的字母有多个，输出字典序靠前的那个字母。</p>
+<h3><span id="5-哈希散列">5. 哈希散列</span></h3><h2><span id="51-array">5.1 array</span></h2><p>给定一个只包含小写字母的字符串，统计字符串中每个字母出现的频率，并找出出现频率最高的字母，如果最高频率的字母有多个，输出字典序靠前的那个字母。</p>
 <p>包含多组测试数据，每组测试数据占一行。</p>
 <p>有多组输出，每组输出占一行。</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
@@ -873,7 +873,7 @@ using namespace std<span class="token punctuation">;</span>
   <span class="token punctuation">&#125;</span>
   <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2><span id="52">5.2</span></h2><p>编写一个程序，判断给定的整数 n 是否存在于给定的集合中。</p>
+<h2><span id="52-set">5.2 set</span></h2><p>编写一个程序，判断给定的整数 n 是否存在于给定的集合中。</p>
 <p>有多组测试数据，第一行有一个整数 k，代表有 k 组测试数据。</p>
 <p>每组数据第一行首先是一个正整数 m，表示集合中元素的数量（1 &lt;= m &lt;= 1000）。 </p>
 <p>接下来一行包含 m 个整数，表示集合中的元素。 </p>
@@ -906,6 +906,47 @@ using namespace std<span class="token punctuation">;</span>
       cout <span class="token operator">&lt;&lt;</span> <span class="token string">"NO"</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
   <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2><span id="53-map">5.3 map</span></h2><p>假设你手里有一串钥匙，这串钥匙上每把钥匙都有一个编号，对应着一个房门的编号。现给你一个房门编号，你需要判断是否能够打开该房门。</p>
+<p>测试数据共有多组。 </p>
+<p>第一行为一个整数 s，表示共有多少组测试数据。 </p>
+<p>每组第一行有一个整数 n，表示钥匙串上有多少把钥匙。 </p>
+<p>后面共有 n 行输入，每行两个整数，第一个整数 k 表示钥匙编号，第二个整数 d 表示房门编号。 </p>
+<p>最后一行有一个整数 x，表示需要打开的房门编号。</p>
+<p>输出多组，每组占一行。 如果能打开，则输出钥匙编号，不能打开则输出“Can’t open the door.”。</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unordered_map></span></span>
+using namespace std<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">int</span> n<span class="token punctuation">,</span> m<span class="token punctuation">;</span>
+  cin <span class="token operator">>></span> n<span class="token punctuation">;</span>
+  <span class="token keyword">int</span> key_num<span class="token punctuation">;</span>
+  <span class="token keyword">int</span> door_num<span class="token punctuation">;</span>
+  <span class="token keyword">int</span> x<span class="token punctuation">;</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>n<span class="token operator">--</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    cin <span class="token operator">>></span> m<span class="token punctuation">;</span>
+    unordered_map<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">></span> umap<span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>m<span class="token operator">--</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      cin <span class="token operator">>></span> key_num <span class="token operator">>></span> door_num<span class="token punctuation">;</span>
+      umap<span class="token punctuation">[</span>key_num<span class="token punctuation">]</span> <span class="token operator">=</span> door_num<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    cin <span class="token operator">>></span> x<span class="token punctuation">;</span>
+    bool flag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> answer <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> pair<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token operator">&amp;</span>kv <span class="token operator">:</span> umap<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>kv<span class="token punctuation">.</span>second <span class="token operator">==</span> x<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        flag <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        answer <span class="token operator">=</span> kv<span class="token punctuation">.</span>first<span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>flag <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      cout <span class="token operator">&lt;&lt;</span> answer <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span>
+      cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Can't open the door."</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
         
       </div>
@@ -985,22 +1026,5 @@ using namespace std<span class="token punctuation">;</span>
 
   </div>
   <script src="/js/light-dark-switch.js"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-
 </body>
 </html>
