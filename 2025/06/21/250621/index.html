@@ -28,7 +28,7 @@
 <meta property="og:description" content="“Say ‘segmentation fault’ again! SAY IT AGAIN!”   1. 数据 2. 数组 3. 字符串 4. 链表 5. 哈希散列 6. 栈与队列 7. 类与面向对象：封装、继承、多态   1. 数据有一天, 小明收到一张奇怪的信, 信上要小明计算出给定数各个位上数字为偶数的和。例如：5548，结果为12，等于 4 + 8 。小明很苦恼，想请你帮忙解决这个问题 #">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-06-21T13:19:05.000Z">
-<meta property="article:modified_time" content="2025-08-02T12:40:05.250Z">
+<meta property="article:modified_time" content="2025-08-02T13:21:01.670Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="CS">
 <meta property="article:tag" content="Cpp">
@@ -422,6 +422,31 @@ using namespace std<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3><span id="25-二分查找">2.5 二分查找</span></h3><p>给定一个 <code>n</code> 个元素有序的（升序）整型数组 <code>nums</code> 和一个目标值 <code>target</code> ，写一个函数搜索 <code>nums</code> 中的 <code>target</code>，如果 <code>target</code> 存在返回下标，否则返回 <code>-1</code>。</p>
+<p>你必须编写一个具有 <code>O(log n)</code> 时间复杂度的算法。</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">class Solution <span class="token punctuation">&#123;</span>
+public<span class="token operator">:</span>
+    <span class="token keyword">int</span> <span class="token function">search</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> nums<span class="token punctuation">,</span> <span class="token keyword">int</span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        
+        <span class="token keyword">int</span> left <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> right <span class="token operator">=</span> nums<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> middle <span class="token operator">=</span> left <span class="token operator">+</span> <span class="token punctuation">(</span>right <span class="token operator">-</span> left<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span> <span class="token punctuation">;</span>
+
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>left <span class="token operator">&lt;=</span> right<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>target <span class="token operator">></span> nums<span class="token punctuation">[</span>middle<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                left <span class="token operator">=</span> middle<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
+                middle <span class="token operator">=</span> left <span class="token operator">+</span> <span class="token punctuation">(</span>right <span class="token operator">-</span> left<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span> <span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>target <span class="token operator">&lt;</span> nums<span class="token punctuation">[</span>middle<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+                right <span class="token operator">=</span> middle<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+                middle <span class="token operator">=</span> left <span class="token operator">+</span> <span class="token punctuation">(</span>right <span class="token operator">-</span> left<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span> <span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">else</span>  <span class="token keyword">return</span> middle<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>&nbsp;</p>
 <h3><span id="3-字符串">3. 字符串</span></h3><h3><span id="31">3.1</span></h3><p>每门课的成绩分为A、B、C、D、F五个等级，为了计算平均绩点，规定A、B、C、D、F分别代表4分、3分、2分、1分、0分。<br>有多组测试样例。每组输入数据占一行，由一个或多个大写字母组成，字母之间由空格分隔。<br>每组输出结果占一行。如果输入的大写字母都在集合｛A,B,C,D,F｝中，则输出对应的平均绩点，结果保留两位小数。<br>否则，输出“Unknown”。</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"> 
@@ -613,6 +638,7 @@ using namespace std<span class="token punctuation">;</span>
 
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&nbsp;</p>
 <h3><span id="4-链表">4. 链表</span></h3><h3><span id="41">4.1</span></h3><p>构建一个单向链表，链表中包含一组整数数据。输出链表中的所有元素。</p>
 <p>要求：</p>
 <ol>
@@ -839,6 +865,7 @@ using namespace std<span class="token punctuation">;</span>
   <span class="token punctuation">&#125;</span>
   <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&nbsp;</p>
 <h3><span id="5-哈希散列">5. 哈希散列</span></h3><h3><span id="51-array">5.1 array</span></h3><p>给定一个只包含小写字母的字符串，统计字符串中每个字母出现的频率，并找出出现频率最高的字母，如果最高频率的字母有多个，输出字典序靠前的那个字母。</p>
 <p>包含多组测试数据，每组测试数据占一行。</p>
 <p>有多组输出，每组输出占一行。</p>
@@ -949,6 +976,7 @@ using namespace std<span class="token punctuation">;</span>
       cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Can't open the door."</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
   <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&nbsp;</p>
 <h3><span id="6-栈与队列">6. 栈与队列</span></h3><h3><span id="61">6.1</span></h3><p>在餐厅里，洗盘子的工作需要使用到栈这种数据结构。</p>
 <p>假设你手里有一个盘子堆放区。现在需要模拟洗盘子的过程，每个盘子都有一个编号。 </p>
 <p>盘子堆放区操作说明： </p>
@@ -1048,6 +1076,7 @@ using namespace std<span class="token punctuation">;</span>
     cout <span class="token operator">&lt;&lt;</span> <span class="token string">"There are no more people in the queue."</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
     <span class="token keyword">else</span> cout <span class="token operator">&lt;&lt;</span> milktea_queue<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&nbsp;</p>
 <h3><span id="7-类与面向对象封装-继承-多态">7. 类与面向对象：封装、继承、多态</span></h3><h3><span id="71">7.1</span></h3><p>考虑一个简单的图形类层次结构，包括基类 Shape 和两个派生类 Rectangle 和 Circle。每个类都有一个用于计算面积的方法。你的任务是编写一个程序，根据输入数据创建一个图形对象，然后计算并输出其面积。</p>
 <p>输入包括多行，每行包含一个图形的描述。 描述的第一个单词是图形类型（”rectangle”或”circle”），然后是与该图形相关的参数。 对于矩形，参数是宽度和高度，对于圆形，参数是半径。输入以单词”end”结束。</p>
 <p>对于每个图形描述，输出其类型和面积。使用两位小数点精度输出面积。</p>
@@ -1211,22 +1240,5 @@ private<span class="token operator">:</span>
 
   </div>
   <script src="/js/light-dark-switch.js"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-
 </body>
 </html>

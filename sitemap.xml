@@ -162,6 +162,13 @@
   </url>
   
   <url>
+    <loc>https://miustannis.github.io/tags/yaml/</loc>
+    <lastmod>2025-08-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://miustannis.github.io/tags/Hexo/</loc>
     <lastmod>2025-08-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -190,13 +197,6 @@
   </url>
   
   <url>
-    <loc>https://miustannis.github.io/tags/yaml/</loc>
-    <lastmod>2025-08-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://miustannis.github.io/tags/%E6%94%B9%E8%A3%85/</loc>
     <lastmod>2025-08-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -204,7 +204,7 @@
   </url>
   
   <url>
-    <loc>https://miustannis.github.io/tags/Algorithm/</loc>
+    <loc>https://miustannis.github.io/tags/CS/</loc>
     <lastmod>2025-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -218,7 +218,7 @@
   </url>
   
   <url>
-    <loc>https://miustannis.github.io/tags/CS/</loc>
+    <loc>https://miustannis.github.io/tags/Algorithm/</loc>
     <lastmod>2025-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
