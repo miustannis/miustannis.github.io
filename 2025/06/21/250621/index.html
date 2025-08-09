@@ -20,15 +20,15 @@
   <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
-  <meta name="description" content="“Say ‘segmentation fault’ again! SAY IT AGAIN!”   1. 数学 2. 数组 3. 字符串 4. 链表 5. 哈希散列 6. 栈与队列 7. 类与面向对象：封装、继承、多态   1. 数学1.1有一天, 小明收到一张奇怪的信, 信上要小明计算出给定数各个位上数字为偶数的和。例如：5548，结果为12，等于 4 + 8 。小明很苦恼，想请你帮忙解决这个问">
+  <meta name="description" content="“Say ‘segmentation fault’ again! SAY IT AGAIN!”   1. 数学 2. 数组 3. 链表 4. 哈希散列 5. 栈与队列 6. 类与OOP应用   1. 数学1.1有一天, 小明收到一张奇怪的信, 信上要小明计算出给定数各个位上数字为偶数的和。例如：5548，结果为12，等于 4 + 8 。小明很苦恼，想请你帮忙解决这个问题 #include &lt;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Pulp Compilation">
 <meta property="og:url" content="https://miustannis.github.io/2025/06/21/250621/index.html">
 <meta property="og:site_name" content="Miao&#39;s Blog">
-<meta property="og:description" content="“Say ‘segmentation fault’ again! SAY IT AGAIN!”   1. 数学 2. 数组 3. 字符串 4. 链表 5. 哈希散列 6. 栈与队列 7. 类与面向对象：封装、继承、多态   1. 数学1.1有一天, 小明收到一张奇怪的信, 信上要小明计算出给定数各个位上数字为偶数的和。例如：5548，结果为12，等于 4 + 8 。小明很苦恼，想请你帮忙解决这个问">
+<meta property="og:description" content="“Say ‘segmentation fault’ again! SAY IT AGAIN!”   1. 数学 2. 数组 3. 链表 4. 哈希散列 5. 栈与队列 6. 类与OOP应用   1. 数学1.1有一天, 小明收到一张奇怪的信, 信上要小明计算出给定数各个位上数字为偶数的和。例如：5548，结果为12，等于 4 + 8 。小明很苦恼，想请你帮忙解决这个问题 #include &lt;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-06-21T13:19:05.000Z">
-<meta property="article:modified_time" content="2025-08-08T15:29:15.823Z">
+<meta property="article:modified_time" content="2025-08-09T16:13:55.010Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="CS">
 <meta property="article:tag" content="Cpp">
@@ -207,7 +207,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            25k 词 
+            28k 词 
           </div>
         </div>
         
@@ -221,11 +221,10 @@
 <ul>
 <li><a href="#1-数学">1. 数学</a></li>
 <li><a href="#2-数组">2. 数组</a></li>
-<li><a href="#3-字符串">3. 字符串</a></li>
-<li><a href="#4-链表">4. 链表</a></li>
-<li><a href="#5-哈希散列">5. 哈希散列</a></li>
-<li><a href="#6-栈与队列">6. 栈与队列</a></li>
-<li><a href="#7-类与面向对象封装-继承-多态">7. 类与面向对象：封装、继承、多态</a></li>
+<li><a href="#3-链表">3. 链表</a></li>
+<li><a href="#4-哈希散列">4. 哈希散列</a></li>
+<li><a href="#5-栈与队列">5. 栈与队列</a></li>
+<li><a href="#6-类与oop应用">6. 类与OOP应用</a></li>
 </ul>
 <!-- tocstop -->
 <h3><span id="1-数学">1. 数学</span></h3><h3><span id="11">1.1</span></h3><p>有一天, 小明收到一张奇怪的信, 信上要小明计算出给定数各个位上数字为偶数的和。<br>例如：5548，结果为12，等于 4 + 8 。<br>小明很苦恼，想请你帮忙解决这个问题</p>
@@ -494,7 +493,7 @@ public<span class="token operator">:</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3><span id="27-有序数组的平方">2.7 有序数组的平方</span></h3><p>给你一个按 <strong>非递减顺序</strong> 排序的整数数组 <code>nums</code>，返回 <strong>每个数字的平方</strong> 组成的新数组，要求也按 <strong>非递减顺序</strong> 排序。 </p>
-<p>暴力法：</p>
+<p><strong>暴力：</strong></p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c">class Solution <span class="token punctuation">&#123;</span>
 public<span class="token operator">:</span>
     vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">sortedSquares</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> nums<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -506,7 +505,7 @@ public<span class="token operator">:</span>
         
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>双指针法：</p>
+<p><strong>双指针：</strong></p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">//时间复杂度为O(n)</span>
 class Solution <span class="token punctuation">&#123;</span>
 public<span class="token operator">:</span>
@@ -650,8 +649,7 @@ using namespace std<span class="token punctuation">;</span>
         cout <span class="token operator">&lt;&lt;</span> result <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&nbsp;</p>
-<h3><span id="3-字符串">3. 字符串</span></h3><h3><span id="31">3.1</span></h3><p>每门课的成绩分为A、B、C、D、F五个等级，为了计算平均绩点，规定A、B、C、D、F分别代表4分、3分、2分、1分、0分。<br>有多组测试样例。每组输入数据占一行，由一个或多个大写字母组成，字母之间由空格分隔。<br>每组输出结果占一行。如果输入的大写字母都在集合｛A,B,C,D,F｝中，则输出对应的平均绩点，结果保留两位小数。<br>否则，输出“Unknown”。</p>
+<h3><span id="211-字符串">2.11 字符串</span></h3><p>每门课的成绩分为A、B、C、D、F五个等级，为了计算平均绩点，规定A、B、C、D、F分别代表4分、3分、2分、1分、0分。<br>有多组测试样例。每组输入数据占一行，由一个或多个大写字母组成，字母之间由空格分隔。<br>每组输出结果占一行。如果输入的大写字母都在集合｛A,B,C,D,F｝中，则输出对应的平均绩点，结果保留两位小数。<br>否则，输出“Unknown”。</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"> 
 <span class="token comment">//1. string处理， C++的字符串操作，头文件string， 长度 .size， 访问字符 []</span>
 <span class="token comment">//   判断是否为空 .empty()，输入输出可以用标准库中的iostream</span>
@@ -722,7 +720,7 @@ string grades<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span>
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3><span id="32">3.2</span></h3><p>输出一个词组中每个单词的首字母的大写组合。<br>输入的第一行是一个整数n，表示一共有n组测试数据。（输入只有一个n，没有多组n的输入）<br>接下来有n行，每组测试数据占一行，每行有一个词组，每个词组由一个或多个单词组成；每组的单词个数不超过10个，每个单词有一个或多个大写或小写字母组成；<br>单词长度不超过10，由一个或多个空格分隔这些单词</p>
+<h3><span id="212">2.12</span></h3><p>输出一个词组中每个单词的首字母的大写组合。<br>输入的第一行是一个整数n，表示一共有n组测试数据。（输入只有一个n，没有多组n的输入）<br>接下来有n行，每组测试数据占一行，每行有一个词组，每个词组由一个或多个单词组成；每组的单词个数不超过10个，每个单词有一个或多个大写或小写字母组成；<br>单词长度不超过10，由一个或多个空格分隔这些单词</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">//注意这里使用了 getchar() 函数来吸收一个回车符，因为在输入 n 之后通常需要输入回车符才会输入下一行。</span>
 
 <span class="token comment">/*
@@ -796,7 +794,7 @@ using namespace std<span class="token punctuation">;</span>
 
   <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3><span id="33">3.3</span></h3><p>给定一个长度为偶数位的字符串，请编程实现字符串的奇偶位互换。输入包含多组测试数据。<br>输入的第一行是一个整数n，表示有测试数据。（整个输入中，只有一个n）<br>接下来是n组测试数据，保证串长为偶数位(串长&lt;=50)。</p>
+<h3><span id="213">2.13</span></h3><p>给定一个长度为偶数位的字符串，请编程实现字符串的奇偶位互换。输入包含多组测试数据。<br>输入的第一行是一个整数n，表示有测试数据。（整个输入中，只有一个n）<br>接下来是n组测试数据，保证串长为偶数位(串长&lt;=50)。</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c">
 <span class="token comment">//题解使用了自定义的交换函数，其中用了变量引用， which is C++的特性</span>
 
@@ -842,7 +840,7 @@ using namespace std<span class="token punctuation">;</span>
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>&nbsp;</p>
-<h3><span id="4-链表">4. 链表</span></h3><h3><span id="41">4.1</span></h3><p>构建一个单向链表，链表中包含一组整数数据。输出链表中的所有元素。</p>
+<h3><span id="3-链表">3. 链表</span></h3><h3><span id="31">3.1</span></h3><p>构建一个单向链表，链表中包含一组整数数据。输出链表中的所有元素。</p>
 <p>要求：</p>
 <ol>
 <li>使用自定义的链表数据结构</li>
@@ -894,7 +892,7 @@ using namespace std<span class="token punctuation">;</span>
         cout <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3><span id="42">4.2</span></h3><p>请编写一个程序，实现以下操作： </p>
+<h3><span id="32">3.2</span></h3><p>请编写一个程序，实现以下操作： </p>
 <p>构建一个单向链表，链表中包含一组整数数据，输出链表中的第 m 个元素（m 从 1 开始计数）。<br>要求：</p>
 <ol>
 <li>使用自定义的链表数据结构</li>
@@ -956,7 +954,7 @@ using namespace std<span class="token punctuation">;</span>
 
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3><span id="43">4.3</span></h3><p>请编写一个程序，实现以下链表操作：构建一个单向链表，链表中包含一组整数数据。</p>
+<h3><span id="33">3.3</span></h3><p>请编写一个程序，实现以下链表操作：构建一个单向链表，链表中包含一组整数数据。</p>
 <ol>
 <li>实现在链表的第 n 个位置插入一个元素，输出整个链表的所有元素。</li>
 <li>实现删除链表的第 m 个位置的元素，输出整个链表的所有元素。</li>
@@ -1068,7 +1066,7 @@ using namespace std<span class="token punctuation">;</span>
   <span class="token punctuation">&#125;</span>
   <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3><span id="44-设计链表">4.4 设计链表</span></h3><p>你可以选择使用单链表或者双链表，设计并实现自己的链表。（这里使用单链表）</p>
+<h3><span id="34-设计链表">3.4 设计链表</span></h3><p>你可以选择使用单链表或者双链表，设计并实现自己的链表。（这里使用单链表）</p>
 <p>单链表中的节点应该具备两个属性：<code>val</code> 和 <code>next</code> 。<code>val</code> 是当前节点的值，<code>next</code> 是指向下一个节点的指针/引用。</p>
 <p>如果是双向链表，则还需要属性 <code>prev</code> 以指示链表中的上一个节点。假设链表中的所有节点下标从 <strong>0</strong> 开始。</p>
 <p>实现 <code>MyLinkedList</code> 类：</p>
@@ -1181,7 +1179,7 @@ private<span class="token operator">:</span>
  * obj->addAtIndex(index,val);
  * obj->deleteAtIndex(index);
  */</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3><span id="45-反转链表">4.5 反转链表</span></h3><p>给你单链表的头节点 <code>head</code> ，请你反转链表，并返回反转后的链表。</p>
+<h3><span id="35-反转链表">3.5 反转链表</span></h3><p>给你单链表的头节点 <code>head</code> ，请你反转链表，并返回反转后的链表。</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/**
  * Definition for singly-linked list.
  * struct ListNode &#123;
@@ -1213,7 +1211,7 @@ public<span class="token operator">:</span>
         
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3><span id="46-两两交换链表中的节点">4.6 两两交换链表中的节点</span></h3><p>给你一个链表，两两交换其中相邻的节点，并返回交换后链表的头节点。你必须在不修改节点内部的值的情况下完成本题（即，只能进行节点交换）。</p>
+<h3><span id="36-两两交换链表中的节点">3.6 两两交换链表中的节点</span></h3><p>给你一个链表，两两交换其中相邻的节点，并返回交换后链表的头节点。你必须在不修改节点内部的值的情况下完成本题（即，只能进行节点交换）。</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/**
  * Definition for singly-linked list.
  * struct ListNode &#123;
@@ -1247,8 +1245,231 @@ public<span class="token operator">:</span>
     <span class="token keyword">return</span> dummyhead<span class="token operator">-></span>next<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3><span id="37-删除链表的倒数第n个节点">3.7 删除链表的倒数第N个节点</span></h3><p>给你一个链表，删除链表的倒数第 <code>n</code> 个结点，并且返回链表的头结点。</p>
+<p><strong>暴力：</strong></p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/**
+ * Definition for singly-linked list.
+ * struct ListNode &#123;
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) &#123;&#125;
+ *     ListNode(int x) : val(x), next(nullptr) &#123;&#125;
+ *     ListNode(int x, ListNode *next) : val(x), next(next) &#123;&#125;
+ * &#125;;
+ */</span>
+class Solution <span class="token punctuation">&#123;</span>
+public<span class="token operator">:</span>
+    ListNode<span class="token operator">*</span> <span class="token function">removeNthFromEnd</span><span class="token punctuation">(</span>ListNode<span class="token operator">*</span> head<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+        ListNode<span class="token operator">*</span> dummyhead <span class="token operator">=</span> new <span class="token function">ListNode</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        dummyhead<span class="token operator">-></span>next <span class="token operator">=</span> head<span class="token punctuation">;</span>
+        ListNode<span class="token operator">*</span> cur <span class="token operator">=</span> dummyhead<span class="token punctuation">;</span>
+
+        <span class="token keyword">int</span> count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>cur<span class="token operator">-></span>next <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+            cur <span class="token operator">=</span> cur<span class="token operator">-></span>next<span class="token punctuation">;</span>
+            count <span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token keyword">int</span> count_reverse <span class="token operator">=</span> count <span class="token operator">-</span> n <span class="token punctuation">;</span>
+
+        <span class="token comment">// cout &lt;&lt; count &lt;&lt; endl;</span>
+
+        cur <span class="token operator">=</span> dummyhead<span class="token punctuation">;</span>
+
+       <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> count_reverse <span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            cur <span class="token operator">=</span> cur<span class="token operator">-></span>next<span class="token punctuation">;</span> 
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token comment">// cout &lt;&lt; cur->val &lt;&lt; endl;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cur<span class="token operator">-></span>next <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
+        cur<span class="token operator">-></span>next <span class="token operator">=</span> cur<span class="token operator">-></span>next<span class="token operator">-></span>next<span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> dummyhead<span class="token operator">-></span>next<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>双指针：</strong></p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/**
+ * Definition for singly-linked list.
+ * struct ListNode &#123;
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) &#123;&#125;
+ *     ListNode(int x) : val(x), next(nullptr) &#123;&#125;
+ *     ListNode(int x, ListNode *next) : val(x), next(next) &#123;&#125;
+ * &#125;;
+ */</span>
+class Solution <span class="token punctuation">&#123;</span>
+public<span class="token operator">:</span>
+    ListNode<span class="token operator">*</span> <span class="token function">removeNthFromEnd</span><span class="token punctuation">(</span>ListNode<span class="token operator">*</span> head<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+
+        ListNode<span class="token operator">*</span> dummy <span class="token operator">=</span> new <span class="token function">ListNode</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        dummy<span class="token operator">-></span>next <span class="token operator">=</span> head<span class="token punctuation">;</span>
+
+        ListNode<span class="token operator">*</span> fast <span class="token operator">=</span> dummy<span class="token punctuation">;</span>
+        
+
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>n<span class="token operator">--</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+           fast <span class="token operator">=</span>  fast<span class="token operator">-></span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        ListNode<span class="token operator">*</span> slow <span class="token operator">=</span> dummy<span class="token punctuation">;</span>
+
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>fast<span class="token operator">-></span>next <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            fast <span class="token operator">=</span>  fast<span class="token operator">-></span>next<span class="token punctuation">;</span>
+            slow <span class="token operator">=</span>  slow<span class="token operator">-></span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        slow<span class="token operator">-></span>next <span class="token operator">=</span> slow<span class="token operator">-></span>next<span class="token operator">-></span>next<span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> dummy<span class="token operator">-></span>next<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3><span id="38-链表相交">3.8 链表相交</span></h3><p>给你两个单链表的头节点 <code>headA</code> 和 <code>headB</code> ，请你找出并返回两个单链表相交的起始节点。如果两个链表没有交点，返回 <code>null</code> 。</p>
+<p><strong>暴力：</strong></p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/**
+ * Definition for singly-linked list.
+ * struct ListNode &#123;
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) &#123;&#125;
+ * &#125;;
+ */</span>
+class Solution <span class="token punctuation">&#123;</span>
+public<span class="token operator">:</span>
+    ListNode <span class="token operator">*</span><span class="token function">getIntersectionNode</span><span class="token punctuation">(</span>ListNode <span class="token operator">*</span>headA<span class="token punctuation">,</span> ListNode <span class="token operator">*</span>headB<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        ListNode<span class="token operator">*</span> dummyA <span class="token operator">=</span> new <span class="token function">ListNode</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ListNode<span class="token operator">*</span> dummyB <span class="token operator">=</span> new <span class="token function">ListNode</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        dummyA<span class="token operator">-></span>next <span class="token operator">=</span> headA<span class="token punctuation">;</span>
+        dummyB<span class="token operator">-></span>next <span class="token operator">=</span> headB<span class="token punctuation">;</span>
+        ListNode<span class="token operator">*</span> curA <span class="token operator">=</span> dummyA<span class="token punctuation">;</span>        
+        ListNode<span class="token operator">*</span> curB <span class="token operator">=</span> dummyB<span class="token punctuation">;</span>
+
+        <span class="token keyword">while</span><span class="token punctuation">(</span>curA<span class="token operator">-></span>next <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+            curA <span class="token operator">=</span> curA<span class="token operator">-></span>next<span class="token punctuation">;</span>
+
+            <span class="token keyword">while</span> <span class="token punctuation">(</span>curB<span class="token operator">-></span> next <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+                curB <span class="token operator">=</span> curB <span class="token operator">-></span>next<span class="token punctuation">;</span>
+
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>curB <span class="token operator">==</span> curA<span class="token punctuation">)</span>
+                <span class="token keyword">return</span> curA<span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+
+            curB <span class="token operator">=</span> dummyB<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token keyword">return</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>暴力2：</strong></p>
+<p>两链表尾端对齐后，两遍历节点同时取短链表head，向后移动并检查</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">class Solution <span class="token punctuation">&#123;</span>
+public<span class="token operator">:</span>
+    ListNode <span class="token operator">*</span><span class="token function">getIntersectionNode</span><span class="token punctuation">(</span>ListNode <span class="token operator">*</span>headA<span class="token punctuation">,</span> ListNode <span class="token operator">*</span>headB<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        ListNode<span class="token operator">*</span> curA <span class="token operator">=</span> headA<span class="token punctuation">;</span>
+        ListNode<span class="token operator">*</span> curB <span class="token operator">=</span> headB<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> lenA <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> lenB <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>curA <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token comment">// 求链表A的长度</span>
+            lenA<span class="token operator">++</span><span class="token punctuation">;</span>
+            curA <span class="token operator">=</span> curA<span class="token operator">-></span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>curB <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token comment">// 求链表B的长度</span>
+            lenB<span class="token operator">++</span><span class="token punctuation">;</span>
+            curB <span class="token operator">=</span> curB<span class="token operator">-></span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        curA <span class="token operator">=</span> headA<span class="token punctuation">;</span>
+        curB <span class="token operator">=</span> headB<span class="token punctuation">;</span>
+        <span class="token comment">// 让curA为最长链表的头，lenA为其长度</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>lenB <span class="token operator">></span> lenA<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token function">swap</span> <span class="token punctuation">(</span>lenA<span class="token punctuation">,</span> lenB<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">swap</span> <span class="token punctuation">(</span>curA<span class="token punctuation">,</span> curB<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token comment">// 求长度差</span>
+        <span class="token keyword">int</span> gap <span class="token operator">=</span> lenA <span class="token operator">-</span> lenB<span class="token punctuation">;</span>
+        <span class="token comment">// 让curA和curB在同一起点上（末尾位置对齐）</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>gap<span class="token operator">--</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            curA <span class="token operator">=</span> curA<span class="token operator">-></span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token comment">// 遍历curA 和 curB，遇到相同则直接返回</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>curA <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>curA <span class="token operator">==</span> curB<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token keyword">return</span> curA<span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            curA <span class="token operator">=</span> curA<span class="token operator">-></span>next<span class="token punctuation">;</span>
+            curB <span class="token operator">=</span> curB<span class="token operator">-></span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3><span id="39-环形链表">3.9 环形链表</span></h3><p>给定一个链表的头节点  <code>head</code> ，返回链表开始入环的第一个节点。 <em>如果链表无环，则返回 <code>null</code>。</em></p>
+<p>如果链表中有某个节点，可以通过连续跟踪 <code>next</code> 指针再次到达，则链表中存在环。 为了表示给定链表中的环，评测系统内部使用整数 <code>pos</code> 来表示链表尾连接到链表中的位置（<strong>索引从 0 开始</strong>）。如果 <code>pos</code> 是 <code>-1</code>，则在该链表中没有环。<strong>注意：<code>pos</code> 不作为参数进行传递</strong>，仅仅是为了标识链表的实际情况。</p>
+<p><strong>不允许修改</strong> 链表。</p>
+<p><strong>暴力哈希：</strong></p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/**
+ * Definition for singly-linked list.
+ * struct ListNode &#123;
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) &#123;&#125;
+ * &#125;;
+ */</span>
+class Solution <span class="token punctuation">&#123;</span>
+public<span class="token operator">:</span>
+    ListNode <span class="token operator">*</span><span class="token function">detectCycle</span><span class="token punctuation">(</span>ListNode <span class="token operator">*</span>head<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+        unordered_set<span class="token operator">&lt;</span>ListNode<span class="token operator">*</span><span class="token operator">></span> store<span class="token punctuation">;</span>
+
+        ListNode<span class="token operator">*</span> dummy <span class="token operator">=</span> new <span class="token function">ListNode</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        dummy<span class="token operator">-></span>next <span class="token operator">=</span> head<span class="token punctuation">;</span>
+
+        ListNode<span class="token operator">*</span> cur <span class="token operator">=</span> dummy<span class="token punctuation">;</span>
+
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>cur<span class="token operator">-></span>next <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+            store<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>cur<span class="token operator">-></span>next<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            cur <span class="token operator">=</span> cur<span class="token operator">-></span>next<span class="token punctuation">;</span>
+            <span class="token comment">//if (store.count(cur->next)) 也行</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>cur<span class="token operator">-></span>next<span class="token punctuation">)</span> <span class="token operator">!=</span> store<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> cur<span class="token operator">-></span>next<span class="token punctuation">;</span>
+
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token keyword">return</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+
+        
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>双指针：fast是走两步，slow是走一步，</strong>其实相对于slow来说，fast是一个节点一个节点的靠近slow的<strong>，所以fast一定可以和slow重合。</strong></p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">class Solution <span class="token punctuation">&#123;</span>
+public<span class="token operator">:</span>
+    ListNode <span class="token operator">*</span><span class="token function">detectCycle</span><span class="token punctuation">(</span>ListNode <span class="token operator">*</span>head<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        ListNode<span class="token operator">*</span> fast <span class="token operator">=</span> head<span class="token punctuation">;</span>
+        ListNode<span class="token operator">*</span> slow <span class="token operator">=</span> head<span class="token punctuation">;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>fast <span class="token operator">!=</span> <span class="token constant">NULL</span> <span class="token operator">&amp;&amp;</span> fast<span class="token operator">-></span>next <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            slow <span class="token operator">=</span> slow<span class="token operator">-></span>next<span class="token punctuation">;</span>
+            fast <span class="token operator">=</span> fast<span class="token operator">-></span>next<span class="token operator">-></span>next<span class="token punctuation">;</span>
+            <span class="token comment">// 快慢指针相遇，此时从head和相遇点，同时查找直至相遇</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>slow <span class="token operator">==</span> fast<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                ListNode<span class="token operator">*</span> index1 <span class="token operator">=</span> fast<span class="token punctuation">;</span>
+                ListNode<span class="token operator">*</span> index2 <span class="token operator">=</span> head<span class="token punctuation">;</span>
+                <span class="token keyword">while</span> <span class="token punctuation">(</span>index1 <span class="token operator">!=</span> index2<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                    index1 <span class="token operator">=</span> index1<span class="token operator">-></span>next<span class="token punctuation">;</span>
+                    index2 <span class="token operator">=</span> index2<span class="token operator">-></span>next<span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+                <span class="token keyword">return</span> index2<span class="token punctuation">;</span> <span class="token comment">// 返回环的入口</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>&nbsp;</p>
-<h3><span id="5-哈希散列">5. 哈希散列</span></h3><h3><span id="51">5.1</span></h3><p>给定一个只包含小写字母的字符串，统计字符串中每个字母出现的频率，并找出出现频率最高的字母，如果最高频率的字母有多个，输出字典序靠前的那个字母。</p>
+<h3><span id="4-哈希散列">4. 哈希散列</span></h3><h3><span id="41">4.1</span></h3><p>给定一个只包含小写字母的字符串，统计字符串中每个字母出现的频率，并找出出现频率最高的字母，如果最高频率的字母有多个，输出字典序靠前的那个字母。</p>
 <p>包含多组测试数据，每组测试数据占一行。</p>
 <p>有多组输出，每组输出占一行。</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
@@ -1284,7 +1505,7 @@ using namespace std<span class="token punctuation">;</span>
   <span class="token punctuation">&#125;</span>
   <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3><span id="52">5.2</span></h3><p>编写一个程序，判断给定的整数 n 是否存在于给定的集合中。</p>
+<h3><span id="42">4.2</span></h3><p>编写一个程序，判断给定的整数 n 是否存在于给定的集合中。</p>
 <p>有多组测试数据，第一行有一个整数 k，代表有 k 组测试数据。</p>
 <p>每组数据第一行首先是一个正整数 m，表示集合中元素的数量（1 &lt;= m &lt;= 1000）。 </p>
 <p>接下来一行包含 m 个整数，表示集合中的元素。 </p>
@@ -1317,7 +1538,7 @@ using namespace std<span class="token punctuation">;</span>
       cout <span class="token operator">&lt;&lt;</span> <span class="token string">"NO"</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
   <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3><span id="53">5.3</span></h3><p>假设你手里有一串钥匙，这串钥匙上每把钥匙都有一个编号，对应着一个房门的编号。现给你一个房门编号，你需要判断是否能够打开该房门。</p>
+<h3><span id="43">4.3</span></h3><p>假设你手里有一串钥匙，这串钥匙上每把钥匙都有一个编号，对应着一个房门的编号。现给你一个房门编号，你需要判断是否能够打开该房门。</p>
 <p>测试数据共有多组。 </p>
 <p>第一行为一个整数 s，表示共有多少组测试数据。 </p>
 <p>每组第一行有一个整数 n，表示钥匙串上有多少把钥匙。 </p>
@@ -1358,7 +1579,7 @@ using namespace std<span class="token punctuation">;</span>
       cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Can't open the door."</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
   <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3><span id="54-存在重复元素">5.4 存在重复元素</span></h3><p>给你一个整数数组 <code>nums</code> 。如果任一值在数组中出现 <strong>至少两次</strong> ，返回 <code>true</code> ；如果数组中每个元素互不相同，返回 <code>false</code> 。</p>
+<h3><span id="44-存在重复元素">4.4 存在重复元素</span></h3><p>给你一个整数数组 <code>nums</code> 。如果任一值在数组中出现 <strong>至少两次</strong> ，返回 <code>true</code> ；如果数组中每个元素互不相同，返回 <code>false</code> 。</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c">class Solution <span class="token punctuation">&#123;</span>
 public<span class="token operator">:</span>
     bool <span class="token function">containsDuplicate</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> nums<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -1371,7 +1592,7 @@ public<span class="token operator">:</span>
         <span class="token keyword">return</span> false<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3><span id="55-只出现一次的数字">5.5 只出现一次的数字</span></h3><p>给你一个 <strong>非空</strong> 整数数组 <code>nums</code> ，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。</p>
+<h3><span id="45-只出现一次的数字">4.5 只出现一次的数字</span></h3><p>给你一个 <strong>非空</strong> 整数数组 <code>nums</code> ，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。</p>
 <p>你必须设计并实现线性时间复杂度的算法来解决此问题，且该算法只使用常量额外空间。</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c">class Solution <span class="token punctuation">&#123;</span>
 public<span class="token operator">:</span>
@@ -1389,7 +1610,7 @@ public<span class="token operator">:</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>&nbsp;</p>
-<h3><span id="6-栈与队列">6. 栈与队列</span></h3><h3><span id="61">6.1</span></h3><p>在餐厅里，洗盘子的工作需要使用到栈这种数据结构。</p>
+<h3><span id="5-栈与队列">5. 栈与队列</span></h3><h3><span id="51">5.1</span></h3><p>在餐厅里，洗盘子的工作需要使用到栈这种数据结构。</p>
 <p>假设你手里有一个盘子堆放区。现在需要模拟洗盘子的过程，每个盘子都有一个编号。 </p>
 <p>盘子堆放区操作说明： </p>
 <ol>
@@ -1437,7 +1658,7 @@ using namespace std<span class="token punctuation">;</span>
     <span class="token keyword">else</span> cout <span class="token operator">&lt;&lt;</span> dishes<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
 
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3><span id="62">6.2</span></h3><p>假设有一家奶茶店，现在有一些人在排队等待取奶茶，同时也有人在取奶茶。 请你设计一个程序模拟这种情况下的奶茶队列管理。</p>
+<h3><span id="52">5.2</span></h3><p>假设有一家奶茶店，现在有一些人在排队等待取奶茶，同时也有人在取奶茶。 请你设计一个程序模拟这种情况下的奶茶队列管理。</p>
 <p>假设每个人取奶茶的时间非常短，可以忽略不计，只需要考虑队列中的操作。 </p>
 <p>队列操作说明： </p>
 <ol>
@@ -1488,7 +1709,7 @@ using namespace std<span class="token punctuation">;</span>
     cout <span class="token operator">&lt;&lt;</span> <span class="token string">"There are no more people in the queue."</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
     <span class="token keyword">else</span> cout <span class="token operator">&lt;&lt;</span> milktea_queue<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3><span id="63-有效的括号">6.3 有效的括号</span></h3><p>给定一个只包括 <code>&#39;(&#39;</code>，<code>&#39;)&#39;</code>，<code>&#39;&#123;&#39;</code>，<code>&#39;&#125;&#39;</code>，<code>&#39;[&#39;</code>，<code>&#39;]&#39;</code> 的字符串 <code>s</code> ，判断字符串是否有效。</p>
+<h3><span id="53-有效的括号">5.3 有效的括号</span></h3><p>给定一个只包括 <code>&#39;(&#39;</code>，<code>&#39;)&#39;</code>，<code>&#39;&#123;&#39;</code>，<code>&#39;&#125;&#39;</code>，<code>&#39;[&#39;</code>，<code>&#39;]&#39;</code> 的字符串 <code>s</code> ，判断字符串是否有效。</p>
 <p>有效字符串需满足：</p>
 <ol>
 <li>左括号必须用相同类型的右括号闭合。</li>
@@ -1524,7 +1745,7 @@ public<span class="token operator">:</span>
         <span class="token keyword">return</span> false<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3><span id="64-买票需要的时间">6.4 买票需要的时间</span></h3><p>有 <code>n</code> 个人前来排队买票，其中第 <code>0</code> 人站在队伍 <strong>最前方</strong> ，第 <code>(n - 1)</code> 人站在队伍 <strong>最后方</strong> 。</p>
+<h3><span id="54-买票需要的时间">5.4 买票需要的时间</span></h3><p>有 <code>n</code> 个人前来排队买票，其中第 <code>0</code> 人站在队伍 <strong>最前方</strong> ，第 <code>(n - 1)</code> 人站在队伍 <strong>最后方</strong> 。</p>
 <p>给你一个下标从 <strong>0</strong> 开始的整数数组 <code>tickets</code> ，数组长度为 <code>n</code> ，其中第 <code>i</code> 人想要购买的票数为 <code>tickets[i]</code> 。</p>
 <p>每个人买票都需要用掉 <strong>恰好 1 秒</strong> 。一个人 <strong>一次只能买一张票</strong> ，如果需要购买更多票，他必须走到 <strong>队尾</strong> 重新排队（<strong>瞬间</strong> 发生，不计时间）。如果一个人没有剩下需要买的票，那他将会 <strong>离开</strong> 队伍。</p>
 <p>返回位于位置 <code>k</code>（下标从 <strong>0</strong> 开始）的人完成买票需要的时间（以秒为单位）。</p>
@@ -1558,7 +1779,7 @@ public<span class="token operator">:</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>&nbsp;</p>
-<h3><span id="7-类与面向对象封装-继承-多态">7. 类与面向对象：封装、继承、多态</span></h3><h3><span id="71">7.1</span></h3><p>考虑一个简单的图形类层次结构，包括基类 Shape 和两个派生类 Rectangle 和 Circle。每个类都有一个用于计算面积的方法。你的任务是编写一个程序，根据输入数据创建一个图形对象，然后计算并输出其面积。</p>
+<h3><span id="6-类与oop应用">6. 类与OOP应用</span></h3><h3><span id="61">6.1</span></h3><p>考虑一个简单的图形类层次结构，包括基类 Shape 和两个派生类 Rectangle 和 Circle。每个类都有一个用于计算面积的方法。你的任务是编写一个程序，根据输入数据创建一个图形对象，然后计算并输出其面积。</p>
 <p>输入包括多行，每行包含一个图形的描述。 描述的第一个单词是图形类型（”rectangle”或”circle”），然后是与该图形相关的参数。 对于矩形，参数是宽度和高度，对于圆形，参数是半径。输入以单词”end”结束。</p>
 <p>对于每个图形描述，输出其类型和面积。使用两位小数点精度输出面积。</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iomanip></span></span>
@@ -1721,22 +1942,5 @@ private<span class="token operator">:</span>
 
   </div>
   <script src="/js/light-dark-switch.js"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-
 </body>
 </html>
