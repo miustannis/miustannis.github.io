@@ -6,7 +6,7 @@
   <link href="https://miustannis.github.io/atom.xml" rel="self"/>
   
   <link href="https://miustannis.github.io/"/>
-  <updated>2025-08-15T15:17:53.491Z</updated>
+  <updated>2025-08-16T09:10:30.041Z</updated>
   <id>https://miustannis.github.io/</id>
   
   <author>
@@ -17,20 +17,21 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Pulp Compilation</title>
+    <title>Pulp Compilation 从零开始的刷题之路</title>
     <link href="https://miustannis.github.io/2025/06/21/250621/"/>
     <id>https://miustannis.github.io/2025/06/21/250621/</id>
     <published>2025-06-21T13:19:05.000Z</published>
-    <updated>2025-08-15T15:17:53.491Z</updated>
+    <updated>2025-08-16T09:10:30.041Z</updated>
     
     
       
       
-    <summary type="html">&lt;p&gt;&lt;em&gt;“Say ‘segmentation fault’ again! SAY IT AGAIN!”&lt;/em&gt;&lt;/p&gt;
-&lt;!-- toc --&gt;
+    <summary type="html">&lt;!-- toc --&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#1-数学&quot;&gt;1. 数学&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#2-数组&quot;&gt;2. </summary>
+&lt;li&gt;&lt;a href=&quot;#2-数组&quot;&gt;2. 数组&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#3-链表&quot;&gt;3. 链表&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#4-哈</summary>
       
     
     
