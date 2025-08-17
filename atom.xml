@@ -6,7 +6,7 @@
   <link href="https://miustannis.github.io/atom.xml" rel="self"/>
   
   <link href="https://miustannis.github.io/"/>
-  <updated>2025-08-16T09:10:30.041Z</updated>
+  <updated>2025-08-17T10:40:29.724Z</updated>
   <id>https://miustannis.github.io/</id>
   
   <author>
@@ -17,11 +17,62 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>KMP算法理解</title>
+    <link href="https://miustannis.github.io/2025/08/10/250810/"/>
+    <id>https://miustannis.github.io/2025/08/10/250810/</id>
+    <published>2025-08-10T03:38:44.000Z</published>
+    <updated>2025-08-17T10:40:29.724Z</updated>
+    
+    
+    
+    
+    <category term="Learning Record" scheme="https://miustannis.github.io/categories/Learning-Record/"/>
+    
+    
+    <category term="Algorithm" scheme="https://miustannis.github.io/tags/Algorithm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>用APP Inventor快速开发一款BLE安卓应用</title>
+    <link href="https://miustannis.github.io/2025/07/18/250718/"/>
+    <id>https://miustannis.github.io/2025/07/18/250718/</id>
+    <published>2025-07-18T03:38:44.000Z</published>
+    <updated>2025-08-17T10:43:15.416Z</updated>
+    
+    
+    
+    
+    <category term="Projects &amp; DIY" scheme="https://miustannis.github.io/categories/Projects-DIY/"/>
+    
+    
+    <category term="Android" scheme="https://miustannis.github.io/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MFCC音频分析算法 Study Log</title>
+    <link href="https://miustannis.github.io/2025/07/10/250710/"/>
+    <id>https://miustannis.github.io/2025/07/10/250710/</id>
+    <published>2025-07-10T03:38:44.000Z</published>
+    <updated>2025-08-17T10:43:12.236Z</updated>
+    
+    
+    
+    
+    <category term="Learning Record" scheme="https://miustannis.github.io/categories/Learning-Record/"/>
+    
+    
+    <category term="Algorithm" scheme="https://miustannis.github.io/tags/Algorithm/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Pulp Compilation 从零开始的刷题之路</title>
     <link href="https://miustannis.github.io/2025/06/21/250621/"/>
     <id>https://miustannis.github.io/2025/06/21/250621/</id>
     <published>2025-06-21T13:19:05.000Z</published>
-    <updated>2025-08-16T09:10:30.041Z</updated>
+    <updated>2025-08-17T10:34:33.642Z</updated>
     
     
       
@@ -67,88 +118,6 @@
     
     
     <category term="图像处理" scheme="https://miustannis.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>手持红外热成像仪V2.0-加载图像算法并嵌入轻量级神经网络</title>
-    <link href="https://miustannis.github.io/2025/05/10/250510/"/>
-    <id>https://miustannis.github.io/2025/05/10/250510/</id>
-    <published>2025-05-10T02:05:52.000Z</published>
-    <updated>2025-07-12T15:42:02.737Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;在之前的基础上改进了一部分&lt;/p&gt;
-&lt;p&gt;硬件上把串口和SWD下载口引出来了，夹具下载有点不稳定&lt;/p&gt;
-&lt;p&gt;同时把手头上的LCD模组和红外传感器模组给用了，没有额外购买物资，成品图如下：&lt;/p&gt;
-&lt;center&gt;
-    &lt;img src=&quot;/images/therma</summary>
-      
-    
-    
-    
-    <category term="Projects &amp; DIY" scheme="https://miustannis.github.io/categories/Projects-DIY/"/>
-    
-    
-    <category term="嵌入式" scheme="https://miustannis.github.io/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
-    
-    <category term="C" scheme="https://miustannis.github.io/tags/C/"/>
-    
-    <category term="Algorithm" scheme="https://miustannis.github.io/tags/Algorithm/"/>
-    
-    <category term="图像处理" scheme="https://miustannis.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo博客插入数学公式</title>
-    <link href="https://miustannis.github.io/2025/03/27/250327/"/>
-    <id>https://miustannis.github.io/2025/03/27/250327/</id>
-    <published>2025-03-27T04:22:29.000Z</published>
-    <updated>2025-07-04T07:47:19.189Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;h2&gt;&lt;span id=&quot;目录&quot;&gt;&lt;strong&gt;目录：&lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;&lt;!-- toc --&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#step-1-安装mathjax引擎并更换渲染引擎&quot;&gt;&lt;strong&gt;Step 1&lt;/strong&gt; : 安装Mat</summary>
-      
-    
-    
-    
-    <category term="Projects &amp; DIY" scheme="https://miustannis.github.io/categories/Projects-DIY/"/>
-    
-    
-    <category term="html" scheme="https://miustannis.github.io/tags/html/"/>
-    
-    <category term="Hexo" scheme="https://miustannis.github.io/tags/Hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Harvard CS50 Study Log</title>
-    <link href="https://miustannis.github.io/2025/03/06/250306/"/>
-    <id>https://miustannis.github.io/2025/03/06/250306/</id>
-    <published>2025-03-06T12:39:18.000Z</published>
-    <updated>2025-07-04T07:49:40.106Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;h2&gt;&lt;span id=&quot;目录&quot;&gt;&lt;strong&gt;目录：&lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;&lt;!-- toc --&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#lecture-0-scratch&quot;&gt;&lt;strong&gt;Lecture 0 Scratch&lt;/strong&gt;&lt;/a&gt;&lt;</summary>
-      
-    
-    
-    
-    <category term="Learning Record" scheme="https://miustannis.github.io/categories/Learning-Record/"/>
-    
-    
-    <category term="CS" scheme="https://miustannis.github.io/tags/CS/"/>
     
   </entry>
   
