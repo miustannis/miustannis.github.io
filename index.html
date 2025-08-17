@@ -135,14 +135,14 @@
     <div class="widget">
       <h3 class="widget-title">分类</h3>
       <div class="category-box">
-            <a class="category-link" href="/categories/Learning-Record/">
-                Learning Record
-                <div class="category-count">8</div>
-            </a>
-        
             <a class="category-link" href="/categories/Projects-DIY/">
                 Projects & DIY
                 <div class="category-count">7</div>
+            </a>
+        
+            <a class="category-link" href="/categories/Learning-Record/">
+                Learning Record
+                <div class="category-count">8</div>
             </a>
         </div>
     </div>
@@ -179,7 +179,7 @@
   
     
       <h1 itemprop="name">
-        <a class="p-name article-title" href="/2025/08/10/250810/">KMP算法理解</a>
+        <a class="p-name article-title" href="/2025/08/10/250810/">KMP算法 Study Log</a>
       </h1>
     
   
@@ -198,7 +198,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            0 词 
+            1.7k 词 
           </div>
         </div>
         
@@ -210,6 +210,27 @@
           <div class="truncate-text">
             
               
+
+什么是字符串匹配
+暴力解法
+KMP算法
+具体实现
+补充：
+
+
+KMP（Knuth-Morris-Pratt）算法是一种高效的字符串匹配算法，用于在一个主串中查找一个模式串的位置。它通过预处理模式串，避免了在匹配失败时重复比较已经匹配的部分，从而提高了匹配效率。
+该算法在1977年被提出，取三位贡献者的姓名首字母组成算法名称。
+什么是字符串匹配字符串匹配问题是计算机科学中的一个经典问题，其核心目标是在一个较长的文本串（Text）中查找是否存在一个或多个与给定模式串（Pattern）完全相同的子串。
+例如：
+
+文本串（T）：&quot;ABABDABACDABABCABAB&quot;
+模式串（P）：&quot;ABABCABAB&quot;
+
+那么模式串可以在文本串的索引11处匹配
+&nbsp;
+暴力解法知道控制语句用法的人都知道，这个问题可以套两层循环来解决，从文本串的第1个字符开始，与模式串逐字符比对，如果发现不匹配，则从文本串的第2个字符开始重新比对，以此类推，该解法时间复杂度为$O(m*n)$，效率较低。
+&nbsp;
+KMP算法KMP算法通过预处理模式串，利用已经匹配...
             
           </div>
         

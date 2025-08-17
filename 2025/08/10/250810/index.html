@@ -14,22 +14,27 @@
   
 
   
-  <title>KMP算法理解 | Miao&#39;s Blog</title>
+  <title>KMP算法 Study Log | Miao&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
-  <meta property="og:type" content="article">
-<meta property="og:title" content="KMP算法理解">
+  <meta name="description" content="什么是字符串匹配 暴力解法 KMP算法 具体实现 补充：   KMP（Knuth-Morris-Pratt）算法是一种高效的字符串匹配算法，用于在一个主串中查找一个模式串的位置。它通过预处理模式串，避免了在匹配失败时重复比较已经匹配的部分，从而提高了匹配效率。 该算法在1977年被提出，取三位贡献者的姓名首字母组成算法名称。 什么是字符串匹配字符串匹配问题是计算机科学中的一个经典问题，其核心目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KMP算法 Study Log">
 <meta property="og:url" content="https://miustannis.github.io/2025/08/10/250810/index.html">
 <meta property="og:site_name" content="Miao&#39;s Blog">
+<meta property="og:description" content="什么是字符串匹配 暴力解法 KMP算法 具体实现 补充：   KMP（Knuth-Morris-Pratt）算法是一种高效的字符串匹配算法，用于在一个主串中查找一个模式串的位置。它通过预处理模式串，避免了在匹配失败时重复比较已经匹配的部分，从而提高了匹配效率。 该算法在1977年被提出，取三位贡献者的姓名首字母组成算法名称。 什么是字符串匹配字符串匹配问题是计算机科学中的一个经典问题，其核心目">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://miustannis.github.io/images/KMP/prefix.webp">
+<meta property="og:image" content="https://miustannis.github.io/images/KMP/prove1.webp">
 <meta property="article:published_time" content="2025-08-10T03:38:44.000Z">
-<meta property="article:modified_time" content="2025-08-17T10:40:29.724Z">
+<meta property="article:modified_time" content="2025-08-17T14:53:06.563Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://miustannis.github.io/images/KMP/prefix.webp">
   
     <link rel="alternate" href="/atom.xml" title="Miao's Blog" type="application/atom+xml">
   
@@ -138,14 +143,14 @@
     <div class="widget">
       <h3 class="widget-title">分类</h3>
       <div class="category-box">
-            <a class="category-link" href="/categories/Learning-Record/">
-                Learning Record
-                <div class="category-count">8</div>
-            </a>
-        
             <a class="category-link" href="/categories/Projects-DIY/">
                 Projects & DIY
                 <div class="category-count">7</div>
+            </a>
+        
+            <a class="category-link" href="/categories/Learning-Record/">
+                Learning Record
+                <div class="category-count">8</div>
             </a>
         </div>
     </div>
@@ -183,7 +188,7 @@
   
     
       <h1 class="p-name article-title" itemprop="headline name">
-        KMP算法理解
+        KMP算法 Study Log
       </h1>
     
   
@@ -202,7 +207,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            0 词 
+            1.7k 词 
           </div>
         </div>
         
@@ -211,7 +216,80 @@
       </header>
       <div class="e-content article-entry" itemprop="articleBody">
         
-          
+          <!-- toc -->
+<ul>
+<li><a href="#什么是字符串匹配"><strong>什么是字符串匹配</strong></a></li>
+<li><a href="#暴力解法"><strong>暴力解法</strong></a></li>
+<li><a href="#kmp算法"><strong>KMP算法</strong></a></li>
+<li><a href="#具体实现"><strong>具体实现</strong></a></li>
+<li><a href="#补充"><strong>补充：</strong></a></li>
+</ul>
+<!-- tocstop -->
+<p>KMP（Knuth-Morris-Pratt）算法是一种高效的字符串匹配算法，用于在一个主串中查找一个模式串的位置。它通过预处理模式串，避免了在匹配失败时重复比较已经匹配的部分，从而提高了匹配效率。</p>
+<p>该算法在1977年被提出，取三位贡献者的姓名首字母组成算法名称。</p>
+<h3><span id="什么是字符串匹配"><strong>什么是字符串匹配</strong></span></h3><p>字符串匹配问题是计算机科学中的一个经典问题，其核心目标是<strong>在一个较长的文本串（Text）中查找是否存在一个或多个与给定模式串（Pattern）完全相同的子串</strong>。</p>
+<p>例如：</p>
+<ul>
+<li><strong>文本串（T）</strong>：<code>&quot;ABABDABACDABABCABAB&quot;</code></li>
+<li><strong>模式串（P）</strong>：<code>&quot;ABABCABAB&quot;</code></li>
+</ul>
+<p>那么模式串可以在文本串的索引11处匹配</p>
+<p>&nbsp;</p>
+<h3><span id="暴力解法"><strong>暴力解法</strong></span></h3><p>知道控制语句用法的人都知道，这个问题可以套两层循环来解决，从文本串的第1个字符开始，与模式串逐字符比对，如果发现不匹配，则从文本串的第2个字符开始重新比对，以此类推，该解法时间复杂度为$O(m*n)$，效率较低。</p>
+<p>&nbsp;</p>
+<h3><span id="kmp算法"><strong>KMP算法</strong></span></h3><p>KMP算法通过预处理模式串，利用已经匹配的信息，减少重复比较，将时间复杂度优化至$O(m+n)$</p>
+<p>其核心思想有两点：</p>
+<ol>
+<li>构造模式串的部分匹配表，也叫做前缀表，这个表记录了模式串的最长公共前后缀的长度</li>
+<li>利用失败信息，当字符不匹配时，根据部分匹配表移动模式串指针的位置，而不需要回溯文本串的位置</li>
+</ol>
+<p>下图可以清晰地看出前缀表的含义：</p>
+<center>
+    <img src="/images/KMP/prefix.webp" width="500">
+</center>
+
+<p>&nbsp;</p>
+<h3><span id="具体实现"><strong>具体实现</strong></span></h3><p>构造模式串的部分匹配表，即前缀表：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">getprefix</span><span class="token punctuation">(</span><span class="token keyword">const</span> string <span class="token operator">&amp;</span>s<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">*</span>prefix<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> fend <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    prefix<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> bend <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> bend <span class="token operator">&lt;</span> s<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  bend<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>fend <span class="token operator">></span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> s<span class="token punctuation">[</span>fend<span class="token punctuation">]</span> <span class="token operator">!=</span> s<span class="token punctuation">[</span>bend<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            fend <span class="token operator">=</span> prefix<span class="token punctuation">[</span>fend <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    	<span class="token punctuation">&#125;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>s<span class="token punctuation">[</span>bend<span class="token punctuation">]</span> <span class="token operator">==</span> s<span class="token punctuation">[</span>fend<span class="token punctuation">]</span><span class="token punctuation">)</span> fend<span class="token operator">++</span><span class="token punctuation">;</span>
+        prefix<span class="token punctuation">[</span>bend<span class="token punctuation">]</span> <span class="token operator">=</span> fend<span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这其中有一些类似递归的思想，当我们手动实现前缀表时，当遇到前缀最后一个字符与后缀字符不匹配的情况时，我们只需要去找他<strong>前一位的前缀表的值所指引的位置</strong>，从那个位置再次开始对比。</p>
+<p>道理和字符串匹配中的应用是一样的，因为前一位存放的是在当前字符之前的子串最大相等前后缀的长度，索引之后代表你可以跳过对比几个前后缀都有的字符，提高效率。</p>
+<p>在具体字符串匹配问题中，运用也是一个道理：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">strStr</span><span class="token punctuation">(</span>string haystack<span class="token punctuation">,</span> string needle<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>needle<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>needle<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">></span> haystack<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">prefix</span><span class="token punctuation">(</span>needle<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">getprefix</span><span class="token punctuation">(</span>needle<span class="token punctuation">,</span> <span class="token operator">&amp;</span>prefix<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> index <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> haystack<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">while</span> <span class="token punctuation">(</span>index <span class="token operator">></span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> haystack<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">!=</span> needle<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                index <span class="token operator">=</span> prefix<span class="token punctuation">[</span>index <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>haystack<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> needle<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">)</span> index<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">==</span> needle<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token punctuation">(</span>i <span class="token operator">-</span> index <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&nbsp;</p>
+<h3><span id="补充"><strong>补充：</strong></span></h3><p>由这个经典问题可推出：一个字符串是否由某个子串重复构成问题的解法。</p>
+<p>结论是，<strong>如果一个字符串在去掉其最长相等前后缀的长度后，剩余的子串长度能被原始长度整除，那么原始字符串就能被这个剩余的子串重复表示。</strong></p>
+<p>充分性证明，即如果某字符串去掉最长相等前后缀后的剩余子串长度能整除原始长度，则原始字符串可由该剩余子串重复表示。</p>
+<center>
+    <img src="/images/KMP/prove1.webp" width="500">
+</center>
+
+<p>必要性证明，即如果字符串能被某个子串重复表示，则去掉字符串的最长相等前后缀后的剩余子串长度必能整除原始长度。</p>
+<p>必要性显然，因此充分必要性均满足，证毕。</p>
+
         
       </div>
          

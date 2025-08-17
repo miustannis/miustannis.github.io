@@ -6,7 +6,7 @@
   <link href="https://miustannis.github.io/atom.xml" rel="self"/>
   
   <link href="https://miustannis.github.io/"/>
-  <updated>2025-08-17T10:40:29.724Z</updated>
+  <updated>2025-08-17T14:53:06.563Z</updated>
   <id>https://miustannis.github.io/</id>
   
   <author>
@@ -17,12 +17,21 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>KMP算法理解</title>
+    <title>KMP算法 Study Log</title>
     <link href="https://miustannis.github.io/2025/08/10/250810/"/>
     <id>https://miustannis.github.io/2025/08/10/250810/</id>
     <published>2025-08-10T03:38:44.000Z</published>
-    <updated>2025-08-17T10:40:29.724Z</updated>
+    <updated>2025-08-17T14:53:06.563Z</updated>
     
+    
+      
+      
+    <summary type="html">&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#什么是字符串匹配&quot;&gt;&lt;strong&gt;什么是字符串匹配&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#暴力解法&quot;&gt;&lt;strong&gt;暴力解法&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=</summary>
+      
     
     
     
