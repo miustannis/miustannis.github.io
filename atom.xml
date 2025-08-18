@@ -6,7 +6,7 @@
   <link href="https://miustannis.github.io/atom.xml" rel="self"/>
   
   <link href="https://miustannis.github.io/"/>
-  <updated>2025-08-17T14:53:06.563Z</updated>
+  <updated>2025-08-18T13:51:28.198Z</updated>
   <id>https://miustannis.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://miustannis.github.io/2025/08/10/250810/"/>
     <id>https://miustannis.github.io/2025/08/10/250810/</id>
     <published>2025-08-10T03:38:44.000Z</published>
-    <updated>2025-08-17T14:53:06.563Z</updated>
+    <updated>2025-08-18T13:51:28.198Z</updated>
     
     
       
@@ -47,8 +47,18 @@
     <link href="https://miustannis.github.io/2025/07/18/250718/"/>
     <id>https://miustannis.github.io/2025/07/18/250718/</id>
     <published>2025-07-18T03:38:44.000Z</published>
-    <updated>2025-08-17T10:43:15.416Z</updated>
+    <updated>2025-08-18T14:28:00.890Z</updated>
     
+    
+      
+      
+    <summary type="html">&lt;p&gt;出于科研项目要求，我需要开发一个能个性化定制界面与功能的BLE手机上位机软件，在经过简单的调研后，主要有以下两种开发路径：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Android Studio&lt;/li&gt;
+&lt;li&gt;MIT APP Inventor&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;其中AS需要J</summary>
+      
     
     
     

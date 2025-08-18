@@ -135,14 +135,14 @@
     <div class="widget">
       <h3 class="widget-title">分类</h3>
       <div class="category-box">
-            <a class="category-link" href="/categories/Projects-DIY/">
-                Projects & DIY
-                <div class="category-count">7</div>
-            </a>
-        
             <a class="category-link" href="/categories/Learning-Record/">
                 Learning Record
                 <div class="category-count">8</div>
+            </a>
+        
+            <a class="category-link" href="/categories/Projects-DIY/">
+                Projects & DIY
+                <div class="category-count">7</div>
             </a>
         </div>
     </div>
@@ -218,6 +218,7 @@ KMP算法
 补充：
 
 
+&nbsp;
 KMP（Knuth-Morris-Pratt）算法是一种高效的字符串匹配算法，用于在一个主串中查找一个模式串的位置。它通过预处理模式串，避免了在匹配失败时重复比较已经匹配的部分，从而提高了匹配效率。
 该算法在1977年被提出，取三位贡献者的姓名首字母组成算法名称。
 什么是字符串匹配字符串匹配问题是计算机科学中的一个经典问题，其核心目标是在一个较长的文本串（Text）中查找是否存在一个或多个与给定模式串（Pattern）完全相同的子串。
@@ -230,7 +231,7 @@ KMP（Knuth-Morris-Pratt）算法是一种高效的字符串匹配算法，用�
 &nbsp;
 暴力解法知道控制语句用法的人都知道，这个问题可以套两层循环来解决，从文本串的第1个字符开始，与模式串逐字符比对，如果发现不匹配，则从文本串的第2个字符开始重新比对，以此类推，该解法时间复杂度为$O(m*n)$，效率较低。
 &nbsp;
-KMP算法KMP算法通过预处理模式串，利用已经匹配...
+KMP算法KMP算法通过预处理模式串...
             
           </div>
         
@@ -290,7 +291,7 @@ KMP算法KMP算法通过预处理模式串，利用已经匹配...
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            0 词 
+            610 词 
           </div>
         </div>
         
@@ -301,7 +302,30 @@ KMP算法KMP算法通过预处理模式串，利用已经匹配...
         
           <div class="truncate-text">
             
-              
+              出于科研项目要求，我需要开发一个能个性化定制界面与功能的BLE手机上位机软件，在经过简单的调研后，主要有以下两种开发路径：
+
+Android Studio
+MIT APP Inventor
+
+其中AS需要Java基础，且开发周期长；MIT APP Inventor图形化编程，20min可上手，于是我选择后者，最终也能达到我想要的效果。
+选择建议如下：
+
+选 Android Studio：如果你想成为专业开发者，或开发功能复杂、可发布的商业应用。
+选 MIT App Inventor：如果你是学生，或只想快速做一个简单应用
+
+于是在B站看了几个包浆的教学视频后，我开始上手制作，过程意外地顺利
+首先，你需要明确你的APP要包含哪些模块
+如下图所示，在登陆官网后，你可以把你需要的模块在侧边栏拖入主页面
+
+    
+
+
+
+
+依次描述我的思路
+上图中组件1是BLE设备搜索与断联按钮
+2是BLE连接状态，3是波形图，4是实时数值，5是清空按钮；
+当然也有后端组件Ⅰ，是BLE模块，这个在官网没有，需要下载拓展包，https://iot.appinventor.mit.edu/ 这个网站里可以找...
             
           </div>
         
@@ -959,22 +983,5 @@ Time Complexity is an important metric used to measure the relationship between 
 
   </div>
   <script src="/js/light-dark-switch.js"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-
 </body>
 </html>

@@ -20,17 +20,17 @@
   <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
-  <meta name="description" content="什么是字符串匹配 暴力解法 KMP算法 具体实现 补充：   KMP（Knuth-Morris-Pratt）算法是一种高效的字符串匹配算法，用于在一个主串中查找一个模式串的位置。它通过预处理模式串，避免了在匹配失败时重复比较已经匹配的部分，从而提高了匹配效率。 该算法在1977年被提出，取三位贡献者的姓名首字母组成算法名称。 什么是字符串匹配字符串匹配问题是计算机科学中的一个经典问题，其核心目">
+  <meta name="description" content="什么是字符串匹配 暴力解法 KMP算法 具体实现 补充：   &amp;nbsp; KMP（Knuth-Morris-Pratt）算法是一种高效的字符串匹配算法，用于在一个主串中查找一个模式串的位置。它通过预处理模式串，避免了在匹配失败时重复比较已经匹配的部分，从而提高了匹配效率。 该算法在1977年被提出，取三位贡献者的姓名首字母组成算法名称。 什么是字符串匹配字符串匹配问题是计算机科学中的一个经典">
 <meta property="og:type" content="article">
 <meta property="og:title" content="KMP算法 Study Log">
 <meta property="og:url" content="https://miustannis.github.io/2025/08/10/250810/index.html">
 <meta property="og:site_name" content="Miao&#39;s Blog">
-<meta property="og:description" content="什么是字符串匹配 暴力解法 KMP算法 具体实现 补充：   KMP（Knuth-Morris-Pratt）算法是一种高效的字符串匹配算法，用于在一个主串中查找一个模式串的位置。它通过预处理模式串，避免了在匹配失败时重复比较已经匹配的部分，从而提高了匹配效率。 该算法在1977年被提出，取三位贡献者的姓名首字母组成算法名称。 什么是字符串匹配字符串匹配问题是计算机科学中的一个经典问题，其核心目">
+<meta property="og:description" content="什么是字符串匹配 暴力解法 KMP算法 具体实现 补充：   &amp;nbsp; KMP（Knuth-Morris-Pratt）算法是一种高效的字符串匹配算法，用于在一个主串中查找一个模式串的位置。它通过预处理模式串，避免了在匹配失败时重复比较已经匹配的部分，从而提高了匹配效率。 该算法在1977年被提出，取三位贡献者的姓名首字母组成算法名称。 什么是字符串匹配字符串匹配问题是计算机科学中的一个经典">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://miustannis.github.io/images/KMP/prefix.webp">
 <meta property="og:image" content="https://miustannis.github.io/images/KMP/prove1.webp">
 <meta property="article:published_time" content="2025-08-10T03:38:44.000Z">
-<meta property="article:modified_time" content="2025-08-17T14:53:06.563Z">
+<meta property="article:modified_time" content="2025-08-18T13:51:28.198Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary">
@@ -143,14 +143,14 @@
     <div class="widget">
       <h3 class="widget-title">分类</h3>
       <div class="category-box">
-            <a class="category-link" href="/categories/Projects-DIY/">
-                Projects & DIY
-                <div class="category-count">7</div>
-            </a>
-        
             <a class="category-link" href="/categories/Learning-Record/">
                 Learning Record
                 <div class="category-count">8</div>
+            </a>
+        
+            <a class="category-link" href="/categories/Projects-DIY/">
+                Projects & DIY
+                <div class="category-count">7</div>
             </a>
         </div>
     </div>
@@ -225,6 +225,7 @@
 <li><a href="#补充"><strong>补充：</strong></a></li>
 </ul>
 <!-- tocstop -->
+<p>&nbsp;</p>
 <p>KMP（Knuth-Morris-Pratt）算法是一种高效的字符串匹配算法，用于在一个主串中查找一个模式串的位置。它通过预处理模式串，避免了在匹配失败时重复比较已经匹配的部分，从而提高了匹配效率。</p>
 <p>该算法在1977年被提出，取三位贡献者的姓名首字母组成算法名称。</p>
 <h3><span id="什么是字符串匹配"><strong>什么是字符串匹配</strong></span></h3><p>字符串匹配问题是计算机科学中的一个经典问题，其核心目标是<strong>在一个较长的文本串（Text）中查找是否存在一个或多个与给定模式串（Pattern）完全相同的子串</strong>。</p>
@@ -368,22 +369,5 @@
 
   </div>
   <script src="/js/light-dark-switch.js"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-
 </body>
 </html>
