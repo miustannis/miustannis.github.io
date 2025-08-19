@@ -14,19 +14,21 @@
   
 
   
-  <title>MFCC音频分析算法 Study Log | Miao&#39;s Blog</title>
+  <title>MFCC音频特征提取流程demo | Miao&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
-  <meta property="og:type" content="article">
-<meta property="og:title" content="MFCC音频分析算法 Study Log">
+  <meta name="description" content="MFCC的核心思想是模仿人耳对声音的非线性感知特性（人耳对低频声音比高频声音更敏感），从而更好地表示语音特征。其流程可以概括为以下步骤： 分帧 目的：语音信号是非平稳信号，其特性是随时间变化的。但在一个非常短的时间段内，可以近似认为是平稳的。分帧就是将长信号切分成许多短片段来分析。 操作：使用一个固定长度的窗口以一定的帧移沿着信号滑动并截取数据。  加窗 目的：减少每一帧信号在其两端处的频谱泄漏，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MFCC音频特征提取流程demo">
 <meta property="og:url" content="https://miustannis.github.io/2025/07/10/250710/index.html">
 <meta property="og:site_name" content="Miao&#39;s Blog">
+<meta property="og:description" content="MFCC的核心思想是模仿人耳对声音的非线性感知特性（人耳对低频声音比高频声音更敏感），从而更好地表示语音特征。其流程可以概括为以下步骤： 分帧 目的：语音信号是非平稳信号，其特性是随时间变化的。但在一个非常短的时间段内，可以近似认为是平稳的。分帧就是将长信号切分成许多短片段来分析。 操作：使用一个固定长度的窗口以一定的帧移沿着信号滑动并截取数据。  加窗 目的：减少每一帧信号在其两端处的频谱泄漏，">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-07-10T03:38:44.000Z">
-<meta property="article:modified_time" content="2025-08-17T10:43:12.236Z">
+<meta property="article:modified_time" content="2025-08-19T14:34:24.449Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary">
@@ -140,12 +142,12 @@
       <div class="category-box">
             <a class="category-link" href="/categories/Projects-DIY/">
                 Projects & DIY
-                <div class="category-count">7</div>
+                <div class="category-count">8</div>
             </a>
         
             <a class="category-link" href="/categories/Learning-Record/">
                 Learning Record
-                <div class="category-count">8</div>
+                <div class="category-count">7</div>
             </a>
         </div>
     </div>
@@ -183,7 +185,7 @@
   
     
       <h1 class="p-name article-title" itemprop="headline name">
-        MFCC音频分析算法 Study Log
+        MFCC音频特征提取流程demo
       </h1>
     
   
@@ -196,13 +198,13 @@
           <div class="need-seperator meta-info">
             <div class="meta-cate-flex">
   
-  <a class="meta-cate-link" href="/categories/Learning-Record/">Learning Record</a>
+  <a class="meta-cate-link" href="/categories/Projects-DIY/">Projects & DIY</a>
    
 </div>
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            0 词 
+            5.8k 词 
           </div>
         </div>
         
@@ -211,7 +213,276 @@
       </header>
       <div class="e-content article-entry" itemprop="articleBody">
         
-          
+          <p>MFCC的核心思想是模仿人耳对声音的非线性感知特性（人耳对低频声音比高频声音更敏感），从而更好地表示语音特征。其流程可以概括为以下<strong>步骤</strong>：</p>
+<h3><span id="分帧">分帧</span></h3><ul>
+<li><strong>目的</strong>：语音信号是非平稳信号，其特性是随时间变化的。但在一个非常短的时间段内，可以近似认为是平稳的。分帧就是将长信号切分成许多短片段来分析。</li>
+<li><strong>操作</strong>：使用一个固定长度的窗口以一定的帧移沿着信号滑动并截取数据。</li>
+</ul>
+<h3><span id="加窗">加窗</span></h3><ul>
+<li><strong>目的</strong>：减少每一帧信号在其两端处的频谱泄漏，使帧两端平滑地衰减到零，从而降低后续傅里叶变换后旁瓣的强度。</li>
+<li><strong>操作</strong>：将每一帧信号乘上一个窗函数。</li>
+</ul>
+<h3><span id="快速傅里叶变换和功率谱计算">快速傅里叶变换和功率谱计算</span></h3><ul>
+<li><strong>目的</strong>：将信号从时域转换到频域。</li>
+<li><strong>操作</strong>：<ul>
+<li>对每一帧加窗后的信号进行FFT，得到复数频谱。</li>
+<li>然后计算其功率谱（取模的平方）。<code>P = |FFT(frame)|² / N</code> （N是FFT点数）</li>
+</ul>
+</li>
+</ul>
+<h3><span id="梅尔滤波器组滤波">梅尔滤波器组滤波</span></h3><ul>
+<li><strong>目的</strong>：模拟人耳的听觉特性。人耳对于不同频率的感知能力是不同的，在低频区域（如1000Hz以下）区分度高，在高频区域区分度低。梅尔刻度是一种将实际频率转换为更符合人耳感知的频率刻度。</li>
+<li><strong>操作</strong>：<ul>
+<li>定义一组三角带通滤波器（梅尔滤波器组），这些滤波器在梅尔刻度上是等宽的，但在线性频率刻度上是不等宽的（低频区域滤波器窄且密集，高频区域宽且稀疏）。</li>
+<li>将上一步得到的功率谱与每一个梅尔滤波器进行积分（实际上是相乘并求和），得到每个滤波器输出的能量。这样就将频谱压缩为n个更能反映人耳听觉特性的滤波器组能量。</li>
+</ul>
+</li>
+</ul>
+<h3><span id="离散余弦变换">离散余弦变换</span></h3><ul>
+<li><p><strong>目的</strong>：对梅尔滤波器组能量取对数后，进行<strong>离散余弦变换 (DCT)</strong>。这一步也称为<strong>倒谱分析</strong>。</p>
+<ul>
+<li><p><strong>取对数</strong>：因为人耳对声音强度的感知也是对数的。同时，对数操作可以将卷积信号（声源激励和声道滤波）转化为可加的。</p>
+</li>
+<li><p><strong>DCT</strong>：对取对数后的滤波器组能量进行DCT，相当于对频谱进行“压缩”。DCT的结果中，低维（前几个）系数代表了包络信息（反映了声道形状，是语音内容的关键），而高维系数代表了细节信息（如激励源）。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>最终的输出通常只保留DCT后的前12-13个系数，再加上一个能量项（第0项或直接从时域帧中计算），共同构成最终的MFCC特征向量。</p>
+<p>这个流程为音频信号的每一帧都计算出了一个固定维度的MFCC特征向量，这些向量序列就可以用于后续的语音识别、说话人识别等机器学习任务。</p>
+<p>&nbsp;</p>
+<p>下面是在一个项目中使用MFCC方法进行特征提取的预处理部分，这里用的不是标准MFCC，省去了最后的DCT部分，更直接简单。这个处理流程是在python仿真后迁移的，python中运用了librosa库，不过该库里面有一些隐式处理，因此在转换成C版本代码时遇到了较多不匹配的情况，不过调试中也是逐步改进了。</p>
+<p>分帧函数如下，实际使用时调整传参使其能够保持60%的重合率，让每一帧平滑过渡，不过这个函数只计算帧数，真正的分帧操作在下面的流式处理里面循环执行。</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">// 分帧函数，使用局部缓存处理每一帧数据</span>
+<span class="token keyword">int</span> <span class="token function">frame_signal</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token class-name">int16_t</span><span class="token operator">*</span> y<span class="token punctuation">,</span> <span class="token keyword">int</span> y_len<span class="token punctuation">,</span> <span class="token keyword">int</span> frame_length<span class="token punctuation">,</span> <span class="token keyword">int</span> hop_length<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">*</span> n_frames<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token operator">*</span>n_frames <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">+</span> <span class="token punctuation">(</span>y_len <span class="token operator">-</span> frame_length<span class="token punctuation">)</span> <span class="token operator">/</span> hop_length<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">// 假设不会出错</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment">//n_frames 经过处理后为实际帧数</span>
+<span class="token comment">//实际运行时，hoplength和framlength定义如下</span>
+<span class="token comment">// #define WIN_LENGTH 400 窗长400</span>
+<span class="token comment">// #define HOP_LENGTH 160 帧移160</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&nbsp;</p>
+<p>手动FFT实现</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">// Complex结构体定义</span>
+<span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">float</span> real<span class="token punctuation">;</span>
+    <span class="token keyword">float</span> imag<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span> Complex<span class="token punctuation">;</span>
+
+
+<span class="token keyword">void</span> <span class="token function">fft</span><span class="token punctuation">(</span>Complex<span class="token operator">*</span> x<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 预先计算旋转因子</span>
+    <span class="token keyword">static</span> Complex W<span class="token punctuation">[</span>N_FFT<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">static</span> <span class="token keyword">int</span> initialized <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>initialized<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> k <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> k <span class="token operator">&lt;</span> N_FFT<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span> k<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">float</span> angle <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">2</span> <span class="token operator">*</span> PI <span class="token operator">*</span> k <span class="token operator">/</span> N_FFT<span class="token punctuation">;</span>
+            W<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">.</span>real <span class="token operator">=</span> <span class="token function">cosf</span><span class="token punctuation">(</span>angle<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            W<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">.</span>imag <span class="token operator">=</span> <span class="token function">sinf</span><span class="token punctuation">(</span>angle<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        initialized <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 位反转置换</span>
+    <span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> N_FFT <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;</span> j<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            Complex temp <span class="token operator">=</span> x<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            x<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> x<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            x<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">int</span> k <span class="token operator">=</span> N_FFT <span class="token operator">>></span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>k <span class="token operator">&lt;=</span> j<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            j <span class="token operator">-=</span> k<span class="token punctuation">;</span>
+            k <span class="token operator">>>=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        j <span class="token operator">+=</span> k<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 迭代FFT</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> stride <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span> stride <span class="token operator">&lt;=</span> N_FFT<span class="token punctuation">;</span> stride <span class="token operator">&lt;&lt;=</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">int</span> half_stride <span class="token operator">=</span> stride <span class="token operator">>></span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> W_step <span class="token operator">=</span> N_FFT <span class="token operator">/</span> stride<span class="token punctuation">;</span>
+        
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> k <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> k <span class="token operator">&lt;</span> N_FFT<span class="token punctuation">;</span> k <span class="token operator">+=</span> stride<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> m <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> m <span class="token operator">&lt;</span> half_stride<span class="token punctuation">;</span> m<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token keyword">int</span> idx_e <span class="token operator">=</span> k <span class="token operator">+</span> m<span class="token punctuation">;</span>
+                <span class="token keyword">int</span> idx_o <span class="token operator">=</span> idx_e <span class="token operator">+</span> half_stride<span class="token punctuation">;</span>
+                <span class="token keyword">int</span> W_idx <span class="token operator">=</span> m <span class="token operator">*</span> W_step<span class="token punctuation">;</span>
+                
+                Complex t <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+                    W<span class="token punctuation">[</span>W_idx<span class="token punctuation">]</span><span class="token punctuation">.</span>real <span class="token operator">*</span> x<span class="token punctuation">[</span>idx_o<span class="token punctuation">]</span><span class="token punctuation">.</span>real <span class="token operator">-</span> W<span class="token punctuation">[</span>W_idx<span class="token punctuation">]</span><span class="token punctuation">.</span>imag <span class="token operator">*</span> x<span class="token punctuation">[</span>idx_o<span class="token punctuation">]</span><span class="token punctuation">.</span>imag<span class="token punctuation">,</span>
+                    W<span class="token punctuation">[</span>W_idx<span class="token punctuation">]</span><span class="token punctuation">.</span>real <span class="token operator">*</span> x<span class="token punctuation">[</span>idx_o<span class="token punctuation">]</span><span class="token punctuation">.</span>imag <span class="token operator">+</span> W<span class="token punctuation">[</span>W_idx<span class="token punctuation">]</span><span class="token punctuation">.</span>imag <span class="token operator">*</span> x<span class="token punctuation">[</span>idx_o<span class="token punctuation">]</span><span class="token punctuation">.</span>real
+                <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+                
+                x<span class="token punctuation">[</span>idx_o<span class="token punctuation">]</span><span class="token punctuation">.</span>real <span class="token operator">=</span> x<span class="token punctuation">[</span>idx_e<span class="token punctuation">]</span><span class="token punctuation">.</span>real <span class="token operator">-</span> t<span class="token punctuation">.</span>real<span class="token punctuation">;</span>
+                x<span class="token punctuation">[</span>idx_o<span class="token punctuation">]</span><span class="token punctuation">.</span>imag <span class="token operator">=</span> x<span class="token punctuation">[</span>idx_e<span class="token punctuation">]</span><span class="token punctuation">.</span>imag <span class="token operator">-</span> t<span class="token punctuation">.</span>imag<span class="token punctuation">;</span>
+                x<span class="token punctuation">[</span>idx_e<span class="token punctuation">]</span><span class="token punctuation">.</span>real <span class="token operator">+=</span> t<span class="token punctuation">.</span>real<span class="token punctuation">;</span>
+                x<span class="token punctuation">[</span>idx_e<span class="token punctuation">]</span><span class="token punctuation">.</span>imag <span class="token operator">+=</span> t<span class="token punctuation">.</span>imag<span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&nbsp;</p>
+<p>Mel功率谱计算，函数中的汉明窗与Mel滤波器组都是事先生成的。</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">// 计算Mel功率谱</span>
+<span class="token keyword">void</span> <span class="token function">manual_melspectrogram</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token class-name">int16_t</span><span class="token operator">*</span> y<span class="token punctuation">,</span> <span class="token keyword">int</span> y_len<span class="token punctuation">,</span> <span class="token keyword">int</span> sr<span class="token punctuation">,</span>
+                           <span class="token keyword">float</span><span class="token operator">*</span> mel_spec<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">*</span> n_mels_out<span class="token punctuation">,</span>
+                           <span class="token keyword">int</span><span class="token operator">*</span> n_frames_out<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> n_frames<span class="token punctuation">;</span>
+
+    <span class="token comment">// 计算最大绝对值（用于归一化）</span>
+    <span class="token keyword">float</span> max_val <span class="token operator">=</span> <span class="token number">0.0f</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> y_len<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">float</span> abs_val <span class="token operator">=</span> <span class="token function">fabsf</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">float</span><span class="token punctuation">)</span>y<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>abs_val <span class="token operator">></span> max_val<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            max_val <span class="token operator">=</span> abs_val<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 分配并归一化为 float 缓冲区</span>
+    <span class="token keyword">static</span> <span class="token keyword">float</span> y_norm<span class="token punctuation">[</span><span class="token number">8000</span><span class="token punctuation">]</span><span class="token punctuation">;</span>  <span class="token comment">// 假设最大长度8000</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>y_len <span class="token operator">></span> <span class="token number">8000</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token operator">*</span>n_frames_out <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>  <span class="token comment">// 防止越界</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>max_val <span class="token operator">></span> <span class="token number">0.0f</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> y_len<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            y_norm<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">float</span><span class="token punctuation">)</span>y<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">/</span> max_val<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> y_len<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            y_norm<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0.0f</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 计算帧数</span>
+    <span class="token function">frame_signal</span><span class="token punctuation">(</span>y<span class="token punctuation">,</span> y_len<span class="token punctuation">,</span> WIN_LENGTH<span class="token punctuation">,</span> HOP_LENGTH<span class="token punctuation">,</span> <span class="token operator">&amp;</span>n_frames<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token comment">// 注意这里使用原 y，因为只用于 n_frames 计算</span>
+    <span class="token operator">*</span>n_mels_out <span class="token operator">=</span> N_MELS<span class="token punctuation">;</span>
+    <span class="token operator">*</span>n_frames_out <span class="token operator">=</span> n_frames<span class="token punctuation">;</span>
+
+    <span class="token comment">// 建立FFT缓冲区</span>
+    <span class="token keyword">static</span> Complex fft_input<span class="token punctuation">[</span>N_FFT<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">static</span> <span class="token keyword">float</span> power_spectrum<span class="token punctuation">[</span>MEL_BINS<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> t <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> t <span class="token operator">&lt;</span> n_frames<span class="token punctuation">;</span> t<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 加窗处理（改为使用 y_norm）</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> n <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> n <span class="token operator">&lt;</span> WIN_LENGTH<span class="token punctuation">;</span> n<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            fft_input<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token punctuation">.</span>real <span class="token operator">=</span> y_norm<span class="token punctuation">[</span>t <span class="token operator">*</span> HOP_LENGTH <span class="token operator">+</span> n<span class="token punctuation">]</span> <span class="token operator">*</span> HAMMING_WINDOW<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            fft_input<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token punctuation">.</span>imag <span class="token operator">=</span> <span class="token number">0.0f</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token comment">// 清零剩余部分</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> n <span class="token operator">=</span> WIN_LENGTH<span class="token punctuation">;</span> n <span class="token operator">&lt;</span> N_FFT<span class="token punctuation">;</span> n<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            fft_input<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token punctuation">.</span>real <span class="token operator">=</span> <span class="token number">0.0f</span><span class="token punctuation">;</span>
+            fft_input<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token punctuation">.</span>imag <span class="token operator">=</span> <span class="token number">0.0f</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token comment">// FFT计算</span>
+        <span class="token function">fft</span><span class="token punctuation">(</span>fft_input<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 计算功率谱 (直接存储到power_spectrum)</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> k <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> k <span class="token operator">&lt;</span> MEL_BINS<span class="token punctuation">;</span> k<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">float</span> re <span class="token operator">=</span> fft_input<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">.</span>real <span class="token operator">/</span> N_FFT<span class="token punctuation">;</span>
+            <span class="token keyword">float</span> im <span class="token operator">=</span> fft_input<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">.</span>imag <span class="token operator">/</span> N_FFT<span class="token punctuation">;</span>
+            power_spectrum<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">=</span> re <span class="token operator">*</span> re <span class="token operator">+</span> im <span class="token operator">*</span> im<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token comment">// 梅尔滤波 (直接计算到输出mel_spec)</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> m <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> m <span class="token operator">&lt;</span> N_MELS<span class="token punctuation">;</span> m<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">float</span> mel_energy <span class="token operator">=</span> <span class="token number">0.0f</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> k <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> k <span class="token operator">&lt;</span> MEL_BINS<span class="token punctuation">;</span> k<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                mel_energy <span class="token operator">+=</span> power_spectrum<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">*</span> mel_filter<span class="token punctuation">[</span>m<span class="token punctuation">]</span><span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            mel_spec<span class="token punctuation">[</span>m <span class="token operator">*</span> n_frames <span class="token operator">+</span> t<span class="token punctuation">]</span> <span class="token operator">=</span> mel_energy<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&nbsp;</p>
+<p>最终处理函数，这里是将上面流程输出的值放入后续神经网络的input。</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"algo.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"MFCC.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdint.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">FRAME_LENGTH</span> <span class="token expression"><span class="token number">8000</span></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">N_MELS</span> <span class="token expression"><span class="token number">40</span></span></span>
+
+<span class="token comment">// 静态缓冲区，用于存储帧、梅尔频谱和对数梅尔特征</span>
+<span class="token comment">//static float frame_global[FRAME_LENGTH];</span>
+<span class="token keyword">float</span> mel_spec_global<span class="token punctuation">[</span>N_MELS <span class="token operator">*</span> MAX_FRAMES<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token comment">//static float mean_log_mel_global[N_MELS];</span>
+<span class="token keyword">int</span> <span class="token function">speaker_recognition_run</span><span class="token punctuation">(</span><span class="token class-name">int16_t</span><span class="token operator">*</span> pcm_data<span class="token punctuation">,</span> <span class="token keyword">int</span> len<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 确保只有一帧数据</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>len <span class="token operator">!=</span> FRAME_LENGTH<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"lengtherror: need %d ，current %d\n"</span><span class="token punctuation">,</span> FRAME_LENGTH<span class="token punctuation">,</span> len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>  <span class="token comment">// 如果数据长度不匹配，返回错误</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">// 计算梅尔频谱</span>
+    <span class="token keyword">int</span> sr <span class="token operator">=</span> <span class="token number">8000</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> n_mels<span class="token punctuation">,</span> n_frames<span class="token punctuation">;</span>
+    <span class="token comment">// 直接在全局缓冲区上操作，避免分配新内存</span>
+    <span class="token function">manual_melspectrogram</span><span class="token punctuation">(</span>pcm_data<span class="token punctuation">,</span> len<span class="token punctuation">,</span> sr<span class="token punctuation">,</span> mel_spec_global<span class="token punctuation">,</span> <span class="token operator">&amp;</span>n_mels<span class="token punctuation">,</span> <span class="token operator">&amp;</span>n_frames<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 计算对数梅尔特征</span>
+    <span class="token keyword">float</span><span class="token operator">*</span> log_mel_features <span class="token operator">=</span> <span class="token function">compute_log_mel_mean</span><span class="token punctuation">(</span>mel_spec_global<span class="token punctuation">,</span> n_mels<span class="token punctuation">,</span> n_frames<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>log_mel_features<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 处理错误</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"log error\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// Prepare input (1 sample, 40 features)</span>
+    <span class="token keyword">float</span> input<span class="token punctuation">[</span>BATCH_SIZE <span class="token operator">*</span> SEQ_LENGTH <span class="token operator">*</span> INPUT_DIM<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> INPUT_DIM<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        input<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> log_mel_features<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token function">free</span><span class="token punctuation">(</span>log_mel_features<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Output array for the classification results</span>
+    <span class="token keyword">float</span> output<span class="token punctuation">[</span>BATCH_SIZE <span class="token operator">*</span> NUM_CLASSES<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Forward pass through the model</span>
+    <span class="token function">forward</span><span class="token punctuation">(</span>input<span class="token punctuation">,</span> output<span class="token punctuation">,</span> BATCH_SIZE<span class="token punctuation">,</span> SEQ_LENGTH<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// FindMax</span>
+    <span class="token keyword">float</span> max <span class="token operator">=</span> output<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> out <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> NUM_CLASSES<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>max <span class="token operator">&lt;</span> output<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            max <span class="token operator">=</span> output<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>  <span class="token comment">// 更新最大值</span>
+            out <span class="token operator">=</span> j<span class="token punctuation">;</span>           <span class="token comment">// 更新输出的索引</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">return</span> out<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>其中compute_log_mel_mean函数如下定义：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">// 计算对数梅尔特征并取均值</span>
+<span class="token keyword">float</span><span class="token operator">*</span> <span class="token function">compute_log_mel_mean</span><span class="token punctuation">(</span><span class="token keyword">float</span><span class="token operator">*</span> mel_spec<span class="token punctuation">,</span> <span class="token keyword">int</span> n_mels<span class="token punctuation">,</span> <span class="token keyword">int</span> n_frames<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>n_mels <span class="token operator">&lt;</span> <span class="token number">40</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token constant">stderr</span><span class="token punctuation">,</span> <span class="token string">"The audio is too short to extract Mel features.\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">float</span><span class="token operator">*</span> mean_log_mel <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">float</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token number">40</span> <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">float</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 保留40个梅尔频率带</span>
+
+    <span class="token comment">// 计算每个梅尔频率带的对数均值</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n_mels<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">float</span> sum <span class="token operator">=</span> <span class="token number">0.0f</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> n_frames<span class="token punctuation">;</span> <span class="token operator">++</span>j<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">float</span> value <span class="token operator">=</span> mel_spec<span class="token punctuation">[</span>i <span class="token operator">*</span> n_frames <span class="token operator">+</span> j<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// 按列优先排列</span>
+            value <span class="token operator">=</span> <span class="token function">log10f</span><span class="token punctuation">(</span>value <span class="token operator">+</span> <span class="token number">1e-6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 加上一个小常数以避免对数的零值</span>
+            sum <span class="token operator">+=</span> value<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        mean_log_mel<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> sum <span class="token operator">/</span> n_frames <span class="token operator">*</span> SCALE_FACTOR<span class="token punctuation">;</span>  <span class="token comment">// 按帧数取均值并进行缩放</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">return</span> mean_log_mel<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>其中SCALE_FACTOR 10.0 是比例因子，用于补偿与 Python 输出的差异。</p>
+<p>当时仿真效果还可以，就没有再考虑添加DCT转换为标准MFCC，主打能跑就行。</p>
+
         
       </div>
          
@@ -295,22 +566,5 @@
 
   </div>
   <script src="/js/light-dark-switch.js"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-
 </body>
 </html>

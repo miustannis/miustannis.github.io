@@ -137,12 +137,12 @@
       <div class="category-box">
             <a class="category-link" href="/categories/Projects-DIY/">
                 Projects & DIY
-                <div class="category-count">7</div>
+                <div class="category-count">8</div>
             </a>
         
             <a class="category-link" href="/categories/Learning-Record/">
                 Learning Record
-                <div class="category-count">8</div>
+                <div class="category-count">7</div>
             </a>
         </div>
     </div>
@@ -366,7 +366,7 @@ MIT APP Inventor
   
     
       <h1 itemprop="name">
-        <a class="p-name article-title" href="/2025/07/10/250710/">MFCC音频分析算法 Study Log</a>
+        <a class="p-name article-title" href="/2025/07/10/250710/">MFCC音频特征提取流程demo</a>
       </h1>
     
   
@@ -379,13 +379,13 @@ MIT APP Inventor
           <div class="need-seperator meta-info">
             <div class="meta-cate-flex">
   
-  <a class="meta-cate-link" href="/categories/Learning-Record/">Learning Record</a>
+  <a class="meta-cate-link" href="/categories/Projects-DIY/">Projects & DIY</a>
    
 </div>
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            0 词 
+            5.8k 词 
           </div>
         </div>
         
@@ -396,7 +396,27 @@ MIT APP Inventor
         
           <div class="truncate-text">
             
-              
+              MFCC的核心思想是模仿人耳对声音的非线性感知特性（人耳对低频声音比高频声音更敏感），从而更好地表示语音特征。其流程可以概括为以下步骤：
+分帧
+目的：语音信号是非平稳信号，其特性是随时间变化的。但在一个非常短的时间段内，可以近似认为是平稳的。分帧就是将长信号切分成许多短片段来分析。
+操作：使用一个固定长度的窗口以一定的帧移沿着信号滑动并截取数据。
+
+加窗
+目的：减少每一帧信号在其两端处的频谱泄漏，使帧两端平滑地衰减到零，从而降低后续傅里叶变换后旁瓣的强度。
+操作：将每一帧信号乘上一个窗函数。
+
+快速傅里叶变换和功率谱计算
+目的：将信号从时域转换到频域。
+操作：
+对每一帧加窗后的信号进行FFT，得到复数频谱。
+然后计算其功率谱（取模的平方）。P = |FFT(frame)|² / N （N是FFT点数）
+
+
+
+梅尔滤波器组滤波
+目的：模拟人耳的听觉特性。人耳对于不同频率的感知能力是不同的，在低频区域（如1000Hz以下）区分度高，在高频区域区分度低。梅尔刻度是一种将实际频率转换为更符合人耳感知的频率刻度。
+操作：
+定义一组三角带通滤波器（梅尔滤波器组），这些滤波器在梅尔刻度上是等宽...
             
           </div>
         
@@ -456,7 +476,7 @@ MIT APP Inventor
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            45k 词 
+            46k 词 
           </div>
         </div>
         
@@ -475,6 +495,7 @@ MIT APP Inventor
 4. 哈希散列
 5. 栈与队列
 6. 类与OOP应用
+7. 二叉树
 
 
 1. 数学1.1 基础有一天, 小明收到一张奇怪的信, 信上要小明计算出给定数各个位上数字为偶数的和。例如：5548，结果为12，等于 4 + 8 。小明很苦恼，想请你帮忙解决这个问题
@@ -492,7 +513,7 @@ int main()&#123;
         n = (n - res) / 10;
         &#125;
     cout &lt;&lt; sum &lt;&lt; endl;
-    cout &lt;&lt; en...
+    cout &lt;...
             
           </div>
         
@@ -983,22 +1004,5 @@ Time Complexity is an important metric used to measure the relationship between 
 
   </div>
   <script src="/js/light-dark-switch.js"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-
 </body>
 </html>

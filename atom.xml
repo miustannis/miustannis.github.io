@@ -70,16 +70,23 @@
   </entry>
   
   <entry>
-    <title>MFCC音频分析算法 Study Log</title>
+    <title>MFCC音频特征提取流程demo</title>
     <link href="https://miustannis.github.io/2025/07/10/250710/"/>
     <id>https://miustannis.github.io/2025/07/10/250710/</id>
     <published>2025-07-10T03:38:44.000Z</published>
-    <updated>2025-08-17T10:43:12.236Z</updated>
+    <updated>2025-08-19T14:34:24.449Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;MFCC的核心思想是模仿人耳对声音的非线性感知特性（人耳对低频声音比高频声音更敏感），从而更好地表示语音特征。其流程可以概括为以下&lt;strong&gt;步骤&lt;/strong&gt;：&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&quot;分帧&quot;&gt;分帧&lt;/span&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;stron</summary>
+      
     
     
     
-    
-    <category term="Learning Record" scheme="https://miustannis.github.io/categories/Learning-Record/"/>
+    <category term="Projects &amp; DIY" scheme="https://miustannis.github.io/categories/Projects-DIY/"/>
     
     
     <category term="Algorithm" scheme="https://miustannis.github.io/tags/Algorithm/"/>
@@ -91,7 +98,7 @@
     <link href="https://miustannis.github.io/2025/06/21/250621/"/>
     <id>https://miustannis.github.io/2025/06/21/250621/</id>
     <published>2025-06-21T13:19:05.000Z</published>
-    <updated>2025-08-17T10:34:33.642Z</updated>
+    <updated>2025-08-18T15:07:11.630Z</updated>
     
     
       
