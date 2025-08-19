@@ -405,7 +405,7 @@ MIT APP Inventor
 目的：减少每一帧信号在其两端处的频谱泄漏，使帧两端平滑地衰减到零，从而降低后续傅里叶变换后旁瓣的强度。
 操作：将每一帧信号乘上一个窗函数。
 
-快速傅里叶变换和功率谱计算
+傅里叶变换和功率谱计算
 目的：将信号从时域转换到频域。
 操作：
 对每一帧加窗后的信号进行FFT，得到复数频谱。
@@ -414,9 +414,9 @@ MIT APP Inventor
 
 
 梅尔滤波器组滤波
-目的：模拟人耳的听觉特性。人耳对于不同频率的感知能力是不同的，在低频区域（如1000Hz以下）区分度高，在高频区域区分度低。梅尔刻度是一种将实际频率转换为更符合人耳感知的频率刻度。
+目的：模拟人耳的听觉特性。人耳对于不同频率的感知能力是不同的，在低频区域区分度高，在高频区域区分度低。梅尔刻度是一种将实际频率转换为更符合人耳感知的频率刻度。
 操作：
-定义一组三角带通滤波器（梅尔滤波器组），这些滤波器在梅尔刻度上是等宽...
+定义一组三角带通滤波器（梅尔滤波器组），这些滤波器在梅尔刻度上是等宽的，但在线性频率刻度上是不...
             
           </div>
         
@@ -1004,5 +1004,22 @@ Time Complexity is an important metric used to measure the relationship between 
 
   </div>
   <script src="/js/light-dark-switch.js"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
 </body>
 </html>
