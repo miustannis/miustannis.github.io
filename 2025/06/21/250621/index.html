@@ -28,7 +28,7 @@
 <meta property="og:description" content="1. 数学 2. 数组 3. 链表 4. 哈希散列 5. 栈与队列 6. 类与OOP应用 7. 二叉树 8. 回溯 9. 贪心 10. 动态规划 11. 图论   1. 数学1.1 基础有一天, 小明收到一张奇怪的信, 信上要小明计算出给定数各个位上数字为偶数的和。例如：5548，结果为12，等于 4 + 8 。小明很苦恼，想请你帮忙解决这个问题 #include &lt;iostream&gt;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-06-21T13:19:05.000Z">
-<meta property="article:modified_time" content="2025-08-27T15:46:00.089Z">
+<meta property="article:modified_time" content="2025-08-29T15:26:34.808Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="CS">
 <meta name="twitter:card" content="summary">
@@ -204,7 +204,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            71k 词 
+            70k 词 
           </div>
         </div>
         
@@ -3030,18 +3030,7 @@ public<span class="token operator">:</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3><span id="74-二叉树的右视图">7.4 二叉树的右视图</span></h3><p>给定一个二叉树的 <strong>根节点</strong> <code>root</code>，想象自己站在它的右侧，按照从顶部到底部的顺序，返回从右侧所能看到的节点值。</p>
 <p>*即进行层序遍历时判断当前是否为该层最后一个元素</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/**
- * Definition for a binary tree node.
- * struct TreeNode &#123;
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;
- * &#125;;
- */</span>
-class Solution <span class="token punctuation">&#123;</span>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">class Solution <span class="token punctuation">&#123;</span>
 public<span class="token operator">:</span>
     vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">rightSideView</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         TreeNode<span class="token operator">*</span> cur <span class="token operator">=</span> root<span class="token punctuation">;</span>
@@ -3061,20 +3050,9 @@ public<span class="token operator">:</span>
         <span class="token punctuation">&#125;</span>
         <span class="token keyword">return</span> result<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1><span id="75-二叉树的层平均值">7.5 二叉树的层平均值</span></h1><p>给定一个非空二叉树的根节点 <code>root</code> , 以数组的形式返回每一层节点的平均值。与实际答案相差 <code>10-5</code> 以内的答案可以被接受。</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/**
- * Definition for a binary tree node.
- * struct TreeNode &#123;
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;
- * &#125;;
- */</span>
-class Solution <span class="token punctuation">&#123;</span>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">class Solution <span class="token punctuation">&#123;</span>
 public<span class="token operator">:</span>
     vector<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token operator">></span> <span class="token function">averageOfLevels</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
 
@@ -3101,7 +3079,7 @@ public<span class="token operator">:</span>
         <span class="token punctuation">&#125;</span>
         <span class="token keyword">return</span> result<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3><span id="76-n叉树的层序遍历">7.6 N叉树的层序遍历</span></h3><p>给定一个 N 叉树，返回其节点值的<em>层序遍历</em>。（即从左到右，逐层遍历）。</p>
 <p>树的序列化输入是用层序遍历，每组子节点都由 null 值分隔。</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/*
@@ -3149,18 +3127,7 @@ public<span class="token operator">:</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3><span id="77-在每个树行中找最大值">7.7 在每个树行中找最大值</span></h3><p>给定一棵二叉树的根节点 <code>root</code> ，请找出该二叉树中每一层的最大值。</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/**
- * Definition for a binary tree node.
- * struct TreeNode &#123;
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;
- * &#125;;
- */</span>
-class Solution <span class="token punctuation">&#123;</span>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">class Solution <span class="token punctuation">&#123;</span>
 public<span class="token operator">:</span>
     vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">largestValues</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
 
@@ -3181,7 +3148,7 @@ public<span class="token operator">:</span>
         <span class="token punctuation">&#125;</span>
         <span class="token keyword">return</span> max<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3><span id="78-填充每个节点的下一个右侧节点指针">7.8 填充每个节点的下一个右侧节点指针</span></h3><p>给定一个二叉树：</p>
 <pre class="line-numbers language-none"><code class="language-none">struct Node &#123;
   int val;
@@ -3234,18 +3201,7 @@ public<span class="token operator">:</span>
 <h3><span id="79-二叉树的最大深度">7.9 二叉树的最大深度</span></h3><p>给定一个二叉树 <code>root</code> ，返回其最大深度。</p>
 <p>二叉树的 <strong>最大深度</strong> 是指从根节点到最远叶子节点的最长路径上的节点数。</p>
 <p><strong>迭代</strong>写法：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/**
- * Definition for a binary tree node.
- * struct TreeNode &#123;
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;
- * &#125;;
- */</span>
-class Solution <span class="token punctuation">&#123;</span>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">class Solution <span class="token punctuation">&#123;</span>
 public<span class="token operator">:</span>
     <span class="token keyword">int</span> <span class="token function">maxDepth</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         <span class="token keyword">int</span> depth <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
@@ -3265,20 +3221,9 @@ public<span class="token operator">:</span>
         <span class="token punctuation">&#125;</span>
         <span class="token keyword">return</span> depth<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>递归</strong>写法：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/**
- * Definition for a binary tree node.
- * struct TreeNode &#123;
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;
- * &#125;;
- */</span>
-class Solution <span class="token punctuation">&#123;</span>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">class Solution <span class="token punctuation">&#123;</span>
 public<span class="token operator">:</span>
 
     <span class="token keyword">int</span> <span class="token function">checkdepth</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
@@ -3299,23 +3244,12 @@ public<span class="token operator">:</span>
         depth <span class="token operator">=</span> <span class="token function">checkdepth</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> depth<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3><span id="710-二叉树的最小深度">7.10 二叉树的最小深度</span></h3><p>给定一个二叉树，找出其最小深度。</p>
 <p>最小深度是从根节点到最近叶子节点的最短路径上的节点数量。</p>
 <p><strong>说明：</strong>叶子节点是指没有子节点的节点。</p>
 <p><strong>迭代</strong>写法：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/**
- * Definition for a binary tree node.
- * struct TreeNode &#123;
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;
- * &#125;;
- */</span>
-class Solution <span class="token punctuation">&#123;</span>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">class Solution <span class="token punctuation">&#123;</span>
 public<span class="token operator">:</span>
     <span class="token keyword">int</span> <span class="token function">minDepth</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         <span class="token keyword">int</span> depth <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
@@ -3341,20 +3275,9 @@ public<span class="token operator">:</span>
         <span class="token keyword">return</span> depth<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>递归</strong>写法：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"> <span class="token comment">/**
- * Definition for a binary tree node.
- * struct TreeNode &#123;
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;
- * &#125;;
- */</span>
-class Solution <span class="token punctuation">&#123;</span>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">class Solution <span class="token punctuation">&#123;</span>
 public<span class="token operator">:</span>
     <span class="token keyword">int</span> <span class="token function">checkdepth</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span>root <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
@@ -3379,20 +3302,9 @@ public<span class="token operator">:</span>
         <span class="token keyword">return</span> depth<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3><span id="711-翻转二叉树">7.11 翻转二叉树</span></h3><p>给你一棵二叉树的根节点 <code>root</code> ，翻转这棵二叉树，并返回其根节点。</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/**
- * Definition for a binary tree node.
- * struct TreeNode &#123;
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;
- * &#125;;
- */</span>
-class Solution <span class="token punctuation">&#123;</span>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">class Solution <span class="token punctuation">&#123;</span>
 public<span class="token operator">:</span>
 
     <span class="token keyword">void</span> <span class="token function">reverstreenode</span> <span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> cur<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
@@ -3411,21 +3323,10 @@ public<span class="token operator">:</span>
         <span class="token function">reverstreenode</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> root<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3><span id="712-对称二叉树">7.12 对称二叉树</span></h3><p>给你一个二叉树的根节点 <code>root</code> ， 检查它是否轴对称。</p>
 <p><strong>递归</strong>写法：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/**
- * Definition for a binary tree node.
- * struct TreeNode &#123;
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;
- * &#125;;
- */</span>
-class Solution <span class="token punctuation">&#123;</span>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">class Solution <span class="token punctuation">&#123;</span>
 public<span class="token operator">:</span>
 
     bool <span class="token function">check</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> branch1<span class="token punctuation">,</span> TreeNode<span class="token operator">*</span> branch2<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
@@ -3446,20 +3347,9 @@ public<span class="token operator">:</span>
         <span class="token keyword">return</span> <span class="token function">check</span><span class="token punctuation">(</span>root<span class="token operator">-></span>left<span class="token punctuation">,</span> root<span class="token operator">-></span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
         
     <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>迭代</strong>写法：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/**
- * Definition for a binary tree node.
- * struct TreeNode &#123;
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;
- * &#125;;
- */</span>
-class Solution <span class="token punctuation">&#123;</span>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">class Solution <span class="token punctuation">&#123;</span>
 public<span class="token operator">:</span>
 
     bool <span class="token function">isSymmetric</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -3494,21 +3384,10 @@ public<span class="token operator">:</span>
         <span class="token punctuation">&#125;</span>
         <span class="token keyword">return</span> true<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3><span id="713-完全二叉树的节点个数">7.13 完全二叉树的节点个数</span></h3><p>给你一棵 <strong>完全二叉树</strong> 的根节点 <code>root</code> ，求出该树的节点个数。</p>
 <p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/完全二叉树/7773232?fr=aladdin">完全二叉树</a> 的定义如下：在完全二叉树中，除了最底层节点可能没填满外，其余每层节点数都达到最大值，并且最下面一层的节点都集中在该层最左边的若干位置。若最底层为第 <code>h</code> 层（从第 0 层开始），则该层包含 <code>1~ 2h</code> 个节点。</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/**
- * Definition for a binary tree node.
- * struct TreeNode &#123;
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;
- * &#125;;
- */</span>
-class Solution <span class="token punctuation">&#123;</span>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">class Solution <span class="token punctuation">&#123;</span>
 public<span class="token operator">:</span>
     <span class="token keyword">int</span> <span class="token function">countNodes</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
 
@@ -3532,20 +3411,9 @@ public<span class="token operator">:</span>
         <span class="token punctuation">&#125;</span>
         <span class="token keyword">return</span> count<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3><span id="714-平衡二叉树">7.14 平衡二叉树</span></h3><p>给定一个二叉树，判断它是否是 平衡二叉树 （ 是指该树所有节点的左右子树的高度相差不超过 1。）</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/**
- * Definition for a binary tree node.
- * struct TreeNode &#123;
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;
- * &#125;;
- */</span>
-class Solution <span class="token punctuation">&#123;</span>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">class Solution <span class="token punctuation">&#123;</span>
 public<span class="token operator">:</span>
     <span class="token keyword">int</span> <span class="token function">height</span> <span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
         <span class="token keyword">int</span> count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
@@ -3586,20 +3454,9 @@ public<span class="token operator">:</span>
         <span class="token punctuation">&#125;</span>
     <span class="token keyword">return</span> true<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3><span id="715-左叶子之和">7.15 左叶子之和</span></h3><p>给定二叉树的根节点 <code>root</code> ，返回所有左叶子之和。</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/**
- * Definition for a binary tree node.
- * struct TreeNode &#123;
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;
- * &#125;;
- */</span>
-class Solution <span class="token punctuation">&#123;</span>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">class Solution <span class="token punctuation">&#123;</span>
 public<span class="token operator">:</span>
     <span class="token keyword">int</span> <span class="token function">sumOfLeftLeaves</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span>root <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
@@ -3624,22 +3481,11 @@ public<span class="token operator">:</span>
         <span class="token punctuation">&#125;</span>
         <span class="token keyword">return</span> sum<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3><span id="716-二叉树的所有路径">7.16 二叉树的所有路径</span></h3><p>给你一个二叉树的根节点 <code>root</code> ，按 <strong>任意顺序</strong> ，返回所有从根节点到叶子节点的路径。</p>
 <p><strong>叶子节点</strong> 是指没有子节点的节点。</p>
 <p>*回溯思想</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/**
- * Definition for a binary tree node.
- * struct TreeNode &#123;
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;
- * &#125;;
- */</span>
-class Solution <span class="token punctuation">&#123;</span>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">class Solution <span class="token punctuation">&#123;</span>
 public<span class="token operator">:</span>
 
     <span class="token keyword">void</span> <span class="token function">travelback</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">,</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token operator">&amp;</span>path<span class="token punctuation">,</span> vector<span class="token operator">&lt;</span>string<span class="token operator">></span> <span class="token operator">&amp;</span>result<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
@@ -3673,21 +3519,10 @@ public<span class="token operator">:</span>
         <span class="token function">travelback</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> path<span class="token punctuation">,</span> result<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> result<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3><span id="717-找树左下角的值">7.17 找树左下角的值</span></h3><p>给定一个二叉树的 <strong>根节点</strong> <code>root</code>，请找出该二叉树的 <strong>最底层 最左边</strong> 节点的值。</p>
 <p>假设二叉树中至少有一个节点。</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/**
- * Definition for a binary tree node.
- * struct TreeNode &#123;
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;
- * &#125;;
- */</span>
-class Solution <span class="token punctuation">&#123;</span>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">class Solution <span class="token punctuation">&#123;</span>
 public<span class="token operator">:</span>
     <span class="token keyword">int</span> <span class="token function">findBottomLeftValue</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
 
@@ -3712,21 +3547,10 @@ public<span class="token operator">:</span>
         <span class="token punctuation">&#125;</span>
         <span class="token keyword">return</span> result<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3><span id="718-路径总和">7.18 路径总和</span></h3><p>给你二叉树的根节点 <code>root</code> 和一个表示目标和的整数 <code>targetSum</code> 。判断该树中是否存在 <strong>根节点到叶子节点</strong> 的路径，这条路径上所有节点值相加等于目标和 <code>targetSum</code> 。如果存在，返回 <code>true</code> ；否则，返回 <code>false</code> 。</p>
 <p><strong>叶子节点</strong> 是指没有子节点的节点。</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/**
- * Definition for a binary tree node.
- * struct TreeNode &#123;
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;
- * &#125;;
- */</span>
-class Solution <span class="token punctuation">&#123;</span>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">class Solution <span class="token punctuation">&#123;</span>
 public<span class="token operator">:</span>
 
     <span class="token keyword">void</span> <span class="token function">sumcheck</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root <span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">&amp;</span>sum<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">&amp;</span>result<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">&amp;</span>calculate<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
@@ -3758,22 +3582,10 @@ public<span class="token operator">:</span>
         <span class="token keyword">else</span> <span class="token keyword">return</span> false<span class="token punctuation">;</span>
         
     <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3><span id="719-从中序和后序遍历序列构造二叉树">7.19 从中序和后序遍历序列构造二叉树</span></h3><p>给定两个整数数组 <code>inorder</code> 和 <code>postorder</code> ，其中 <code>inorder</code> 是二叉树的中序遍历， <code>postorder</code> 是同一棵树的后序遍历，请你构造并返回这颗 <em>二叉树</em> 。</p>
 <p><strong>*递归</strong></p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/**
- * Definition for a binary tree node.
- * struct TreeNode &#123;
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;
- * &#125;;
- */</span>
-
- <span class="token comment">//选择用索引应该会更好</span>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">//选择用索引应该会更好</span>
 class Solution <span class="token punctuation">&#123;</span>
 public<span class="token operator">:</span>
     TreeNode<span class="token operator">*</span> <span class="token function">rebuild</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> inorder<span class="token punctuation">,</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> postorder<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
@@ -3822,7 +3634,7 @@ public<span class="token operator">:</span>
         <span class="token keyword">return</span> <span class="token function">rebuild</span><span class="token punctuation">(</span>inorder<span class="token punctuation">,</span>postorder<span class="token punctuation">)</span><span class="token punctuation">;</span>
         
     <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3><span id="720-最大二叉树">7.20 最大二叉树</span></h3><p>给定一个不重复的整数数组 <code>nums</code> 。 <strong>最大二叉树</strong> 可以用下面的算法从 <code>nums</code> 递归地构建:</p>
 <ol>
 <li>创建一个根节点，其值为 <code>nums</code> 中的最大值。</li>
@@ -3830,18 +3642,7 @@ public<span class="token operator">:</span>
 <li>递归地在最大值 <strong>右边</strong> 的 <strong>子数组后缀上</strong> 构建右子树。</li>
 </ol>
 <p>返回 <em><code>nums</code> 构建的</em> <strong><em>最大二叉树\</em></strong> 。</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/**
- * Definition for a binary tree node.
- * struct TreeNode &#123;
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;
- * &#125;;
- */</span>
-class Solution <span class="token punctuation">&#123;</span>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">class Solution <span class="token punctuation">&#123;</span>
 public<span class="token operator">:</span>
 
     TreeNode<span class="token operator">*</span> <span class="token function">rebuild</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token operator">&amp;</span>nums<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
@@ -3869,23 +3670,12 @@ public<span class="token operator">:</span>
     TreeNode<span class="token operator">*</span> <span class="token function">constructMaximumBinaryTree</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> nums<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         <span class="token keyword">return</span> <span class="token function">rebuild</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3><span id="721-合并二叉树">7.21 合并二叉树</span></h3><p>给你两棵二叉树： <code>root1</code> 和 <code>root2</code> 。</p>
 <p>想象一下，当你将其中一棵覆盖到另一棵之上时，两棵树上的一些节点将会重叠（而另一些不会）。你需要将这两棵树合并成一棵新二叉树。合并的规则是：如果两个节点重叠，那么将这两个节点的值相加作为合并后节点的新值；否则，<strong>不为</strong> null 的节点将直接作为新二叉树的节点。</p>
 <p>返回合并后的二叉树。</p>
 <p><strong>注意:</strong> 合并过程必须从两个树的根节点开始。</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/**
- * Definition for a binary tree node.
- * struct TreeNode &#123;
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;
- * &#125;;
- */</span>
-class Solution <span class="token punctuation">&#123;</span>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">class Solution <span class="token punctuation">&#123;</span>
 public<span class="token operator">:</span>
     TreeNode<span class="token operator">*</span> <span class="token function">mergeTrees</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root1<span class="token punctuation">,</span> TreeNode<span class="token operator">*</span> root2<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
 
@@ -3930,7 +3720,7 @@ public<span class="token operator">:</span>
 
         <span class="token keyword">return</span> root1<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3><span id="722-二叉搜索树中的搜索">7.22 二叉搜索树中的搜索</span></h3><p>给定二叉搜索树（BST）的根节点 <code>root</code> 和一个整数值 <code>val</code>。</p>
 <p>你需要在 BST 中找到节点值等于 <code>val</code> 的节点。 返回以该节点为根的子树。 如果节点不存在，则返回 <code>null</code> 。</p>
 <p>二叉搜索树是一个有序树：</p>
@@ -3939,19 +3729,7 @@ public<span class="token operator">:</span>
 <li>若它的右子树不空，则右子树上所有结点的值均大于它的根结点的值；</li>
 <li>它的左、右子树也分别为二叉搜索树</li>
 </ul>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/**
- * Definition for a binary tree node.
- * struct TreeNode &#123;
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;
- * &#125;;
- */</span>
-
-<span class="token comment">// 写复杂了，其实不需要队列</span>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">// 写复杂了，其实不需要队列</span>
 class Solution <span class="token punctuation">&#123;</span>
 public<span class="token operator">:</span>
     TreeNode<span class="token operator">*</span> <span class="token function">searchBST</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">,</span> <span class="token keyword">int</span> val<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -3981,7 +3759,7 @@ public<span class="token operator">:</span>
         <span class="token punctuation">&#125;</span>
         <span class="token keyword">return</span> resultnode<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3><span id="723-验证二叉搜索树">7.23 验证二叉搜索树</span></h3><p>给你一个二叉树的根节点 <code>root</code> ，判断其是否是一个有效的二叉搜索树。</p>
 <p><strong>有效</strong> 二叉搜索树定义如下：</p>
 <ul>
@@ -3990,17 +3768,6 @@ public<span class="token operator">:</span>
 <li>所有左子树和右子树自身必须也是二叉搜索树。</li>
 </ul>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">// 只需要利用这个特性：二叉搜索树的中序遍历是递增数列</span>
-<span class="token comment">/**
- * Definition for a binary tree node.
- * struct TreeNode &#123;
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;
- * &#125;;
- */</span>
 class Solution <span class="token punctuation">&#123;</span>
 public<span class="token operator">:</span>
     bool <span class="token function">isValidBST</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -4026,22 +3793,10 @@ public<span class="token operator">:</span>
         <span class="token punctuation">&#125;</span>
         <span class="token keyword">return</span> true<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3><span id="724-二叉搜索树的最小绝对差">7.24 二叉搜索树的最小绝对差</span></h3><p>给你一个二叉搜索树的根节点 <code>root</code> ，返回 <strong>树中任意两不同节点值之间的最小差值</strong> 。</p>
 <p>差值是一个正数，其数值等于两值之差的绝对值。</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/**
- * Definition for a binary tree node.
- * struct TreeNode &#123;
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;
- * &#125;;
- */</span>
-
- <span class="token comment">// 中序遍历 递增</span>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">// 中序遍历 递增</span>
 class Solution <span class="token punctuation">&#123;</span>
 public<span class="token operator">:</span>
     <span class="token keyword">int</span> <span class="token function">getMinimumDifference</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -4074,7 +3829,7 @@ public<span class="token operator">:</span>
         <span class="token keyword">return</span> min<span class="token punctuation">;</span>
         
     <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3><span id="725-二叉搜索树中的众数">7.25 二叉搜索树中的众数</span></h3><p>给你一个含重复值的二叉搜索树（BST）的根节点 <code>root</code> ，找出并返回 BST 中的众数，即出现频率最高的元素。</p>
 <p>如果树中有不止一个众数，可以按 <strong>任意顺序</strong> 返回。</p>
 <p>假定 BST 满足如下定义：</p>
@@ -4083,7 +3838,324 @@ public<span class="token operator">:</span>
 <li>结点右子树中所含节点的值 <strong>大于等于</strong> 当前节点的值</li>
 <li>左子树和右子树都是二叉搜索树</li>
 </ul>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">class Solution <span class="token punctuation">&#123;</span>
+private<span class="token operator">:</span>
+    <span class="token keyword">void</span> <span class="token function">searchBST</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">,</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token operator">&amp;</span>result<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>root <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+        stack<span class="token operator">&lt;</span>TreeNode<span class="token operator">*</span><span class="token operator">></span> st<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> maxcount <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        TreeNode<span class="token operator">*</span> cur <span class="token operator">=</span> root<span class="token punctuation">;</span>
+        TreeNode<span class="token operator">*</span> pre <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>st<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">||</span> cur <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>cur<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                st<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>cur<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                cur <span class="token operator">=</span> cur<span class="token operator">-></span>left<span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+
+            <span class="token keyword">else</span><span class="token punctuation">&#123;</span>
+                cur <span class="token operator">=</span> st<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                st<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               
+                <span class="token comment">// 重复处理逻辑</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>pre <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> count <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+                <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span>pre<span class="token operator">-></span>val <span class="token operator">==</span> cur<span class="token operator">-></span>val<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                        count <span class="token operator">++</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">&#125;</span>
+                    <span class="token keyword">else</span> count <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>count <span class="token operator">==</span> maxcount<span class="token punctuation">)</span>
+                    result<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>cur<span class="token operator">-></span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>count <span class="token operator">></span> maxcount<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                    maxcount <span class="token operator">=</span> count<span class="token punctuation">;</span>
+                    result<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    result<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>cur<span class="token operator">-></span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+                pre <span class="token operator">=</span> cur<span class="token punctuation">;</span>
+                cur <span class="token operator">=</span> cur<span class="token operator">-></span>right<span class="token punctuation">;</span>
+                
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>  
+    <span class="token punctuation">&#125;</span>
+
+public<span class="token operator">:</span>
+    vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">findMode</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+        vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> result<span class="token punctuation">;</span>
+        <span class="token function">searchBST</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3><span id="726-二叉树的最近公共祖先">7.26 二叉树的最近公共祖先</span></h3><p>给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。</p>
+<p>最近公共祖先的定义为：“对于有根树 T 的两个节点 p、q，最近公共祖先表示为一个节点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（<strong>一个节点也可以是它自己的祖先</strong>）。”</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">// 有点难度</span>
+class Solution <span class="token punctuation">&#123;</span>
+public<span class="token operator">:</span>
+
+    TreeNode<span class="token operator">*</span> <span class="token function">ancestorbackforth</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">,</span> TreeNode<span class="token operator">*</span> p<span class="token punctuation">,</span> TreeNode<span class="token operator">*</span> q<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>root <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>root <span class="token operator">==</span> p <span class="token operator">||</span> root <span class="token operator">==</span> q<span class="token punctuation">)</span> <span class="token keyword">return</span> root<span class="token punctuation">;</span>
+
+        TreeNode<span class="token operator">*</span> left <span class="token operator">=</span> <span class="token function">ancestorbackforth</span><span class="token punctuation">(</span>root<span class="token operator">-></span>left<span class="token punctuation">,</span> p <span class="token punctuation">,</span> q<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        TreeNode<span class="token operator">*</span> right <span class="token operator">=</span> <span class="token function">ancestorbackforth</span><span class="token punctuation">(</span>root<span class="token operator">-></span>right<span class="token punctuation">,</span> p<span class="token punctuation">,</span> q<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>left <span class="token operator">&amp;&amp;</span> right<span class="token punctuation">)</span> <span class="token keyword">return</span> root<span class="token punctuation">;</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>left <span class="token operator">&amp;&amp;</span> right<span class="token punctuation">)</span> <span class="token keyword">return</span> right<span class="token punctuation">;</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>left <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>right<span class="token punctuation">)</span> <span class="token keyword">return</span> left<span class="token punctuation">;</span>
+        <span class="token keyword">else</span> <span class="token keyword">return</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    TreeNode<span class="token operator">*</span> <span class="token function">lowestCommonAncestor</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">,</span> TreeNode<span class="token operator">*</span> p<span class="token punctuation">,</span> TreeNode<span class="token operator">*</span> q<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token function">ancestorbackforth</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> p<span class="token punctuation">,</span> q<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3><span id="727-二叉搜索树的最近公共祖先">7.27 二叉搜索树的最近公共祖先</span></h3><p>相比上一题难度降低很多，利用有序性就行</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">class Solution <span class="token punctuation">&#123;</span>
+public<span class="token operator">:</span>
+    TreeNode<span class="token operator">*</span> <span class="token function">lowestCommonAncestor</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">,</span> TreeNode<span class="token operator">*</span> p<span class="token punctuation">,</span> TreeNode<span class="token operator">*</span> q<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>root <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+        TreeNode<span class="token operator">*</span> cur <span class="token operator">=</span> root<span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>cur<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>cur<span class="token operator">-></span>val <span class="token operator">></span> p<span class="token operator">-></span>val <span class="token operator">&amp;&amp;</span> cur<span class="token operator">-></span>val <span class="token operator">></span> q<span class="token operator">-></span>val<span class="token punctuation">)</span> cur <span class="token operator">=</span> cur<span class="token operator">-></span>left<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>cur<span class="token operator">-></span>val <span class="token operator">&lt;</span> p<span class="token operator">-></span>val <span class="token operator">&amp;&amp;</span> cur<span class="token operator">-></span>val <span class="token operator">&lt;</span> q<span class="token operator">-></span>val<span class="token punctuation">)</span> cur <span class="token operator">=</span> cur<span class="token operator">-></span>right<span class="token punctuation">;</span>
+            <span class="token keyword">else</span> <span class="token keyword">return</span> cur<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3><span id="728-将有序数组转换为二叉搜索树">7.28 将有序数组转换为二叉搜索树</span></h3><p>给你一个整数数组 <code>nums</code> ，其中元素已经按 <strong>升序</strong> 排列，请你将其转换为一棵 平衡 二叉搜索树。（指该树所有节点的左右子树的高度相差不超过 1。）</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">class Solution <span class="token punctuation">&#123;</span>
+public<span class="token operator">:</span>
+
+    TreeNode<span class="token operator">*</span> <span class="token function">BSTbuild</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token operator">&amp;</span>nums<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    TreeNode<span class="token operator">*</span> root <span class="token operator">=</span> new <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> middleindex <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> newleft<span class="token punctuation">;</span>
+    vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> newright<span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>nums<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>nums<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        middleindex <span class="token operator">=</span> nums<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+        root<span class="token operator">-></span>val <span class="token operator">=</span> nums<span class="token punctuation">[</span>middleindex<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> middleindex<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            newleft<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> middleindex <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> nums<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            newright<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>nums<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        middleindex <span class="token operator">=</span> nums<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+        root<span class="token operator">-></span>val <span class="token operator">=</span> nums<span class="token punctuation">[</span>middleindex<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> middleindex<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            newleft<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> middleindex <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> nums<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            newright<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+    root<span class="token operator">-></span>left <span class="token operator">=</span> <span class="token function">BSTbuild</span><span class="token punctuation">(</span>newleft<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    root<span class="token operator">-></span>right <span class="token operator">=</span> <span class="token function">BSTbuild</span><span class="token punctuation">(</span>newright<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> root<span class="token punctuation">;</span>
+
+    <span class="token punctuation">&#125;</span>
+    TreeNode<span class="token operator">*</span> <span class="token function">sortedArrayToBST</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> nums<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 题目可以转换为：知道二叉搜索树的中序遍历，还原树</span>
+    <span class="token comment">// 很容易想到递归</span>
+    <span class="token keyword">return</span> <span class="token function">BSTbuild</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3><span id="729-二叉搜索树中的插入操作">7.29 二叉搜索树中的插入操作</span></h3><p>给定二叉搜索树（BST）的根节点 <code>root</code> 和要插入树中的值 <code>value</code> ，将值插入二叉搜索树。 返回插入后二叉搜索树的根节点。 输入数据 <strong>保证</strong> ，新值和原始二叉搜索树中的任意节点值都不同。</p>
+<p><strong>注意</strong>，可能存在多种有效的插入方式，只要树在插入后仍保持为二叉搜索树即可。 你可以返回 <strong>任意有效的结果</strong> 。</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">class Solution <span class="token punctuation">&#123;</span>
+public<span class="token operator">:</span>
+    TreeNode<span class="token operator">*</span> <span class="token function">insertIntoBST</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">,</span> <span class="token keyword">int</span> val<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        TreeNode<span class="token operator">*</span> cur <span class="token operator">=</span> new <span class="token function">TreeNode</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>root <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            root <span class="token operator">=</span> cur<span class="token punctuation">;</span>
+            <span class="token keyword">return</span> root<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        TreeNode<span class="token operator">*</span> cur1 <span class="token operator">=</span> root<span class="token punctuation">;</span>
+        TreeNode<span class="token operator">*</span> pre <span class="token operator">=</span> new <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>cur1<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>cur1<span class="token operator">-></span>val <span class="token operator">></span> val<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                pre <span class="token operator">=</span> cur1<span class="token punctuation">;</span>
+                cur1 <span class="token operator">=</span> cur1<span class="token operator">-></span>left<span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+
+            <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>cur1<span class="token operator">-></span>val <span class="token operator">&lt;</span> val<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                pre <span class="token operator">=</span> cur1<span class="token punctuation">;</span>
+                cur1 <span class="token operator">=</span> cur1<span class="token operator">-></span>right<span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>pre<span class="token operator">-></span>val <span class="token operator">&lt;</span> val<span class="token punctuation">)</span> pre<span class="token operator">-></span>right <span class="token operator">=</span> cur<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>pre<span class="token operator">-></span>val <span class="token operator">></span> val<span class="token punctuation">)</span> pre<span class="token operator">-></span>left <span class="token operator">=</span> cur<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> root<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3><span id="730-修剪二叉搜索树">7.30 修剪二叉搜索树</span></h3><p>给你二叉搜索树的根节点 <code>root</code> ，同时给定最小边界<code>low</code> 和最大边界 <code>high</code>。通过修剪二叉搜索树，使得所有节点的值在<code>[low, high]</code>中。修剪树 <strong>不应该</strong> 改变保留在树中的元素的相对结构 (即，如果没有被移除，原有的父代子代关系都应当保留)。 可以证明，存在 <strong>唯一的答案</strong> 。</p>
+<p>所以结果应当返回修剪好的二叉搜索树的新的根节点。注意，根节点可能会根据给定的边界发生改变。</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">class Solution <span class="token punctuation">&#123;</span>
+public<span class="token operator">:</span>
+    TreeNode<span class="token operator">*</span> <span class="token function">trimBST</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">,</span> <span class="token keyword">int</span> L<span class="token punctuation">,</span> <span class="token keyword">int</span> R<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>root<span class="token punctuation">)</span> <span class="token keyword">return</span> nullptr<span class="token punctuation">;</span>
+
+        <span class="token comment">// 处理头结点，让root移动到[L, R] 范围内，注意是左闭右闭</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>root <span class="token operator">!=</span> nullptr <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>root<span class="token operator">-></span>val <span class="token operator">&lt;</span> L <span class="token operator">||</span> root<span class="token operator">-></span>val <span class="token operator">></span> R<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>root<span class="token operator">-></span>val <span class="token operator">&lt;</span> L<span class="token punctuation">)</span> root <span class="token operator">=</span> root<span class="token operator">-></span>right<span class="token punctuation">;</span> <span class="token comment">// 小于L往右走</span>
+            <span class="token keyword">else</span> root <span class="token operator">=</span> root<span class="token operator">-></span>left<span class="token punctuation">;</span> <span class="token comment">// 大于R往左走</span>
+        <span class="token punctuation">&#125;</span>
+        TreeNode <span class="token operator">*</span>cur <span class="token operator">=</span> root<span class="token punctuation">;</span>
+        <span class="token comment">// 左侧修剪拼接</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>cur <span class="token operator">!=</span> nullptr<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">while</span> <span class="token punctuation">(</span>cur<span class="token operator">-></span>left <span class="token operator">&amp;&amp;</span> cur<span class="token operator">-></span>left<span class="token operator">-></span>val <span class="token operator">&lt;</span> L<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                cur<span class="token operator">-></span>left <span class="token operator">=</span> cur<span class="token operator">-></span>left<span class="token operator">-></span>right<span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            cur <span class="token operator">=</span> cur<span class="token operator">-></span>left<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        cur <span class="token operator">=</span> root<span class="token punctuation">;</span>
+        <span class="token comment">// 右侧修剪拼接</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>cur <span class="token operator">!=</span> nullptr<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">while</span> <span class="token punctuation">(</span>cur<span class="token operator">-></span>right <span class="token operator">&amp;&amp;</span> cur<span class="token operator">-></span>right<span class="token operator">-></span>val <span class="token operator">></span> R<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                cur<span class="token operator">-></span>right <span class="token operator">=</span> cur<span class="token operator">-></span>right<span class="token operator">-></span>left<span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            cur <span class="token operator">=</span> cur<span class="token operator">-></span>right<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> root<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3><span id="731-删除二叉搜索树中的节点">7.31 删除二叉搜索树中的节点</span></h3><p>给定一个二叉搜索树的根节点 <strong>root</strong> 和一个值 <strong>key</strong>，删除二叉搜索树中的 <strong>key</strong> 对应的节点，并保证二叉搜索树的性质不变。返回二叉搜索树（有可能被更新）的根节点的引用。</p>
+<p>一般来说，删除节点可分为两个步骤：</p>
+<ol>
+<li>首先找到需要删除的节点；</li>
+<li>如果找到了，删除它。</li>
+</ol>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">// 没有想象中简单，需要把边界条件理清楚</span>
+class Solution <span class="token punctuation">&#123;</span>
+public<span class="token operator">:</span>
+    TreeNode<span class="token operator">*</span> <span class="token function">deleteNode</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">,</span> <span class="token keyword">int</span> key<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>root <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+        TreeNode<span class="token operator">*</span> cur <span class="token operator">=</span> root<span class="token punctuation">;</span>
+        TreeNode<span class="token operator">*</span> pre <span class="token operator">=</span> root<span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>cur<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>cur<span class="token operator">-></span>val <span class="token operator">></span> key<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                pre <span class="token operator">=</span> cur<span class="token punctuation">;</span>
+                cur <span class="token operator">=</span> cur <span class="token operator">-></span> left<span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>cur<span class="token operator">-></span>val <span class="token operator">&lt;</span> key<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                pre <span class="token operator">=</span> cur<span class="token punctuation">;</span>
+                cur <span class="token operator">=</span> cur <span class="token operator">-></span> right<span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">else</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+            
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cur <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token keyword">return</span> root<span class="token punctuation">;</span>
+        <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>key <span class="token operator">&lt;</span> pre<span class="token operator">-></span>val<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>cur <span class="token operator">-></span> right<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                    TreeNode<span class="token operator">*</span> newleft <span class="token operator">=</span> cur <span class="token operator">-></span>right<span class="token punctuation">;</span>
+                    <span class="token keyword">while</span> <span class="token punctuation">(</span>newleft <span class="token operator">-></span> left<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                        newleft <span class="token operator">=</span> newleft <span class="token operator">-></span>left<span class="token punctuation">;</span>
+                    <span class="token punctuation">&#125;</span>
+                    newleft <span class="token operator">-></span> left <span class="token operator">=</span> cur <span class="token operator">-></span>left<span class="token punctuation">;</span>
+                    pre <span class="token operator">-></span>left <span class="token operator">=</span> cur<span class="token operator">-></span>right<span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+                <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>cur<span class="token operator">-></span>left<span class="token punctuation">)</span> pre <span class="token operator">-></span>left <span class="token operator">=</span> cur<span class="token operator">-></span>left<span class="token punctuation">;</span>
+                <span class="token keyword">else</span> pre<span class="token operator">-></span>left <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>key <span class="token operator">></span> pre<span class="token operator">-></span>val<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>cur <span class="token operator">-></span> left<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                    TreeNode<span class="token operator">*</span> newright <span class="token operator">=</span> cur <span class="token operator">-></span>left<span class="token punctuation">;</span>
+                    <span class="token keyword">while</span> <span class="token punctuation">(</span>newright <span class="token operator">-></span> right<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                        newright <span class="token operator">=</span> newright <span class="token operator">-></span>right<span class="token punctuation">;</span>
+                    <span class="token punctuation">&#125;</span>
+                    newright<span class="token operator">-></span>right <span class="token operator">=</span> cur<span class="token operator">-></span>right<span class="token punctuation">;</span>
+                    pre <span class="token operator">-></span>right <span class="token operator">=</span> cur<span class="token operator">-></span>left<span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span> 
+                <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>cur<span class="token operator">-></span>right<span class="token punctuation">)</span> pre <span class="token operator">-></span>right <span class="token operator">=</span> cur<span class="token operator">-></span>right<span class="token punctuation">;</span>
+                <span class="token keyword">else</span> pre<span class="token operator">-></span>right <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>key <span class="token operator">==</span> pre<span class="token operator">-></span>val<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>cur<span class="token operator">-></span>left<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                    TreeNode<span class="token operator">*</span> newright <span class="token operator">=</span> cur <span class="token operator">-></span>left<span class="token punctuation">;</span>
+                    <span class="token keyword">while</span> <span class="token punctuation">(</span>newright <span class="token operator">-></span> right<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                        newright <span class="token operator">=</span> newright <span class="token operator">-></span>right<span class="token punctuation">;</span>
+                    <span class="token punctuation">&#125;</span>
+                    newright<span class="token operator">-></span>right <span class="token operator">=</span> cur<span class="token operator">-></span>right<span class="token punctuation">;</span>
+                    root <span class="token operator">=</span> cur<span class="token operator">-></span>left<span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+                <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>cur<span class="token operator">-></span>right<span class="token punctuation">)</span> root <span class="token operator">=</span> pre <span class="token operator">-></span>right<span class="token punctuation">;</span>
+                <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+                    root <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> root<span class="token punctuation">;</span>
+        
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3><span id="732-把二叉搜索树转换为累加树">7.32 把二叉搜索树转换为累加树</span></h3><p>给出二叉 <strong>搜索</strong> 树的根节点，该树的节点值各不相同，请你将其转换为累加树（Greater Sum Tree），使每个节点 <code>node</code> 的新值等于原树中大于或等于 <code>node.val</code> 的值之和。</p>
+<p>提醒一下，二叉搜索树满足下列约束条件：</p>
+<ul>
+<li>节点的左子树仅包含键 <strong>小于</strong> 节点键的节点。</li>
+<li>节点的右子树仅包含键 <strong>大于</strong> 节点键的节点。</li>
+<li>左右子树也必须是二叉搜索树。</li>
+</ul>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">class Solution <span class="token punctuation">&#123;</span>
+public<span class="token operator">:</span>
+    <span class="token comment">//思路：首先遍历一下取得所有节点和，然后中序遍历依次把值换成总和减去前一个节点值</span>
+
+    <span class="token keyword">int</span> <span class="token function">getsum</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>root <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">int</span> val1 <span class="token operator">=</span> <span class="token function">getsum</span><span class="token punctuation">(</span>root <span class="token operator">-></span> left<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> val2 <span class="token operator">=</span> <span class="token function">getsum</span><span class="token punctuation">(</span>root <span class="token operator">-></span> right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> root<span class="token operator">-></span>val <span class="token operator">+</span> <span class="token punctuation">(</span>val1 <span class="token operator">+</span> val2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    TreeNode<span class="token operator">*</span> <span class="token function">convertBST</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+        <span class="token keyword">int</span> sum <span class="token operator">=</span> <span class="token function">getsum</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>root <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+        stack<span class="token operator">&lt;</span>TreeNode<span class="token operator">*</span><span class="token operator">></span> st<span class="token punctuation">;</span>
+        TreeNode<span class="token operator">*</span> cur <span class="token operator">=</span> root<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> presum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>st<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">||</span> cur <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>cur<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                st<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>cur<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                cur <span class="token operator">=</span> cur<span class="token operator">-></span>left<span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+            cur <span class="token operator">=</span> st<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            st<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment">//计算</span>
+            presum <span class="token operator">+=</span> cur<span class="token operator">-></span>val<span class="token punctuation">;</span>
+            cur <span class="token operator">-></span>val <span class="token operator">=</span> sum <span class="token operator">-</span>presum <span class="token operator">+</span> cur<span class="token operator">-></span>val<span class="token punctuation">;</span>
+            cur <span class="token operator">=</span> cur <span class="token operator">-></span>right<span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> root<span class="token punctuation">;</span>
+        
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&nbsp;</p>
 <h3><span id="8-回溯">8. 回溯</span></h3><h3><span id="9-贪心">9. 贪心</span></h3><h3><span id="10-动态规划">10. 动态规划</span></h3><h3><span id="11-图论">11. 图论</span></h3>
         
       </div>
@@ -4168,22 +4240,5 @@ public<span class="token operator">:</span>
 
   </div>
   <script src="/js/light-dark-switch.js"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-
 </body>
 </html>
