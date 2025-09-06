@@ -16,94 +16,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo博客插入图片</title>
-    <url>/2022/03/21/220321/</url>
-    <content><![CDATA[<h2><span id="目录"><strong>目录：</strong></span></h2><!-- toc -->
-<ul>
-<li><a href="#插入图片">插入图片</a></li>
-<li><a href="#更改相对位置">更改相对位置</a></li>
-</ul>
-<!-- tocstop -->
-<h2><span id="插入图片">插入图片</span></h2><p>之前打算在文章中插入图片，配置的过程中遇到了一些问题。</p>
-<p>想在博客中引用外站图片问题不大，但<strong>Hexo</strong>默认插入图片只有这一个方法，对有本地化需求的人群来说不够方便，此时可以安装一个满足本地图片引用的插件，在国内某知名（<strong>c</strong>）专业（<strong>s</strong>）开发者（<strong>d</strong>）社区（<strong>n</strong>）里提供的90%的方案为以下命令：<br><code>npm install hexo-asset-image –save</code><br>该论坛上相互借鉴蔚然成风的壮景对我这个刚入门的小白真是非常险恶，此指令安装版本落后，无法有效显示图片，有效的版本安装命令如下：<br><code>npm install https://github.com/CodeFalling/hexo-asset-image –save</code></p>
-<p>修改<code>_config.yml</code>文件，将<code>post_asset_folder:</code>值改为<strong>true</strong>。</p>
-<p>之后在新建一个博客的同时会生成同名文件夹，将需插入的图片放入该文件夹即可。文章中的具体引用代码为以下格式：(后来发现在<code>source</code>文件夹里新建一个名为<code>images</code>的文件夹存放图片也行)<br><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">]</span>(1/image.jpg)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></p>
-<h2><span id="更改相对位置">更改相对位置</span></h2><p>但这种方法在PC端有一个默认的问题就是图片插入后会自动左对齐，想要实现居中对齐，可以在<strong>markdown</strong>引用代码外部添加<strong>center</strong>元素，或者直接添加<strong>html</strong>元素，如下所示：<br><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">&lt;center<span class="token punctuation">></span>
-
-<span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">...</span><span class="token punctuation">]</span>(xxx)
-
-&lt;/center<span class="token punctuation">></span>
-
-&lt;<span class="token tag">!--or</span> <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">></span>
-
-&lt;div align=center<span class="token punctuation">></span>
-
-<span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">...</span><span class="token punctuation">]</span>(xxx)
-
-&lt;/div<span class="token punctuation">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><br>(因为我用VScode来打开博客的md文件进行编辑，在上传至本地网页时一开始发现图片无法加载，后来排查得出居中命令代码间的空行是必要的，不知道其他编辑器是否有这样的问题。)</p>
-<p>还可以直接修改<strong>css</strong>文件，因为<strong>markdown</strong>插入图片的代码在最终渲染的时候变为<strong>html</strong>中的<strong>img</strong>元素。因此可以直接去博客主题文件的源代码中，找到控制文章内图片显示样式的<strong>css</strong>代码，将其修改成水平居中即可。前端编程中修改水平居中的方法非常多，以下是网上资源中提供的其中一种：</p>
-<p>一般情况下可以在<strong>Hexo</strong>博客文件夹进入到主题模板的<code>themes-&gt;(主题名称文件夹)-&gt;source-&gt;css-&gt;_partial</code>中，找到<code>post.styl</code>文件，该<strong>post</strong>文件中保存的就是文章详情页里面的显示样式。然后找到里面正确的<strong>img</strong>元素，修改其样式，增加<code>margin 0 auto</code>这行指令。如下:<br><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">.post<span class="token punctuation">-</span>content
-    position relative
-    color c<span class="token punctuation">-</span><span class="token number">666</span>
-    img
-      max<span class="token punctuation">-</span>width 100%
-      cursor pointer
-      display block 
-      margin 0 auto<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><br>然后可以实现了。但我在自己当前使用的主题中并没有找到相关语段，由于技术比较拉跨，我决定还是先老实用前两种吧。</p>
-<p>[后期补丁：你需要一款名为<strong><em>Typora</em></strong>的<strong>markdown</strong>编辑软件]</p>
-]]></content>
-      <categories>
-        <category>Projects &amp; Builds</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Xiaomi路由器BE3600快速救砖</title>
-    <url>/2025/02/13/250213/</url>
-    <content><![CDATA[<p>家里的路由器变砖了（具体原因不清楚）</p>
-<p>指示灯由蓝色常亮变成橙色常亮，对于家用路由器这种消费电子产品，一般重启一下能解决90%的故障</p>
-<p>但心血来潮想试一下给它刷个机</p>
-<p>型号是这个：</p>
-<center>
-    <img src="/images/homecraft/miwifi1.webp" width="500">
-</center>
-
-
-<p>刷机需要一根网线，PC，以及变砖的路由器</p>
-<p>步骤如下：</p>
-<ul>
-<li>在网址<a href="https://www1.miwifi.com/miwifi_download.html">MiWiFi</a>中找到刷机软件与对应型号的ROM固件</li>
-<li>关闭PC的防火墙，将网线连接至路由器的LAN口，本型号WAN与LAN口二合一了,随便找个口插上就行</li>
-<li>打开刷机软件并载入对应的固件</li>
-</ul>
-<center>
-    <img src="/images/homecraft/miwifi2.webp" width="500">
-</center>
-
-
-<ul>
-<li>用工具按住路由器的reset键后通电源，这一步非常像之前给单片机内部flash进行ISP下载程序的步骤，因此感觉很熟悉</li>
-<li>待指示灯闪烁后松开reset键，固件开始下载</li>
-</ul>
-<center>
-    <img src="/images/homecraft/miwifi3.webp" width="500">
-</center>
-
-
-<ul>
-<li>路由器变为蓝灯闪烁，此时已经刷机完成，当新路由器用就行</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Projects &amp; Builds</category>
-      </categories>
-      <tags>
-        <tag>嵌入式</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>TFTLCD驱动</title>
     <url>/2024/09/28/240928/</url>
     <content><![CDATA[<p>在使用Img2LCD取模软件和ST7735S驱动IC控制LCD时，发现API中显示图片的函数调用后显示异常</p>
@@ -172,6 +84,50 @@
 ]]></content>
       <categories>
         <category>Learning Record</category>
+      </categories>
+      <tags>
+        <tag>嵌入式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Xiaomi路由器BE3600快速救砖</title>
+    <url>/2025/02/13/250213/</url>
+    <content><![CDATA[<p>家里的路由器变砖了（具体原因不清楚）</p>
+<p>指示灯由蓝色常亮变成橙色常亮，对于家用路由器这种消费电子产品，一般重启一下能解决90%的故障</p>
+<p>但心血来潮想试一下给它刷个机</p>
+<p>型号是这个：</p>
+<center>
+    <img src="/images/homecraft/miwifi1.webp" width="500">
+</center>
+
+
+<p>刷机需要一根网线，PC，以及变砖的路由器</p>
+<p>步骤如下：</p>
+<ul>
+<li>在网址<a href="https://www1.miwifi.com/miwifi_download.html">MiWiFi</a>中找到刷机软件与对应型号的ROM固件</li>
+<li>关闭PC的防火墙，将网线连接至路由器的LAN口，本型号WAN与LAN口二合一了,随便找个口插上就行</li>
+<li>打开刷机软件并载入对应的固件</li>
+</ul>
+<center>
+    <img src="/images/homecraft/miwifi2.webp" width="500">
+</center>
+
+
+<ul>
+<li>用工具按住路由器的reset键后通电源，这一步非常像之前给单片机内部flash进行ISP下载程序的步骤，因此感觉很熟悉</li>
+<li>待指示灯闪烁后松开reset键，固件开始下载</li>
+</ul>
+<center>
+    <img src="/images/homecraft/miwifi3.webp" width="500">
+</center>
+
+
+<ul>
+<li>路由器变为蓝灯闪烁，此时已经刷机完成，当新路由器用就行</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Projects &amp; Builds</category>
       </categories>
       <tags>
         <tag>嵌入式</tag>
@@ -325,6 +281,122 @@
       </tags>
   </entry>
   <entry>
+    <title>Hexo博客插入图片</title>
+    <url>/2022/03/21/220321/</url>
+    <content><![CDATA[<h2><span id="目录"><strong>目录：</strong></span></h2><!-- toc -->
+<ul>
+<li><a href="#插入图片">插入图片</a></li>
+<li><a href="#更改相对位置">更改相对位置</a></li>
+</ul>
+<!-- tocstop -->
+<h2><span id="插入图片">插入图片</span></h2><p>之前打算在文章中插入图片，配置的过程中遇到了一些问题。</p>
+<p>想在博客中引用外站图片问题不大，但<strong>Hexo</strong>默认插入图片只有这一个方法，对有本地化需求的人群来说不够方便，此时可以安装一个满足本地图片引用的插件，在国内某知名（<strong>c</strong>）专业（<strong>s</strong>）开发者（<strong>d</strong>）社区（<strong>n</strong>）里提供的90%的方案为以下命令：<br><code>npm install hexo-asset-image –save</code><br>该论坛上相互借鉴蔚然成风的壮景对我这个刚入门的小白真是非常险恶，此指令安装版本落后，无法有效显示图片，有效的版本安装命令如下：<br><code>npm install https://github.com/CodeFalling/hexo-asset-image –save</code></p>
+<p>修改<code>_config.yml</code>文件，将<code>post_asset_folder:</code>值改为<strong>true</strong>。</p>
+<p>之后在新建一个博客的同时会生成同名文件夹，将需插入的图片放入该文件夹即可。文章中的具体引用代码为以下格式：(后来发现在<code>source</code>文件夹里新建一个名为<code>images</code>的文件夹存放图片也行)<br><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">]</span>(1/image.jpg)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></p>
+<h2><span id="更改相对位置">更改相对位置</span></h2><p>但这种方法在PC端有一个默认的问题就是图片插入后会自动左对齐，想要实现居中对齐，可以在<strong>markdown</strong>引用代码外部添加<strong>center</strong>元素，或者直接添加<strong>html</strong>元素，如下所示：<br><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">&lt;center<span class="token punctuation">></span>
+
+<span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">...</span><span class="token punctuation">]</span>(xxx)
+
+&lt;/center<span class="token punctuation">></span>
+
+&lt;<span class="token tag">!--or</span> <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">></span>
+
+&lt;div align=center<span class="token punctuation">></span>
+
+<span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">...</span><span class="token punctuation">]</span>(xxx)
+
+&lt;/div<span class="token punctuation">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><br>(因为我用VScode来打开博客的md文件进行编辑，在上传至本地网页时一开始发现图片无法加载，后来排查得出居中命令代码间的空行是必要的，不知道其他编辑器是否有这样的问题。)</p>
+<p>还可以直接修改<strong>css</strong>文件，因为<strong>markdown</strong>插入图片的代码在最终渲染的时候变为<strong>html</strong>中的<strong>img</strong>元素。因此可以直接去博客主题文件的源代码中，找到控制文章内图片显示样式的<strong>css</strong>代码，将其修改成水平居中即可。前端编程中修改水平居中的方法非常多，以下是网上资源中提供的其中一种：</p>
+<p>一般情况下可以在<strong>Hexo</strong>博客文件夹进入到主题模板的<code>themes-&gt;(主题名称文件夹)-&gt;source-&gt;css-&gt;_partial</code>中，找到<code>post.styl</code>文件，该<strong>post</strong>文件中保存的就是文章详情页里面的显示样式。然后找到里面正确的<strong>img</strong>元素，修改其样式，增加<code>margin 0 auto</code>这行指令。如下:<br><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">.post<span class="token punctuation">-</span>content
+    position relative
+    color c<span class="token punctuation">-</span><span class="token number">666</span>
+    img
+      max<span class="token punctuation">-</span>width 100%
+      cursor pointer
+      display block 
+      margin 0 auto<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><br>然后可以实现了。但我在自己当前使用的主题中并没有找到相关语段，由于技术比较拉跨，我决定还是先老实用前两种吧。</p>
+<p>[后期补丁：你需要一款名为<strong><em>Typora</em></strong>的<strong>markdown</strong>编辑软件]</p>
+]]></content>
+      <categories>
+        <category>Projects &amp; Builds</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>STM32配置笔记</title>
+    <url>/2024/11/21/241121/</url>
+    <content><![CDATA[<p>大二学习STM32G4系列的笔记</p>
+<span id="more"></span>
+<p><strong>pdf嵌入使用了pdf.js插件</strong>，hexo-pdf这个插件在移动端不能很好地显示</p>
+<iframe src="/pdfjs/web/viewer.html?file=/pdf/post1.pdf" style="width:100%;height:800px"></iframe>
+]]></content>
+      <categories>
+        <category>Learning Record</category>
+      </categories>
+      <tags>
+        <tag>嵌入式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo博客插入数学公式</title>
+    <url>/2025/03/27/250327/</url>
+    <content><![CDATA[<h2><span id="目录"><strong>目录：</strong></span></h2><!-- toc -->
+<ul>
+<li><a href="#step-1-安装mathjax引擎并更换渲染引擎"><strong>Step 1</strong> : 安装MathJax引擎并更换渲染引擎：</a></li>
+<li><a href="#step-2-更新mathjax的cdn链接"><strong>Step 2</strong> : 更新MathJax的cdn链接</a></li>
+<li><a href="#step-3-更改部分转义规则"><strong>Step 3</strong> : 更改部分转义规则</a></li>
+<li><a href="#step-4-可选-主题未预配置下使用hexo-filter-mathjax"><strong>Step 4</strong> (可选) : 主题未预配置下使用Hexo-filter-mathjax</a></li>
+<li><a href="#测试">测试</a></li>
+</ul>
+<!-- tocstop -->
+<p>在写一些内容时，会遇到需要添加数学公式的地方，Hexo部分主题不支持公式的渲染，比如我正在使用的vivia主题，在查阅一些资料之后，我使用<strong>MathJax</strong>引擎实现了vivia主题下的数学公式渲染。</p>
+<p>MathJax简介：<a href="https://www.osgeo.cn/mathjax/basic/mathjax.html">https://www.osgeo.cn/mathjax/basic/mathjax.html</a> </p>
+<p>该引擎是一款可在所有现代浏览器中工作的开源js显示引擎，辅助页面作者编写含有数学公式的文档</p>
+<h4><span id="step-1-安装mathjax引擎并更换渲染引擎"><strong>Step 1</strong> : 安装MathJax引擎并更换渲染引擎：</span></h4><p>​              操作包括卸载Hexo自带的Hexo-math，卸载默认的对MathJax不友好的marked引擎</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">npm uninstall hexo<span class="token operator">-</span>math <span class="token operator">--</span>save
+npm install hexo<span class="token operator">-</span>renderer<span class="token operator">-</span>mathjax <span class="token operator">--</span>save
+
+npm uninstall hexo<span class="token operator">-</span>renderer<span class="token operator">-</span>marked <span class="token operator">--</span>save
+npm install hexo<span class="token operator">-</span>renderer<span class="token operator">-</span>kramed <span class="token operator">--</span>save<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4><span id="step-2-更新mathjax的cdn链接"><strong>Step 2</strong> : 更新MathJax的cdn链接</span></h4><h4><span id="step-3-更改部分转义规则"><strong>Step 3</strong> : 更改部分转义规则</span></h4><p> hexo 默认的转义规则会将一些字符进行转义，所以要对默认的规则进行修改。<br>首先， 打开/node_modules/kramed/lib/rules/inline.js</p>
+<p>把：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">escape</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\\([\\`*&#123;&#125;\[\]()#$+\-.!_>])</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+<span class="token literal-property property">em</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>更改为：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">escape</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\\([`*\[\]()# +\-.!_>])</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+<span class="token literal-property property">em</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\*((?:\*\*|[\s\S])+?)\*(?!\*)</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h4><span id="step-4-可选-主题未预配置下使用hexo-filter-mathjax"><strong>Step 4</strong> (可选) : 主题未预配置下使用Hexo-filter-mathjax</span></h4><p>对于已经配置MathJax的主题来说，在相关config文件里打开控件即可，对于未配置的主题，可以使用Hexo-filter-mathjax来帮助实现</p>
+<p>Hexo-filter-mathjax项目地址：<a href="https://github.com/next-theme/hexo-filter-mathjax">https://github.com/next-theme/hexo-filter-mathjax</a></p>
+<p>安装：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">npm install hexo<span class="token operator">-</span>filter<span class="token operator">-</span>mathjax <span class="token operator">--</span>save<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>对需要开启的博文，在其Front-Matter处增加mathjax: true这一行即可，如：</p>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token front-matter-block"><span class="token punctuation">---</span>
+<span class="token front-matter yaml language-yaml"><span class="token key atrule">title</span><span class="token punctuation">:</span> xxxxxx
+<span class="token key atrule">categories</span><span class="token punctuation">:</span> xxxxx
+<span class="token key atrule">date</span><span class="token punctuation">:</span> xxxx<span class="token punctuation">-</span>xx<span class="token punctuation">-</span>xx
+<span class="token key atrule">mathjax</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></span>
+<span class="token punctuation">---</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&nbsp;</p>
+<h4><span id="测试">测试</span></h4><p>公式：</p>
+<p>$\Bbb{\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6} }$</p>
+<p>$\frak{\cos 2\theta = \cos^2 \theta - \sin^2 \theta = 2 \cos^2 \theta-1}$</p>
+<p>矩阵运算：</p>
+<p>$\left(    \begin{array}{c}      s \\      t    \end{array}\right)=\left(    \begin{array}{cc}      cos(b) &amp; -sin(b) \\      sin(b) &amp; cos(b)    \end{array}\right)\left(    \begin{array}{c}      x \\      y    \end{array}\right)$                </p>
+<p>*注意到有的cdn版本MathJax框架下公式字体对行间公式有一定影响，可能会一些字体会被渲染成主题相同字体，且移动端不能很好地显示</p>
+<p>参考资料：</p>
+<p><a href="https://www.cnblogs.com/wangxin37/p/8185688.html">https://www.cnblogs.com/wangxin37/p/8185688.html</a></p>
+<p><a href="https://heartlessly.github.io/others/latex-mathjax-gong-shi-zi-ti-mei-hua/">https://heartlessly.github.io/others/latex-mathjax-gong-shi-zi-ti-mei-hua/</a></p>
+]]></content>
+      <categories>
+        <category>Projects &amp; Builds</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>UART收发处理函数</title>
     <url>/2024/10/20/241020/</url>
     <content><![CDATA[<p>UART（Universal Asynchronous Receiver/Transmitter）是一种串行通信协议，在嵌入式系统和微控制器间数据传输中发挥着核心作用。UART协议通过异步方式传输数据，不依赖于共享时钟信号，简化了通信线路的需求。每次传输包括起始位、数据位、可选的奇偶校验位以及停止位，这种结构支持从简单的传感器到复杂的处理器之间的可靠数据交换。</p>
@@ -399,78 +471,6 @@ uint8_t startbegin2 = 0x00;
       </categories>
       <tags>
         <tag>嵌入式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>STM32配置笔记</title>
-    <url>/2024/11/21/241121/</url>
-    <content><![CDATA[<p>大二学习STM32G4系列的笔记</p>
-<span id="more"></span>
-<p><strong>pdf嵌入使用了pdf.js插件</strong>，hexo-pdf这个插件在移动端不能很好地显示</p>
-<iframe src="/pdfjs/web/viewer.html?file=/pdf/post1.pdf" style="width:100%;height:800px"></iframe>
-]]></content>
-      <categories>
-        <category>Learning Record</category>
-      </categories>
-      <tags>
-        <tag>嵌入式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo博客插入数学公式</title>
-    <url>/2025/03/27/250327/</url>
-    <content><![CDATA[<h2><span id="目录"><strong>目录：</strong></span></h2><!-- toc -->
-<ul>
-<li><a href="#step-1-安装mathjax引擎并更换渲染引擎"><strong>Step 1</strong> : 安装MathJax引擎并更换渲染引擎：</a></li>
-<li><a href="#step-2-更新mathjax的cdn链接"><strong>Step 2</strong> : 更新MathJax的cdn链接</a></li>
-<li><a href="#step-3-更改部分转义规则"><strong>Step 3</strong> : 更改部分转义规则</a></li>
-<li><a href="#step-4-可选-主题未预配置下使用hexo-filter-mathjax"><strong>Step 4</strong> (可选) : 主题未预配置下使用Hexo-filter-mathjax</a></li>
-<li><a href="#测试">测试</a></li>
-</ul>
-<!-- tocstop -->
-<p>在写一些内容时，会遇到需要添加数学公式的地方，Hexo部分主题不支持公式的渲染，比如我正在使用的vivia主题，在查阅一些资料之后，我使用<strong>MathJax</strong>引擎实现了vivia主题下的数学公式渲染。</p>
-<p>MathJax简介：<a href="https://www.osgeo.cn/mathjax/basic/mathjax.html">https://www.osgeo.cn/mathjax/basic/mathjax.html</a> </p>
-<p>该引擎是一款可在所有现代浏览器中工作的开源js显示引擎，辅助页面作者编写含有数学公式的文档</p>
-<h4><span id="step-1-安装mathjax引擎并更换渲染引擎"><strong>Step 1</strong> : 安装MathJax引擎并更换渲染引擎：</span></h4><p>​              操作包括卸载Hexo自带的Hexo-math，卸载默认的对MathJax不友好的marked引擎</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">npm uninstall hexo<span class="token operator">-</span>math <span class="token operator">--</span>save
-npm install hexo<span class="token operator">-</span>renderer<span class="token operator">-</span>mathjax <span class="token operator">--</span>save
-
-npm uninstall hexo<span class="token operator">-</span>renderer<span class="token operator">-</span>marked <span class="token operator">--</span>save
-npm install hexo<span class="token operator">-</span>renderer<span class="token operator">-</span>kramed <span class="token operator">--</span>save<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4><span id="step-2-更新mathjax的cdn链接"><strong>Step 2</strong> : 更新MathJax的cdn链接</span></h4><h4><span id="step-3-更改部分转义规则"><strong>Step 3</strong> : 更改部分转义规则</span></h4><p> hexo 默认的转义规则会将一些字符进行转义，所以要对默认的规则进行修改。<br>首先， 打开/node_modules/kramed/lib/rules/inline.js</p>
-<p>把：</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">escape</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\\([\\`*&#123;&#125;\[\]()#$+\-.!_>])</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
-<span class="token literal-property property">em</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>更改为：</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">escape</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\\([`*\[\]()# +\-.!_>])</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
-<span class="token literal-property property">em</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\*((?:\*\*|[\s\S])+?)\*(?!\*)</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h4><span id="step-4-可选-主题未预配置下使用hexo-filter-mathjax"><strong>Step 4</strong> (可选) : 主题未预配置下使用Hexo-filter-mathjax</span></h4><p>对于已经配置MathJax的主题来说，在相关config文件里打开控件即可，对于未配置的主题，可以使用Hexo-filter-mathjax来帮助实现</p>
-<p>Hexo-filter-mathjax项目地址：<a href="https://github.com/next-theme/hexo-filter-mathjax">https://github.com/next-theme/hexo-filter-mathjax</a></p>
-<p>安装：</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">npm install hexo<span class="token operator">-</span>filter<span class="token operator">-</span>mathjax <span class="token operator">--</span>save<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>对需要开启的博文，在其Front-Matter处增加mathjax: true这一行即可，如：</p>
-<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token front-matter-block"><span class="token punctuation">---</span>
-<span class="token front-matter yaml language-yaml"><span class="token key atrule">title</span><span class="token punctuation">:</span> xxxxxx
-<span class="token key atrule">categories</span><span class="token punctuation">:</span> xxxxx
-<span class="token key atrule">date</span><span class="token punctuation">:</span> xxxx<span class="token punctuation">-</span>xx<span class="token punctuation">-</span>xx
-<span class="token key atrule">mathjax</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></span>
-<span class="token punctuation">---</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&nbsp;</p>
-<h4><span id="测试">测试</span></h4><p>公式：</p>
-<p>$\Bbb{\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6} }$</p>
-<p>$\frak{\cos 2\theta = \cos^2 \theta - \sin^2 \theta = 2 \cos^2 \theta-1}$</p>
-<p>矩阵运算：</p>
-<p>$\left(    \begin{array}{c}      s \\      t    \end{array}\right)=\left(    \begin{array}{cc}      cos(b) &amp; -sin(b) \\      sin(b) &amp; cos(b)    \end{array}\right)\left(    \begin{array}{c}      x \\      y    \end{array}\right)$                </p>
-<p>*注意到有的cdn版本MathJax框架下公式字体对行间公式有一定影响，可能会一些字体会被渲染成主题相同字体，且移动端不能很好地显示</p>
-<p>参考资料：</p>
-<p><a href="https://www.cnblogs.com/wangxin37/p/8185688.html">https://www.cnblogs.com/wangxin37/p/8185688.html</a></p>
-<p><a href="https://heartlessly.github.io/others/latex-mathjax-gong-shi-zi-ti-mei-hua/">https://heartlessly.github.io/others/latex-mathjax-gong-shi-zi-ti-mei-hua/</a></p>
-]]></content>
-      <categories>
-        <category>Projects &amp; Builds</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -1584,51 +1584,6 @@ sqlite&gt; SELECT * FROM shows JOIN ratings ON shows.id &#x3D; ratings.show_id W
       </categories>
       <tags>
         <tag>CS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>用APP Inventor快速开发一款BLE安卓应用</title>
-    <url>/2025/07/18/250718/</url>
-    <content><![CDATA[<p>出于科研项目要求，我需要开发一个能个性化定制界面与功能的BLE手机上位机软件，在经过简单的调研后，主要有以下两种开发路径：</p>
-<ol>
-<li>Android Studio</li>
-<li>MIT APP Inventor</li>
-</ol>
-<p>其中AS需要Java基础，且开发周期长；MIT APP Inventor图形化编程，20min可上手，于是我选择后者，最终也能达到我想要的效果。</p>
-<p>选择建议如下：</p>
-<ul>
-<li><strong>选 Android Studio</strong>：<br>如果你想成为专业开发者，或开发功能复杂、可发布的商业应用。</li>
-<li><strong>选 MIT App Inventor</strong>：<br>如果你是学生，或只想快速做一个简单应用</li>
-</ul>
-<p>于是在B站看了几个包浆的教学视频后，我开始上手制作，过程意外地顺利</p>
-<p>首先，你需要明确你的APP要包含哪些模块</p>
-<p>如下图所示，在登陆官网后，你可以把你需要的模块在侧边栏拖入主页面</p>
-<center>
-    <img src="/images/appinventor/homepage.webp" width="800">
-</center>
-
-
-
-<p>依次描述我的思路</p>
-<p>上图中组件1是BLE设备搜索与断联按钮</p>
-<p>2是BLE连接状态，3是波形图，4是实时数值，5是清空按钮；</p>
-<p>当然也有后端组件Ⅰ，是BLE模块，这个在官网没有，需要下载拓展包，<a href="https://iot.appinventor.mit.edu/">https://iot.appinventor.mit.edu/</a> 这个网站里可以找到，组件Ⅱ相当于画图所用到的数据列表。</p>
-<p>&nbsp;</p>
-<p>在完成组件选择与视图构造后，进入下一步逻辑编程，这里不再赘述，和一些少儿编程培训用的Scratch基本是一个套路，特别注意BLE设备的gatt协议uuid需要根据产品厂商提供的数值修改</p>
-<center>
-    <img src="/images/appinventor/logic.webp" width="800">
-</center>
-
-<p>最终效果如下，其实整体耗时应该不到半天，向伟大的互联网开源精神致敬。</p>
-<center>
-    <img src="/images/appinventor/display.gif" width="260">
-</center>
-]]></content>
-      <categories>
-        <category>Projects &amp; Builds</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -3825,6 +3780,51 @@ H_{1}=\left|\begin{array}{cc}
       </categories>
       <tags>
         <tag>Algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>用APP Inventor快速开发一款BLE安卓应用</title>
+    <url>/2025/07/18/250718/</url>
+    <content><![CDATA[<p>出于科研项目要求，我需要开发一个能个性化定制界面与功能的BLE手机上位机软件，在经过简单的调研后，主要有以下两种开发路径：</p>
+<ol>
+<li>Android Studio</li>
+<li>MIT APP Inventor</li>
+</ol>
+<p>其中AS需要Java基础，且开发周期长；MIT APP Inventor图形化编程，20min可上手，于是我选择后者，最终也能达到我想要的效果。</p>
+<p>选择建议如下：</p>
+<ul>
+<li><strong>选 Android Studio</strong>：<br>如果你想成为专业开发者，或开发功能复杂、可发布的商业应用。</li>
+<li><strong>选 MIT App Inventor</strong>：<br>如果你是学生，或只想快速做一个简单应用</li>
+</ul>
+<p>于是在B站看了几个包浆的教学视频后，我开始上手制作，过程意外地顺利</p>
+<p>首先，你需要明确你的APP要包含哪些模块</p>
+<p>如下图所示，在登陆官网后，你可以把你需要的模块在侧边栏拖入主页面</p>
+<center>
+    <img src="/images/appinventor/homepage.webp" width="800">
+</center>
+
+
+
+<p>依次描述我的思路</p>
+<p>上图中组件1是BLE设备搜索与断联按钮</p>
+<p>2是BLE连接状态，3是波形图，4是实时数值，5是清空按钮；</p>
+<p>当然也有后端组件Ⅰ，是BLE模块，这个在官网没有，需要下载拓展包，<a href="https://iot.appinventor.mit.edu/">https://iot.appinventor.mit.edu/</a> 这个网站里可以找到，组件Ⅱ相当于画图所用到的数据列表。</p>
+<p>&nbsp;</p>
+<p>在完成组件选择与视图构造后，进入下一步逻辑编程，这里不再赘述，和一些少儿编程培训用的Scratch基本是一个套路，特别注意BLE设备的gatt协议uuid需要根据产品厂商提供的数值修改</p>
+<center>
+    <img src="/images/appinventor/logic.webp" width="800">
+</center>
+
+<p>最终效果如下，其实整体耗时应该不到半天，向伟大的互联网开源精神致敬。</p>
+<center>
+    <img src="/images/appinventor/display.gif" width="260">
+</center>
+]]></content>
+      <categories>
+        <category>Projects &amp; Builds</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -8518,6 +8518,182 @@ public<span class="token operator">:</span>
         <span class="token keyword">return</span> sum<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3><span id="98-加油站">9.8 加油站</span></h3><p> 在一条环路上有 <code>n</code> 个加油站，其中第 <code>i</code> 个加油站有汽油 <code>gas[i]</code> 升。</p>
+<p>你有一辆油箱容量无限的的汽车，从第 <code>i</code> 个加油站开往第 <code>i+1</code> 个加油站需要消耗汽油 <code>cost[i]</code> 升。你从其中的一个加油站出发，开始时油箱为空。</p>
+<p>给定两个整数数组 <code>gas</code> 和 <code>cost</code> ，如果你可以按顺序绕环路行驶一周，则返回出发时加油站的编号，否则返回 <code>-1</code> 。如果存在解，则 <strong>保证</strong> 它是 <strong>唯一</strong> 的。</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token keyword">int</span> <span class="token function">canCompleteCircuit</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> gas<span class="token punctuation">,</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> cost<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">diff</span><span class="token punctuation">(</span>gas<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> gas<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            diff<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> gas<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span> cost<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">int</span> count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> totalsum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> possum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> negasum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> diff<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>diff<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> negasum <span class="token operator">+=</span> diff<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>diff<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> possum <span class="token operator">+=</span> diff<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span> 
+            totalsum <span class="token operator">+=</span> diff<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+			<span class="token comment">// 这里是精髓</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>totalsum <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                count <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+                totalsum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>negasum <span class="token operator">+</span> possum<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">else</span> <span class="token keyword">return</span> count<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3><span id="99-分发糖果">9.9 分发糖果</span></h3><p><code>n</code> 个孩子站成一排。给你一个整数数组 <code>ratings</code> 表示每个孩子的评分。</p>
+<p>你需要按照以下要求，给这些孩子分发糖果：</p>
+<ul>
+<li>每个孩子至少分配到 <code>1</code> 个糖果。</li>
+<li>相邻两个孩子中，评分更高的那个会获得更多的糖果。</li>
+</ul>
+<p>请你给每个孩子分发糖果，计算并返回需要准备的 <strong>最少糖果数目</strong> 。</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">//没想出来</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token keyword">int</span> <span class="token function">candy</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> ratings<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">int</span> sum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">candycount</span><span class="token punctuation">(</span>ratings<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> ratings<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>ratings<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">></span> ratings<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> candycount<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> candycount<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> ratings<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">;</span> i <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">--</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>ratings<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">&lt;</span> ratings<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token comment">//贪心思想在这里</span>
+            candycount<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>candycount<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> candycount<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> candycount<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            sum <span class="token operator">+=</span> candycount<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token keyword">return</span> sum<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3><span id="910-柠檬水找零">9.10 柠檬水找零</span></h3><p>在柠檬水摊上，每一杯柠檬水的售价为 <code>5</code> 美元。顾客排队购买你的产品，（按账单 <code>bills</code> 支付的顺序）一次购买一杯。</p>
+<p>每位顾客只买一杯柠檬水，然后向你付 <code>5</code> 美元、<code>10</code> 美元或 <code>20</code> 美元。你必须给每个顾客正确找零，也就是说净交易是每位顾客向你支付 <code>5</code> 美元。</p>
+<p>注意，一开始你手头没有任何零钱。</p>
+<p>给你一个整数数组 <code>bills</code> ，其中 <code>bills[i]</code> 是第 <code>i</code> 位顾客付的账。如果你能给每位顾客正确找零，返回 <code>true</code> ，否则返回 <code>false</code> 。</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token keyword">bool</span> <span class="token function">lemonadeChange</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> bills<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        unordered_map<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span><span class="token keyword">int</span><span class="token operator">></span> cash<span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> bills<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>bills<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">5</span><span class="token punctuation">)</span> cash<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>bills<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                cash<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>cash<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token operator">></span><span class="token number">0</span><span class="token punctuation">)</span> cash<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token operator">--</span><span class="token punctuation">;</span>
+                <span class="token keyword">else</span> <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">else</span><span class="token punctuation">&#123;</span>
+                 cash<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>
+                <span class="token comment">//优先找10块钱的</span>
+                 <span class="token keyword">if</span> <span class="token punctuation">(</span>cash<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token operator">></span><span class="token number">0</span> <span class="token operator">&amp;&amp;</span> cash<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token operator">></span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                 cash<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token operator">--</span><span class="token punctuation">;</span>
+                 cash<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token operator">--</span><span class="token punctuation">;</span>
+                 <span class="token punctuation">&#125;</span>
+                 <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>cash<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token operator">>=</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                    cash<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">-=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+                 <span class="token punctuation">&#125;</span>
+                 <span class="token keyword">else</span> <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3><span id="911-根据身高重建队列">9.11 根据身高重建队列</span></h3><p>假设有打乱顺序的一群人站成一个队列，数组 <code>people</code> 表示队列中一些人的属性（不一定按顺序）。每个 <code>people[i] = [hi, ki]</code> 表示第 <code>i</code> 个人的身高为 <code>hi</code> ，前面 <strong>正好</strong> 有 <code>ki</code> 个身高大于或等于 <code>hi</code> 的人。</p>
+<p>请你重新构造并返回输入数组 <code>people</code> 所表示的队列。返回的队列应该格式化为数组 <code>queue</code> ，其中 <code>queue[j] = [hj, kj]</code> 是队列中第 <code>j</code> 个人的属性（<code>queue[0]</code> 是排在队列前面的人）。</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">//两个判断条件，先梳理好一个再考虑另外一个</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+<span class="token comment">//类内定义cmp需要使用静态成员函数，防止this指针出现</span>
+    <span class="token keyword">static</span> <span class="token keyword">bool</span> <span class="token function">cmp</span><span class="token punctuation">(</span><span class="token keyword">const</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> a<span class="token punctuation">,</span> <span class="token keyword">const</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span>b<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>a<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">==</span> b<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">return</span> a<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">&lt;</span> b<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> a<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">></span> b<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    vector<span class="token operator">&lt;</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">>></span> <span class="token function">reconstructQueue</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">>></span><span class="token operator">&amp;</span> people<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        vector<span class="token operator">&lt;</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">>></span> queue<span class="token punctuation">;</span>
+        <span class="token function">sort</span><span class="token punctuation">(</span>people<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> people<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> cmp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> people<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">int</span> index <span class="token operator">=</span> people<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            queue<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>queue<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> index<span class="token punctuation">,</span> people<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> queue<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3><span id="912-用最少数量的箭引爆气球">9.12 用最少数量的箭引爆气球</span></h3><p>有一些球形气球贴在一堵用 XY 平面表示的墙面上。墙面上的气球记录在整数数组 <code>points</code> ，其中<code>points[i] = [xstart, xend]</code> 表示水平直径在 <code>xstart</code> 和 <code>xend</code>之间的气球。你不知道气球的确切 y 坐标。</p>
+<p>一支弓箭可以沿着 x 轴从不同点 <strong>完全垂直</strong> 地射出。在坐标 <code>x</code> 处射出一支箭，若有一个气球的直径的开始和结束坐标为 <code>x``start</code>，<code>x``end</code>， 且满足  <code>xstart ≤ x ≤ x``end</code>，则该气球会被 <strong>引爆</strong> 。可以射出的弓箭的数量 <strong>没有限制</strong> 。 弓箭一旦被射出之后，可以无限地前进。</p>
+<p>给你一个数组 <code>points</code> ，<em>返回引爆所有气球所必须射出的 <strong>最小</strong> 弓箭数</em> 。</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">//秒了</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+
+    <span class="token keyword">static</span> <span class="token keyword">bool</span> <span class="token function">cmp</span><span class="token punctuation">(</span><span class="token keyword">const</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token operator">&amp;</span>a<span class="token punctuation">,</span> <span class="token keyword">const</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token operator">&amp;</span>b<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>a<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">==</span> b<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">return</span> a<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">&lt;</span> b<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> a<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">&lt;</span> b<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">int</span> <span class="token function">findMinArrowShots</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">>></span><span class="token operator">&amp;</span> points<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">sort</span><span class="token punctuation">(</span>points<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> points<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> cmp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> count <span class="token operator">=</span> points<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> rightboundary <span class="token operator">=</span> points<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>  i <span class="token operator">&lt;</span> points<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>points<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">&lt;=</span> rightboundary<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                rightboundary <span class="token operator">=</span> <span class="token function">min</span><span class="token punctuation">(</span>rightboundary<span class="token punctuation">,</span> points<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                count<span class="token operator">--</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">else</span> rightboundary <span class="token operator">=</span> points<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> count<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3><span id="913-无重叠区间">9.13 无重叠区间</span></h3><p>给定一个区间的集合 <code>intervals</code> ，其中 <code>intervals[i] = [starti, endi]</code> 。返回 <em>需要移除区间的最小数量，使剩余区间互不重叠</em> 。</p>
+<p><strong>注意</strong> 只在一点上接触的区间是 <strong>不重叠的</strong>。例如 <code>[1, 2]</code> 和 <code>[2, 3]</code> 是不重叠的。</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">//思想同上，边界处理方式不同</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token keyword">static</span> <span class="token keyword">bool</span> <span class="token function">cmp</span><span class="token punctuation">(</span><span class="token keyword">const</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token operator">&amp;</span>a<span class="token punctuation">,</span> <span class="token keyword">const</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token operator">&amp;</span>b<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>a<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">==</span> b<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">return</span> a<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">&lt;</span> b<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> a<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">&lt;</span> b<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">int</span> <span class="token function">eraseOverlapIntervals</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">>></span><span class="token operator">&amp;</span> intervals<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">int</span> result <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token function">sort</span><span class="token punctuation">(</span>intervals<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> intervals<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> cmp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> right <span class="token operator">=</span> intervals<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> intervals<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>intervals<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">&lt;</span> right<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            result<span class="token operator">++</span><span class="token punctuation">;</span>
+            right <span class="token operator">=</span> <span class="token function">min</span><span class="token punctuation">(</span>intervals<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> 
+        <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+            right <span class="token operator">=</span> intervals<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3><span id="914-划分字母区间">9.14 划分字母区间</span></h3><p>给你一个字符串 <code>s</code> 。我们要把这个字符串划分为尽可能多的片段，同一字母最多出现在一个片段中。例如，字符串 <code>&quot;ababcc&quot;</code> 能够被分为 <code>[&quot;abab&quot;, &quot;cc&quot;]</code>，但类似 <code>[&quot;aba&quot;, &quot;bcc&quot;]</code> 或 <code>[&quot;ab&quot;, &quot;ab&quot;, &quot;cc&quot;]</code> 的划分是非法的。</p>
+<p>注意，划分结果需要满足：将所有划分结果按顺序连接，得到的字符串仍然是 <code>s</code> 。</p>
+<p>返回一个表示每个字符串片段的长度的列表。</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// 用哈希表记录每个字符出现的最后位置</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3><span id="915-合并区间">9.15 合并区间</span></h3><p>以数组 <code>intervals</code> 表示若干个区间的集合，其中单个区间为 <code>intervals[i] = [starti, endi]</code> 。请你合并所有重叠的区间，并返回 <em>一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间</em> 。</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3><span id="916-单调递增的数字">9.16 单调递增的数字</span></h3><p>当且仅当每个相邻位数上的数字 <code>x</code> 和 <code>y</code> 满足 <code>x &lt;= y</code> 时，我们称这个整数是<strong>单调递增</strong>的。</p>
+<p>给定一个整数 <code>n</code> ，返回 <em>小于或等于 <code>n</code> 的最大数字，且数字呈 <strong>单调递增</strong></em> 。</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3><span id="917-监控二叉树">9.17 监控二叉树</span></h3><p>给定一个二叉树，我们在树的节点上安装摄像头。</p>
+<p>节点上的每个摄影头都可以监视<strong>其父对象、自身及其直接子对象。</strong></p>
+<p>计算监控树的所有节点所需的最小摄像头数量。</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h3><span id="10-动态规划">10. 动态规划</span></h3><h3><span id="11-图论">11. 图论</span></h3>]]></content>
       <categories>
         <category>Learning Record</category>
