@@ -28,7 +28,7 @@
 <meta property="og:description" content="1. 数学 2. 数组 3. 链表 4. 哈希散列 5. 栈与队列 6. 类与OOP应用 7. 二叉树 8. 回溯 9. 贪心 10. 动态规划 11. 图论   1. 数学1.1 基础有一天, 小明收到一张奇怪的信, 信上要小明计算出给定数各个位上数字为偶数的和。例如：5548，结果为12，等于 4 + 8 。小明很苦恼，想请你帮忙解决这个问题 #include &lt;iostream&gt;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-06-21T13:19:05.000Z">
-<meta property="article:modified_time" content="2025-09-07T16:38:12.870Z">
+<meta property="article:modified_time" content="2025-09-08T13:04:28.408Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="CS">
 <meta name="twitter:card" content="summary">
@@ -204,7 +204,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            90k 词 
+            92k 词 
           </div>
         </div>
         
@@ -5067,7 +5067,31 @@ public<span class="token operator">:</span>
 <h3><span id="914-划分字母区间">9.14 划分字母区间</span></h3><p>给你一个字符串 <code>s</code> 。我们要把这个字符串划分为尽可能多的片段，同一字母最多出现在一个片段中。例如，字符串 <code>&quot;ababcc&quot;</code> 能够被分为 <code>[&quot;abab&quot;, &quot;cc&quot;]</code>，但类似 <code>[&quot;aba&quot;, &quot;bcc&quot;]</code> 或 <code>[&quot;ab&quot;, &quot;ab&quot;, &quot;cc&quot;]</code> 的划分是非法的。</p>
 <p>注意，划分结果需要满足：将所有划分结果按顺序连接，得到的字符串仍然是 <code>s</code> 。</p>
 <p>返回一个表示每个字符串片段的长度的列表。</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// 用哈希表记录每个字符出现的最后位置</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// 用哈希表记录每个字符出现的最后位置</span>
+<span class="token comment">// 统计每一个字符最后出现的位置</span>
+<span class="token comment">// 从头遍历字符，并更新字符的最远出现下标，如果找到字符最远出现位置下标和当前下标相等了，则找到了分割点</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">partitionLabels</span><span class="token punctuation">(</span>string s<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+        vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">hash</span><span class="token punctuation">(</span><span class="token number">27</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> s<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            hash<span class="token punctuation">[</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token char">'a'</span><span class="token punctuation">]</span> <span class="token operator">=</span> i<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token keyword">int</span> maxindex <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> result<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> left <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> right <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> right <span class="token operator">&lt;</span> s<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> right<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        	maxindex <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>maxindex<span class="token punctuation">,</span>  hash<span class="token punctuation">[</span>s<span class="token punctuation">[</span>right<span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token char">'a'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        	<span class="token keyword">if</span> <span class="token punctuation">(</span>right <span class="token operator">==</span> maxindex<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                result<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>right <span class="token operator">-</span> left <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                left <span class="token operator">=</span> right <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        	<span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3><span id="915-合并区间">9.15 合并区间</span></h3><p>以数组 <code>intervals</code> 表示若干个区间的集合，其中单个区间为 <code>intervals[i] = [starti, endi]</code> 。请你合并所有重叠的区间，并返回 <em>一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间</em> 。</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
 <span class="token keyword">public</span><span class="token operator">:</span>
@@ -5139,8 +5163,59 @@ public<span class="token operator">:</span>
 <h3><span id="917-监控二叉树">9.17 监控二叉树</span></h3><p>给定一个二叉树，我们在树的节点上安装摄像头。</p>
 <p>节点上的每个摄影头都可以监视<strong>其父对象、自身及其直接子对象。</strong></p>
 <p>计算监控树的所有节点所需的最小摄像头数量。</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3><span id="10-动态规划">10. 动态规划</span></h3><p>动态规划中每一个状态一定是由上一个状态推导出来的，<strong>这一点区分于贪心</strong>，贪心没有状态推导，而是从局部直接选最优的，</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">//难度高</span>
+<span class="token comment">//贪心思想：从叶子节点向上搜索，叶子节点的父节点需要安装，再往上每隔2个节点放一个</span>
+<span class="token comment">//0：该节点无覆盖</span>
+<span class="token comment">//1：本节点有摄像头</span>
+<span class="token comment">//2：本节点有覆盖</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">private</span><span class="token operator">:</span>
+    <span class="token keyword">int</span> result<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> <span class="token function">traversal</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> cur<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+        <span class="token comment">// 空节点，该节点有覆盖</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cur <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">2</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">int</span> left <span class="token operator">=</span> <span class="token function">traversal</span><span class="token punctuation">(</span>cur<span class="token operator">-></span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 左</span>
+        <span class="token keyword">int</span> right <span class="token operator">=</span> <span class="token function">traversal</span><span class="token punctuation">(</span>cur<span class="token operator">-></span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 右</span>
+
+        <span class="token comment">// 情况1</span>
+        <span class="token comment">// 左右节点都有覆盖</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>left <span class="token operator">==</span> <span class="token number">2</span> <span class="token operator">&amp;&amp;</span> right <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 情况2</span>
+        <span class="token comment">// left == 0 &amp;&amp; right == 0 左右节点无覆盖</span>
+        <span class="token comment">// left == 1 &amp;&amp; right == 0 左节点有摄像头，右节点无覆盖</span>
+        <span class="token comment">// left == 0 &amp;&amp; right == 1 左节点有无覆盖，右节点摄像头</span>
+        <span class="token comment">// left == 0 &amp;&amp; right == 2 左节点无覆盖，右节点覆盖</span>
+        <span class="token comment">// left == 2 &amp;&amp; right == 0 左节点覆盖，右节点无覆盖</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>left <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">||</span> right <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            result<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token comment">// 情况3</span>
+        <span class="token comment">// left == 1 &amp;&amp; right == 2 左节点有摄像头，右节点有覆盖</span>
+        <span class="token comment">// left == 2 &amp;&amp; right == 1 左节点有覆盖，右节点有摄像头</span>
+        <span class="token comment">// left == 1 &amp;&amp; right == 1 左右节点都有摄像头</span>
+        <span class="token comment">// 其他情况前段代码均已覆盖</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>left <span class="token operator">==</span> <span class="token number">1</span> <span class="token operator">||</span> right <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">2</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 这个 return -1 逻辑不会走到这里。</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token keyword">int</span> <span class="token function">minCameraCover</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        result <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token comment">// 情况4</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">traversal</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token comment">// root 无覆盖</span>
+            result<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3><span id="10-动态规划">10. 动态规划</span></h3><p>动态规划中每一个状态一定是由上一个状态推导出来的，<strong>这一点区分于贪心</strong>，贪心没有状态推导，而是从局部直接选最优的。</p>
 <h3><span id="11-图论">11. 图论</span></h3>
         
       </div>
