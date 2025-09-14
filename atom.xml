@@ -6,7 +6,7 @@
   <link href="https://miustannis.github.io/atom.xml" rel="self"/>
   
   <link href="https://miustannis.github.io/"/>
-  <updated>2025-08-18T14:29:23.141Z</updated>
+  <updated>2025-09-14T09:00:47.834Z</updated>
   <id>https://miustannis.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Graph AC</title>
+    <link href="https://miustannis.github.io/2025/09/14/250914/"/>
+    <id>https://miustannis.github.io/2025/09/14/250914/</id>
+    <published>2025-09-14T13:19:05.000Z</published>
+    <updated>2025-09-14T09:00:47.834Z</updated>
+    
+    
+    
+    
+    <category term="Learning Record" scheme="https://miustannis.github.io/categories/Learning-Record/"/>
+    
+    
+    <category term="CS" scheme="https://miustannis.github.io/tags/CS/"/>
+    
+    <category term="Algorithm" scheme="https://miustannis.github.io/tags/Algorithm/"/>
+    
+  </entry>
   
   <entry>
     <title>KMP算法 Study Log</title>
@@ -98,7 +117,7 @@
     <link href="https://miustannis.github.io/2025/06/21/250621/"/>
     <id>https://miustannis.github.io/2025/06/21/250621/</id>
     <published>2025-06-21T13:19:05.000Z</published>
-    <updated>2025-09-13T13:20:14.256Z</updated>
+    <updated>2025-09-14T08:56:43.779Z</updated>
     
     
       
@@ -117,31 +136,6 @@
     
     
     <category term="CS" scheme="https://miustannis.github.io/tags/CS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>冈萨雷斯《数字图像处理》Study Log</title>
-    <link href="https://miustannis.github.io/2025/05/19/250519/"/>
-    <id>https://miustannis.github.io/2025/05/19/250519/</id>
-    <published>2025-05-19T03:38:44.000Z</published>
-    <updated>2025-07-28T11:40:21.770Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;h2&gt;&lt;span id=&quot;目录&quot;&gt;&lt;strong&gt;目录：&lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;&lt;!-- toc --&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#ch0-数字图像的概念&quot;&gt;&lt;strong&gt;Ch0 数字图像的概念&lt;/strong&gt;&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a h</summary>
-      
-    
-    
-    
-    <category term="Learning Record" scheme="https://miustannis.github.io/categories/Learning-Record/"/>
-    
-    
-    <category term="图像处理" scheme="https://miustannis.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
     
   </entry>
   
