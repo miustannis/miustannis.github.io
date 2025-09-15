@@ -6,7 +6,7 @@
   <link href="https://miustannis.github.io/atom.xml" rel="self"/>
   
   <link href="https://miustannis.github.io/"/>
-  <updated>2025-09-14T09:00:47.834Z</updated>
+  <updated>2025-09-15T14:21:57.330Z</updated>
   <id>https://miustannis.github.io/</id>
   
   <author>
@@ -17,21 +17,26 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Graph AC</title>
-    <link href="https://miustannis.github.io/2025/09/14/250914/"/>
-    <id>https://miustannis.github.io/2025/09/14/250914/</id>
+    <title>写一个小轮子：模拟实现ls-l 指令</title>
+    <link href="https://miustannis.github.io/2025/09/14/250915/"/>
+    <id>https://miustannis.github.io/2025/09/14/250915/</id>
     <published>2025-09-14T13:19:05.000Z</published>
-    <updated>2025-09-14T09:00:47.834Z</updated>
+    <updated>2025-09-15T14:21:57.330Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;h2&gt;&lt;span id=&quot;概述&quot;&gt;概述&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;在Linux系统中，&lt;code&gt;ls -l&lt;/code&gt;命令是我们日常使用最频繁的命令之一，它能够以长格式显示文件的详细信息。本文将深入解析&lt;code&gt;ls -l&lt;/code&gt;的实现原理，并逐步讲解如何用C语言</summary>
+      
     
     
     
-    
-    <category term="Learning Record" scheme="https://miustannis.github.io/categories/Learning-Record/"/>
+    <category term="Projects &amp; Builds" scheme="https://miustannis.github.io/categories/Projects-Builds/"/>
     
     
     <category term="CS" scheme="https://miustannis.github.io/tags/CS/"/>
     
-    <category term="Algorithm" scheme="https://miustannis.github.io/tags/Algorithm/"/>
+    <category term="Linux" scheme="https://miustannis.github.io/tags/Linux/"/>
     
   </entry>
   
@@ -66,7 +71,7 @@
     <link href="https://miustannis.github.io/2025/07/18/250718/"/>
     <id>https://miustannis.github.io/2025/07/18/250718/</id>
     <published>2025-07-18T03:38:44.000Z</published>
-    <updated>2025-08-20T04:14:23.853Z</updated>
+    <updated>2025-09-15T14:07:58.798Z</updated>
     
     
       
