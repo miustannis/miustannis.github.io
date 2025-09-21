@@ -1,101 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>TFTLCD驱动</title>
-    <url>/2024/09/28/240928/</url>
-    <content><![CDATA[<p>在使用Img2LCD取模软件和ST7735S驱动IC控制LCD时，发现API中显示图片的函数调用后显示异常</p>
-<p>原函数：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">ST7735_DrawImage</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span> x<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> y<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> w<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> h<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token class-name">uint16_t</span><span class="token operator">*</span> data<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>y <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">+</span> w <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>y <span class="token operator">+</span> h <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <title>Hexo博客插入图片</title>
+    <url>/2022/03/21/220321/</url>
+    <content><![CDATA[<h2><span id="目录"><strong>目录：</strong></span></h2><!-- toc -->
+<ul>
+<li><a href="#插入图片">插入图片</a></li>
+<li><a href="#更改相对位置">更改相对位置</a></li>
+</ul>
+<!-- tocstop -->
+<h2><span id="插入图片">插入图片</span></h2><p>之前打算在文章中插入图片，配置的过程中遇到了一些问题。</p>
+<p>想在博客中引用外站图片问题不大，但<strong>Hexo</strong>默认插入图片只有这一个方法，对有本地化需求的人群来说不够方便，此时可以安装一个满足本地图片引用的插件，在国内某知名（<strong>c</strong>）专业（<strong>s</strong>）开发者（<strong>d</strong>）社区（<strong>n</strong>）里提供的90%的方案为以下命令：<br><code>npm install hexo-asset-image –save</code><br>该论坛上相互借鉴蔚然成风的壮景对我这个刚入门的小白真是非常险恶，此指令安装版本落后，无法有效显示图片，有效的版本安装命令如下：<br><code>npm install https://github.com/CodeFalling/hexo-asset-image –save</code></p>
+<p>修改<code>_config.yml</code>文件，将<code>post_asset_folder:</code>值改为<strong>true</strong>。</p>
+<p>之后在新建一个博客的同时会生成同名文件夹，将需插入的图片放入该文件夹即可。文章中的具体引用代码为以下格式：(后来发现在<code>source</code>文件夹里新建一个名为<code>images</code>的文件夹存放图片也行)<br><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">]</span>(1/image.jpg)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></p>
+<h2><span id="更改相对位置">更改相对位置</span></h2><p>但这种方法在PC端有一个默认的问题就是图片插入后会自动左对齐，想要实现居中对齐，可以在<strong>markdown</strong>引用代码外部添加<strong>center</strong>元素，或者直接添加<strong>html</strong>元素，如下所示：<br><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">&lt;center<span class="token punctuation">></span>
 
-    <span class="token function">ST7735_Select</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">ST7735_SetAddressWindow</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> x<span class="token operator">+</span>w<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> y<span class="token operator">+</span>h<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">ST7735_WriteData</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token operator">*</span><span class="token punctuation">)</span>data<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span><span class="token punctuation">)</span><span class="token operator">*</span>w<span class="token operator">*</span>h<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">ST7735_Unselect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>输入数据要求16位rgb565格式图片，与Img2LCD取模软件两个8位数表示一个像素点的编码逻辑不同，首次修改仅改了原函数输入数据的格式：将data16位常量数据指针类型改为8位无符号变量指针类型，且在spi写入数据时将数据量乘以2，修改后的函数如下：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">ST7735_DrawImage8bit_Img2LCD</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span> x<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> y<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> w<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> h<span class="token punctuation">,</span> <span class="token class-name">uint8_t</span><span class="token operator">*</span> data<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>y <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">+</span> w <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>y <span class="token operator">+</span> h <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
-    
-    <span class="token function">ST7735_Select</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">ST7735_SetAddressWindow</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> x<span class="token operator">+</span>w<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> y<span class="token operator">+</span>h<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	
-    <span class="token function">ST7735_WriteData</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token operator">*</span><span class="token punctuation">)</span>data<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token punctuation">)</span><span class="token operator">*</span>w<span class="token operator">*</span>h<span class="token operator">*</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">ST7735_Unselect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>但是烧录测试后LCD显示颜色异常且边缘模糊，初步推测是图片数据原本的问题，考虑到可能2个8位数据合并时高8位与低8位的顺序反了，在MATLAB中进行数组元素两两翻转验证：</p>
-<pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> swappedArray <span class="token operator">=</span> <span class="token function">swapPairs</span><span class="token punctuation">(</span>inputArray<span class="token punctuation">)</span>
-    <span class="token keyword">if</span> <span class="token function">iscolumn</span><span class="token punctuation">(</span>inputArray<span class="token punctuation">)</span>
-        inputArray <span class="token operator">=</span> inputArray<span class="token operator">'</span><span class="token punctuation">;</span>
-    <span class="token keyword">end</span>
-    n <span class="token operator">=</span> <span class="token function">length</span><span class="token punctuation">(</span>inputArray<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token function">mod</span><span class="token punctuation">(</span>n<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">~=</span> <span class="token number">0</span>
-        <span class="token function">inputArray</span><span class="token punctuation">(</span><span class="token keyword">end</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">NaN</span><span class="token punctuation">;</span> 
-    <span class="token keyword">end</span>
-    swappedArray <span class="token operator">=</span> inputArray<span class="token punctuation">;</span>
-    <span class="token function">swappedArray</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">2</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">inputArray</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">:</span><span class="token number">2</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">swappedArray</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">:</span><span class="token number">2</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">inputArray</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">2</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    swappedArray <span class="token operator">=</span> <span class="token function">swappedArray</span><span class="token punctuation">(</span><span class="token operator">~</span><span class="token function">isnan</span><span class="token punctuation">(</span>swappedArray<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>将原始图片数据处理后再进行烧录，发现显示正常，问题定位到数组元素的写入顺序，解决方法较多，这里我直接在函数中将原始数组变换，最终的函数如下：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">ST7735_DrawImage8bit_Img2LCD</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span> x<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> y<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> w<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> h<span class="token punctuation">,</span> <span class="token class-name">uint8_t</span><span class="token operator">*</span> data<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-	<span class="token class-name">uint32_t</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-	<span class="token class-name">uint8_t</span> temp <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>y <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">+</span> w <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>y <span class="token operator">+</span> h <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
-	<span class="token comment">/* Swap adjacent elements in the data array	*/</span>
-	<span class="token keyword">for</span> <span class="token punctuation">(</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> w <span class="token operator">*</span> h <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span> i <span class="token operator">+=</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-	    <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&lt;</span> w <span class="token operator">*</span> h <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-	        temp <span class="token operator">=</span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-	        data<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> data<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-	        data<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
-	    <span class="token punctuation">&#125;</span>
-	<span class="token punctuation">&#125;</span>
-	<span class="token function">ST7735_Select</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token function">ST7735_SetAddressWindow</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> x<span class="token operator">+</span>w<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> y<span class="token operator">+</span>h<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	
-	<span class="token function">ST7735_WriteData</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token operator">*</span><span class="token punctuation">)</span>data<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token punctuation">)</span><span class="token operator">*</span>w<span class="token operator">*</span>h<span class="token operator">*</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token function">ST7735_Unselect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>看看显示效果：</p>
-<center>
-<img src="/images/embeded_sys/LCDTEST.webp" width="400">
-</center>
-]]></content>
-      <categories>
-        <category>Learning Record</category>
-      </categories>
-      <tags>
-        <tag>嵌入式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>STM32配置笔记</title>
-    <url>/2024/11/21/241121/</url>
-    <content><![CDATA[<p>大二学习STM32G4系列的笔记</p>
-<span id="more"></span>
-<p><strong>pdf嵌入使用了pdf.js插件</strong>，hexo-pdf这个插件在移动端不能很好地显示</p>
-<iframe src="/pdfjs/web/viewer.html?file=/pdf/post1.pdf" style="width:100%;height:800px"></iframe>
-]]></content>
-      <categories>
-        <category>Learning Record</category>
-      </categories>
-      <tags>
-        <tag>嵌入式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo博客启用测试</title>
-    <url>/2022/03/14/220314/</url>
-    <content><![CDATA[<p>test</p>
-<p>测试</p>
-<p>試験</p>
-<p><em>テスト</em></p>
+<span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">...</span><span class="token punctuation">]</span>(xxx)
+
+&lt;/center<span class="token punctuation">></span>
+
+&lt;<span class="token tag">!--or</span> <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">></span>
+
+&lt;div align=center<span class="token punctuation">></span>
+
+<span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">...</span><span class="token punctuation">]</span>(xxx)
+
+&lt;/div<span class="token punctuation">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><br>(因为我用VScode来打开博客的md文件进行编辑，在上传至本地网页时一开始发现图片无法加载，后来排查得出居中命令代码间的空行是必要的，不知道其他编辑器是否有这样的问题。)</p>
+<p>还可以直接修改<strong>css</strong>文件，因为<strong>markdown</strong>插入图片的代码在最终渲染的时候变为<strong>html</strong>中的<strong>img</strong>元素。因此可以直接去博客主题文件的源代码中，找到控制文章内图片显示样式的<strong>css</strong>代码，将其修改成水平居中即可。前端编程中修改水平居中的方法非常多，以下是网上资源中提供的其中一种：</p>
+<p>一般情况下可以在<strong>Hexo</strong>博客文件夹进入到主题模板的<code>themes-&gt;(主题名称文件夹)-&gt;source-&gt;css-&gt;_partial</code>中，找到<code>post.styl</code>文件，该<strong>post</strong>文件中保存的就是文章详情页里面的显示样式。然后找到里面正确的<strong>img</strong>元素，修改其样式，增加<code>margin 0 auto</code>这行指令。如下:<br><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">.post<span class="token punctuation">-</span>content
+    position relative
+    color c<span class="token punctuation">-</span><span class="token number">666</span>
+    img
+      max<span class="token punctuation">-</span>width 100%
+      cursor pointer
+      display block 
+      margin 0 auto<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><br>然后可以实现了。但我在自己当前使用的主题中并没有找到相关语段，由于技术比较拉跨，我决定还是先老实用前两种吧。</p>
+<p>[后期补丁：你需要一款名为<strong><em>Typora</em></strong>的<strong>markdown</strong>编辑软件]</p>
 ]]></content>
       <categories>
         <category>Projects &amp; Builds</category>
@@ -182,41 +122,158 @@ uint8_t startbegin2 = 0x00;
       </tags>
   </entry>
   <entry>
-    <title>Hexo博客插入图片</title>
-    <url>/2022/03/21/220321/</url>
+    <title>TFTLCD驱动</title>
+    <url>/2024/09/28/240928/</url>
+    <content><![CDATA[<p>在使用Img2LCD取模软件和ST7735S驱动IC控制LCD时，发现API中显示图片的函数调用后显示异常</p>
+<p>原函数：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">ST7735_DrawImage</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span> x<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> y<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> w<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> h<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token class-name">uint16_t</span><span class="token operator">*</span> data<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>y <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">+</span> w <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>y <span class="token operator">+</span> h <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+
+    <span class="token function">ST7735_Select</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">ST7735_SetAddressWindow</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> x<span class="token operator">+</span>w<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> y<span class="token operator">+</span>h<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">ST7735_WriteData</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token operator">*</span><span class="token punctuation">)</span>data<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span><span class="token punctuation">)</span><span class="token operator">*</span>w<span class="token operator">*</span>h<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">ST7735_Unselect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>输入数据要求16位rgb565格式图片，与Img2LCD取模软件两个8位数表示一个像素点的编码逻辑不同，首次修改仅改了原函数输入数据的格式：将data16位常量数据指针类型改为8位无符号变量指针类型，且在spi写入数据时将数据量乘以2，修改后的函数如下：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">ST7735_DrawImage8bit_Img2LCD</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span> x<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> y<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> w<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> h<span class="token punctuation">,</span> <span class="token class-name">uint8_t</span><span class="token operator">*</span> data<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>y <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">+</span> w <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>y <span class="token operator">+</span> h <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    
+    <span class="token function">ST7735_Select</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">ST7735_SetAddressWindow</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> x<span class="token operator">+</span>w<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> y<span class="token operator">+</span>h<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	
+    <span class="token function">ST7735_WriteData</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token operator">*</span><span class="token punctuation">)</span>data<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token punctuation">)</span><span class="token operator">*</span>w<span class="token operator">*</span>h<span class="token operator">*</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">ST7735_Unselect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>但是烧录测试后LCD显示颜色异常且边缘模糊，初步推测是图片数据原本的问题，考虑到可能2个8位数据合并时高8位与低8位的顺序反了，在MATLAB中进行数组元素两两翻转验证：</p>
+<pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> swappedArray <span class="token operator">=</span> <span class="token function">swapPairs</span><span class="token punctuation">(</span>inputArray<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token function">iscolumn</span><span class="token punctuation">(</span>inputArray<span class="token punctuation">)</span>
+        inputArray <span class="token operator">=</span> inputArray<span class="token operator">'</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+    n <span class="token operator">=</span> <span class="token function">length</span><span class="token punctuation">(</span>inputArray<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token function">mod</span><span class="token punctuation">(</span>n<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">~=</span> <span class="token number">0</span>
+        <span class="token function">inputArray</span><span class="token punctuation">(</span><span class="token keyword">end</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">NaN</span><span class="token punctuation">;</span> 
+    <span class="token keyword">end</span>
+    swappedArray <span class="token operator">=</span> inputArray<span class="token punctuation">;</span>
+    <span class="token function">swappedArray</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">2</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">inputArray</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">:</span><span class="token number">2</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">swappedArray</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">:</span><span class="token number">2</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">inputArray</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">2</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    swappedArray <span class="token operator">=</span> <span class="token function">swappedArray</span><span class="token punctuation">(</span><span class="token operator">~</span><span class="token function">isnan</span><span class="token punctuation">(</span>swappedArray<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>将原始图片数据处理后再进行烧录，发现显示正常，问题定位到数组元素的写入顺序，解决方法较多，这里我直接在函数中将原始数组变换，最终的函数如下：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">ST7735_DrawImage8bit_Img2LCD</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span> x<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> y<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> w<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> h<span class="token punctuation">,</span> <span class="token class-name">uint8_t</span><span class="token operator">*</span> data<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token class-name">uint32_t</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+	<span class="token class-name">uint8_t</span> temp <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>y <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">+</span> w <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_WIDTH<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>y <span class="token operator">+</span> h <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">>=</span> ST7735_HEIGHT<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+	<span class="token comment">/* Swap adjacent elements in the data array	*/</span>
+	<span class="token keyword">for</span> <span class="token punctuation">(</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> w <span class="token operator">*</span> h <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span> i <span class="token operator">+=</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	    <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&lt;</span> w <span class="token operator">*</span> h <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	        temp <span class="token operator">=</span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+	        data<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> data<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+	        data<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+	    <span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token function">ST7735_Select</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">ST7735_SetAddressWindow</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> x<span class="token operator">+</span>w<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> y<span class="token operator">+</span>h<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	
+	<span class="token function">ST7735_WriteData</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token operator">*</span><span class="token punctuation">)</span>data<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token punctuation">)</span><span class="token operator">*</span>w<span class="token operator">*</span>h<span class="token operator">*</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">ST7735_Unselect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>看看显示效果：</p>
+<center>
+<img src="/images/embeded_sys/LCDTEST.webp" width="400">
+</center>
+]]></content>
+      <categories>
+        <category>Learning Record</category>
+      </categories>
+      <tags>
+        <tag>嵌入式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo博客启用测试</title>
+    <url>/2022/03/14/220314/</url>
+    <content><![CDATA[<p>test</p>
+<p>测试</p>
+<p>試験</p>
+<p><em>テスト</em></p>
+]]></content>
+      <categories>
+        <category>Projects &amp; Builds</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>STM32配置笔记</title>
+    <url>/2024/11/21/241121/</url>
+    <content><![CDATA[<p>大二学习STM32G4系列的笔记</p>
+<span id="more"></span>
+<p><strong>pdf嵌入使用了pdf.js插件</strong>，hexo-pdf这个插件在移动端不能很好地显示</p>
+<iframe src="/pdfjs/web/viewer.html?file=/pdf/post1.pdf" style="width:100%;height:800px"></iframe>
+]]></content>
+      <categories>
+        <category>Learning Record</category>
+      </categories>
+      <tags>
+        <tag>嵌入式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo博客插入数学公式</title>
+    <url>/2025/03/27/250327/</url>
     <content><![CDATA[<h2><span id="目录"><strong>目录：</strong></span></h2><!-- toc -->
 <ul>
-<li><a href="#插入图片">插入图片</a></li>
-<li><a href="#更改相对位置">更改相对位置</a></li>
+<li><a href="#step-1-安装mathjax引擎并更换渲染引擎"><strong>Step 1</strong> : 安装MathJax引擎并更换渲染引擎：</a></li>
+<li><a href="#step-2-更新mathjax的cdn链接"><strong>Step 2</strong> : 更新MathJax的cdn链接</a></li>
+<li><a href="#step-3-更改部分转义规则"><strong>Step 3</strong> : 更改部分转义规则</a></li>
+<li><a href="#step-4-可选-主题未预配置下使用hexo-filter-mathjax"><strong>Step 4</strong> (可选) : 主题未预配置下使用Hexo-filter-mathjax</a></li>
+<li><a href="#测试">测试</a></li>
 </ul>
 <!-- tocstop -->
-<h2><span id="插入图片">插入图片</span></h2><p>之前打算在文章中插入图片，配置的过程中遇到了一些问题。</p>
-<p>想在博客中引用外站图片问题不大，但<strong>Hexo</strong>默认插入图片只有这一个方法，对有本地化需求的人群来说不够方便，此时可以安装一个满足本地图片引用的插件，在国内某知名（<strong>c</strong>）专业（<strong>s</strong>）开发者（<strong>d</strong>）社区（<strong>n</strong>）里提供的90%的方案为以下命令：<br><code>npm install hexo-asset-image –save</code><br>该论坛上相互借鉴蔚然成风的壮景对我这个刚入门的小白真是非常险恶，此指令安装版本落后，无法有效显示图片，有效的版本安装命令如下：<br><code>npm install https://github.com/CodeFalling/hexo-asset-image –save</code></p>
-<p>修改<code>_config.yml</code>文件，将<code>post_asset_folder:</code>值改为<strong>true</strong>。</p>
-<p>之后在新建一个博客的同时会生成同名文件夹，将需插入的图片放入该文件夹即可。文章中的具体引用代码为以下格式：(后来发现在<code>source</code>文件夹里新建一个名为<code>images</code>的文件夹存放图片也行)<br><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">]</span>(1/image.jpg)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></p>
-<h2><span id="更改相对位置">更改相对位置</span></h2><p>但这种方法在PC端有一个默认的问题就是图片插入后会自动左对齐，想要实现居中对齐，可以在<strong>markdown</strong>引用代码外部添加<strong>center</strong>元素，或者直接添加<strong>html</strong>元素，如下所示：<br><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">&lt;center<span class="token punctuation">></span>
+<p>在写一些内容时，会遇到需要添加数学公式的地方，Hexo部分主题不支持公式的渲染，比如我正在使用的vivia主题，在查阅一些资料之后，我使用<strong>MathJax</strong>引擎实现了vivia主题下的数学公式渲染。</p>
+<p>MathJax简介：<a href="https://www.osgeo.cn/mathjax/basic/mathjax.html">https://www.osgeo.cn/mathjax/basic/mathjax.html</a> </p>
+<p>该引擎是一款可在所有现代浏览器中工作的开源js显示引擎，辅助页面作者编写含有数学公式的文档</p>
+<h4><span id="step-1-安装mathjax引擎并更换渲染引擎"><strong>Step 1</strong> : 安装MathJax引擎并更换渲染引擎：</span></h4><p>​              操作包括卸载Hexo自带的Hexo-math，卸载默认的对MathJax不友好的marked引擎</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">npm uninstall hexo<span class="token operator">-</span>math <span class="token operator">--</span>save
+npm install hexo<span class="token operator">-</span>renderer<span class="token operator">-</span>mathjax <span class="token operator">--</span>save
 
-<span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">...</span><span class="token punctuation">]</span>(xxx)
-
-&lt;/center<span class="token punctuation">></span>
-
-&lt;<span class="token tag">!--or</span> <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">></span>
-
-&lt;div align=center<span class="token punctuation">></span>
-
-<span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">...</span><span class="token punctuation">]</span>(xxx)
-
-&lt;/div<span class="token punctuation">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><br>(因为我用VScode来打开博客的md文件进行编辑，在上传至本地网页时一开始发现图片无法加载，后来排查得出居中命令代码间的空行是必要的，不知道其他编辑器是否有这样的问题。)</p>
-<p>还可以直接修改<strong>css</strong>文件，因为<strong>markdown</strong>插入图片的代码在最终渲染的时候变为<strong>html</strong>中的<strong>img</strong>元素。因此可以直接去博客主题文件的源代码中，找到控制文章内图片显示样式的<strong>css</strong>代码，将其修改成水平居中即可。前端编程中修改水平居中的方法非常多，以下是网上资源中提供的其中一种：</p>
-<p>一般情况下可以在<strong>Hexo</strong>博客文件夹进入到主题模板的<code>themes-&gt;(主题名称文件夹)-&gt;source-&gt;css-&gt;_partial</code>中，找到<code>post.styl</code>文件，该<strong>post</strong>文件中保存的就是文章详情页里面的显示样式。然后找到里面正确的<strong>img</strong>元素，修改其样式，增加<code>margin 0 auto</code>这行指令。如下:<br><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">.post<span class="token punctuation">-</span>content
-    position relative
-    color c<span class="token punctuation">-</span><span class="token number">666</span>
-    img
-      max<span class="token punctuation">-</span>width 100%
-      cursor pointer
-      display block 
-      margin 0 auto<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><br>然后可以实现了。但我在自己当前使用的主题中并没有找到相关语段，由于技术比较拉跨，我决定还是先老实用前两种吧。</p>
-<p>[后期补丁：你需要一款名为<strong><em>Typora</em></strong>的<strong>markdown</strong>编辑软件]</p>
+npm uninstall hexo<span class="token operator">-</span>renderer<span class="token operator">-</span>marked <span class="token operator">--</span>save
+npm install hexo<span class="token operator">-</span>renderer<span class="token operator">-</span>kramed <span class="token operator">--</span>save<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4><span id="step-2-更新mathjax的cdn链接"><strong>Step 2</strong> : 更新MathJax的cdn链接</span></h4><h4><span id="step-3-更改部分转义规则"><strong>Step 3</strong> : 更改部分转义规则</span></h4><p> hexo 默认的转义规则会将一些字符进行转义，所以要对默认的规则进行修改。<br>首先， 打开/node_modules/kramed/lib/rules/inline.js</p>
+<p>把：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">escape</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\\([\\`*&#123;&#125;\[\]()#$+\-.!_>])</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+<span class="token literal-property property">em</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>更改为：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">escape</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\\([`*\[\]()# +\-.!_>])</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+<span class="token literal-property property">em</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\*((?:\*\*|[\s\S])+?)\*(?!\*)</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h4><span id="step-4-可选-主题未预配置下使用hexo-filter-mathjax"><strong>Step 4</strong> (可选) : 主题未预配置下使用Hexo-filter-mathjax</span></h4><p>对于已经配置MathJax的主题来说，在相关config文件里打开控件即可，对于未配置的主题，可以使用Hexo-filter-mathjax来帮助实现</p>
+<p>Hexo-filter-mathjax项目地址：<a href="https://github.com/next-theme/hexo-filter-mathjax">https://github.com/next-theme/hexo-filter-mathjax</a></p>
+<p>安装：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">npm install hexo<span class="token operator">-</span>filter<span class="token operator">-</span>mathjax <span class="token operator">--</span>save<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>对需要开启的博文，在其Front-Matter处增加mathjax: true这一行即可，如：</p>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token front-matter-block"><span class="token punctuation">---</span>
+<span class="token front-matter yaml language-yaml"><span class="token key atrule">title</span><span class="token punctuation">:</span> xxxxxx
+<span class="token key atrule">categories</span><span class="token punctuation">:</span> xxxxx
+<span class="token key atrule">date</span><span class="token punctuation">:</span> xxxx<span class="token punctuation">-</span>xx<span class="token punctuation">-</span>xx
+<span class="token key atrule">mathjax</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></span>
+<span class="token punctuation">---</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&nbsp;</p>
+<h4><span id="测试">测试</span></h4><p>公式：</p>
+<p>$\Bbb{\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6} }$</p>
+<p>$\frak{\cos 2\theta = \cos^2 \theta - \sin^2 \theta = 2 \cos^2 \theta-1}$</p>
+<p>矩阵运算：</p>
+<p>$\left(    \begin{array}{c}      s \\      t    \end{array}\right)=\left(    \begin{array}{cc}      cos(b) &amp; -sin(b) \\      sin(b) &amp; cos(b)    \end{array}\right)\left(    \begin{array}{c}      x \\      y    \end{array}\right)$                </p>
+<p>*注意到有的cdn版本MathJax框架下公式字体对行间公式有一定影响，可能会一些字体会被渲染成主题相同字体，且移动端不能很好地显示</p>
+<p>参考资料：</p>
+<p><a href="https://www.cnblogs.com/wangxin37/p/8185688.html">https://www.cnblogs.com/wangxin37/p/8185688.html</a></p>
+<p><a href="https://heartlessly.github.io/others/latex-mathjax-gong-shi-zi-ti-mei-hua/">https://heartlessly.github.io/others/latex-mathjax-gong-shi-zi-ti-mei-hua/</a></p>
 ]]></content>
       <categories>
         <category>Projects &amp; Builds</category>
@@ -1233,63 +1290,6 @@ sqlite&gt; SELECT * FROM shows JOIN ratings ON shows.id &#x3D; ratings.show_id W
       </tags>
   </entry>
   <entry>
-    <title>Hexo博客插入数学公式</title>
-    <url>/2025/03/27/250327/</url>
-    <content><![CDATA[<h2><span id="目录"><strong>目录：</strong></span></h2><!-- toc -->
-<ul>
-<li><a href="#step-1-安装mathjax引擎并更换渲染引擎"><strong>Step 1</strong> : 安装MathJax引擎并更换渲染引擎：</a></li>
-<li><a href="#step-2-更新mathjax的cdn链接"><strong>Step 2</strong> : 更新MathJax的cdn链接</a></li>
-<li><a href="#step-3-更改部分转义规则"><strong>Step 3</strong> : 更改部分转义规则</a></li>
-<li><a href="#step-4-可选-主题未预配置下使用hexo-filter-mathjax"><strong>Step 4</strong> (可选) : 主题未预配置下使用Hexo-filter-mathjax</a></li>
-<li><a href="#测试">测试</a></li>
-</ul>
-<!-- tocstop -->
-<p>在写一些内容时，会遇到需要添加数学公式的地方，Hexo部分主题不支持公式的渲染，比如我正在使用的vivia主题，在查阅一些资料之后，我使用<strong>MathJax</strong>引擎实现了vivia主题下的数学公式渲染。</p>
-<p>MathJax简介：<a href="https://www.osgeo.cn/mathjax/basic/mathjax.html">https://www.osgeo.cn/mathjax/basic/mathjax.html</a> </p>
-<p>该引擎是一款可在所有现代浏览器中工作的开源js显示引擎，辅助页面作者编写含有数学公式的文档</p>
-<h4><span id="step-1-安装mathjax引擎并更换渲染引擎"><strong>Step 1</strong> : 安装MathJax引擎并更换渲染引擎：</span></h4><p>​              操作包括卸载Hexo自带的Hexo-math，卸载默认的对MathJax不友好的marked引擎</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">npm uninstall hexo<span class="token operator">-</span>math <span class="token operator">--</span>save
-npm install hexo<span class="token operator">-</span>renderer<span class="token operator">-</span>mathjax <span class="token operator">--</span>save
-
-npm uninstall hexo<span class="token operator">-</span>renderer<span class="token operator">-</span>marked <span class="token operator">--</span>save
-npm install hexo<span class="token operator">-</span>renderer<span class="token operator">-</span>kramed <span class="token operator">--</span>save<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4><span id="step-2-更新mathjax的cdn链接"><strong>Step 2</strong> : 更新MathJax的cdn链接</span></h4><h4><span id="step-3-更改部分转义规则"><strong>Step 3</strong> : 更改部分转义规则</span></h4><p> hexo 默认的转义规则会将一些字符进行转义，所以要对默认的规则进行修改。<br>首先， 打开/node_modules/kramed/lib/rules/inline.js</p>
-<p>把：</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">escape</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\\([\\`*&#123;&#125;\[\]()#$+\-.!_>])</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
-<span class="token literal-property property">em</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>更改为：</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">escape</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\\([`*\[\]()# +\-.!_>])</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
-<span class="token literal-property property">em</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\*((?:\*\*|[\s\S])+?)\*(?!\*)</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h4><span id="step-4-可选-主题未预配置下使用hexo-filter-mathjax"><strong>Step 4</strong> (可选) : 主题未预配置下使用Hexo-filter-mathjax</span></h4><p>对于已经配置MathJax的主题来说，在相关config文件里打开控件即可，对于未配置的主题，可以使用Hexo-filter-mathjax来帮助实现</p>
-<p>Hexo-filter-mathjax项目地址：<a href="https://github.com/next-theme/hexo-filter-mathjax">https://github.com/next-theme/hexo-filter-mathjax</a></p>
-<p>安装：</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">npm install hexo<span class="token operator">-</span>filter<span class="token operator">-</span>mathjax <span class="token operator">--</span>save<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>对需要开启的博文，在其Front-Matter处增加mathjax: true这一行即可，如：</p>
-<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token front-matter-block"><span class="token punctuation">---</span>
-<span class="token front-matter yaml language-yaml"><span class="token key atrule">title</span><span class="token punctuation">:</span> xxxxxx
-<span class="token key atrule">categories</span><span class="token punctuation">:</span> xxxxx
-<span class="token key atrule">date</span><span class="token punctuation">:</span> xxxx<span class="token punctuation">-</span>xx<span class="token punctuation">-</span>xx
-<span class="token key atrule">mathjax</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></span>
-<span class="token punctuation">---</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&nbsp;</p>
-<h4><span id="测试">测试</span></h4><p>公式：</p>
-<p>$\Bbb{\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6} }$</p>
-<p>$\frak{\cos 2\theta = \cos^2 \theta - \sin^2 \theta = 2 \cos^2 \theta-1}$</p>
-<p>矩阵运算：</p>
-<p>$\left(    \begin{array}{c}      s \\      t    \end{array}\right)=\left(    \begin{array}{cc}      cos(b) &amp; -sin(b) \\      sin(b) &amp; cos(b)    \end{array}\right)\left(    \begin{array}{c}      x \\      y    \end{array}\right)$                </p>
-<p>*注意到有的cdn版本MathJax框架下公式字体对行间公式有一定影响，可能会一些字体会被渲染成主题相同字体，且移动端不能很好地显示</p>
-<p>参考资料：</p>
-<p><a href="https://www.cnblogs.com/wangxin37/p/8185688.html">https://www.cnblogs.com/wangxin37/p/8185688.html</a></p>
-<p><a href="https://heartlessly.github.io/others/latex-mathjax-gong-shi-zi-ti-mei-hua/">https://heartlessly.github.io/others/latex-mathjax-gong-shi-zi-ti-mei-hua/</a></p>
-]]></content>
-      <categories>
-        <category>Projects &amp; Builds</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>手持红外热成像仪V2.0-加载图像算法并嵌入轻量级神经网络</title>
     <url>/2025/05/10/250510/</url>
     <content><![CDATA[<p>在之前的基础上改进了一部分</p>
@@ -1587,91 +1587,6 @@ void micro_temp_net_predict(const MicroTempNet* net, float* input, float* output
       </tags>
   </entry>
   <entry>
-    <title>KMP算法 Study Log</title>
-    <url>/2025/08/10/250810/</url>
-    <content><![CDATA[<!-- toc -->
-<ul>
-<li><a href="#什么是字符串匹配"><strong>什么是字符串匹配</strong></a></li>
-<li><a href="#暴力解法"><strong>暴力解法</strong></a></li>
-<li><a href="#kmp算法"><strong>KMP算法</strong></a></li>
-<li><a href="#具体实现"><strong>具体实现</strong></a></li>
-<li><a href="#补充"><strong>补充：</strong></a></li>
-</ul>
-<!-- tocstop -->
-<p>&nbsp;</p>
-<p>KMP（Knuth-Morris-Pratt）算法是一种高效的字符串匹配算法，用于在一个主串中查找一个模式串的位置。它通过预处理模式串，避免了在匹配失败时重复比较已经匹配的部分，从而提高了匹配效率。</p>
-<p>该算法在1977年被提出，取三位贡献者的姓名首字母组成算法名称。</p>
-<h3><span id="什么是字符串匹配"><strong>什么是字符串匹配</strong></span></h3><p>字符串匹配问题是计算机科学中的一个经典问题，其核心目标是<strong>在一个较长的文本串（Text）中查找是否存在一个或多个与给定模式串（Pattern）完全相同的子串</strong>。</p>
-<p>例如：</p>
-<ul>
-<li><strong>文本串（T）</strong>：<code>&quot;ABABDABACDABABCABAB&quot;</code></li>
-<li><strong>模式串（P）</strong>：<code>&quot;ABABCABAB&quot;</code></li>
-</ul>
-<p>那么模式串可以在文本串的索引11处匹配</p>
-<p>&nbsp;</p>
-<h3><span id="暴力解法"><strong>暴力解法</strong></span></h3><p>知道控制语句用法的人都知道，这个问题可以套两层循环来解决，从文本串的第1个字符开始，与模式串逐字符比对，如果发现不匹配，则从文本串的第2个字符开始重新比对，以此类推，该解法时间复杂度为$O(m*n)$，效率较低。</p>
-<p>&nbsp;</p>
-<h3><span id="kmp算法"><strong>KMP算法</strong></span></h3><p>KMP算法通过预处理模式串，利用已经匹配的信息，减少重复比较，将时间复杂度优化至$O(m+n)$</p>
-<p>其核心思想有两点：</p>
-<ol>
-<li>构造模式串的部分匹配表，也叫做前缀表，这个表记录了模式串的最长公共前后缀的长度</li>
-<li>利用失败信息，当字符不匹配时，根据部分匹配表移动模式串指针的位置，而不需要回溯文本串的位置</li>
-</ol>
-<p>下图可以清晰地看出前缀表的含义：</p>
-<center>
-    <img src="/images/KMP/prefix.webp" width="500">
-</center>
-
-<p>&nbsp;</p>
-<h3><span id="具体实现"><strong>具体实现</strong></span></h3><p>构造模式串的部分匹配表，即前缀表：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">getprefix</span><span class="token punctuation">(</span><span class="token keyword">const</span> string <span class="token operator">&amp;</span>s<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">*</span>prefix<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">int</span> fend <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    prefix<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> bend <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> bend <span class="token operator">&lt;</span> s<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  bend<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>fend <span class="token operator">></span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> s<span class="token punctuation">[</span>fend<span class="token punctuation">]</span> <span class="token operator">!=</span> s<span class="token punctuation">[</span>bend<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-            fend <span class="token operator">=</span> prefix<span class="token punctuation">[</span>fend <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    	<span class="token punctuation">&#125;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>s<span class="token punctuation">[</span>bend<span class="token punctuation">]</span> <span class="token operator">==</span> s<span class="token punctuation">[</span>fend<span class="token punctuation">]</span><span class="token punctuation">)</span> fend<span class="token operator">++</span><span class="token punctuation">;</span>
-        prefix<span class="token punctuation">[</span>bend<span class="token punctuation">]</span> <span class="token operator">=</span> fend<span class="token punctuation">;</span>
-	<span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>这其中有一些类似递归的思想，当我们手动实现前缀表时，当遇到前缀最后一个字符与后缀字符不匹配的情况时，我们只需要去找他<strong>前一位的前缀表的值所指引的位置</strong>，从那个位置再次开始对比。</p>
-<p>道理和字符串匹配中的应用是一样的，因为前一位存放的是在当前字符之前的子串最大相等前后缀的长度，索引之后代表你可以跳过对比几个前后缀都有的字符，提高效率。</p>
-<p>在具体字符串匹配问题中，运用也是一个道理：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">strStr</span><span class="token punctuation">(</span>string haystack<span class="token punctuation">,</span> string needle<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>needle<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>needle<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">></span> haystack<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-        vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">prefix</span><span class="token punctuation">(</span>needle<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">getprefix</span><span class="token punctuation">(</span>needle<span class="token punctuation">,</span> <span class="token operator">&amp;</span>prefix<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">int</span> index <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> haystack<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-            <span class="token keyword">while</span> <span class="token punctuation">(</span>index <span class="token operator">></span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> haystack<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">!=</span> needle<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-                index <span class="token operator">=</span> prefix<span class="token punctuation">[</span>index <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-            <span class="token punctuation">&#125;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>haystack<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> needle<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">)</span> index<span class="token operator">++</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">==</span> needle<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token punctuation">(</span>i <span class="token operator">-</span> index <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&nbsp;</p>
-<h3><span id="补充"><strong>补充：</strong></span></h3><p>由这个经典问题可推出：一个字符串是否由某个子串重复构成问题的解法。</p>
-<p>结论是，<strong>如果一个字符串在去掉其最长相等前后缀的长度后，剩余的子串长度能被原始长度整除，那么原始字符串就能被这个剩余的子串重复表示。</strong></p>
-<p>充分性证明，即如果某字符串去掉最长相等前后缀后的剩余子串长度能整除原始长度，则原始字符串可由该剩余子串重复表示。</p>
-<center>
-    <img src="/images/KMP/prove1.webp" width="500">
-</center>
-
-<p>必要性证明，即如果字符串能被某个子串重复表示，则去掉字符串的最长相等前后缀后的剩余子串长度必能整除原始长度。</p>
-<p>必要性显然，因此充分必要性均满足，证毕。</p>
-]]></content>
-      <categories>
-        <category>Learning Record</category>
-      </categories>
-      <tags>
-        <tag>Algorithm</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MFCC音频特征提取流程demo</title>
     <url>/2025/07/10/250710/</url>
     <content><![CDATA[<p>MFCC的核心思想是模仿人耳对声音的非线性感知特性（人耳对低频声音比高频声音更敏感），从而更好地表示语音特征。其流程可以概括为以下<strong>步骤</strong>：</p>
@@ -1952,6 +1867,51 @@ void micro_temp_net_predict(const MicroTempNet* net, float* input, float* output
       </tags>
   </entry>
   <entry>
+    <title>用APP Inventor快速开发一款BLE安卓应用</title>
+    <url>/2025/07/18/250718/</url>
+    <content><![CDATA[<p>出于科研项目要求，我需要开发一个能个性化定制界面与功能的BLE手机上位机软件，在经过简单的调研后，主要有以下两种开发路径：</p>
+<ol>
+<li>Android Studio</li>
+<li>MIT APP Inventor</li>
+</ol>
+<p>其中AS需要Java基础，且开发周期长；MIT APP Inventor图形化编程，20min可上手，于是我选择后者，最终也能达到我想要的效果。</p>
+<p>选择建议如下：</p>
+<ul>
+<li><strong>选 Android Studio</strong>：<br>如果你想成为专业开发者，或开发功能复杂、可发布的商业应用。</li>
+<li><strong>选 MIT App Inventor</strong>：<br>如果你是学生，或只想快速做一个简单应用</li>
+</ul>
+<p>于是在B站看了几个包浆的教学视频后，我开始上手制作，过程意外地顺利</p>
+<p>首先，你需要明确你的APP要包含哪些模块</p>
+<p>如下图所示，在登陆官网后，你可以把你需要的模块在侧边栏拖入主页面</p>
+<center>
+    <img src="/images/appinventor/homepage.webp" width="800">
+</center>
+
+
+
+<p>依次描述我的思路</p>
+<p>上图中组件1是BLE设备搜索与断联按钮</p>
+<p>2是BLE连接状态，3是波形图，4是实时数值，5是清空按钮；</p>
+<p>当然也有后端组件Ⅰ，是BLE模块，这个在官网没有，需要下载拓展包，<a href="https://iot.appinventor.mit.edu/">https://iot.appinventor.mit.edu/</a> 这个网站里可以找到，组件Ⅱ相当于画图所用到的数据列表。</p>
+<p>&nbsp;</p>
+<p>在完成组件选择与视图构造后，进入下一步逻辑编程，这里不再赘述，和一些少儿编程培训用的Scratch基本是一个套路，特别注意BLE设备的gatt协议uuid需要根据产品厂商提供的数值修改</p>
+<center>
+    <img src="/images/appinventor/logic.webp" width="800">
+</center>
+
+<p>最终效果如下，其实整体耗时应该不到半天，向互联网开源精神致敬。</p>
+<center>
+    <img src="/images/appinventor/display.gif" width="260">
+</center>
+]]></content>
+      <categories>
+        <category>Projects &amp; Builds</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>写一个小轮子：模拟实现ls-l 指令</title>
     <url>/2025/09/14/250915/</url>
     <content><![CDATA[<h2><span id="概述">概述</span></h2><p>在Linux系统中，<code>ls -l</code>命令是我们日常使用最频繁的命令之一，它能够以长格式显示文件的详细信息。本文将深入解析<code>ls -l</code>的实现原理，并逐步讲解如何用C语言实现一个简化版的<code>ls -l</code>命令。</p>
@@ -2087,51 +2047,6 @@ void micro_temp_net_predict(const MicroTempNet* net, float* input, float* output
       <tags>
         <tag>CS</tag>
         <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>用APP Inventor快速开发一款BLE安卓应用</title>
-    <url>/2025/07/18/250718/</url>
-    <content><![CDATA[<p>出于科研项目要求，我需要开发一个能个性化定制界面与功能的BLE手机上位机软件，在经过简单的调研后，主要有以下两种开发路径：</p>
-<ol>
-<li>Android Studio</li>
-<li>MIT APP Inventor</li>
-</ol>
-<p>其中AS需要Java基础，且开发周期长；MIT APP Inventor图形化编程，20min可上手，于是我选择后者，最终也能达到我想要的效果。</p>
-<p>选择建议如下：</p>
-<ul>
-<li><strong>选 Android Studio</strong>：<br>如果你想成为专业开发者，或开发功能复杂、可发布的商业应用。</li>
-<li><strong>选 MIT App Inventor</strong>：<br>如果你是学生，或只想快速做一个简单应用</li>
-</ul>
-<p>于是在B站看了几个包浆的教学视频后，我开始上手制作，过程意外地顺利</p>
-<p>首先，你需要明确你的APP要包含哪些模块</p>
-<p>如下图所示，在登陆官网后，你可以把你需要的模块在侧边栏拖入主页面</p>
-<center>
-    <img src="/images/appinventor/homepage.webp" width="800">
-</center>
-
-
-
-<p>依次描述我的思路</p>
-<p>上图中组件1是BLE设备搜索与断联按钮</p>
-<p>2是BLE连接状态，3是波形图，4是实时数值，5是清空按钮；</p>
-<p>当然也有后端组件Ⅰ，是BLE模块，这个在官网没有，需要下载拓展包，<a href="https://iot.appinventor.mit.edu/">https://iot.appinventor.mit.edu/</a> 这个网站里可以找到，组件Ⅱ相当于画图所用到的数据列表。</p>
-<p>&nbsp;</p>
-<p>在完成组件选择与视图构造后，进入下一步逻辑编程，这里不再赘述，和一些少儿编程培训用的Scratch基本是一个套路，特别注意BLE设备的gatt协议uuid需要根据产品厂商提供的数值修改</p>
-<center>
-    <img src="/images/appinventor/logic.webp" width="800">
-</center>
-
-<p>最终效果如下，其实整体耗时应该不到半天，向互联网开源精神致敬。</p>
-<center>
-    <img src="/images/appinventor/display.gif" width="260">
-</center>
-]]></content>
-      <categories>
-        <category>Projects &amp; Builds</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -3966,6 +3881,103 @@ H_{1}=\left|\begin{array}{cc}
       </tags>
   </entry>
   <entry>
+    <title>KMP算法 Study Log</title>
+    <url>/2025/08/10/250810/</url>
+    <content><![CDATA[<!-- toc -->
+<ul>
+<li><a href="#什么是字符串匹配"><strong>什么是字符串匹配</strong></a></li>
+<li><a href="#暴力解法"><strong>暴力解法</strong></a></li>
+<li><a href="#kmp算法"><strong>KMP算法</strong></a></li>
+<li><a href="#具体实现"><strong>具体实现</strong></a></li>
+<li><a href="#补充"><strong>补充：</strong></a></li>
+</ul>
+<!-- tocstop -->
+<p>&nbsp;</p>
+<p>KMP（Knuth-Morris-Pratt）算法是一种高效的字符串匹配算法，用于在一个主串中查找一个模式串的位置。它通过预处理模式串，避免了在匹配失败时重复比较已经匹配的部分，从而提高了匹配效率。</p>
+<p>该算法在1977年被提出，取三位贡献者的姓名首字母组成算法名称。</p>
+<h3><span id="什么是字符串匹配"><strong>什么是字符串匹配</strong></span></h3><p>字符串匹配问题是计算机科学中的一个经典问题，其核心目标是<strong>在一个较长的文本串（Text）中查找是否存在一个或多个与给定模式串（Pattern）完全相同的子串</strong>。</p>
+<p>例如：</p>
+<ul>
+<li><strong>文本串（T）</strong>：<code>&quot;ABABDABACDABABCABAB&quot;</code></li>
+<li><strong>模式串（P）</strong>：<code>&quot;ABABCABAB&quot;</code></li>
+</ul>
+<p>那么模式串可以在文本串的索引11处匹配</p>
+<p>&nbsp;</p>
+<h3><span id="暴力解法"><strong>暴力解法</strong></span></h3><p>知道控制语句用法的人都知道，这个问题可以套两层循环来解决，从文本串的第1个字符开始，与模式串逐字符比对，如果发现不匹配，则从文本串的第2个字符开始重新比对，以此类推，该解法时间复杂度为$O(m*n)$，效率较低。</p>
+<p>&nbsp;</p>
+<h3><span id="kmp算法"><strong>KMP算法</strong></span></h3><p>KMP算法通过预处理模式串，利用已经匹配的信息，减少重复比较，将时间复杂度优化至$O(m+n)$</p>
+<p>其核心思想有两点：</p>
+<ol>
+<li>构造模式串的部分匹配表，也叫做前缀表，这个表记录了模式串的最长公共前后缀的长度</li>
+<li>利用失败信息，当字符不匹配时，根据部分匹配表移动模式串指针的位置，而不需要回溯文本串的位置</li>
+</ol>
+<p>下图可以清晰地看出前缀表的含义：</p>
+<center>
+    <img src="/images/KMP/prefix.webp" width="500">
+</center>
+
+<p>&nbsp;</p>
+<h3><span id="具体实现"><strong>具体实现</strong></span></h3><p>构造模式串的部分匹配表，即前缀表：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">getprefix</span><span class="token punctuation">(</span><span class="token keyword">const</span> string <span class="token operator">&amp;</span>s<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">*</span>prefix<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> fend <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    prefix<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> bend <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> bend <span class="token operator">&lt;</span> s<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  bend<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>fend <span class="token operator">></span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> s<span class="token punctuation">[</span>fend<span class="token punctuation">]</span> <span class="token operator">!=</span> s<span class="token punctuation">[</span>bend<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            fend <span class="token operator">=</span> prefix<span class="token punctuation">[</span>fend <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    	<span class="token punctuation">&#125;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>s<span class="token punctuation">[</span>bend<span class="token punctuation">]</span> <span class="token operator">==</span> s<span class="token punctuation">[</span>fend<span class="token punctuation">]</span><span class="token punctuation">)</span> fend<span class="token operator">++</span><span class="token punctuation">;</span>
+        prefix<span class="token punctuation">[</span>bend<span class="token punctuation">]</span> <span class="token operator">=</span> fend<span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这其中有一些类似递归的思想，当我们手动实现前缀表时，当遇到前缀最后一个字符与后缀字符不匹配的情况时，我们只需要去找他<strong>前一位的前缀表的值所指引的位置</strong>，从那个位置再次开始对比。</p>
+<p>道理和字符串匹配中的应用是一样的，因为前一位存放的是在当前字符之前的子串最大相等前后缀的长度，索引之后代表你可以跳过对比几个前后缀都有的字符，提高效率。</p>
+<p>在具体字符串匹配问题中，运用也是一个道理：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">strStr</span><span class="token punctuation">(</span>string haystack<span class="token punctuation">,</span> string needle<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>needle<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>needle<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">></span> haystack<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">prefix</span><span class="token punctuation">(</span>needle<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">getprefix</span><span class="token punctuation">(</span>needle<span class="token punctuation">,</span> <span class="token operator">&amp;</span>prefix<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> index <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> haystack<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">while</span> <span class="token punctuation">(</span>index <span class="token operator">></span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> haystack<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">!=</span> needle<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                index <span class="token operator">=</span> prefix<span class="token punctuation">[</span>index <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>haystack<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> needle<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">)</span> index<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">==</span> needle<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token punctuation">(</span>i <span class="token operator">-</span> index <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&nbsp;</p>
+<h3><span id="补充"><strong>补充：</strong></span></h3><p>由这个经典问题可推出：一个字符串是否由某个子串重复构成问题的解法。</p>
+<p>结论是，<strong>如果一个字符串在去掉其最长相等前后缀的长度后，剩余的子串长度能被原始长度整除，那么原始字符串就能被这个剩余的子串重复表示。</strong></p>
+<p>充分性证明，即如果某字符串去掉最长相等前后缀后的剩余子串长度能整除原始长度，则原始字符串可由该剩余子串重复表示。</p>
+<center>
+    <img src="/images/KMP/prove1.webp" width="500">
+</center>
+
+<p>必要性证明，即如果字符串能被某个子串重复表示，则去掉字符串的最长相等前后缀后的剩余子串长度必能整除原始长度。</p>
+<p>必要性显然，因此充分必要性均满足，证毕。</p>
+]]></content>
+      <categories>
+        <category>Learning Record</category>
+      </categories>
+      <tags>
+        <tag>Algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Graph AC</title>
+    <url>/2025/09/21/250921/</url>
+    <content><![CDATA[<h3><span id="图论理论基础">图论理论基础</span></h3><p>有向图 无向图 加权图</p>
+]]></content>
+      <categories>
+        <category>Learning Record</category>
+      </categories>
+      <tags>
+        <tag>CS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Pulp Compilation 从零开始的刷题之路</title>
     <url>/2025/06/21/250621/</url>
     <content><![CDATA[<!-- toc -->
@@ -3981,6 +3993,7 @@ H_{1}=\left|\begin{array}{cc}
 <li><a href="#9-贪心">9. 贪心</a></li>
 <li><a href="#10-动态规划">10. 动态规划</a></li>
 <li><a href="#11-单调栈">11. 单调栈</a></li>
+<li><a href="#12-图论">12. 图论</a></li>
 </ul>
 <!-- tocstop -->
 <h3><span id="1-数学">1. 数学</span></h3><h3><span id="11-基础">1.1 基础</span></h3><p>有一天, 小明收到一张奇怪的信, 信上要小明计算出给定数各个位上数字为偶数的和。<br>例如：5548，结果为12，等于 4 + 8 。<br>小明很苦恼，想请你帮忙解决这个问题</p>
@@ -10289,10 +10302,76 @@ dp[i][3] = dp[i - 1][2];
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3><span id="114-接雨水">11.4 接雨水</span></h3><p>给定 <code>n</code> 个非负整数表示每个宽度为 <code>1</code> 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token keyword">int</span> <span class="token function">trap</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> height<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>height<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">int</span> result <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        stack<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> st<span class="token punctuation">;</span>
+        st<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> height<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>height<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;</span> height<span class="token punctuation">[</span>st<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span> st<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>height<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> height<span class="token punctuation">[</span>st<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                <span class="token comment">// st.pop()可以不加</span>
+                st<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                st<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">else</span><span class="token punctuation">&#123;</span>
+                <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>st<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> height<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">></span> height<span class="token punctuation">[</span>st<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                    <span class="token keyword">int</span> mid <span class="token operator">=</span> height<span class="token punctuation">[</span>st<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+                    st<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>st<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                        <span class="token keyword">int</span> w <span class="token operator">=</span> i <span class="token operator">-</span> st<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+                        <span class="token keyword">int</span> h <span class="token operator">=</span> <span class="token function">min</span><span class="token punctuation">(</span>height<span class="token punctuation">[</span>st<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span> height<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span> mid<span class="token punctuation">;</span>
+                        result <span class="token operator">+=</span> w <span class="token operator">*</span> h<span class="token punctuation">;</span>
+                    <span class="token punctuation">&#125;</span>
+                <span class="token punctuation">&#125;</span>
+                st<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3><span id="115-柱状图中最大的矩形">11.5 柱状图中最大的矩形</span></h3><p>给定 <em>n</em> 个非负整数，用来表示柱状图中各个柱子的高度。每个柱子彼此相邻，且宽度为 1 。</p>
 <p>求在该柱状图中，能够勾勒出来的矩形的最大面积。</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token keyword">int</span> <span class="token function">largestRectangleArea</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> heights<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">int</span> result <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        stack<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> st<span class="token punctuation">;</span>
+        st<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token comment">// 和接雨水不同，这里开头和结尾都需要补零，开头为了计算开头值，结尾为了防止一直不进循环</span>
+        heights<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>heights<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        heights<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> heights<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>heights<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">></span> heights<span class="token punctuation">[</span>st<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span> st<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>heights<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> heights<span class="token punctuation">[</span>st<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                st<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                st<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">else</span><span class="token punctuation">&#123;</span>
+                <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>st<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>heights<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;</span> heights<span class="token punctuation">[</span>st<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                    <span class="token keyword">int</span> mid <span class="token operator">=</span> st<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    st<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>st<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                        <span class="token keyword">int</span> h <span class="token operator">=</span> i <span class="token operator">-</span> st<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+                        <span class="token keyword">int</span> w <span class="token operator">=</span> heights<span class="token punctuation">[</span>mid<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                        result <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>h <span class="token operator">*</span> w<span class="token punctuation">,</span> result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">&#125;</span>
+                <span class="token punctuation">&#125;</span>
+                st<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3><span id="12-图论">12. 图论</span></h3><p>放在另一篇博客里了</p>
 ]]></content>
       <categories>
         <category>Learning Record</category>
