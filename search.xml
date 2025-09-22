@@ -1,6 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hexo博客启用测试</title>
+    <url>/2022/03/14/220314/</url>
+    <content><![CDATA[<p>test</p>
+<p>测试</p>
+<p>試験</p>
+<p><em>テスト</em></p>
+]]></content>
+      <categories>
+        <category>Projects &amp; Builds</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>UART收发处理函数</title>
+    <url>/2024/10/20/241020/</url>
+    <content><![CDATA[<p>UART（Universal Asynchronous Receiver/Transmitter）是一种串行通信协议，在嵌入式系统和微控制器间数据传输中发挥着核心作用。UART协议通过异步方式传输数据，不依赖于共享时钟信号，简化了通信线路的需求。每次传输包括起始位、数据位、可选的奇偶校验位以及停止位，这种结构支持从简单的传感器到复杂的处理器之间的可靠数据交换。</p>
+<p>其重要性还体现在其广泛的兼容性和低成本实现上。它可以通过简单的两线（TX和RX）接口实现全双工通信，极大地降低了系统的硬件复杂性。此外，UART通信协议可以适应不同的波特率设置，使其能够灵活地调整以匹配特定应用的速度要求。在许多工业和消费电子产品中，UART仍然是实现可靠串行通信的首选技术，尤其在资源受限的环境中显示出其高效和经济的优势。（<strong>以上均为GPT生成</strong>）</p>
+<p>在进行传感器测试时，常用到UART，这里mark一下自己常用的HAL库函数封装，免得后续一直翻之前的程序</p>
+<p>函数需要用到的全局变量如下：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">char</span> send<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token number">0</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span> <span class="token comment">//传输用字符数组，储存字符串</span>
+
+<span class="token class-name">uint8_t</span> rx_buffer <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//接收字符缓冲区</span>
+
+<span class="token keyword">char</span> rx_receiver<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token number">0</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span> <span class="token comment">//接收用字符数组</span>
+
+<span class="token class-name">uint8_t</span> rx_num <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//接收字符数量</span>
+
+<span class="token class-name">uint8_t</span>  uart_start_flag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//接收标志位</span>
+
+__IO  <span class="token class-name">uint32_t</span> uart_gettick <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//系统时钟比较变量</span>
+
+<span class="token comment">/* 测试变量
+uint16_t pwm_duty = 0;
+
+uint8_t startbegin = 0xff;
+
+uint8_t startbegin2 = 0x00;
+*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在硬件配置时要打开UART中断：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token function">HAL_UART_Receive_IT</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1 <span class="token punctuation">,</span> <span class="token operator">&amp;</span>rx_buffer<span class="token punctuation">,</span>  <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>中断回调函数如下：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">HAL_UART_RxCpltCallback</span><span class="token punctuation">(</span>UART_HandleTypeDef <span class="token operator">*</span>huart<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>rx_num <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+  uart_gettick <span class="token operator">=</span> uwTick<span class="token punctuation">;</span> 
+  uart_start_flag <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>  
+  <span class="token punctuation">&#125;</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>uart_start_flag <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+  rx_receiver<span class="token punctuation">[</span>rx_num<span class="token punctuation">]</span> <span class="token operator">=</span> rx_buffer<span class="token punctuation">;</span>
+  rx_num<span class="token operator">++</span><span class="token punctuation">;</span>  
+  <span class="token punctuation">&#125;</span>
+  <span class="token function">HAL_UART_Receive_IT</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1 <span class="token punctuation">,</span> <span class="token operator">&amp;</span>rx_buffer<span class="token punctuation">,</span>  <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>主循环中的处理函数如下：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">UART_RX_PROC</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span> uwTick<span class="token operator">-</span> uart_gettick <span class="token punctuation">)</span> <span class="token operator">>=</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span><span class="token punctuation">(</span> uwTick<span class="token operator">-</span> uart_gettick <span class="token punctuation">)</span> <span class="token operator">&lt;=</span><span class="token number">600</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>uart_start_flag <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>rx_receiver<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token char">'&amp;'</span> <span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span> rx_num <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">//示例：传输pwm占空比</span>
+    pwm_duty <span class="token operator">=</span>  rx_receiver<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span> rx_num <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    pwm_duty <span class="token operator">=</span> <span class="token punctuation">(</span>rx_receiver<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">10</span> <span class="token operator">+</span> rx_receiver<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span> rx_num <span class="token operator">==</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    pwm_duty <span class="token operator">=</span> <span class="token punctuation">(</span>rx_receiver<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">100</span> <span class="token operator">+</span> <span class="token punctuation">(</span>rx_receiver<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">10</span> <span class="token operator">+</span> rx_receiver<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>      
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span> rx_num <span class="token operator">>=</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    pwm_duty <span class="token operator">=</span> <span class="token number">1000</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span>
+    <span class="token function">HAL_UART_Transmit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token operator">&amp;</span>startbegin<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0xffff</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">HAL_UART_Transmit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token operator">&amp;</span>startbegin2<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0xffff</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">HAL_UART_Transmit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token operator">&amp;</span>startbegin<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0xffff</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    rx_num <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    uart_start_flag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这里的函数主要是用以处理字符串的，应付一些的简单的应用已经够用了，当然，也能在此基础上扩展。</p>
+]]></content>
+      <categories>
+        <category>Learning Record</category>
+      </categories>
+      <tags>
+        <tag>嵌入式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo博客插入图片</title>
+    <url>/2022/03/21/220321/</url>
+    <content><![CDATA[<h2><span id="目录"><strong>目录：</strong></span></h2><!-- toc -->
+<ul>
+<li><a href="#插入图片">插入图片</a></li>
+<li><a href="#更改相对位置">更改相对位置</a></li>
+</ul>
+<!-- tocstop -->
+<h2><span id="插入图片">插入图片</span></h2><p>之前打算在文章中插入图片，配置的过程中遇到了一些问题。</p>
+<p>想在博客中引用外站图片问题不大，但<strong>Hexo</strong>默认插入图片只有这一个方法，对有本地化需求的人群来说不够方便，此时可以安装一个满足本地图片引用的插件，在国内某知名（<strong>c</strong>）专业（<strong>s</strong>）开发者（<strong>d</strong>）社区（<strong>n</strong>）里提供的90%的方案为以下命令：<br><code>npm install hexo-asset-image –save</code><br>该论坛上相互借鉴蔚然成风的壮景对我这个刚入门的小白真是非常险恶，此指令安装版本落后，无法有效显示图片，有效的版本安装命令如下：<br><code>npm install https://github.com/CodeFalling/hexo-asset-image –save</code></p>
+<p>修改<code>_config.yml</code>文件，将<code>post_asset_folder:</code>值改为<strong>true</strong>。</p>
+<p>之后在新建一个博客的同时会生成同名文件夹，将需插入的图片放入该文件夹即可。文章中的具体引用代码为以下格式：(后来发现在<code>source</code>文件夹里新建一个名为<code>images</code>的文件夹存放图片也行)<br><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">]</span>(1/image.jpg)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></p>
+<h2><span id="更改相对位置">更改相对位置</span></h2><p>但这种方法在PC端有一个默认的问题就是图片插入后会自动左对齐，想要实现居中对齐，可以在<strong>markdown</strong>引用代码外部添加<strong>center</strong>元素，或者直接添加<strong>html</strong>元素，如下所示：<br><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">&lt;center<span class="token punctuation">></span>
+
+<span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">...</span><span class="token punctuation">]</span>(xxx)
+
+&lt;/center<span class="token punctuation">></span>
+
+&lt;<span class="token tag">!--or</span> <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">></span>
+
+&lt;div align=center<span class="token punctuation">></span>
+
+<span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">...</span><span class="token punctuation">]</span>(xxx)
+
+&lt;/div<span class="token punctuation">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><br>(因为我用VScode来打开博客的md文件进行编辑，在上传至本地网页时一开始发现图片无法加载，后来排查得出居中命令代码间的空行是必要的，不知道其他编辑器是否有这样的问题。)</p>
+<p>还可以直接修改<strong>css</strong>文件，因为<strong>markdown</strong>插入图片的代码在最终渲染的时候变为<strong>html</strong>中的<strong>img</strong>元素。因此可以直接去博客主题文件的源代码中，找到控制文章内图片显示样式的<strong>css</strong>代码，将其修改成水平居中即可。前端编程中修改水平居中的方法非常多，以下是网上资源中提供的其中一种：</p>
+<p>一般情况下可以在<strong>Hexo</strong>博客文件夹进入到主题模板的<code>themes-&gt;(主题名称文件夹)-&gt;source-&gt;css-&gt;_partial</code>中，找到<code>post.styl</code>文件，该<strong>post</strong>文件中保存的就是文章详情页里面的显示样式。然后找到里面正确的<strong>img</strong>元素，修改其样式，增加<code>margin 0 auto</code>这行指令。如下:<br><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">.post<span class="token punctuation">-</span>content
+    position relative
+    color c<span class="token punctuation">-</span><span class="token number">666</span>
+    img
+      max<span class="token punctuation">-</span>width 100%
+      cursor pointer
+      display block 
+      margin 0 auto<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><br>然后可以实现了。但我在自己当前使用的主题中并没有找到相关语段，由于技术比较拉跨，我决定还是先老实用前两种吧。</p>
+<p>[后期补丁：你需要一款名为<strong><em>Typora</em></strong>的<strong>markdown</strong>编辑软件]</p>
+]]></content>
+      <categories>
+        <category>Projects &amp; Builds</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>TFTLCD驱动</title>
     <url>/2024/09/28/240928/</url>
     <content><![CDATA[<p>在使用Img2LCD取模软件和ST7735S驱动IC控制LCD时，发现API中显示图片的函数调用后显示异常</p>
@@ -75,18 +211,150 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo博客启用测试</title>
-    <url>/2022/03/14/220314/</url>
-    <content><![CDATA[<p>test</p>
-<p>测试</p>
-<p>試験</p>
-<p><em>テスト</em></p>
+    <title>基于MLX90640的手持红外热成像仪</title>
+    <url>/2025/02/26/250226/</url>
+    <content><![CDATA[<h2><span id="项目背景">项目背景：</span></h2><ol>
+<li><p>DIY好玩捏</p>
+</li>
+<li><p>电路工作时有时需要检查元件发热情况，但用手触摸元件有一定的风险，因此需要一种无接触式的多点测温设备</p>
+</li>
+</ol>
+<p>于是开始了解到热成像这个测温方式，以下是软硬件方案</p>
+<h2><span id="方案">方案：</span></h2><h3><span id="硬件部分">硬件部分</span></h3><p>​        采用上下两块板子对插组合，为了减少复杂度，留了排母方便直插LCD与传感器模组。</p>
+<h4><span id="board1-mcu与外设">BOARD1: MCU与外设</span></h4><ul>
+<li>采用STM32F407作为主控，512KB  Flash，其实没特别注意选型，只是手上有这个开发板，要压缩成本的话用其他型号也可以</li>
+<li>红外传感模组为MLX90640 BAA，这个价格比较贵，比其他元件加起来都贵</li>
+<li>屏幕模组为1.44寸TFT-LCD，也是现成的，买了俩还剩一个，下次做别的东西的时候给用了吧</li>
+<li>留了串口测试点和烧录测试点</li>
+</ul>
+<center>
+    <img src="/images/thermal_camera/tc_board1.webp" width="800">
+</center>
+
+
+<h4><span id="board2-power">BOARD2: POWER</span></h4><ul>
+<li>3.7V锂电池供电，可通过USB接口经过LGS4084H电源管理芯片给锂电池充电</li>
+<li>经过一个LDO稳到3.3V给MCU整体供电，VDDA和VCC用磁珠滤波隔离了一下</li>
+</ul>
+<center>
+    <img src="/images/thermal_camera/tc_board2.webp" width="800">
+</center>
+
+
+<p>电源板后续涉及锂电池供电DIY的倒是可以继续沿用</p>
+<center>
+    <img src="/images/thermal_camera/battery.webp" width="600">
+</center>
+
+
+<p>立创打样PCB，自己贴片，PCB板框留了一些M3螺孔方便组装。</p>
+<h3><span id="软件部分"><strong>软件部分</strong></span></h3><p>通讯接口涉及IIC与SPI，以及图像测试的时候用了一下UART，均比较基础。使用硬件IIC进行传感器模组与MCU间的通信，模组官方提供了接口可调用，可读取温度值。RGB转换用了开源的函数：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/*pass in value and figure out R G B
+    several published ways to do this I basically graphed R G B and developed simple linear equations
+    again a 5-6-5 color display will not need accurate temp to R G B color calculation
+    equations based on
+    http://web-tech.ga-usa.com/2012/05/creating-a-custom-hot-to-cold-temperature-color-gradient-for-use-with-rrdtool/index.html
+  */</span>
+<span class="token keyword">static</span> <span class="token class-name">uint16_t</span> <span class="token function">TempToColor</span><span class="token punctuation">(</span><span class="token keyword">float</span> val<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+  red <span class="token operator">=</span> <span class="token function">constrain</span><span class="token punctuation">(</span><span class="token number">255.0f</span> <span class="token operator">/</span> <span class="token punctuation">(</span>c <span class="token operator">-</span> b<span class="token punctuation">)</span> <span class="token operator">*</span> val <span class="token operator">-</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>b <span class="token operator">*</span> <span class="token number">255.0f</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>c <span class="token operator">-</span> b<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>val <span class="token operator">></span> minTemp<span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token punctuation">(</span>val <span class="token operator">&lt;</span> a<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    green <span class="token operator">=</span> <span class="token function">constrain</span><span class="token punctuation">(</span><span class="token number">255.0f</span> <span class="token operator">/</span> <span class="token punctuation">(</span>a <span class="token operator">-</span> minTemp<span class="token punctuation">)</span> <span class="token operator">*</span> val <span class="token operator">-</span> <span class="token punctuation">(</span><span class="token number">255.0f</span> <span class="token operator">*</span> minTemp<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>a <span class="token operator">-</span> minTemp<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>val <span class="token operator">>=</span> a<span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token punctuation">(</span>val <span class="token operator">&lt;=</span> c<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    green <span class="token operator">=</span> <span class="token number">255</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>val <span class="token operator">></span> c<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    green <span class="token operator">=</span> <span class="token function">constrain</span><span class="token punctuation">(</span><span class="token number">255.0f</span> <span class="token operator">/</span> <span class="token punctuation">(</span>c <span class="token operator">-</span> d<span class="token punctuation">)</span> <span class="token operator">*</span> val <span class="token operator">-</span> <span class="token punctuation">(</span>d <span class="token operator">*</span> <span class="token number">255.0f</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>c <span class="token operator">-</span> d<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>val <span class="token operator">></span> d<span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token punctuation">(</span>val <span class="token operator">&lt;</span> a<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    green <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>val <span class="token operator">&lt;=</span> b<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    blue <span class="token operator">=</span> <span class="token function">constrain</span><span class="token punctuation">(</span><span class="token number">255.0f</span> <span class="token operator">/</span> <span class="token punctuation">(</span>a <span class="token operator">-</span> b<span class="token punctuation">)</span> <span class="token operator">*</span> val <span class="token operator">-</span> <span class="token punctuation">(</span><span class="token number">255.0f</span> <span class="token operator">*</span> b<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>a <span class="token operator">-</span> b<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>val <span class="token operator">></span> b<span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token punctuation">(</span>val <span class="token operator">&lt;=</span> d<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    blue <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>val <span class="token operator">></span> d<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    blue <span class="token operator">=</span> <span class="token function">constrain</span><span class="token punctuation">(</span><span class="token number">240.0f</span> <span class="token operator">/</span> <span class="token punctuation">(</span>maxTemp <span class="token operator">-</span> d<span class="token punctuation">)</span> <span class="token operator">*</span> val <span class="token operator">-</span> <span class="token punctuation">(</span>d <span class="token operator">*</span> <span class="token number">240.0f</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>maxTemp <span class="token operator">-</span> d<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">240</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+
+  <span class="token comment">// use the displays color mapping function to get 5-6-5 color palet (R=5 bits, G=6 bits, B-5 bits)</span>
+  <span class="token keyword">return</span> <span class="token function">BSP_LCD_GetColor565</span><span class="token punctuation">(</span>red<span class="token punctuation">,</span> green<span class="token punctuation">,</span> blue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>该传感器成图32x24像素，而使用的LCD是128x128的，于是我用4个像素作为一个大像素来填充，并增加了一个图例和一个最大最小值来提供量化，并填充一下屏幕留白</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">drawPicture</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">uint8_t</span> cell_size <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span> <span class="token comment">// 格子大小 4x4</span>
+    <span class="token class-name">uint8_t</span> start_x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>   <span class="token comment">// 水平居中（128 - 32*4 = 0）</span>
+    <span class="token class-name">uint8_t</span> start_y <span class="token operator">=</span> <span class="token number">16</span><span class="token punctuation">;</span>  <span class="token comment">// 垂直居中（(128 - 24*4)/2 = 16）</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> y <span class="token operator">&lt;</span> <span class="token number">24</span><span class="token punctuation">;</span> y<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> x <span class="token operator">&lt;</span> <span class="token number">32</span><span class="token punctuation">;</span> x<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token function">ST7735_FillRectangle</span><span class="token punctuation">(</span>
+                start_x <span class="token operator">+</span> x <span class="token operator">*</span> cell_size<span class="token punctuation">,</span>
+                start_y <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token number">23</span> <span class="token operator">-</span> y<span class="token punctuation">)</span> <span class="token operator">*</span> cell_size<span class="token punctuation">,</span>
+                cell_size<span class="token punctuation">,</span>
+                cell_size<span class="token punctuation">,</span>
+                <span class="token function">TempToColor</span><span class="token punctuation">(</span>tempValues<span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token number">31</span><span class="token operator">-</span> x<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token punctuation">(</span>y <span class="token operator">*</span> <span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">drawLegend</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">uint8_t</span> legend_height <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>               <span class="token comment">// 图例高度（像素）</span>
+    <span class="token class-name">uint8_t</span> legend_y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>                     <span class="token comment">// 图例顶部位置（y=0）</span>
+    <span class="token class-name">uint8_t</span> legend_width <span class="token operator">=</span> <span class="token number">120</span><span class="token punctuation">;</span>               <span class="token comment">// 图例宽度（留左右边距）</span>
+    <span class="token class-name">uint8_t</span> start_x <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>                      <span class="token comment">// 图例左侧起始位置（x=4）</span>
+
+    <span class="token comment">// 绘制温度颜色渐变条（水平方向）</span>
+    <span class="token keyword">float</span> temp_range <span class="token operator">=</span> maxTemp <span class="token operator">-</span> minTemp<span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">uint8_t</span> x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> x <span class="token operator">&lt;</span> legend_width<span class="token punctuation">;</span> x<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">float</span> temp <span class="token operator">=</span> minTemp <span class="token operator">+</span> temp_range <span class="token operator">*</span> <span class="token punctuation">(</span>x <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token keyword">float</span><span class="token punctuation">)</span>legend_width<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">uint16_t</span> color <span class="token operator">=</span> <span class="token function">TempToColor</span><span class="token punctuation">(</span>temp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 绘制水平线（从左到右）</span>
+        <span class="token function">ST7735_DrawLine</span><span class="token punctuation">(</span>start_x <span class="token operator">+</span> x<span class="token punctuation">,</span> legend_y<span class="token punctuation">,</span> start_x <span class="token operator">+</span> x<span class="token punctuation">,</span> legend_y <span class="token operator">+</span> legend_height<span class="token punctuation">,</span> color<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 显示最小/最大温度标签</span>
+<span class="token comment">//    memset(tempBuffer, 0, sizeof(tempBuffer));</span>
+    <span class="token function">sprintf</span><span class="token punctuation">(</span>tempBuffer<span class="token punctuation">,</span> <span class="token string">"&lt;%2.1f       "</span><span class="token punctuation">,</span> minTemp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">ST7735_WriteString</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">115</span><span class="token punctuation">,</span> tempBuffer<span class="token punctuation">,</span> Font_7x10<span class="token punctuation">,</span> ST7735_WHITE<span class="token punctuation">,</span> ST7735_BLACK<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">////    memset(tempBuffer, 0, sizeof(tempBuffer));</span>
+    <span class="token function">sprintf</span><span class="token punctuation">(</span>tempBuffer<span class="token punctuation">,</span> <span class="token string">"%2.1f>       "</span><span class="token punctuation">,</span> maxTemp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">ST7735_WriteString</span><span class="token punctuation">(</span><span class="token number">90</span><span class="token punctuation">,</span> <span class="token number">115</span><span class="token punctuation">,</span> tempBuffer<span class="token punctuation">,</span> Font_7x10<span class="token punctuation">,</span> ST7735_WHITE<span class="token punctuation">,</span> ST7735_BLACK<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>最后在主循环里轮询就可以了，屏幕刷新率一般，眨眼补帧。</p>
+<p>整体软件部分比较清晰，本来想加一些按键交互，修改颜色范围，存储图片到外部flash之类的功能，然后懒了。</p>
+<p>后续学了操作系统和LVGL库之后再搞点好玩的吧，感觉大部分DIY应用裸机完全够了…</p>
+<center>
+    <img src="/images/thermal_camera/theramal_camera.webp" width="600">
+</center>
+
+
+<h3><span id="小问题合集"><strong>小问题合集：</strong></span></h3><h3><span id="problem1使用st-link下载过一次程序后发现无法继续下载"><strong>problem1：使用ST-Link下载过一次程序后发现无法继续下载</strong></span></h3><ol>
+<li>检查设备管理器，确保有正确的ST-Link驱动</li>
+<li>检查Keil软件配置，确保导入正确的型号版本</li>
+<li>检查引脚配置，发现问题：</li>
+</ol>
+<center>
+    <img src="/images/thermal_camera/stlink_problem.webp" width="400">
+</center>
+
+
+<p>​    配置的IIC通信引脚占用了SWD下载引脚<em>（STM32默认的PA13 &amp;PA14）</em>，引脚输入输出模式不适配，显然后续无法下载，遂改之，问题解决。（图示仅供参考）</p>
+<h3><span id="problem2hardfault中断触发"><strong>problem2：HardFault中断触发</strong></span></h3><p>栈空间不足，多分配点就ok</p>
+<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
+    <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=114448530415517&bvid=BV1GiVwzCEJM&cid=29784345814&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position:absolute; height: 100%; width: 100%;"> </iframe>
+</div>
 ]]></content>
       <categories>
         <category>Projects &amp; Builds</category>
       </categories>
       <tags>
-        <tag>Hexo</tag>
+        <tag>嵌入式</tag>
       </tags>
   </entry>
   <entry>
@@ -105,41 +373,98 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo博客插入图片</title>
-    <url>/2022/03/21/220321/</url>
+    <title>Xiaomi路由器BE3600快速救砖</title>
+    <url>/2025/02/13/250213/</url>
+    <content><![CDATA[<p>家里的路由器变砖了（具体原因不清楚）</p>
+<p>指示灯由蓝色常亮变成橙色常亮，对于家用路由器这种消费电子产品，一般重启一下能解决90%的故障</p>
+<p>但心血来潮想试一下给它刷个机</p>
+<p>型号是这个：</p>
+<center>
+    <img src="/images/homecraft/miwifi1.webp" width="500">
+</center>
+
+
+<p>刷机需要一根网线，PC，以及变砖的路由器</p>
+<p>步骤如下：</p>
+<ul>
+<li>在网址<a href="https://www1.miwifi.com/miwifi_download.html">MiWiFi</a>中找到刷机软件与对应型号的ROM固件</li>
+<li>关闭PC的防火墙，将网线连接至路由器的LAN口，本型号WAN与LAN口二合一了,随便找个口插上就行</li>
+<li>打开刷机软件并载入对应的固件</li>
+</ul>
+<center>
+    <img src="/images/homecraft/miwifi2.webp" width="500">
+</center>
+
+
+<ul>
+<li>用工具按住路由器的reset键后通电源，这一步非常像之前给单片机内部flash进行ISP下载程序的步骤，因此感觉很熟悉</li>
+<li>待指示灯闪烁后松开reset键，固件开始下载</li>
+</ul>
+<center>
+    <img src="/images/homecraft/miwifi3.webp" width="500">
+</center>
+
+
+<ul>
+<li>路由器变为蓝灯闪烁，此时已经刷机完成，当新路由器用就行</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Projects &amp; Builds</category>
+      </categories>
+      <tags>
+        <tag>嵌入式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo博客插入数学公式</title>
+    <url>/2025/03/27/250327/</url>
     <content><![CDATA[<h2><span id="目录"><strong>目录：</strong></span></h2><!-- toc -->
 <ul>
-<li><a href="#插入图片">插入图片</a></li>
-<li><a href="#更改相对位置">更改相对位置</a></li>
+<li><a href="#step-1-安装mathjax引擎并更换渲染引擎"><strong>Step 1</strong> : 安装MathJax引擎并更换渲染引擎：</a></li>
+<li><a href="#step-2-更新mathjax的cdn链接"><strong>Step 2</strong> : 更新MathJax的cdn链接</a></li>
+<li><a href="#step-3-更改部分转义规则"><strong>Step 3</strong> : 更改部分转义规则</a></li>
+<li><a href="#step-4-可选-主题未预配置下使用hexo-filter-mathjax"><strong>Step 4</strong> (可选) : 主题未预配置下使用Hexo-filter-mathjax</a></li>
+<li><a href="#测试">测试</a></li>
 </ul>
 <!-- tocstop -->
-<h2><span id="插入图片">插入图片</span></h2><p>之前打算在文章中插入图片，配置的过程中遇到了一些问题。</p>
-<p>想在博客中引用外站图片问题不大，但<strong>Hexo</strong>默认插入图片只有这一个方法，对有本地化需求的人群来说不够方便，此时可以安装一个满足本地图片引用的插件，在国内某知名（<strong>c</strong>）专业（<strong>s</strong>）开发者（<strong>d</strong>）社区（<strong>n</strong>）里提供的90%的方案为以下命令：<br><code>npm install hexo-asset-image –save</code><br>该论坛上相互借鉴蔚然成风的壮景对我这个刚入门的小白真是非常险恶，此指令安装版本落后，无法有效显示图片，有效的版本安装命令如下：<br><code>npm install https://github.com/CodeFalling/hexo-asset-image –save</code></p>
-<p>修改<code>_config.yml</code>文件，将<code>post_asset_folder:</code>值改为<strong>true</strong>。</p>
-<p>之后在新建一个博客的同时会生成同名文件夹，将需插入的图片放入该文件夹即可。文章中的具体引用代码为以下格式：(后来发现在<code>source</code>文件夹里新建一个名为<code>images</code>的文件夹存放图片也行)<br><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">]</span>(1/image.jpg)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></p>
-<h2><span id="更改相对位置">更改相对位置</span></h2><p>但这种方法在PC端有一个默认的问题就是图片插入后会自动左对齐，想要实现居中对齐，可以在<strong>markdown</strong>引用代码外部添加<strong>center</strong>元素，或者直接添加<strong>html</strong>元素，如下所示：<br><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">&lt;center<span class="token punctuation">></span>
+<p>在写一些内容时，会遇到需要添加数学公式的地方，Hexo部分主题不支持公式的渲染，比如我正在使用的vivia主题，在查阅一些资料之后，我使用<strong>MathJax</strong>引擎实现了vivia主题下的数学公式渲染。</p>
+<p>MathJax简介：<a href="https://www.osgeo.cn/mathjax/basic/mathjax.html">https://www.osgeo.cn/mathjax/basic/mathjax.html</a> </p>
+<p>该引擎是一款可在所有现代浏览器中工作的开源js显示引擎，辅助页面作者编写含有数学公式的文档</p>
+<h4><span id="step-1-安装mathjax引擎并更换渲染引擎"><strong>Step 1</strong> : 安装MathJax引擎并更换渲染引擎：</span></h4><p>​              操作包括卸载Hexo自带的Hexo-math，卸载默认的对MathJax不友好的marked引擎</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">npm uninstall hexo<span class="token operator">-</span>math <span class="token operator">--</span>save
+npm install hexo<span class="token operator">-</span>renderer<span class="token operator">-</span>mathjax <span class="token operator">--</span>save
 
-<span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">...</span><span class="token punctuation">]</span>(xxx)
-
-&lt;/center<span class="token punctuation">></span>
-
-&lt;<span class="token tag">!--or</span> <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">></span>
-
-&lt;div align=center<span class="token punctuation">></span>
-
-<span class="token tag">!</span><span class="token punctuation">[</span><span class="token punctuation">...</span><span class="token punctuation">]</span>(xxx)
-
-&lt;/div<span class="token punctuation">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><br>(因为我用VScode来打开博客的md文件进行编辑，在上传至本地网页时一开始发现图片无法加载，后来排查得出居中命令代码间的空行是必要的，不知道其他编辑器是否有这样的问题。)</p>
-<p>还可以直接修改<strong>css</strong>文件，因为<strong>markdown</strong>插入图片的代码在最终渲染的时候变为<strong>html</strong>中的<strong>img</strong>元素。因此可以直接去博客主题文件的源代码中，找到控制文章内图片显示样式的<strong>css</strong>代码，将其修改成水平居中即可。前端编程中修改水平居中的方法非常多，以下是网上资源中提供的其中一种：</p>
-<p>一般情况下可以在<strong>Hexo</strong>博客文件夹进入到主题模板的<code>themes-&gt;(主题名称文件夹)-&gt;source-&gt;css-&gt;_partial</code>中，找到<code>post.styl</code>文件，该<strong>post</strong>文件中保存的就是文章详情页里面的显示样式。然后找到里面正确的<strong>img</strong>元素，修改其样式，增加<code>margin 0 auto</code>这行指令。如下:<br><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">.post<span class="token punctuation">-</span>content
-    position relative
-    color c<span class="token punctuation">-</span><span class="token number">666</span>
-    img
-      max<span class="token punctuation">-</span>width 100%
-      cursor pointer
-      display block 
-      margin 0 auto<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><br>然后可以实现了。但我在自己当前使用的主题中并没有找到相关语段，由于技术比较拉跨，我决定还是先老实用前两种吧。</p>
-<p>[后期补丁：你需要一款名为<strong><em>Typora</em></strong>的<strong>markdown</strong>编辑软件]</p>
+npm uninstall hexo<span class="token operator">-</span>renderer<span class="token operator">-</span>marked <span class="token operator">--</span>save
+npm install hexo<span class="token operator">-</span>renderer<span class="token operator">-</span>kramed <span class="token operator">--</span>save<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4><span id="step-2-更新mathjax的cdn链接"><strong>Step 2</strong> : 更新MathJax的cdn链接</span></h4><h4><span id="step-3-更改部分转义规则"><strong>Step 3</strong> : 更改部分转义规则</span></h4><p> hexo 默认的转义规则会将一些字符进行转义，所以要对默认的规则进行修改。<br>首先， 打开/node_modules/kramed/lib/rules/inline.js</p>
+<p>把：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">escape</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\\([\\`*&#123;&#125;\[\]()#$+\-.!_>])</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+<span class="token literal-property property">em</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>更改为：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">escape</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\\([`*\[\]()# +\-.!_>])</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+<span class="token literal-property property">em</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\*((?:\*\*|[\s\S])+?)\*(?!\*)</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h4><span id="step-4-可选-主题未预配置下使用hexo-filter-mathjax"><strong>Step 4</strong> (可选) : 主题未预配置下使用Hexo-filter-mathjax</span></h4><p>对于已经配置MathJax的主题来说，在相关config文件里打开控件即可，对于未配置的主题，可以使用Hexo-filter-mathjax来帮助实现</p>
+<p>Hexo-filter-mathjax项目地址：<a href="https://github.com/next-theme/hexo-filter-mathjax">https://github.com/next-theme/hexo-filter-mathjax</a></p>
+<p>安装：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">npm install hexo<span class="token operator">-</span>filter<span class="token operator">-</span>mathjax <span class="token operator">--</span>save<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>对需要开启的博文，在其Front-Matter处增加mathjax: true这一行即可，如：</p>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token front-matter-block"><span class="token punctuation">---</span>
+<span class="token front-matter yaml language-yaml"><span class="token key atrule">title</span><span class="token punctuation">:</span> xxxxxx
+<span class="token key atrule">categories</span><span class="token punctuation">:</span> xxxxx
+<span class="token key atrule">date</span><span class="token punctuation">:</span> xxxx<span class="token punctuation">-</span>xx<span class="token punctuation">-</span>xx
+<span class="token key atrule">mathjax</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></span>
+<span class="token punctuation">---</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&nbsp;</p>
+<h4><span id="测试">测试</span></h4><p>公式：</p>
+<p>$\Bbb{\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6} }$</p>
+<p>$\frak{\cos 2\theta = \cos^2 \theta - \sin^2 \theta = 2 \cos^2 \theta-1}$</p>
+<p>矩阵运算：</p>
+<p>$\left(    \begin{array}{c}      s \\      t    \end{array}\right)=\left(    \begin{array}{cc}      cos(b) &amp; -sin(b) \\      sin(b) &amp; cos(b)    \end{array}\right)\left(    \begin{array}{c}      x \\      y    \end{array}\right)$                </p>
+<p>*注意到有的cdn版本MathJax框架下公式字体对行间公式有一定影响，可能会一些字体会被渲染成主题相同字体，且移动端不能很好地显示</p>
+<p>参考资料：</p>
+<p><a href="https://www.cnblogs.com/wangxin37/p/8185688.html">https://www.cnblogs.com/wangxin37/p/8185688.html</a></p>
+<p><a href="https://heartlessly.github.io/others/latex-mathjax-gong-shi-zi-ti-mei-hua/">https://heartlessly.github.io/others/latex-mathjax-gong-shi-zi-ti-mei-hua/</a></p>
 ]]></content>
       <categories>
         <category>Projects &amp; Builds</category>
@@ -965,274 +1290,6 @@ sqlite&gt; SELECT * FROM shows JOIN ratings ON shows.id &#x3D; ratings.show_id W
       </tags>
   </entry>
   <entry>
-    <title>UART收发处理函数</title>
-    <url>/2024/10/20/241020/</url>
-    <content><![CDATA[<p>UART（Universal Asynchronous Receiver/Transmitter）是一种串行通信协议，在嵌入式系统和微控制器间数据传输中发挥着核心作用。UART协议通过异步方式传输数据，不依赖于共享时钟信号，简化了通信线路的需求。每次传输包括起始位、数据位、可选的奇偶校验位以及停止位，这种结构支持从简单的传感器到复杂的处理器之间的可靠数据交换。</p>
-<p>其重要性还体现在其广泛的兼容性和低成本实现上。它可以通过简单的两线（TX和RX）接口实现全双工通信，极大地降低了系统的硬件复杂性。此外，UART通信协议可以适应不同的波特率设置，使其能够灵活地调整以匹配特定应用的速度要求。在许多工业和消费电子产品中，UART仍然是实现可靠串行通信的首选技术，尤其在资源受限的环境中显示出其高效和经济的优势。（<strong>以上均为GPT生成</strong>）</p>
-<p>在进行传感器测试时，常用到UART，这里mark一下自己常用的HAL库函数封装，免得后续一直翻之前的程序</p>
-<p>函数需要用到的全局变量如下：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">char</span> send<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token number">0</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span> <span class="token comment">//传输用字符数组，储存字符串</span>
-
-<span class="token class-name">uint8_t</span> rx_buffer <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//接收字符缓冲区</span>
-
-<span class="token keyword">char</span> rx_receiver<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token number">0</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span> <span class="token comment">//接收用字符数组</span>
-
-<span class="token class-name">uint8_t</span> rx_num <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//接收字符数量</span>
-
-<span class="token class-name">uint8_t</span>  uart_start_flag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//接收标志位</span>
-
-__IO  <span class="token class-name">uint32_t</span> uart_gettick <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//系统时钟比较变量</span>
-
-<span class="token comment">/* 测试变量
-uint16_t pwm_duty = 0;
-
-uint8_t startbegin = 0xff;
-
-uint8_t startbegin2 = 0x00;
-*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>在硬件配置时要打开UART中断：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token function">HAL_UART_Receive_IT</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1 <span class="token punctuation">,</span> <span class="token operator">&amp;</span>rx_buffer<span class="token punctuation">,</span>  <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>中断回调函数如下：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">HAL_UART_RxCpltCallback</span><span class="token punctuation">(</span>UART_HandleTypeDef <span class="token operator">*</span>huart<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-  <span class="token keyword">if</span><span class="token punctuation">(</span>rx_num <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-  uart_gettick <span class="token operator">=</span> uwTick<span class="token punctuation">;</span> 
-  uart_start_flag <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>  
-  <span class="token punctuation">&#125;</span>
-  <span class="token keyword">if</span><span class="token punctuation">(</span>uart_start_flag <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-  rx_receiver<span class="token punctuation">[</span>rx_num<span class="token punctuation">]</span> <span class="token operator">=</span> rx_buffer<span class="token punctuation">;</span>
-  rx_num<span class="token operator">++</span><span class="token punctuation">;</span>  
-  <span class="token punctuation">&#125;</span>
-  <span class="token function">HAL_UART_Receive_IT</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1 <span class="token punctuation">,</span> <span class="token operator">&amp;</span>rx_buffer<span class="token punctuation">,</span>  <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>主循环中的处理函数如下：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">UART_RX_PROC</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span> uwTick<span class="token operator">-</span> uart_gettick <span class="token punctuation">)</span> <span class="token operator">>=</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span><span class="token punctuation">(</span> uwTick<span class="token operator">-</span> uart_gettick <span class="token punctuation">)</span> <span class="token operator">&lt;=</span><span class="token number">600</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>uart_start_flag <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>rx_receiver<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token char">'&amp;'</span> <span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span> rx_num <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">//示例：传输pwm占空比</span>
-    pwm_duty <span class="token operator">=</span>  rx_receiver<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span> rx_num <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    pwm_duty <span class="token operator">=</span> <span class="token punctuation">(</span>rx_receiver<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">10</span> <span class="token operator">+</span> rx_receiver<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span> rx_num <span class="token operator">==</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    pwm_duty <span class="token operator">=</span> <span class="token punctuation">(</span>rx_receiver<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">100</span> <span class="token operator">+</span> <span class="token punctuation">(</span>rx_receiver<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">10</span> <span class="token operator">+</span> rx_receiver<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token operator">-</span><span class="token char">'0'</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>      
-    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span> rx_num <span class="token operator">>=</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    pwm_duty <span class="token operator">=</span> <span class="token number">1000</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-  <span class="token punctuation">&#125;</span>
-    <span class="token function">HAL_UART_Transmit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token operator">&amp;</span>startbegin<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0xffff</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">HAL_UART_Transmit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token operator">&amp;</span>startbegin2<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0xffff</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">HAL_UART_Transmit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token operator">&amp;</span>startbegin<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0xffff</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    rx_num <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    uart_start_flag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>这里的函数主要是用以处理字符串的，应付一些的简单的应用已经够用了，当然，也能在此基础上扩展。</p>
-]]></content>
-      <categories>
-        <category>Learning Record</category>
-      </categories>
-      <tags>
-        <tag>嵌入式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Xiaomi路由器BE3600快速救砖</title>
-    <url>/2025/02/13/250213/</url>
-    <content><![CDATA[<p>家里的路由器变砖了（具体原因不清楚）</p>
-<p>指示灯由蓝色常亮变成橙色常亮，对于家用路由器这种消费电子产品，一般重启一下能解决90%的故障</p>
-<p>但心血来潮想试一下给它刷个机</p>
-<p>型号是这个：</p>
-<center>
-    <img src="/images/homecraft/miwifi1.webp" width="500">
-</center>
-
-
-<p>刷机需要一根网线，PC，以及变砖的路由器</p>
-<p>步骤如下：</p>
-<ul>
-<li>在网址<a href="https://www1.miwifi.com/miwifi_download.html">MiWiFi</a>中找到刷机软件与对应型号的ROM固件</li>
-<li>关闭PC的防火墙，将网线连接至路由器的LAN口，本型号WAN与LAN口二合一了,随便找个口插上就行</li>
-<li>打开刷机软件并载入对应的固件</li>
-</ul>
-<center>
-    <img src="/images/homecraft/miwifi2.webp" width="500">
-</center>
-
-
-<ul>
-<li>用工具按住路由器的reset键后通电源，这一步非常像之前给单片机内部flash进行ISP下载程序的步骤，因此感觉很熟悉</li>
-<li>待指示灯闪烁后松开reset键，固件开始下载</li>
-</ul>
-<center>
-    <img src="/images/homecraft/miwifi3.webp" width="500">
-</center>
-
-
-<ul>
-<li>路由器变为蓝灯闪烁，此时已经刷机完成，当新路由器用就行</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Projects &amp; Builds</category>
-      </categories>
-      <tags>
-        <tag>嵌入式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>基于MLX90640的手持红外热成像仪</title>
-    <url>/2025/02/26/250226/</url>
-    <content><![CDATA[<h2><span id="项目背景">项目背景：</span></h2><ol>
-<li><p>DIY好玩捏</p>
-</li>
-<li><p>电路工作时有时需要检查元件发热情况，但用手触摸元件有一定的风险，因此需要一种无接触式的多点测温设备</p>
-</li>
-</ol>
-<p>于是开始了解到热成像这个测温方式，以下是软硬件方案</p>
-<h2><span id="方案">方案：</span></h2><h3><span id="硬件部分">硬件部分</span></h3><p>​        采用上下两块板子对插组合，为了减少复杂度，留了排母方便直插LCD与传感器模组。</p>
-<h4><span id="board1-mcu与外设">BOARD1: MCU与外设</span></h4><ul>
-<li>采用STM32F407作为主控，512KB  Flash，其实没特别注意选型，只是手上有这个开发板，要压缩成本的话用其他型号也可以</li>
-<li>红外传感模组为MLX90640 BAA，这个价格比较贵，比其他元件加起来都贵</li>
-<li>屏幕模组为1.44寸TFT-LCD，也是现成的，买了俩还剩一个，下次做别的东西的时候给用了吧</li>
-<li>留了串口测试点和烧录测试点</li>
-</ul>
-<center>
-    <img src="/images/thermal_camera/tc_board1.webp" width="800">
-</center>
-
-
-<h4><span id="board2-power">BOARD2: POWER</span></h4><ul>
-<li>3.7V锂电池供电，可通过USB接口经过LGS4084H电源管理芯片给锂电池充电</li>
-<li>经过一个LDO稳到3.3V给MCU整体供电，VDDA和VCC用磁珠滤波隔离了一下</li>
-</ul>
-<center>
-    <img src="/images/thermal_camera/tc_board2.webp" width="800">
-</center>
-
-
-<p>电源板后续涉及锂电池供电DIY的倒是可以继续沿用</p>
-<center>
-    <img src="/images/thermal_camera/battery.webp" width="600">
-</center>
-
-
-<p>立创打样PCB，自己贴片，PCB板框留了一些M3螺孔方便组装。</p>
-<h3><span id="软件部分"><strong>软件部分</strong></span></h3><p>通讯接口涉及IIC与SPI，以及图像测试的时候用了一下UART，均比较基础。使用硬件IIC进行传感器模组与MCU间的通信，模组官方提供了接口可调用，可读取温度值。RGB转换用了开源的函数：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/*pass in value and figure out R G B
-    several published ways to do this I basically graphed R G B and developed simple linear equations
-    again a 5-6-5 color display will not need accurate temp to R G B color calculation
-    equations based on
-    http://web-tech.ga-usa.com/2012/05/creating-a-custom-hot-to-cold-temperature-color-gradient-for-use-with-rrdtool/index.html
-  */</span>
-<span class="token keyword">static</span> <span class="token class-name">uint16_t</span> <span class="token function">TempToColor</span><span class="token punctuation">(</span><span class="token keyword">float</span> val<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-  red <span class="token operator">=</span> <span class="token function">constrain</span><span class="token punctuation">(</span><span class="token number">255.0f</span> <span class="token operator">/</span> <span class="token punctuation">(</span>c <span class="token operator">-</span> b<span class="token punctuation">)</span> <span class="token operator">*</span> val <span class="token operator">-</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>b <span class="token operator">*</span> <span class="token number">255.0f</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>c <span class="token operator">-</span> b<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>val <span class="token operator">></span> minTemp<span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token punctuation">(</span>val <span class="token operator">&lt;</span> a<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    green <span class="token operator">=</span> <span class="token function">constrain</span><span class="token punctuation">(</span><span class="token number">255.0f</span> <span class="token operator">/</span> <span class="token punctuation">(</span>a <span class="token operator">-</span> minTemp<span class="token punctuation">)</span> <span class="token operator">*</span> val <span class="token operator">-</span> <span class="token punctuation">(</span><span class="token number">255.0f</span> <span class="token operator">*</span> minTemp<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>a <span class="token operator">-</span> minTemp<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span>
-  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>val <span class="token operator">>=</span> a<span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token punctuation">(</span>val <span class="token operator">&lt;=</span> c<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    green <span class="token operator">=</span> <span class="token number">255</span><span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span>
-  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>val <span class="token operator">></span> c<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    green <span class="token operator">=</span> <span class="token function">constrain</span><span class="token punctuation">(</span><span class="token number">255.0f</span> <span class="token operator">/</span> <span class="token punctuation">(</span>c <span class="token operator">-</span> d<span class="token punctuation">)</span> <span class="token operator">*</span> val <span class="token operator">-</span> <span class="token punctuation">(</span>d <span class="token operator">*</span> <span class="token number">255.0f</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>c <span class="token operator">-</span> d<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span>
-  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>val <span class="token operator">></span> d<span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token punctuation">(</span>val <span class="token operator">&lt;</span> a<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    green <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span>
-
-  <span class="token keyword">if</span> <span class="token punctuation">(</span>val <span class="token operator">&lt;=</span> b<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    blue <span class="token operator">=</span> <span class="token function">constrain</span><span class="token punctuation">(</span><span class="token number">255.0f</span> <span class="token operator">/</span> <span class="token punctuation">(</span>a <span class="token operator">-</span> b<span class="token punctuation">)</span> <span class="token operator">*</span> val <span class="token operator">-</span> <span class="token punctuation">(</span><span class="token number">255.0f</span> <span class="token operator">*</span> b<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>a <span class="token operator">-</span> b<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span>
-  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>val <span class="token operator">></span> b<span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token punctuation">(</span>val <span class="token operator">&lt;=</span> d<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    blue <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span>
-  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>val <span class="token operator">></span> d<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    blue <span class="token operator">=</span> <span class="token function">constrain</span><span class="token punctuation">(</span><span class="token number">240.0f</span> <span class="token operator">/</span> <span class="token punctuation">(</span>maxTemp <span class="token operator">-</span> d<span class="token punctuation">)</span> <span class="token operator">*</span> val <span class="token operator">-</span> <span class="token punctuation">(</span>d <span class="token operator">*</span> <span class="token number">240.0f</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>maxTemp <span class="token operator">-</span> d<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">240</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span>
-
-  <span class="token comment">// use the displays color mapping function to get 5-6-5 color palet (R=5 bits, G=6 bits, B-5 bits)</span>
-  <span class="token keyword">return</span> <span class="token function">BSP_LCD_GetColor565</span><span class="token punctuation">(</span>red<span class="token punctuation">,</span> green<span class="token punctuation">,</span> blue<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>该传感器成图32x24像素，而使用的LCD是128x128的，于是我用4个像素作为一个大像素来填充，并增加了一个图例和一个最大最小值来提供量化，并填充一下屏幕留白</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">drawPicture</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token class-name">uint8_t</span> cell_size <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span> <span class="token comment">// 格子大小 4x4</span>
-    <span class="token class-name">uint8_t</span> start_x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>   <span class="token comment">// 水平居中（128 - 32*4 = 0）</span>
-    <span class="token class-name">uint8_t</span> start_y <span class="token operator">=</span> <span class="token number">16</span><span class="token punctuation">;</span>  <span class="token comment">// 垂直居中（(128 - 24*4)/2 = 16）</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span>y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> y <span class="token operator">&lt;</span> <span class="token number">24</span><span class="token punctuation">;</span> y<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span>x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> x <span class="token operator">&lt;</span> <span class="token number">32</span><span class="token punctuation">;</span> x<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            <span class="token function">ST7735_FillRectangle</span><span class="token punctuation">(</span>
-                start_x <span class="token operator">+</span> x <span class="token operator">*</span> cell_size<span class="token punctuation">,</span>
-                start_y <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token number">23</span> <span class="token operator">-</span> y<span class="token punctuation">)</span> <span class="token operator">*</span> cell_size<span class="token punctuation">,</span>
-                cell_size<span class="token punctuation">,</span>
-                cell_size<span class="token punctuation">,</span>
-                <span class="token function">TempToColor</span><span class="token punctuation">(</span>tempValues<span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token number">31</span><span class="token operator">-</span> x<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token punctuation">(</span>y <span class="token operator">*</span> <span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-            <span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">drawLegend</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token class-name">uint8_t</span> legend_height <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>               <span class="token comment">// 图例高度（像素）</span>
-    <span class="token class-name">uint8_t</span> legend_y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>                     <span class="token comment">// 图例顶部位置（y=0）</span>
-    <span class="token class-name">uint8_t</span> legend_width <span class="token operator">=</span> <span class="token number">120</span><span class="token punctuation">;</span>               <span class="token comment">// 图例宽度（留左右边距）</span>
-    <span class="token class-name">uint8_t</span> start_x <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>                      <span class="token comment">// 图例左侧起始位置（x=4）</span>
-
-    <span class="token comment">// 绘制温度颜色渐变条（水平方向）</span>
-    <span class="token keyword">float</span> temp_range <span class="token operator">=</span> maxTemp <span class="token operator">-</span> minTemp<span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">uint8_t</span> x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> x <span class="token operator">&lt;</span> legend_width<span class="token punctuation">;</span> x<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">float</span> temp <span class="token operator">=</span> minTemp <span class="token operator">+</span> temp_range <span class="token operator">*</span> <span class="token punctuation">(</span>x <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token keyword">float</span><span class="token punctuation">)</span>legend_width<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token class-name">uint16_t</span> color <span class="token operator">=</span> <span class="token function">TempToColor</span><span class="token punctuation">(</span>temp<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment">// 绘制水平线（从左到右）</span>
-        <span class="token function">ST7735_DrawLine</span><span class="token punctuation">(</span>start_x <span class="token operator">+</span> x<span class="token punctuation">,</span> legend_y<span class="token punctuation">,</span> start_x <span class="token operator">+</span> x<span class="token punctuation">,</span> legend_y <span class="token operator">+</span> legend_height<span class="token punctuation">,</span> color<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-
-    <span class="token comment">// 显示最小/最大温度标签</span>
-<span class="token comment">//    memset(tempBuffer, 0, sizeof(tempBuffer));</span>
-    <span class="token function">sprintf</span><span class="token punctuation">(</span>tempBuffer<span class="token punctuation">,</span> <span class="token string">"&lt;%2.1f       "</span><span class="token punctuation">,</span> minTemp<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">ST7735_WriteString</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">115</span><span class="token punctuation">,</span> tempBuffer<span class="token punctuation">,</span> Font_7x10<span class="token punctuation">,</span> ST7735_WHITE<span class="token punctuation">,</span> ST7735_BLACK<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment">////    memset(tempBuffer, 0, sizeof(tempBuffer));</span>
-    <span class="token function">sprintf</span><span class="token punctuation">(</span>tempBuffer<span class="token punctuation">,</span> <span class="token string">"%2.1f>       "</span><span class="token punctuation">,</span> maxTemp<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">ST7735_WriteString</span><span class="token punctuation">(</span><span class="token number">90</span><span class="token punctuation">,</span> <span class="token number">115</span><span class="token punctuation">,</span> tempBuffer<span class="token punctuation">,</span> Font_7x10<span class="token punctuation">,</span> ST7735_WHITE<span class="token punctuation">,</span> ST7735_BLACK<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>最后在主循环里轮询就可以了，屏幕刷新率一般，眨眼补帧。</p>
-<p>整体软件部分比较清晰，本来想加一些按键交互，修改颜色范围，存储图片到外部flash之类的功能，然后懒了。</p>
-<p>后续学了操作系统和LVGL库之后再搞点好玩的吧，感觉大部分DIY应用裸机完全够了…</p>
-<center>
-    <img src="/images/thermal_camera/theramal_camera.webp" width="600">
-</center>
-
-
-<h3><span id="小问题合集"><strong>小问题合集：</strong></span></h3><h3><span id="problem1使用st-link下载过一次程序后发现无法继续下载"><strong>problem1：使用ST-Link下载过一次程序后发现无法继续下载</strong></span></h3><ol>
-<li>检查设备管理器，确保有正确的ST-Link驱动</li>
-<li>检查Keil软件配置，确保导入正确的型号版本</li>
-<li>检查引脚配置，发现问题：</li>
-</ol>
-<center>
-    <img src="/images/thermal_camera/stlink_problem.webp" width="400">
-</center>
-
-
-<p>​    配置的IIC通信引脚占用了SWD下载引脚<em>（STM32默认的PA13 &amp;PA14）</em>，引脚输入输出模式不适配，显然后续无法下载，遂改之，问题解决。（图示仅供参考）</p>
-<h3><span id="problem2hardfault中断触发"><strong>problem2：HardFault中断触发</strong></span></h3><p>栈空间不足，多分配点就ok</p>
-<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
-    <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=114448530415517&bvid=BV1GiVwzCEJM&cid=29784345814&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position:absolute; height: 100%; width: 100%;"> </iframe>
-</div>
-]]></content>
-      <categories>
-        <category>Projects &amp; Builds</category>
-      </categories>
-      <tags>
-        <tag>嵌入式</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>手持红外热成像仪V2.0-加载图像算法并嵌入轻量级神经网络</title>
     <url>/2025/05/10/250510/</url>
     <content><![CDATA[<p>在之前的基础上改进了一部分</p>
@@ -1527,63 +1584,6 @@ void micro_temp_net_predict(const MicroTempNet* net, float* input, float* output
         <tag>嵌入式</tag>
         <tag>Algorithm</tag>
         <tag>图像处理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo博客插入数学公式</title>
-    <url>/2025/03/27/250327/</url>
-    <content><![CDATA[<h2><span id="目录"><strong>目录：</strong></span></h2><!-- toc -->
-<ul>
-<li><a href="#step-1-安装mathjax引擎并更换渲染引擎"><strong>Step 1</strong> : 安装MathJax引擎并更换渲染引擎：</a></li>
-<li><a href="#step-2-更新mathjax的cdn链接"><strong>Step 2</strong> : 更新MathJax的cdn链接</a></li>
-<li><a href="#step-3-更改部分转义规则"><strong>Step 3</strong> : 更改部分转义规则</a></li>
-<li><a href="#step-4-可选-主题未预配置下使用hexo-filter-mathjax"><strong>Step 4</strong> (可选) : 主题未预配置下使用Hexo-filter-mathjax</a></li>
-<li><a href="#测试">测试</a></li>
-</ul>
-<!-- tocstop -->
-<p>在写一些内容时，会遇到需要添加数学公式的地方，Hexo部分主题不支持公式的渲染，比如我正在使用的vivia主题，在查阅一些资料之后，我使用<strong>MathJax</strong>引擎实现了vivia主题下的数学公式渲染。</p>
-<p>MathJax简介：<a href="https://www.osgeo.cn/mathjax/basic/mathjax.html">https://www.osgeo.cn/mathjax/basic/mathjax.html</a> </p>
-<p>该引擎是一款可在所有现代浏览器中工作的开源js显示引擎，辅助页面作者编写含有数学公式的文档</p>
-<h4><span id="step-1-安装mathjax引擎并更换渲染引擎"><strong>Step 1</strong> : 安装MathJax引擎并更换渲染引擎：</span></h4><p>​              操作包括卸载Hexo自带的Hexo-math，卸载默认的对MathJax不友好的marked引擎</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">npm uninstall hexo<span class="token operator">-</span>math <span class="token operator">--</span>save
-npm install hexo<span class="token operator">-</span>renderer<span class="token operator">-</span>mathjax <span class="token operator">--</span>save
-
-npm uninstall hexo<span class="token operator">-</span>renderer<span class="token operator">-</span>marked <span class="token operator">--</span>save
-npm install hexo<span class="token operator">-</span>renderer<span class="token operator">-</span>kramed <span class="token operator">--</span>save<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4><span id="step-2-更新mathjax的cdn链接"><strong>Step 2</strong> : 更新MathJax的cdn链接</span></h4><h4><span id="step-3-更改部分转义规则"><strong>Step 3</strong> : 更改部分转义规则</span></h4><p> hexo 默认的转义规则会将一些字符进行转义，所以要对默认的规则进行修改。<br>首先， 打开/node_modules/kramed/lib/rules/inline.js</p>
-<p>把：</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">escape</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\\([\\`*&#123;&#125;\[\]()#$+\-.!_>])</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
-<span class="token literal-property property">em</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>更改为：</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">escape</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\\([`*\[\]()# +\-.!_>])</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
-<span class="token literal-property property">em</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\*((?:\*\*|[\s\S])+?)\*(?!\*)</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h4><span id="step-4-可选-主题未预配置下使用hexo-filter-mathjax"><strong>Step 4</strong> (可选) : 主题未预配置下使用Hexo-filter-mathjax</span></h4><p>对于已经配置MathJax的主题来说，在相关config文件里打开控件即可，对于未配置的主题，可以使用Hexo-filter-mathjax来帮助实现</p>
-<p>Hexo-filter-mathjax项目地址：<a href="https://github.com/next-theme/hexo-filter-mathjax">https://github.com/next-theme/hexo-filter-mathjax</a></p>
-<p>安装：</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">npm install hexo<span class="token operator">-</span>filter<span class="token operator">-</span>mathjax <span class="token operator">--</span>save<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>对需要开启的博文，在其Front-Matter处增加mathjax: true这一行即可，如：</p>
-<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token front-matter-block"><span class="token punctuation">---</span>
-<span class="token front-matter yaml language-yaml"><span class="token key atrule">title</span><span class="token punctuation">:</span> xxxxxx
-<span class="token key atrule">categories</span><span class="token punctuation">:</span> xxxxx
-<span class="token key atrule">date</span><span class="token punctuation">:</span> xxxx<span class="token punctuation">-</span>xx<span class="token punctuation">-</span>xx
-<span class="token key atrule">mathjax</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></span>
-<span class="token punctuation">---</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&nbsp;</p>
-<h4><span id="测试">测试</span></h4><p>公式：</p>
-<p>$\Bbb{\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6} }$</p>
-<p>$\frak{\cos 2\theta = \cos^2 \theta - \sin^2 \theta = 2 \cos^2 \theta-1}$</p>
-<p>矩阵运算：</p>
-<p>$\left(    \begin{array}{c}      s \\      t    \end{array}\right)=\left(    \begin{array}{cc}      cos(b) &amp; -sin(b) \\      sin(b) &amp; cos(b)    \end{array}\right)\left(    \begin{array}{c}      x \\      y    \end{array}\right)$                </p>
-<p>*注意到有的cdn版本MathJax框架下公式字体对行间公式有一定影响，可能会一些字体会被渲染成主题相同字体，且移动端不能很好地显示</p>
-<p>参考资料：</p>
-<p><a href="https://www.cnblogs.com/wangxin37/p/8185688.html">https://www.cnblogs.com/wangxin37/p/8185688.html</a></p>
-<p><a href="https://heartlessly.github.io/others/latex-mathjax-gong-shi-zi-ti-mei-hua/">https://heartlessly.github.io/others/latex-mathjax-gong-shi-zi-ti-mei-hua/</a></p>
-]]></content>
-      <categories>
-        <category>Projects &amp; Builds</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -3418,136 +3418,6 @@ H_{1}=\left|\begin{array}{cc}
       </tags>
   </entry>
   <entry>
-    <title>用APP Inventor快速开发一款BLE安卓应用</title>
-    <url>/2025/07/18/250718/</url>
-    <content><![CDATA[<p>出于科研项目要求，我需要开发一个能个性化定制界面与功能的BLE手机上位机软件，在经过简单的调研后，主要有以下两种开发路径：</p>
-<ol>
-<li>Android Studio</li>
-<li>MIT APP Inventor</li>
-</ol>
-<p>其中AS需要Java基础，且开发周期长；MIT APP Inventor图形化编程，20min可上手，于是我选择后者，最终也能达到我想要的效果。</p>
-<p>选择建议如下：</p>
-<ul>
-<li><strong>选 Android Studio</strong>：<br>如果你想成为专业开发者，或开发功能复杂、可发布的商业应用。</li>
-<li><strong>选 MIT App Inventor</strong>：<br>如果你是学生，或只想快速做一个简单应用</li>
-</ul>
-<p>于是在B站看了几个包浆的教学视频后，我开始上手制作，过程意外地顺利</p>
-<p>首先，你需要明确你的APP要包含哪些模块</p>
-<p>如下图所示，在登陆官网后，你可以把你需要的模块在侧边栏拖入主页面</p>
-<center>
-    <img src="/images/appinventor/homepage.webp" width="800">
-</center>
-
-
-
-<p>依次描述我的思路</p>
-<p>上图中组件1是BLE设备搜索与断联按钮</p>
-<p>2是BLE连接状态，3是波形图，4是实时数值，5是清空按钮；</p>
-<p>当然也有后端组件Ⅰ，是BLE模块，这个在官网没有，需要下载拓展包，<a href="https://iot.appinventor.mit.edu/">https://iot.appinventor.mit.edu/</a> 这个网站里可以找到，组件Ⅱ相当于画图所用到的数据列表。</p>
-<p>&nbsp;</p>
-<p>在完成组件选择与视图构造后，进入下一步逻辑编程，这里不再赘述，和一些少儿编程培训用的Scratch基本是一个套路，特别注意BLE设备的gatt协议uuid需要根据产品厂商提供的数值修改</p>
-<center>
-    <img src="/images/appinventor/logic.webp" width="800">
-</center>
-
-<p>最终效果如下，其实整体耗时应该不到半天，向互联网开源精神致敬。</p>
-<center>
-    <img src="/images/appinventor/display.gif" width="260">
-</center>
-]]></content>
-      <categories>
-        <category>Projects &amp; Builds</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>KMP算法 Study Log</title>
-    <url>/2025/08/10/250810/</url>
-    <content><![CDATA[<!-- toc -->
-<ul>
-<li><a href="#什么是字符串匹配"><strong>什么是字符串匹配</strong></a></li>
-<li><a href="#暴力解法"><strong>暴力解法</strong></a></li>
-<li><a href="#kmp算法"><strong>KMP算法</strong></a></li>
-<li><a href="#具体实现"><strong>具体实现</strong></a></li>
-<li><a href="#补充"><strong>补充：</strong></a></li>
-</ul>
-<!-- tocstop -->
-<p>&nbsp;</p>
-<p>KMP（Knuth-Morris-Pratt）算法是一种高效的字符串匹配算法，用于在一个主串中查找一个模式串的位置。它通过预处理模式串，避免了在匹配失败时重复比较已经匹配的部分，从而提高了匹配效率。</p>
-<p>该算法在1977年被提出，取三位贡献者的姓名首字母组成算法名称。</p>
-<h3><span id="什么是字符串匹配"><strong>什么是字符串匹配</strong></span></h3><p>字符串匹配问题是计算机科学中的一个经典问题，其核心目标是<strong>在一个较长的文本串（Text）中查找是否存在一个或多个与给定模式串（Pattern）完全相同的子串</strong>。</p>
-<p>例如：</p>
-<ul>
-<li><strong>文本串（T）</strong>：<code>&quot;ABABDABACDABABCABAB&quot;</code></li>
-<li><strong>模式串（P）</strong>：<code>&quot;ABABCABAB&quot;</code></li>
-</ul>
-<p>那么模式串可以在文本串的索引11处匹配</p>
-<p>&nbsp;</p>
-<h3><span id="暴力解法"><strong>暴力解法</strong></span></h3><p>知道控制语句用法的人都知道，这个问题可以套两层循环来解决，从文本串的第1个字符开始，与模式串逐字符比对，如果发现不匹配，则从文本串的第2个字符开始重新比对，以此类推，该解法时间复杂度为$O(m*n)$，效率较低。</p>
-<p>&nbsp;</p>
-<h3><span id="kmp算法"><strong>KMP算法</strong></span></h3><p>KMP算法通过预处理模式串，利用已经匹配的信息，减少重复比较，将时间复杂度优化至$O(m+n)$</p>
-<p>其核心思想有两点：</p>
-<ol>
-<li>构造模式串的部分匹配表，也叫做前缀表，这个表记录了模式串的最长公共前后缀的长度</li>
-<li>利用失败信息，当字符不匹配时，根据部分匹配表移动模式串指针的位置，而不需要回溯文本串的位置</li>
-</ol>
-<p>下图可以清晰地看出前缀表的含义：</p>
-<center>
-    <img src="/images/KMP/prefix.webp" width="500">
-</center>
-
-<p>&nbsp;</p>
-<h3><span id="具体实现"><strong>具体实现</strong></span></h3><p>构造模式串的部分匹配表，即前缀表：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">getprefix</span><span class="token punctuation">(</span><span class="token keyword">const</span> string <span class="token operator">&amp;</span>s<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">*</span>prefix<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">int</span> fend <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    prefix<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> bend <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> bend <span class="token operator">&lt;</span> s<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  bend<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>fend <span class="token operator">></span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> s<span class="token punctuation">[</span>fend<span class="token punctuation">]</span> <span class="token operator">!=</span> s<span class="token punctuation">[</span>bend<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-            fend <span class="token operator">=</span> prefix<span class="token punctuation">[</span>fend <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    	<span class="token punctuation">&#125;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>s<span class="token punctuation">[</span>bend<span class="token punctuation">]</span> <span class="token operator">==</span> s<span class="token punctuation">[</span>fend<span class="token punctuation">]</span><span class="token punctuation">)</span> fend<span class="token operator">++</span><span class="token punctuation">;</span>
-        prefix<span class="token punctuation">[</span>bend<span class="token punctuation">]</span> <span class="token operator">=</span> fend<span class="token punctuation">;</span>
-	<span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>这其中有一些类似递归的思想，当我们手动实现前缀表时，当遇到前缀最后一个字符与后缀字符不匹配的情况时，我们只需要去找他<strong>前一位的前缀表的值所指引的位置</strong>，从那个位置再次开始对比。</p>
-<p>道理和字符串匹配中的应用是一样的，因为前一位存放的是在当前字符之前的子串最大相等前后缀的长度，索引之后代表你可以跳过对比几个前后缀都有的字符，提高效率。</p>
-<p>在具体字符串匹配问题中，运用也是一个道理：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">strStr</span><span class="token punctuation">(</span>string haystack<span class="token punctuation">,</span> string needle<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>needle<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>needle<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">></span> haystack<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-        vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">prefix</span><span class="token punctuation">(</span>needle<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">getprefix</span><span class="token punctuation">(</span>needle<span class="token punctuation">,</span> <span class="token operator">&amp;</span>prefix<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">int</span> index <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> haystack<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-            <span class="token keyword">while</span> <span class="token punctuation">(</span>index <span class="token operator">></span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> haystack<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">!=</span> needle<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-                index <span class="token operator">=</span> prefix<span class="token punctuation">[</span>index <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-            <span class="token punctuation">&#125;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>haystack<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> needle<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">)</span> index<span class="token operator">++</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">==</span> needle<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token punctuation">(</span>i <span class="token operator">-</span> index <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&nbsp;</p>
-<h3><span id="补充"><strong>补充：</strong></span></h3><p>由这个经典问题可推出：一个字符串是否由某个子串重复构成问题的解法。</p>
-<p>结论是，<strong>如果一个字符串在去掉其最长相等前后缀的长度后，剩余的子串长度能被原始长度整除，那么原始字符串就能被这个剩余的子串重复表示。</strong></p>
-<p>充分性证明，即如果某字符串去掉最长相等前后缀后的剩余子串长度能整除原始长度，则原始字符串可由该剩余子串重复表示。</p>
-<center>
-    <img src="/images/KMP/prove1.webp" width="500">
-</center>
-
-<p>必要性证明，即如果字符串能被某个子串重复表示，则去掉字符串的最长相等前后缀后的剩余子串长度必能整除原始长度。</p>
-<p>必要性显然，因此充分必要性均满足，证毕。</p>
-]]></content>
-      <categories>
-        <category>Learning Record</category>
-      </categories>
-      <tags>
-        <tag>Algorithm</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MFCC音频特征提取流程demo</title>
     <url>/2025/07/10/250710/</url>
     <content><![CDATA[<p>MFCC的核心思想是模仿人耳对声音的非线性感知特性（人耳对低频声音比高频声音更敏感），从而更好地表示语音特征。其流程可以概括为以下<strong>步骤</strong>：</p>
@@ -3828,153 +3698,48 @@ H_{1}=\left|\begin{array}{cc}
       </tags>
   </entry>
   <entry>
-    <title>写一个小轮子：模拟实现ls-l 指令</title>
-    <url>/2025/09/14/250915/</url>
-    <content><![CDATA[<h2><span id="概述">概述</span></h2><p>在Linux系统中，<code>ls -l</code>命令是我们日常使用最频繁的命令之一，它能够以长格式显示文件的详细信息。本文将深入解析<code>ls -l</code>的实现原理，并逐步讲解如何用C语言实现一个简化版的<code>ls -l</code>命令。</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">// 输出示例：-rw-rw-r-- 1 miao miao 4 9月 15 20:28 a.txt</span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/types.h></span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/stat.h></span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;pwd.h></span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;grp.h></span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;time.h></span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
-
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span><span class="token operator">*</span> argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>argc <span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s filename\n"</span><span class="token punctuation">,</span> argv<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-
-    <span class="token comment">// 通过stat函数获取文件信息</span>
-    <span class="token keyword">struct</span> <span class="token class-name">stat</span> st<span class="token punctuation">;</span>
-    <span class="token keyword">int</span> ret <span class="token operator">=</span> <span class="token function">stat</span><span class="token punctuation">(</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>st<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>ret <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">"stat"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-
-    <span class="token comment">// 1. 文件类型</span>
-    <span class="token keyword">char</span> perms<span class="token punctuation">[</span><span class="token number">12</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token number">0</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>  
-    <span class="token keyword">switch</span> <span class="token punctuation">(</span>st<span class="token punctuation">.</span>st_mode <span class="token operator">&amp;</span> __S_IFMT<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token keyword">case</span> __S_IFLNK<span class="token operator">:</span>
-            perms<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'l'</span><span class="token punctuation">;</span> <span class="token comment">// 符号链接</span>
-            <span class="token keyword">break</span><span class="token punctuation">;</span>
-        <span class="token keyword">case</span> __S_IFDIR<span class="token operator">:</span>
-            perms<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'d'</span><span class="token punctuation">;</span> <span class="token comment">// 目录</span>
-            <span class="token keyword">break</span><span class="token punctuation">;</span>
-        <span class="token keyword">case</span> __S_IFREG<span class="token operator">:</span>
-            perms<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'-'</span><span class="token punctuation">;</span> <span class="token comment">// 普通文件</span>
-            <span class="token keyword">break</span><span class="token punctuation">;</span>
-        <span class="token keyword">case</span> __S_IFBLK<span class="token operator">:</span>
-            perms<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'b'</span><span class="token punctuation">;</span> <span class="token comment">// 块设备</span>
-            <span class="token keyword">break</span><span class="token punctuation">;</span>
-        <span class="token keyword">case</span> __S_IFCHR<span class="token operator">:</span>
-            perms<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'c'</span><span class="token punctuation">;</span> <span class="token comment">// 字符设备</span>
-            <span class="token keyword">break</span><span class="token punctuation">;</span>
-        <span class="token keyword">case</span> __S_IFSOCK<span class="token operator">:</span>
-            perms<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'s'</span><span class="token punctuation">;</span> <span class="token comment">// 套接字</span>
-            <span class="token keyword">break</span><span class="token punctuation">;</span>
-        <span class="token keyword">case</span> __S_IFIFO<span class="token operator">:</span>
-            perms<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'p'</span><span class="token punctuation">;</span> <span class="token comment">// 管道</span>
-            <span class="token keyword">break</span><span class="token punctuation">;</span>
-        <span class="token keyword">default</span><span class="token operator">:</span>
-            perms<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'?'</span><span class="token punctuation">;</span> <span class="token comment">// 未知类型</span>
-            <span class="token keyword">break</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-
-    <span class="token comment">// 2. 文件权限</span>
-    <span class="token comment">// 文件所有者权限</span>
-    perms<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>st<span class="token punctuation">.</span>st_mode <span class="token operator">&amp;</span> S_IRUSR<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token char">'r'</span> <span class="token operator">:</span> <span class="token char">'-'</span><span class="token punctuation">;</span>
-    perms<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>st<span class="token punctuation">.</span>st_mode <span class="token operator">&amp;</span> S_IWUSR<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token char">'w'</span> <span class="token operator">:</span> <span class="token char">'-'</span><span class="token punctuation">;</span>
-    perms<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>st<span class="token punctuation">.</span>st_mode <span class="token operator">&amp;</span> S_IXUSR<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token char">'x'</span> <span class="token operator">:</span> <span class="token char">'-'</span><span class="token punctuation">;</span>
-    <span class="token comment">// 文件所在组权限</span>
-    perms<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>st<span class="token punctuation">.</span>st_mode <span class="token operator">&amp;</span> S_IRGRP<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token char">'r'</span> <span class="token operator">:</span> <span class="token char">'-'</span><span class="token punctuation">;</span>
-    perms<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>st<span class="token punctuation">.</span>st_mode <span class="token operator">&amp;</span> S_IWGRP<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token char">'w'</span> <span class="token operator">:</span> <span class="token char">'-'</span><span class="token punctuation">;</span>
-    perms<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>st<span class="token punctuation">.</span>st_mode <span class="token operator">&amp;</span> S_IXGRP<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token char">'x'</span> <span class="token operator">:</span> <span class="token char">'-'</span><span class="token punctuation">;</span>
-    <span class="token comment">// 其他人权限</span>
-    perms<span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>st<span class="token punctuation">.</span>st_mode <span class="token operator">&amp;</span> S_IROTH<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token char">'r'</span> <span class="token operator">:</span> <span class="token char">'-'</span><span class="token punctuation">;</span>
-    perms<span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>st<span class="token punctuation">.</span>st_mode <span class="token operator">&amp;</span> S_IWOTH<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token char">'w'</span> <span class="token operator">:</span> <span class="token char">'-'</span><span class="token punctuation">;</span>
-    perms<span class="token punctuation">[</span><span class="token number">9</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>st<span class="token punctuation">.</span>st_mode <span class="token operator">&amp;</span> S_IXOTH<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token char">'x'</span> <span class="token operator">:</span> <span class="token char">'-'</span><span class="token punctuation">;</span>
-    perms<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'\0'</span><span class="token punctuation">;</span> <span class="token comment">// 字符串结束符</span>
-
-    <span class="token comment">// 3. 硬链接数</span>
-    <span class="token keyword">int</span> linknum <span class="token operator">=</span> st<span class="token punctuation">.</span>st_nlink<span class="token punctuation">;</span>
-
-    <span class="token comment">// 4. 文件所有者名称</span>
-    <span class="token keyword">char</span><span class="token operator">*</span> fileuser <span class="token operator">=</span> <span class="token function">getpwuid</span><span class="token punctuation">(</span>st<span class="token punctuation">.</span>st_uid<span class="token punctuation">)</span><span class="token operator">-></span>pw_name<span class="token punctuation">;</span>
-
-    <span class="token comment">// 5. 文件所在组</span>
-    <span class="token keyword">char</span><span class="token operator">*</span> filegroup <span class="token operator">=</span> <span class="token function">getgrgid</span><span class="token punctuation">(</span>st<span class="token punctuation">.</span>st_gid<span class="token punctuation">)</span><span class="token operator">-></span>gr_name<span class="token punctuation">;</span>
-
-    <span class="token comment">// 6. 文件大小</span>
-    <span class="token keyword">long</span> <span class="token keyword">int</span> filesize <span class="token operator">=</span> st<span class="token punctuation">.</span>st_size<span class="token punctuation">;</span>
-
-    <span class="token comment">// 7. 修改时间</span>
-    <span class="token keyword">char</span><span class="token operator">*</span> time <span class="token operator">=</span> <span class="token function">ctime</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>st<span class="token punctuation">.</span>st_mtime<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">char</span> mtime<span class="token punctuation">[</span><span class="token number">512</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token number">0</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-    <span class="token function">strncpy</span><span class="token punctuation">(</span>mtime<span class="token punctuation">,</span> time<span class="token punctuation">,</span> <span class="token function">strlen</span><span class="token punctuation">(</span>time<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 去除末尾的换行符</span>
-
-    <span class="token comment">// 格式化输出</span>
-    <span class="token keyword">char</span> buf<span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token function">sprintf</span><span class="token punctuation">(</span>buf<span class="token punctuation">,</span> <span class="token string">"%s %d %s %s %ld %s %s"</span><span class="token punctuation">,</span> 
-            perms<span class="token punctuation">,</span> linknum<span class="token punctuation">,</span> fileuser<span class="token punctuation">,</span> filegroup<span class="token punctuation">,</span> filesize<span class="token punctuation">,</span> mtime<span class="token punctuation">,</span> argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s\n"</span><span class="token punctuation">,</span> buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3><span id="1-stat系统调用">1. stat系统调用</span></h3><p><code>stat()</code>函数是获取文件信息的核心系统调用，它填充一个<code>stat</code>结构体，包含文件的所有元数据：</p>
+    <title>用APP Inventor快速开发一款BLE安卓应用</title>
+    <url>/2025/07/18/250718/</url>
+    <content><![CDATA[<p>出于科研项目要求，我需要开发一个能个性化定制界面与功能的BLE手机上位机软件，在经过简单的调研后，主要有以下两种开发路径：</p>
+<ol>
+<li>Android Studio</li>
+<li>MIT APP Inventor</li>
+</ol>
+<p>其中AS需要Java基础，且开发周期长；MIT APP Inventor图形化编程，20min可上手，于是我选择后者，最终也能达到我想要的效果。</p>
+<p>选择建议如下：</p>
 <ul>
-<li>文件类型和权限(st_mode)</li>
-<li>硬链接数量(st_nlink)</li>
-<li>所有者和组ID(st_uid, st_gid)</li>
-<li>文件大小(st_size)</li>
-<li>最后修改时间(st_mtime)</li>
+<li><strong>选 Android Studio</strong>：<br>如果你想成为专业开发者，或开发功能复杂、可发布的商业应用。</li>
+<li><strong>选 MIT App Inventor</strong>：<br>如果你是学生，或只想快速做一个简单应用</li>
 </ul>
-<h3><span id="2-文件类型识别">2. 文件类型识别</span></h3><p>通过<code>st_mode &amp; __S_IFMT</code>这种掩码的方式，可以提取文件类型信息，常见的文件类型包括：</p>
-<ul>
-<li>普通文件(-)</li>
-<li>目录(d)</li>
-<li>符号链接(l)</li>
-<li>字符设备(c)</li>
-<li>块设备(b)</li>
-<li>套接字(s)</li>
-<li>管道(p)</li>
-</ul>
-<h3><span id="3-权限位处理">3. 权限位处理</span></h3><p>文件权限分为三组：所有者、组和其他用户，每组包含读(r)、写(w)和执行(x)权限。通过位掩码操作可以检查每位权限设置。</p>
-<h3><span id="4-用户和组信息转换">4. 用户和组信息转换</span></h3><p>使用<code>getpwuid()</code>和<code>getgrgid()</code>函数将UID和GID转换为可读的用户名和组名。</p>
-<h3><span id="5-时间格式处理">5. 时间格式处理</span></h3><p><code>ctime()</code>将时间戳转换为可读字符串，但包含换行符，需要去除末尾的换行符。</p>
-<p>示例：</p>
-<p>ll输出：</p>
+<p>于是在B站看了几个包浆的教学视频后，我开始上手制作，过程意外地顺利</p>
+<p>首先，你需要明确你的APP要包含哪些模块</p>
+<p>如下图所示，在登陆官网后，你可以把你需要的模块在侧边栏拖入主页面</p>
 <center>
-    <img src="/images/Linux/ll.webp" width="500">
+    <img src="/images/appinventor/homepage.webp" width="800">
 </center>
 
-<p>脚本输出：</p>
+
+
+<p>依次描述我的思路</p>
+<p>上图中组件1是BLE设备搜索与断联按钮</p>
+<p>2是BLE连接状态，3是波形图，4是实时数值，5是清空按钮；</p>
+<p>当然也有后端组件Ⅰ，是BLE模块，这个在官网没有，需要下载拓展包，<a href="https://iot.appinventor.mit.edu/">https://iot.appinventor.mit.edu/</a> 这个网站里可以找到，组件Ⅱ相当于画图所用到的数据列表。</p>
+<p>&nbsp;</p>
+<p>在完成组件选择与视图构造后，进入下一步逻辑编程，这里不再赘述，和一些少儿编程培训用的Scratch基本是一个套路，特别注意BLE设备的gatt协议uuid需要根据产品厂商提供的数值修改</p>
 <center>
-    <img src="/images/Linux/fileoutput.webp" width="500">
+    <img src="/images/appinventor/logic.webp" width="800">
+</center>
+
+<p>最终效果如下，其实整体耗时应该不到半天，向互联网开源精神致敬。</p>
+<center>
+    <img src="/images/appinventor/display.gif" width="260">
 </center>
 ]]></content>
       <categories>
         <category>Projects &amp; Builds</category>
       </categories>
       <tags>
-        <tag>CS</tag>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Graph AC</title>
-    <url>/2025/09/21/250921/</url>
-    <content><![CDATA[<h3><span id="图论理论基础">图论理论基础</span></h3><p>有向图 无向图 加权图</p>
-]]></content>
-      <categories>
-        <category>Learning Record</category>
-      </categories>
-      <tags>
-        <tag>CS</tag>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -10378,6 +10143,229 @@ dp[i][3] = dp[i - 1][2];
       </categories>
       <tags>
         <tag>CS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>KMP算法 Study Log</title>
+    <url>/2025/08/10/250810/</url>
+    <content><![CDATA[<!-- toc -->
+<ul>
+<li><a href="#什么是字符串匹配"><strong>什么是字符串匹配</strong></a></li>
+<li><a href="#暴力解法"><strong>暴力解法</strong></a></li>
+<li><a href="#kmp算法"><strong>KMP算法</strong></a></li>
+<li><a href="#具体实现"><strong>具体实现</strong></a></li>
+<li><a href="#补充"><strong>补充：</strong></a></li>
+</ul>
+<!-- tocstop -->
+<p>&nbsp;</p>
+<p>KMP（Knuth-Morris-Pratt）算法是一种高效的字符串匹配算法，用于在一个主串中查找一个模式串的位置。它通过预处理模式串，避免了在匹配失败时重复比较已经匹配的部分，从而提高了匹配效率。</p>
+<p>该算法在1977年被提出，取三位贡献者的姓名首字母组成算法名称。</p>
+<h3><span id="什么是字符串匹配"><strong>什么是字符串匹配</strong></span></h3><p>字符串匹配问题是计算机科学中的一个经典问题，其核心目标是<strong>在一个较长的文本串（Text）中查找是否存在一个或多个与给定模式串（Pattern）完全相同的子串</strong>。</p>
+<p>例如：</p>
+<ul>
+<li><strong>文本串（T）</strong>：<code>&quot;ABABDABACDABABCABAB&quot;</code></li>
+<li><strong>模式串（P）</strong>：<code>&quot;ABABCABAB&quot;</code></li>
+</ul>
+<p>那么模式串可以在文本串的索引11处匹配</p>
+<p>&nbsp;</p>
+<h3><span id="暴力解法"><strong>暴力解法</strong></span></h3><p>知道控制语句用法的人都知道，这个问题可以套两层循环来解决，从文本串的第1个字符开始，与模式串逐字符比对，如果发现不匹配，则从文本串的第2个字符开始重新比对，以此类推，该解法时间复杂度为$O(m*n)$，效率较低。</p>
+<p>&nbsp;</p>
+<h3><span id="kmp算法"><strong>KMP算法</strong></span></h3><p>KMP算法通过预处理模式串，利用已经匹配的信息，减少重复比较，将时间复杂度优化至$O(m+n)$</p>
+<p>其核心思想有两点：</p>
+<ol>
+<li>构造模式串的部分匹配表，也叫做前缀表，这个表记录了模式串的最长公共前后缀的长度</li>
+<li>利用失败信息，当字符不匹配时，根据部分匹配表移动模式串指针的位置，而不需要回溯文本串的位置</li>
+</ol>
+<p>下图可以清晰地看出前缀表的含义：</p>
+<center>
+    <img src="/images/KMP/prefix.webp" width="500">
+</center>
+
+<p>&nbsp;</p>
+<h3><span id="具体实现"><strong>具体实现</strong></span></h3><p>构造模式串的部分匹配表，即前缀表：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">getprefix</span><span class="token punctuation">(</span><span class="token keyword">const</span> string <span class="token operator">&amp;</span>s<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">*</span>prefix<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> fend <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    prefix<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> bend <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> bend <span class="token operator">&lt;</span> s<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  bend<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>fend <span class="token operator">></span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> s<span class="token punctuation">[</span>fend<span class="token punctuation">]</span> <span class="token operator">!=</span> s<span class="token punctuation">[</span>bend<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            fend <span class="token operator">=</span> prefix<span class="token punctuation">[</span>fend <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    	<span class="token punctuation">&#125;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>s<span class="token punctuation">[</span>bend<span class="token punctuation">]</span> <span class="token operator">==</span> s<span class="token punctuation">[</span>fend<span class="token punctuation">]</span><span class="token punctuation">)</span> fend<span class="token operator">++</span><span class="token punctuation">;</span>
+        prefix<span class="token punctuation">[</span>bend<span class="token punctuation">]</span> <span class="token operator">=</span> fend<span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这其中有一些类似递归的思想，当我们手动实现前缀表时，当遇到前缀最后一个字符与后缀字符不匹配的情况时，我们只需要去找他<strong>前一位的前缀表的值所指引的位置</strong>，从那个位置再次开始对比。</p>
+<p>道理和字符串匹配中的应用是一样的，因为前一位存放的是在当前字符之前的子串最大相等前后缀的长度，索引之后代表你可以跳过对比几个前后缀都有的字符，提高效率。</p>
+<p>在具体字符串匹配问题中，运用也是一个道理：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">strStr</span><span class="token punctuation">(</span>string haystack<span class="token punctuation">,</span> string needle<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>needle<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>needle<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">></span> haystack<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">prefix</span><span class="token punctuation">(</span>needle<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">getprefix</span><span class="token punctuation">(</span>needle<span class="token punctuation">,</span> <span class="token operator">&amp;</span>prefix<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> index <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> haystack<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">while</span> <span class="token punctuation">(</span>index <span class="token operator">></span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> haystack<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">!=</span> needle<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                index <span class="token operator">=</span> prefix<span class="token punctuation">[</span>index <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>haystack<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> needle<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">)</span> index<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">==</span> needle<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token punctuation">(</span>i <span class="token operator">-</span> index <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&nbsp;</p>
+<h3><span id="补充"><strong>补充：</strong></span></h3><p>由这个经典问题可推出：一个字符串是否由某个子串重复构成问题的解法。</p>
+<p>结论是，<strong>如果一个字符串在去掉其最长相等前后缀的长度后，剩余的子串长度能被原始长度整除，那么原始字符串就能被这个剩余的子串重复表示。</strong></p>
+<p>充分性证明，即如果某字符串去掉最长相等前后缀后的剩余子串长度能整除原始长度，则原始字符串可由该剩余子串重复表示。</p>
+<center>
+    <img src="/images/KMP/prove1.webp" width="500">
+</center>
+
+<p>必要性证明，即如果字符串能被某个子串重复表示，则去掉字符串的最长相等前后缀后的剩余子串长度必能整除原始长度。</p>
+<p>必要性显然，因此充分必要性均满足，证毕。</p>
+]]></content>
+      <categories>
+        <category>Learning Record</category>
+      </categories>
+      <tags>
+        <tag>Algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>写一个小轮子：模拟实现ls-l 指令</title>
+    <url>/2025/09/14/250915/</url>
+    <content><![CDATA[<h2><span id="概述">概述</span></h2><p>在Linux系统中，<code>ls -l</code>命令是我们日常使用最频繁的命令之一，它能够以长格式显示文件的详细信息。本文将深入解析<code>ls -l</code>的实现原理，并逐步讲解如何用C语言实现一个简化版的<code>ls -l</code>命令。</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">// 输出示例：-rw-rw-r-- 1 miao miao 4 9月 15 20:28 a.txt</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/types.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/stat.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;pwd.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;grp.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;time.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span><span class="token operator">*</span> argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>argc <span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s filename\n"</span><span class="token punctuation">,</span> argv<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 通过stat函数获取文件信息</span>
+    <span class="token keyword">struct</span> <span class="token class-name">stat</span> st<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> ret <span class="token operator">=</span> <span class="token function">stat</span><span class="token punctuation">(</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>st<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>ret <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">"stat"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 1. 文件类型</span>
+    <span class="token keyword">char</span> perms<span class="token punctuation">[</span><span class="token number">12</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token number">0</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>  
+    <span class="token keyword">switch</span> <span class="token punctuation">(</span>st<span class="token punctuation">.</span>st_mode <span class="token operator">&amp;</span> __S_IFMT<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">case</span> __S_IFLNK<span class="token operator">:</span>
+            perms<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'l'</span><span class="token punctuation">;</span> <span class="token comment">// 符号链接</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token keyword">case</span> __S_IFDIR<span class="token operator">:</span>
+            perms<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'d'</span><span class="token punctuation">;</span> <span class="token comment">// 目录</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token keyword">case</span> __S_IFREG<span class="token operator">:</span>
+            perms<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'-'</span><span class="token punctuation">;</span> <span class="token comment">// 普通文件</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token keyword">case</span> __S_IFBLK<span class="token operator">:</span>
+            perms<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'b'</span><span class="token punctuation">;</span> <span class="token comment">// 块设备</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token keyword">case</span> __S_IFCHR<span class="token operator">:</span>
+            perms<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'c'</span><span class="token punctuation">;</span> <span class="token comment">// 字符设备</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token keyword">case</span> __S_IFSOCK<span class="token operator">:</span>
+            perms<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'s'</span><span class="token punctuation">;</span> <span class="token comment">// 套接字</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token keyword">case</span> __S_IFIFO<span class="token operator">:</span>
+            perms<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'p'</span><span class="token punctuation">;</span> <span class="token comment">// 管道</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token keyword">default</span><span class="token operator">:</span>
+            perms<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'?'</span><span class="token punctuation">;</span> <span class="token comment">// 未知类型</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 2. 文件权限</span>
+    <span class="token comment">// 文件所有者权限</span>
+    perms<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>st<span class="token punctuation">.</span>st_mode <span class="token operator">&amp;</span> S_IRUSR<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token char">'r'</span> <span class="token operator">:</span> <span class="token char">'-'</span><span class="token punctuation">;</span>
+    perms<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>st<span class="token punctuation">.</span>st_mode <span class="token operator">&amp;</span> S_IWUSR<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token char">'w'</span> <span class="token operator">:</span> <span class="token char">'-'</span><span class="token punctuation">;</span>
+    perms<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>st<span class="token punctuation">.</span>st_mode <span class="token operator">&amp;</span> S_IXUSR<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token char">'x'</span> <span class="token operator">:</span> <span class="token char">'-'</span><span class="token punctuation">;</span>
+    <span class="token comment">// 文件所在组权限</span>
+    perms<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>st<span class="token punctuation">.</span>st_mode <span class="token operator">&amp;</span> S_IRGRP<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token char">'r'</span> <span class="token operator">:</span> <span class="token char">'-'</span><span class="token punctuation">;</span>
+    perms<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>st<span class="token punctuation">.</span>st_mode <span class="token operator">&amp;</span> S_IWGRP<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token char">'w'</span> <span class="token operator">:</span> <span class="token char">'-'</span><span class="token punctuation">;</span>
+    perms<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>st<span class="token punctuation">.</span>st_mode <span class="token operator">&amp;</span> S_IXGRP<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token char">'x'</span> <span class="token operator">:</span> <span class="token char">'-'</span><span class="token punctuation">;</span>
+    <span class="token comment">// 其他人权限</span>
+    perms<span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>st<span class="token punctuation">.</span>st_mode <span class="token operator">&amp;</span> S_IROTH<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token char">'r'</span> <span class="token operator">:</span> <span class="token char">'-'</span><span class="token punctuation">;</span>
+    perms<span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>st<span class="token punctuation">.</span>st_mode <span class="token operator">&amp;</span> S_IWOTH<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token char">'w'</span> <span class="token operator">:</span> <span class="token char">'-'</span><span class="token punctuation">;</span>
+    perms<span class="token punctuation">[</span><span class="token number">9</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>st<span class="token punctuation">.</span>st_mode <span class="token operator">&amp;</span> S_IXOTH<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token char">'x'</span> <span class="token operator">:</span> <span class="token char">'-'</span><span class="token punctuation">;</span>
+    perms<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'\0'</span><span class="token punctuation">;</span> <span class="token comment">// 字符串结束符</span>
+
+    <span class="token comment">// 3. 硬链接数</span>
+    <span class="token keyword">int</span> linknum <span class="token operator">=</span> st<span class="token punctuation">.</span>st_nlink<span class="token punctuation">;</span>
+
+    <span class="token comment">// 4. 文件所有者名称</span>
+    <span class="token keyword">char</span><span class="token operator">*</span> fileuser <span class="token operator">=</span> <span class="token function">getpwuid</span><span class="token punctuation">(</span>st<span class="token punctuation">.</span>st_uid<span class="token punctuation">)</span><span class="token operator">-></span>pw_name<span class="token punctuation">;</span>
+
+    <span class="token comment">// 5. 文件所在组</span>
+    <span class="token keyword">char</span><span class="token operator">*</span> filegroup <span class="token operator">=</span> <span class="token function">getgrgid</span><span class="token punctuation">(</span>st<span class="token punctuation">.</span>st_gid<span class="token punctuation">)</span><span class="token operator">-></span>gr_name<span class="token punctuation">;</span>
+
+    <span class="token comment">// 6. 文件大小</span>
+    <span class="token keyword">long</span> <span class="token keyword">int</span> filesize <span class="token operator">=</span> st<span class="token punctuation">.</span>st_size<span class="token punctuation">;</span>
+
+    <span class="token comment">// 7. 修改时间</span>
+    <span class="token keyword">char</span><span class="token operator">*</span> time <span class="token operator">=</span> <span class="token function">ctime</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>st<span class="token punctuation">.</span>st_mtime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">char</span> mtime<span class="token punctuation">[</span><span class="token number">512</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token number">0</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+    <span class="token function">strncpy</span><span class="token punctuation">(</span>mtime<span class="token punctuation">,</span> time<span class="token punctuation">,</span> <span class="token function">strlen</span><span class="token punctuation">(</span>time<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 去除末尾的换行符</span>
+
+    <span class="token comment">// 格式化输出</span>
+    <span class="token keyword">char</span> buf<span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token function">sprintf</span><span class="token punctuation">(</span>buf<span class="token punctuation">,</span> <span class="token string">"%s %d %s %s %ld %s %s"</span><span class="token punctuation">,</span> 
+            perms<span class="token punctuation">,</span> linknum<span class="token punctuation">,</span> fileuser<span class="token punctuation">,</span> filegroup<span class="token punctuation">,</span> filesize<span class="token punctuation">,</span> mtime<span class="token punctuation">,</span> argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s\n"</span><span class="token punctuation">,</span> buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3><span id="1-stat系统调用">1. stat系统调用</span></h3><p><code>stat()</code>函数是获取文件信息的核心系统调用，它填充一个<code>stat</code>结构体，包含文件的所有元数据：</p>
+<ul>
+<li>文件类型和权限(st_mode)</li>
+<li>硬链接数量(st_nlink)</li>
+<li>所有者和组ID(st_uid, st_gid)</li>
+<li>文件大小(st_size)</li>
+<li>最后修改时间(st_mtime)</li>
+</ul>
+<h3><span id="2-文件类型识别">2. 文件类型识别</span></h3><p>通过<code>st_mode &amp; __S_IFMT</code>这种掩码的方式，可以提取文件类型信息，常见的文件类型包括：</p>
+<ul>
+<li>普通文件(-)</li>
+<li>目录(d)</li>
+<li>符号链接(l)</li>
+<li>字符设备(c)</li>
+<li>块设备(b)</li>
+<li>套接字(s)</li>
+<li>管道(p)</li>
+</ul>
+<h3><span id="3-权限位处理">3. 权限位处理</span></h3><p>文件权限分为三组：所有者、组和其他用户，每组包含读(r)、写(w)和执行(x)权限。通过位掩码操作可以检查每位权限设置。</p>
+<h3><span id="4-用户和组信息转换">4. 用户和组信息转换</span></h3><p>使用<code>getpwuid()</code>和<code>getgrgid()</code>函数将UID和GID转换为可读的用户名和组名。</p>
+<h3><span id="5-时间格式处理">5. 时间格式处理</span></h3><p><code>ctime()</code>将时间戳转换为可读字符串，但包含换行符，需要去除末尾的换行符。</p>
+<p>示例：</p>
+<p>ll输出：</p>
+<center>
+    <img src="/images/Linux/ll.webp" width="500">
+</center>
+
+<p>脚本输出：</p>
+<center>
+    <img src="/images/Linux/fileoutput.webp" width="500">
+</center>
+]]></content>
+      <categories>
+        <category>Projects &amp; Builds</category>
+      </categories>
+      <tags>
+        <tag>CS</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
 </search>
