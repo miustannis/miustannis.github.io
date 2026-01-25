@@ -133,13 +133,13 @@
     <div class="widget">
       <h3 class="widget-title">分类</h3>
       <div class="category-box">
-            <a class="category-link" href="/categories/Learning-Record/">
-                Learning Record
-                <div class="category-count">7</div>
-            </a>
-        
             <a class="category-link" href="/categories/Projects-Builds/">
                 Projects & Builds
+                <div class="category-count">8</div>
+            </a>
+        
+            <a class="category-link" href="/categories/Learning-Record/">
+                Learning Record
                 <div class="category-count">8</div>
             </a>
         </div>
@@ -152,7 +152,7 @@
   <div class="widget-wrap">
     <div class="widget">
       <h3 class="widget-title">标签</h3>
-      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/CS/" rel="tag">CS</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">图像处理</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a></li></ul>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/CS/" rel="tag">CS</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">图像处理</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a></li></ul>
     </div>
   </div>
 
@@ -164,11 +164,63 @@
     <div id="content-body">
        
 
+<!-- 局部样式：将 chip 的展示和颜色交给主题变量控制，避免内联样式覆盖主题 -->
+<style>
+:root{
+  --archive-chip-bg: rgba(0,0,0,0.04);
+  --archive-chip-color: #000; /* 从 #222 改为纯黑 */
+}
+
+/* 支持多种常见暗色类/属性，便于快速兼容不同主题实现 */
+[theme="dark"]{
+  --archive-chip-bg: rgba(255,255,255,0.06);
+  --archive-chip-color: #eee;
+}
+.archive-total.chip{
+  margin-left: 12px;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-weight: 600;
+  /* 去掉背景色，避免出现底纹 */
+  background: transparent;
+  color: var(--archive-chip-color);
+}
+</style>
+
+<!-- 小脚本：从 localStorage 或 html[theme] 读取主题并同步到 data-theme / html.class / body.class -->
+<script>
+(function(){
+  try {
+    const html = document.documentElement;
+    const getStored = () => {
+      try { return localStorage.getItem('vivia-theme') || localStorage.getItem('theme'); } catch(e) { return null; }
+    };
+    const raw = getStored() || html.getAttribute('theme') || html.getAttribute('data-theme') || '';
+    if (!raw) return;
+    const key = String(raw).toLowerCase();
+    const resolved = key === 'system' && window.matchMedia
+      ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+      : key;
+    const isDark = resolved === 'dark' || resolved === 'night';
+    html.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    html.classList.toggle('dark', isDark);
+    html.classList.toggle('vivia-dark', isDark);
+    if (document.body) document.body.classList.toggle('dark', isDark);
+  } catch(e){}
+})();
+</script>
+
 <div class="archive-main-card">
     <div class="archive-top">
       <div class="main-title-bar">
         <div class="main-title-dot"></div>
         <h1 class="article-title">归档</h1>
+        <!-- 保持与标题同一行、同一层级并加粗，避免换行 -->
+        
+        
       </div>    
     </div>
     
@@ -197,7 +249,7 @@
             </div>
         </div>
         <div class="tags">
-            #嵌入式 #图像处理 #Algorithm
+            #嵌入式 #Algorithm #图像处理
         </div>
       </a>
     
@@ -313,7 +365,7 @@
   <div id="footer-info" class="inner">
     Copyright
     
-    &copy; Miao Ye 2025  <br> 
+    &copy; Miao Ye 2026  <br> 
     Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> 
   </div>
 </footer>
@@ -344,22 +396,5 @@
 
   </div>
   <script src="/js/light-dark-switch.js"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-
 </body>
 </html>

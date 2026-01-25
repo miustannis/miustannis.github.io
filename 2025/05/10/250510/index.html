@@ -29,11 +29,11 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://miustannis.github.io/images/thermal_camera/thermal_camera2.webp">
 <meta property="article:published_time" content="2025-05-10T02:05:52.000Z">
-<meta property="article:modified_time" content="2025-08-20T04:14:46.405Z">
+<meta property="article:modified_time" content="2026-01-25T05:01:23.559Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="嵌入式">
-<meta property="article:tag" content="图像处理">
 <meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="图像处理">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://miustannis.github.io/images/thermal_camera/thermal_camera2.webp">
   
@@ -142,13 +142,13 @@
     <div class="widget">
       <h3 class="widget-title">分类</h3>
       <div class="category-box">
-            <a class="category-link" href="/categories/Learning-Record/">
-                Learning Record
-                <div class="category-count">7</div>
-            </a>
-        
             <a class="category-link" href="/categories/Projects-Builds/">
                 Projects & Builds
+                <div class="category-count">8</div>
+            </a>
+        
+            <a class="category-link" href="/categories/Learning-Record/">
+                Learning Record
                 <div class="category-count">8</div>
             </a>
         </div>
@@ -161,7 +161,7 @@
   <div class="widget-wrap">
     <div class="widget">
       <h3 class="widget-title">标签</h3>
-      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/CS/" rel="tag">CS</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">图像处理</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a></li></ul>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/CS/" rel="tag">CS</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">图像处理</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a></li></ul>
     </div>
   </div>
 
@@ -180,7 +180,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img" rel="gallery_cmhvf3h7e001gu8uqb6kodigb">
+      <a class="article-gallery-img" rel="gallery_cmktkoi2p000nsguq7am2clyv">
         <img src="/images/thermal_camera/thermal_camera2.webp" itemprop="image">
       </a>
     
@@ -216,7 +216,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            6.5k 词 
+            6.2k 词 
           </div>
         </div>
         
@@ -381,96 +381,96 @@
 <p>将模型以权重模式保存并导出到c头文件</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">torch<span class="token punctuation">.</span>save<span class="token punctuation">(</span>model<span class="token punctuation">.</span>state_dict<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'micro_temp_net_params.pth'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>之后将每个部分转C，这里大量使用ai工具，还是比较给力的</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; ReLU
-static void relu(float* data, int size) &#123;
-    for (int i &#x3D; 0; i &lt; size; i++) &#123;
-        data[i] &#x3D; data[i] &gt; 0 ? data[i] : 0;
-    &#125;
-&#125;
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// ReLU</span>
+<span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">relu</span><span class="token punctuation">(</span><span class="token keyword">float</span><span class="token operator">*</span> data<span class="token punctuation">,</span> <span class="token keyword">int</span> size<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> size<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        data<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">></span> <span class="token number">0</span> <span class="token operator">?</span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
 
-&#x2F;&#x2F; 2d convolution stride &#x3D; 2
-static void conv2d_stride2(const float* input, const float* weights, const float* bias,
-                          float* output, int in_channels, int out_channels,
-                          int height, int width, int kernel_size) &#123;
-    int out_h &#x3D; height &#x2F; 2;
-    int out_w &#x3D; width &#x2F; 2;
+<span class="token comment">// 2d convolution stride = 2</span>
+<span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">conv2d_stride2</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">float</span><span class="token operator">*</span> input<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">float</span><span class="token operator">*</span> weights<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">float</span><span class="token operator">*</span> bias<span class="token punctuation">,</span>
+                          <span class="token keyword">float</span><span class="token operator">*</span> output<span class="token punctuation">,</span> <span class="token keyword">int</span> in_channels<span class="token punctuation">,</span> <span class="token keyword">int</span> out_channels<span class="token punctuation">,</span>
+                          <span class="token keyword">int</span> height<span class="token punctuation">,</span> <span class="token keyword">int</span> width<span class="token punctuation">,</span> <span class="token keyword">int</span> kernel_size<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> out_h <span class="token operator">=</span> height <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> out_w <span class="token operator">=</span> width <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
     
-    for (int oc &#x3D; 0; oc &lt; out_channels; oc++) &#123;
-        for (int oh &#x3D; 0; oh &lt; out_h; oh++) &#123;
-            for (int ow &#x3D; 0; ow &lt; out_w; ow++) &#123;
-                float sum &#x3D; bias[oc];
-                int ih &#x3D; oh * 2;
-                int iw &#x3D; ow * 2;
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> oc <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> oc <span class="token operator">&lt;</span> out_channels<span class="token punctuation">;</span> oc<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> oh <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> oh <span class="token operator">&lt;</span> out_h<span class="token punctuation">;</span> oh<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> ow <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> ow <span class="token operator">&lt;</span> out_w<span class="token punctuation">;</span> ow<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token keyword">float</span> sum <span class="token operator">=</span> bias<span class="token punctuation">[</span>oc<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                <span class="token keyword">int</span> ih <span class="token operator">=</span> oh <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
+                <span class="token keyword">int</span> iw <span class="token operator">=</span> ow <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
                 
-                for (int ic &#x3D; 0; ic &lt; in_channels; ic++) &#123;
-                    for (int kh &#x3D; 0; kh &lt; kernel_size; kh++) &#123;
-                        for (int kw &#x3D; 0; kw &lt; kernel_size; kw++) &#123;
-                            int input_idx &#x3D; ic * height * width + (ih + kh) * width + (iw + kw);
-                            int weight_idx &#x3D; oc * in_channels * kernel_size * kernel_size + 
-                                           ic * kernel_size * kernel_size + 
-                                           kh * kernel_size + kw;
-                            sum +&#x3D; input[input_idx] * weights[weight_idx];
-                        &#125;
-                    &#125;
-                &#125;
-                int output_idx &#x3D; oc * out_h * out_w + oh * out_w + ow;
-                output[output_idx] &#x3D; sum;
-            &#125;
-        &#125;
-    &#125;
-&#125;
+                <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> ic <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> ic <span class="token operator">&lt;</span> in_channels<span class="token punctuation">;</span> ic<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> kh <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> kh <span class="token operator">&lt;</span> kernel_size<span class="token punctuation">;</span> kh<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> kw <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> kw <span class="token operator">&lt;</span> kernel_size<span class="token punctuation">;</span> kw<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                            <span class="token keyword">int</span> input_idx <span class="token operator">=</span> ic <span class="token operator">*</span> height <span class="token operator">*</span> width <span class="token operator">+</span> <span class="token punctuation">(</span>ih <span class="token operator">+</span> kh<span class="token punctuation">)</span> <span class="token operator">*</span> width <span class="token operator">+</span> <span class="token punctuation">(</span>iw <span class="token operator">+</span> kw<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                            <span class="token keyword">int</span> weight_idx <span class="token operator">=</span> oc <span class="token operator">*</span> in_channels <span class="token operator">*</span> kernel_size <span class="token operator">*</span> kernel_size <span class="token operator">+</span> 
+                                           ic <span class="token operator">*</span> kernel_size <span class="token operator">*</span> kernel_size <span class="token operator">+</span> 
+                                           kh <span class="token operator">*</span> kernel_size <span class="token operator">+</span> kw<span class="token punctuation">;</span>
+                            sum <span class="token operator">+=</span> input<span class="token punctuation">[</span>input_idx<span class="token punctuation">]</span> <span class="token operator">*</span> weights<span class="token punctuation">[</span>weight_idx<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                        <span class="token punctuation">&#125;</span>
+                    <span class="token punctuation">&#125;</span>
+                <span class="token punctuation">&#125;</span>
+                <span class="token keyword">int</span> output_idx <span class="token operator">=</span> oc <span class="token operator">*</span> out_h <span class="token operator">*</span> out_w <span class="token operator">+</span> oh <span class="token operator">*</span> out_w <span class="token operator">+</span> ow<span class="token punctuation">;</span>
+                output<span class="token punctuation">[</span>output_idx<span class="token punctuation">]</span> <span class="token operator">=</span> sum<span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
 
-&#x2F;&#x2F; fc
-static void dense(const float* input, const float* weights, const float* bias,
-                float* output, int in_features, int out_features) &#123;
-    for (int i &#x3D; 0; i &lt; out_features; i++) &#123;
-        output[i] &#x3D; bias[i];
-        for (int j &#x3D; 0; j &lt; in_features; j++) &#123;
-            output[i] +&#x3D; input[j] * weights[i * in_features + j];
-        &#125;
-    &#125;
-&#125;
+<span class="token comment">// fc</span>
+<span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">dense</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">float</span><span class="token operator">*</span> input<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">float</span><span class="token operator">*</span> weights<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">float</span><span class="token operator">*</span> bias<span class="token punctuation">,</span>
+                <span class="token keyword">float</span><span class="token operator">*</span> output<span class="token punctuation">,</span> <span class="token keyword">int</span> in_features<span class="token punctuation">,</span> <span class="token keyword">int</span> out_features<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> out_features<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        output<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> bias<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> in_features<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            output<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+=</span> input<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">*</span> weights<span class="token punctuation">[</span>i <span class="token operator">*</span> in_features <span class="token operator">+</span> j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
 
-&#x2F;&#x2F; initialize
-void micro_temp_net_init(MicroTempNet* net, 
-                        const float* conv1_w, const float* conv1_b,
-                        const float* conv2_w, const float* conv2_b,
-                        const float* fc1_w, const float* fc1_b,
-                        const float* fc2_w, const float* fc2_b) &#123;
-    net-&gt;conv1_weight &#x3D; conv1_w;
-    net-&gt;conv1_bias &#x3D; conv1_b;
-    net-&gt;conv2_weight &#x3D; conv2_w;
-    net-&gt;conv2_bias &#x3D; conv2_b;
-    net-&gt;fc1_weight &#x3D; fc1_w;
-    net-&gt;fc1_bias &#x3D; fc1_b;
-    net-&gt;fc2_weight &#x3D; fc2_w;
-    net-&gt;fc2_bias &#x3D; fc2_b;
-&#125;
+<span class="token comment">// initialize</span>
+<span class="token keyword">void</span> <span class="token function">micro_temp_net_init</span><span class="token punctuation">(</span>MicroTempNet<span class="token operator">*</span> net<span class="token punctuation">,</span> 
+                        <span class="token keyword">const</span> <span class="token keyword">float</span><span class="token operator">*</span> conv1_w<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">float</span><span class="token operator">*</span> conv1_b<span class="token punctuation">,</span>
+                        <span class="token keyword">const</span> <span class="token keyword">float</span><span class="token operator">*</span> conv2_w<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">float</span><span class="token operator">*</span> conv2_b<span class="token punctuation">,</span>
+                        <span class="token keyword">const</span> <span class="token keyword">float</span><span class="token operator">*</span> fc1_w<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">float</span><span class="token operator">*</span> fc1_b<span class="token punctuation">,</span>
+                        <span class="token keyword">const</span> <span class="token keyword">float</span><span class="token operator">*</span> fc2_w<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">float</span><span class="token operator">*</span> fc2_b<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    net<span class="token operator">-></span>conv1_weight <span class="token operator">=</span> conv1_w<span class="token punctuation">;</span>
+    net<span class="token operator">-></span>conv1_bias <span class="token operator">=</span> conv1_b<span class="token punctuation">;</span>
+    net<span class="token operator">-></span>conv2_weight <span class="token operator">=</span> conv2_w<span class="token punctuation">;</span>
+    net<span class="token operator">-></span>conv2_bias <span class="token operator">=</span> conv2_b<span class="token punctuation">;</span>
+    net<span class="token operator">-></span>fc1_weight <span class="token operator">=</span> fc1_w<span class="token punctuation">;</span>
+    net<span class="token operator">-></span>fc1_bias <span class="token operator">=</span> fc1_b<span class="token punctuation">;</span>
+    net<span class="token operator">-></span>fc2_weight <span class="token operator">=</span> fc2_w<span class="token punctuation">;</span>
+    net<span class="token operator">-></span>fc2_bias <span class="token operator">=</span> fc2_b<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
 
-&#x2F;&#x2F; predict
-void micro_temp_net_predict(const MicroTempNet* net, float* input, float* output) &#123;
-    &#x2F;&#x2F;  [1,32,24] -&gt; [4,16,12]
-    float conv1_out[4 * 16 * 12];
-    conv2d_stride2(input, net-&gt;conv1_weight, net-&gt;conv1_bias, conv1_out, 1, 4, 32, 24, 3);
-    relu(conv1_out, 4 * 16 * 12);
+<span class="token comment">// predict</span>
+<span class="token keyword">void</span> <span class="token function">micro_temp_net_predict</span><span class="token punctuation">(</span><span class="token keyword">const</span> MicroTempNet<span class="token operator">*</span> net<span class="token punctuation">,</span> <span class="token keyword">float</span><span class="token operator">*</span> input<span class="token punctuation">,</span> <span class="token keyword">float</span><span class="token operator">*</span> output<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">//  [1,32,24] -> [4,16,12]</span>
+    <span class="token keyword">float</span> conv1_out<span class="token punctuation">[</span><span class="token number">4</span> <span class="token operator">*</span> <span class="token number">16</span> <span class="token operator">*</span> <span class="token number">12</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token function">conv2d_stride2</span><span class="token punctuation">(</span>input<span class="token punctuation">,</span> net<span class="token operator">-></span>conv1_weight<span class="token punctuation">,</span> net<span class="token operator">-></span>conv1_bias<span class="token punctuation">,</span> conv1_out<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">24</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">relu</span><span class="token punctuation">(</span>conv1_out<span class="token punctuation">,</span> <span class="token number">4</span> <span class="token operator">*</span> <span class="token number">16</span> <span class="token operator">*</span> <span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     
-    &#x2F;&#x2F;  [4,16,12] -&gt; [8,8,6]
-    float conv2_out[8 * 8 * 6];
-    conv2d_stride2(conv1_out, net-&gt;conv2_weight, net-&gt;conv2_bias, conv2_out, 4, 8, 16, 12, 3);
-    relu(conv2_out, 8 * 8 * 6);
+    <span class="token comment">//  [4,16,12] -> [8,8,6]</span>
+    <span class="token keyword">float</span> conv2_out<span class="token punctuation">[</span><span class="token number">8</span> <span class="token operator">*</span> <span class="token number">8</span> <span class="token operator">*</span> <span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token function">conv2d_stride2</span><span class="token punctuation">(</span>conv1_out<span class="token punctuation">,</span> net<span class="token operator">-></span>conv2_weight<span class="token punctuation">,</span> net<span class="token operator">-></span>conv2_bias<span class="token punctuation">,</span> conv2_out<span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">relu</span><span class="token punctuation">(</span>conv2_out<span class="token punctuation">,</span> <span class="token number">8</span> <span class="token operator">*</span> <span class="token number">8</span> <span class="token operator">*</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     
-    &#x2F;&#x2F; [8,8,6] -&gt; 384
-    float flattened[8 * 8 * 6];
-    memcpy(flattened, conv2_out, sizeof(flattened));
+    <span class="token comment">// [8,8,6] -> 384</span>
+    <span class="token keyword">float</span> flattened<span class="token punctuation">[</span><span class="token number">8</span> <span class="token operator">*</span> <span class="token number">8</span> <span class="token operator">*</span> <span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token function">memcpy</span><span class="token punctuation">(</span>flattened<span class="token punctuation">,</span> conv2_out<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>flattened<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     
-    &#x2F;&#x2F; 384-&gt;8
-    float fc1_out[8];
-    dense(flattened, net-&gt;fc1_weight, net-&gt;fc1_bias, fc1_out, 8 * 8 * 6, 8);
-    relu(fc1_out, 8);
+    <span class="token comment">// 384->8</span>
+    <span class="token keyword">float</span> fc1_out<span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token function">dense</span><span class="token punctuation">(</span>flattened<span class="token punctuation">,</span> net<span class="token operator">-></span>fc1_weight<span class="token punctuation">,</span> net<span class="token operator">-></span>fc1_bias<span class="token punctuation">,</span> fc1_out<span class="token punctuation">,</span> <span class="token number">8</span> <span class="token operator">*</span> <span class="token number">8</span> <span class="token operator">*</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">relu</span><span class="token punctuation">(</span>fc1_out<span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     
-    &#x2F;&#x2F; 8-&gt;5
-    dense(fc1_out, net-&gt;fc2_weight, net-&gt;fc2_bias, output, 8, NUM_CLASSES);
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token comment">// 8->5</span>
+    <span class="token function">dense</span><span class="token punctuation">(</span>fc1_out<span class="token punctuation">,</span> net<span class="token operator">-></span>fc2_weight<span class="token punctuation">,</span> net<span class="token operator">-></span>fc2_bias<span class="token punctuation">,</span> output<span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> NUM_CLASSES<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>主函数里按数据预处理，推理，分类的顺序写了逻辑，注意要和python中一样把数据归一化</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">CNN_PROC</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
 	<span class="token comment">//input</span>
@@ -562,7 +562,7 @@ void micro_temp_net_predict(const MicroTempNet* net, float* input, float* output
   <div id="footer-info" class="inner">
     Copyright
     
-    &copy; Miao Ye 2025  <br> 
+    &copy; Miao Ye 2026  <br> 
     Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> 
   </div>
 </footer>
@@ -593,22 +593,5 @@ void micro_temp_net_predict(const MicroTempNet* net, float* input, float* output
 
   </div>
   <script src="/js/light-dark-switch.js"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-
 </body>
 </html>

@@ -133,13 +133,13 @@
     <div class="widget">
       <h3 class="widget-title">分类</h3>
       <div class="category-box">
-            <a class="category-link" href="/categories/Learning-Record/">
-                Learning Record
-                <div class="category-count">7</div>
-            </a>
-        
             <a class="category-link" href="/categories/Projects-Builds/">
                 Projects & Builds
+                <div class="category-count">8</div>
+            </a>
+        
+            <a class="category-link" href="/categories/Learning-Record/">
+                Learning Record
                 <div class="category-count">8</div>
             </a>
         </div>
@@ -152,7 +152,7 @@
   <div class="widget-wrap">
     <div class="widget">
       <h3 class="widget-title">标签</h3>
-      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/CS/" rel="tag">CS</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">图像处理</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a></li></ul>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/CS/" rel="tag">CS</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">图像处理</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a></li></ul>
     </div>
   </div>
 
@@ -163,6 +163,97 @@
     </div>
     <div id="content-body">
       
+   
+
+
+<article id="post-260125" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2026/01/25/260125/">C++小轮子合集</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2026-01-25T03:38:44.000Z" itemprop="datePublished">2026-01-25</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/Learning-Record/">Learning Record</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            2.1k 词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="truncate-text">
+            
+              这里放一些C++中经常会接触的小组件，或许在开发的时候可以利用起来
+但这些内容都只实现了基本功能，实际运用的时候可能还需要根据具体需求进行扩展和优化
+内存池 Memory Pool内存池是一种预先分配一大块内存，然后按需分配小块内存的技术，可以减少频繁的内存分配和释放操作，提高性能。
+实现：
+声明：
+class  MemoryPool&#123;
+  public:
+      MemoryPool(size_t objectsize, size_t totalsize);
+      ~MemoryPool();
+
+      // 用户层api
+      void* allocate();
+      void  deallocate(void* ptr);
+  private:
+      size_t _objectsize; // 单个元素大小
+      size_t _totalsize;  // 预留的个数
+      char* _pool;
+      std::stack&lt;void*> _freelist; 
+&#125;;
+定义：
+#include...
+            
+          </div>
+        
+      </div>
+         
+    </div>
+    
+     
+    <a class="right-panel  non-pic  "
+      
+      href="/2026/01/25/260125/" 
+    >
+       
+      <i class="fa-solid fa-angle-right non-pic"></i>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+
+
+
+
+
    
 
 
@@ -725,7 +816,7 @@ Butterworth低通滤波器
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            6.5k 词 
+            6.2k 词 
           </div>
         </div>
         
@@ -870,95 +961,6 @@ npm ...
 
 
 
-   
-
-
-<article id="post-250306" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2025/03/06/250306/">Harvard CS50 Study Log</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2025-03-06T12:39:18.000Z" itemprop="datePublished">2025-03-06</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-  <a class="meta-cate-link" href="/categories/Learning-Record/">Learning Record</a>
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            14k 词 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CS/" rel="tag">CS</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            
-              目录：
-
-Lecture 0 Scratch
-Lecture 1 C
-Lecture 2 Arrays
-Lecture 3 Algorithms
-Lecture 4 Memory
-Lecture 5 Data Structures
-Lecture 6 Python, Artificial Intelligence
-Lecture 7 SQL
-Lecture 8 HTML, CSS, JavaScript
-Lecture 9 Flask
-Lecture 10 Cybersecurity
-
-
-Lecture 0 ScratchLecture 1 CLecture 2 ArraysLecture 3 Algorithms
-Time Complexity is an important metric used to measure the relationship between the running time of an algorithm and the size of the input. It describes how the execution time of an alg...
-            
-          </div>
-        
-      </div>
-         
-    </div>
-    
-     
-    <a class="right-panel  with-pic  "
-       style="background-image: url(/images/cs50/CS50_pic.webp)" 
-      href="/2025/03/06/250306/" 
-    >
-       
-      <div class="overlay">
-        <i class="fa-solid fa-angle-right with-pic"></i>
-      </div>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
-
-
-
-
-
 
   <nav id="page-nav">
     <!-- 在第二页时 page.prev_link 不知为何无法返回正确的链接 -->
@@ -981,7 +983,7 @@ Time Complexity is an important metric used to measure the relationship between 
   <div id="footer-info" class="inner">
     Copyright
     
-    &copy; Miao Ye 2025  <br> 
+    &copy; Miao Ye 2026  <br> 
     Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> 
   </div>
 </footer>
@@ -1012,22 +1014,5 @@ Time Complexity is an important metric used to measure the relationship between 
 
   </div>
   <script src="/js/light-dark-switch.js"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-
 </body>
 </html>
