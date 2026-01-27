@@ -707,7 +707,7 @@ void ST7735_DrawImage(uint16_t x, uint16_t y, uint16_t w, uint16_t h, const uint
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            1.2k 词 
+            1.1k 词 
           </div>
         </div>
         
@@ -725,10 +725,18 @@ void ST7735_DrawImage(uint16_t x, uint16_t y, uint16_t w, uint16_t h, const uint
 
 
 插入图片之前打算在文章中插入图片，配置的过程中遇到了一些问题。
-想在博客中引用外站图片问题不大，但Hexo默认插入图片只有这一个方法，对有本地化需求的人群来说不够方便，此时可以安装一个满足本地图片引用的插件，在国内某知名（c）专业（s）开发者（d）社区（n）里提供的90%的方案为以下命令：npm install hexo-asset-image –save该论坛上相互借鉴蔚然成风的壮景对我这个刚入门的小白真是非常险恶，此指令安装版本落后，无法有效显示图片，有效的版本安装命令如下：npm install https://github.com/CodeFalling/hexo-asset-image –save
+想在博客中引用外站图片问题不大，但Hexo默认插入图片只有这一个方法，对有本地化需求的人群来说不够方便，此时可以安装一个满足本地图片引用的插件npm install https://github.com/CodeFalling/hexo-asset-image –save
 修改_config.yml文件，将post_asset_folder:值改为true。
 之后在新建一个博客的同时会生成同名文件夹，将需插入的图片放入该文件夹即可。文章中的具体引用代码为以下格式：(后来发现在source文件夹里新建一个名为images的文件夹存放图片也行)![](1/image.jpg)
-更改相对位置但这种方法在PC端有一...
+更改相对位置但这种方法在PC端有一个默认的问题就是图片插入后会自动左对齐，想要实现居中对齐，可以在markdown引用代码外部添加center元素，或者直接添加html元素，如下所示：&lt;center>
+
+![...](xxx)
+
+&lt;/center>
+
+&lt;!--or -->
+
+&lt;div a...
             
           </div>
         
@@ -925,22 +933,5 @@ void ST7735_DrawImage(uint16_t x, uint16_t y, uint16_t w, uint16_t h, const uint
 
   </div>
   <script src="/js/light-dark-switch.js"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-
 </body>
 </html>

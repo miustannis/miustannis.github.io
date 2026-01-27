@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://miustannis.github.io/2022/03/21/220321/</loc>
+    
+    <lastmod>2026-01-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://miustannis.github.io/2026/01/25/260125/</loc>
     
     <lastmod>2026-01-27</lastmod>
@@ -50,15 +59,6 @@
     <loc>https://miustannis.github.io/2025/02/13/250213/</loc>
     
     <lastmod>2025-08-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://miustannis.github.io/2022/03/21/220321/</loc>
-    
-    <lastmod>2025-08-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
