@@ -20,15 +20,15 @@
   <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
-  <meta name="description" content="这里放一些C++中经常会接触的小组件，或许在开发的时候可以利用起来 但这些内容都只实现了基本功能，实际运用的时候可能还需要根据具体需求进行扩展和优化 内存池 Memory Pool内存池是一种预先分配一大块内存，然后按需分配小块内存的技术，可以减少频繁的内存分配和释放操作，提高性能。 实现： 声明： class  MemoryPool&amp;#123;   public:       MemoryPoo">
+  <meta name="description" content="这里放一些C++中经常会接触的小组件，或许在开发的时候可以利用起来 但这些内容都只实现了基本功能，实际运用的时候可能还需要根据具体需求进行扩展和优化   内存池 Memory Pool 共享指针 Shared Pointer   内存池 Memory Pool内存池是一种预先分配一大块内存，然后按需分配小块内存的技术 内存池可以减少频繁的内存分配和释放操作从而提高性能 用一个栈实现： classD">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++小轮子合集">
 <meta property="og:url" content="https://miustannis.github.io/2026/01/25/260125/index.html">
 <meta property="og:site_name" content="Miao&#39;s Blog">
-<meta property="og:description" content="这里放一些C++中经常会接触的小组件，或许在开发的时候可以利用起来 但这些内容都只实现了基本功能，实际运用的时候可能还需要根据具体需求进行扩展和优化 内存池 Memory Pool内存池是一种预先分配一大块内存，然后按需分配小块内存的技术，可以减少频繁的内存分配和释放操作，提高性能。 实现： 声明： class  MemoryPool&amp;#123;   public:       MemoryPoo">
+<meta property="og:description" content="这里放一些C++中经常会接触的小组件，或许在开发的时候可以利用起来 但这些内容都只实现了基本功能，实际运用的时候可能还需要根据具体需求进行扩展和优化   内存池 Memory Pool 共享指针 Shared Pointer   内存池 Memory Pool内存池是一种预先分配一大块内存，然后按需分配小块内存的技术 内存池可以减少频繁的内存分配和释放操作从而提高性能 用一个栈实现： classD">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-01-25T03:38:44.000Z">
-<meta property="article:modified_time" content="2026-01-25T10:02:36.596Z">
+<meta property="article:modified_time" content="2026-01-27T03:07:36.031Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
@@ -202,7 +202,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            2.1k 词 
+            2.6k 词 
           </div>
         </div>
         
@@ -213,10 +213,45 @@
         
           <p>这里放一些C++中经常会接触的小组件，或许在开发的时候可以利用起来</p>
 <p>但这些内容都只实现了基本功能，实际运用的时候可能还需要根据具体需求进行扩展和优化</p>
-<h2><span id="内存池-memory-pool">内存池 Memory Pool</span></h2><p>内存池是一种预先分配一大块内存，然后按需分配小块内存的技术，可以减少频繁的内存分配和释放操作，提高性能。</p>
-<p>实现：</p>
-<p>声明：</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span>  <span class="token class-name">MemoryPool</span><span class="token punctuation">&#123;</span>
+<!-- toc -->
+<ul>
+<li><a href="#内存池-memory-pool">内存池 Memory Pool</a></li>
+<li><a href="#共享指针-shared-pointer">共享指针 Shared Pointer</a></li>
+</ul>
+<!-- tocstop -->
+<h2><span id="内存池-memory-pool">内存池 Memory Pool</span></h2><p>内存池是一种预先分配一大块内存，然后按需分配小块内存的技术</p>
+<p>内存池可以减少频繁的内存分配和释放操作从而提高性能</p>
+<p>用一个栈实现：</p>
+<pre class="mermaid">classDiagram
+    class MemoryPool {
+        char* _pool
+        size_t _objectsize
+        size_t _totalsize
+        stack~void*~ _freelist
+        void* allocate()
+        void deallocate(void* ptr)
+    }
+
+    MemoryPool --* "1" char : 管理
+    MemoryPool --* "1" stack : 包含
+
+    class FreeListStack {
+        <<stack>>
+        void*类型
+        push(void* ptr)
+        pop() void*
+        top() void*
+        empty() bool
+    }
+
+    MemoryPool --> FreeListStack : 使用</stack></pre>
+
+<div class="fold collapsed">
+    <div class="fold-title">
+        hpp
+    </div>
+    <div class="fold-content">
+        <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span>  <span class="token class-name">MemoryPool</span><span class="token punctuation">&#123;</span>
   <span class="token keyword">public</span><span class="token operator">:</span>
       <span class="token function">MemoryPool</span><span class="token punctuation">(</span>size_t objectsize<span class="token punctuation">,</span> size_t totalsize<span class="token punctuation">)</span><span class="token punctuation">;</span>
       <span class="token operator">~</span><span class="token function">MemoryPool</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -230,8 +265,15 @@
       <span class="token keyword">char</span><span class="token operator">*</span> _pool<span class="token punctuation">;</span>
       std<span class="token double-colon punctuation">::</span>stack<span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">*</span><span class="token operator">></span> _freelist<span class="token punctuation">;</span> 
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>定义：</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"MemoryPool.h"</span></span>
+
+    </div>
+</div>
+<div class="fold collapsed">
+    <div class="fold-title">
+        cpp
+    </div>
+    <div class="fold-content">
+        <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"MemoryPool.h"</span></span>
 
 <span class="token class-name">MemoryPool</span><span class="token double-colon punctuation">::</span><span class="token function">MemoryPool</span><span class="token punctuation">(</span>size_t objectsize<span class="token punctuation">,</span> size_t totalsize<span class="token punctuation">)</span>
     <span class="token operator">:</span> <span class="token function">_objectsize</span><span class="token punctuation">(</span>objectsize<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">_totalsize</span><span class="token punctuation">(</span>totalsize<span class="token punctuation">)</span>
@@ -267,8 +309,36 @@
   _freelist<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>ptr<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token keyword">return</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>使用案例：</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"../inc/test.h"</span></span>
+
+    </div>
+</div>
+<pre class="mermaid">flowchart TD
+    A[开始] --> B{根据类型创建内存池}
+    B -->|分配| C[调用 allocate]
+    B -->|释放| D[调用 deallocate]
+
+    C --> E{_freelist为空?}
+    E -->|是| F[抛出 bad_alloc]
+    E -->|否| G[从栈顶取指针]
+    G --> H[返回指针]
+
+    D --> I[指针压入栈]
+    I --> J[返回]
+
+    F --> K[结束]
+    H --> K
+    J --> K</pre>
+
+
+
+
+
+<div class="fold collapsed">
+    <div class="fold-title">
+        使用案例
+    </div>
+    <div class="fold-content">
+        <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"../inc/test.h"</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"../inc/MemoryPool.h"</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cstring></span></span>
 
@@ -327,8 +397,11 @@
   <span class="token punctuation">&#125;</span>
   <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>如果是多线程的情况，需要在用户应用层进行线程安全的一系列操作</p>
 
+    </div>
+</div>
+<p>如果是多线程的情况，需要在用户应用层进行线程安全的一系列操作</p>
+<h2><span id="共享指针-shared-pointer">共享指针 Shared Pointer</span></h2><link rel="stylesheet" href="/css/folder.css" type="text/css"><script src="/js/folder.js" type="text/javascript" async></script>
         
       </div>
          
@@ -366,9 +439,6 @@
 </article>
 
 
-
-
-
     </div>
     <div id="footer-wrapper">
       <footer id="footer">
@@ -379,7 +449,55 @@
     &copy; Miao Ye 2026  <br> 
     Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> 
   </div>
+  
+    <script src='https://unpkg.com/mermaid@latest/dist/mermaid.min.js'></script>
+    <script>
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'default',
+          flowchart: {
+            useMaxWidth: true,
+            htmlLabels: true
+          },
+          themeVariables: {
+            background: 'transparent'
+          }
+        });
+      }
+    </script>
+    <style>
+      /* 强制移除代码块背景并使 mermaid 图表居中且响应式 */
+      .mermaid,
+      pre code.mermaid {
+        background: transparent !important;
+        /* 使容器水平居中（块级元素居中）*/
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        /* 在某些布局中保持内容居中对齐（用于内联文本或标签）*/
+        text-align: center;
+      }
+
+      /* 对 mermaid 生成的 svg 生效，确保 svg 本身居中并且不超出容器 */
+      .mermaid svg {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+        height: auto;
+      }
+
+      /* 针对使用者嵌入为 iframe 或其他容器时的兼容居中处理 */
+      .mermaid > div,
+      .mermaid .node,
+      .mermaid .label {
+        box-sizing: border-box;
+      }
+    </style>
+  
 </footer>
+
 
     </div>
     <div class="back-to-top-wrapper">

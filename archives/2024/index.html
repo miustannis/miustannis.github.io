@@ -306,7 +306,55 @@
     &copy; Miao Ye 2026  <br> 
     Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> 
   </div>
+  
+    <script src='https://unpkg.com/mermaid@latest/dist/mermaid.min.js'></script>
+    <script>
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'default',
+          flowchart: {
+            useMaxWidth: true,
+            htmlLabels: true
+          },
+          themeVariables: {
+            background: 'transparent'
+          }
+        });
+      }
+    </script>
+    <style>
+      /* 强制移除代码块背景并使 mermaid 图表居中且响应式 */
+      .mermaid,
+      pre code.mermaid {
+        background: transparent !important;
+        /* 使容器水平居中（块级元素居中）*/
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        /* 在某些布局中保持内容居中对齐（用于内联文本或标签）*/
+        text-align: center;
+      }
+
+      /* 对 mermaid 生成的 svg 生效，确保 svg 本身居中并且不超出容器 */
+      .mermaid svg {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+        height: auto;
+      }
+
+      /* 针对使用者嵌入为 iframe 或其他容器时的兼容居中处理 */
+      .mermaid > div,
+      .mermaid .node,
+      .mermaid .label {
+        box-sizing: border-box;
+      }
+    </style>
+  
 </footer>
+
 
     </div>
     <div class="back-to-top-wrapper">

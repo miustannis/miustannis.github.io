@@ -196,7 +196,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            2.1k 词 
+            2.6k 词 
           </div>
         </div>
         
@@ -209,25 +209,30 @@
             
               这里放一些C++中经常会接触的小组件，或许在开发的时候可以利用起来
 但这些内容都只实现了基本功能，实际运用的时候可能还需要根据具体需求进行扩展和优化
-内存池 Memory Pool内存池是一种预先分配一大块内存，然后按需分配小块内存的技术，可以减少频繁的内存分配和释放操作，提高性能。
-实现：
-声明：
-class  MemoryPool&#123;
-  public:
-      MemoryPool(size_t objectsize, size_t totalsize);
-      ~MemoryPool();
 
-      // 用户层api
-      void* allocate();
-      void  deallocate(void* ptr);
-  private:
-      size_t _objectsize; // 单个元素大小
-      size_t _totalsize;  // 预留的个数
-      char* _pool;
-      std::stack&lt;void*> _freelist; 
-&#125;;
-定义：
-#include...
+
+内存池 Memory Pool
+共享指针 Shared Pointer
+
+
+内存池 Memory Pool内存池是一种预先分配一大块内存，然后按需分配小块内存的技术
+内存池可以减少频繁的内存分配和释放操作从而提高性能
+用一个栈实现：
+classDiagram
+    class MemoryPool {
+        char* _pool
+        size_t _objectsize
+        size_t _totalsize
+        stack~void*~ _freelist
+        void* allocate()
+        void deallocate(void* ptr)
+    }
+
+    MemoryPool --* "1" char : 管理
+    MemoryPool --* "1" stack : 包含
+
+    class FreeListStack {
+  ...
             
           </div>
         
@@ -248,9 +253,6 @@ class  MemoryPool&#123;
   </div>
   
 </article>
-
-
-
 
 
 
@@ -341,9 +343,6 @@ KMP算法KMP算法通过预处理模式串...
   </div>
   
 </article>
-
-
-
 
 
 
@@ -438,9 +437,6 @@ MIT APP Inventor
 
 
 
-
-
-
    
 
 
@@ -526,9 +522,6 @@ MIT APP Inventor
   </div>
   
 </article>
-
-
-
 
 
 
@@ -633,9 +626,6 @@ int main()&#123;
   </div>
   
 </article>
-
-
-
 
 
 
@@ -780,9 +770,6 @@ Butterworth低通滤波器
 
 
 
-
-
-
    
 
 
@@ -871,9 +858,6 @@ void interpolateTemperature(float *src, float *dst, uint8_t src_w, uint8_t src_h
 
 
 
-
-
-
    
 
 
@@ -959,9 +943,6 @@ npm ...
 
 
 
-
-
-
   <nav id="page-nav">
     <!-- 在第二页时 page.prev_link 不知为何无法返回正确的链接 -->
     <a id="prev-btn" class="page-nav-btn disabled" href=" /  ">
@@ -986,7 +967,55 @@ npm ...
     &copy; Miao Ye 2026  <br> 
     Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> 
   </div>
+  
+    <script src='https://unpkg.com/mermaid@latest/dist/mermaid.min.js'></script>
+    <script>
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'default',
+          flowchart: {
+            useMaxWidth: true,
+            htmlLabels: true
+          },
+          themeVariables: {
+            background: 'transparent'
+          }
+        });
+      }
+    </script>
+    <style>
+      /* 强制移除代码块背景并使 mermaid 图表居中且响应式 */
+      .mermaid,
+      pre code.mermaid {
+        background: transparent !important;
+        /* 使容器水平居中（块级元素居中）*/
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        /* 在某些布局中保持内容居中对齐（用于内联文本或标签）*/
+        text-align: center;
+      }
+
+      /* 对 mermaid 生成的 svg 生效，确保 svg 本身居中并且不超出容器 */
+      .mermaid svg {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+        height: auto;
+      }
+
+      /* 针对使用者嵌入为 iframe 或其他容器时的兼容居中处理 */
+      .mermaid > div,
+      .mermaid .node,
+      .mermaid .label {
+        box-sizing: border-box;
+      }
+    </style>
+  
 </footer>
+
 
     </div>
     <div class="back-to-top-wrapper">
