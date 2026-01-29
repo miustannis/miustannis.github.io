@@ -6,7 +6,7 @@
   <link href="https://miustannis.github.io/atom.xml" rel="self"/>
   
   <link href="https://miustannis.github.io/"/>
-  <updated>2026-01-27T12:04:57.530Z</updated>
+  <updated>2026-01-29T14:33:10.265Z</updated>
   <id>https://miustannis.github.io/</id>
   
   <author>
@@ -17,20 +17,20 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>C++小轮子合集</title>
+    <title>C++小碗菜</title>
     <link href="https://miustannis.github.io/2026/01/25/260125/"/>
     <id>https://miustannis.github.io/2026/01/25/260125/</id>
     <published>2026-01-25T03:38:44.000Z</published>
-    <updated>2026-01-27T12:04:57.530Z</updated>
+    <updated>2026-01-29T14:33:10.265Z</updated>
     
     
       
       
-    <summary type="html">&lt;p&gt;这里放一些C++中经常会接触的小组件，或许在开发的时候可以利用起来&lt;/p&gt;
+    <summary type="html">&lt;p&gt;一些C++中经常会接触的小组件，包括中间件，STL等&lt;/p&gt;
 &lt;p&gt;但这些内容都只实现了基本功能，实际运用的时候可能还需要根据具体需求进行扩展和优化&lt;/p&gt;
 &lt;!-- toc --&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#内存池-memory-pool&quot;&gt;内存</summary>
+&lt;li&gt;&lt;a href=&quot;#内存池-memory-pool&quot;&gt;内存池 Memor</summary>
       
     
     

@@ -14,21 +14,21 @@
   
 
   
-  <title>C++小轮子合集 | Miao&#39;s Blog</title>
+  <title>C++小碗菜 | Miao&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
-  <meta name="description" content="这里放一些C++中经常会接触的小组件，或许在开发的时候可以利用起来 但这些内容都只实现了基本功能，实际运用的时候可能还需要根据具体需求进行扩展和优化   内存池 Memory Pool 共享指针 Shared Pointer   内存池 Memory Pool内存池是一种预先分配一大块内存，然后按需分配小块内存的技术 内存池可以减少频繁的内存分配和释放操作从而提高性能 用一个栈实现： classD">
+  <meta name="description" content="一些C++中经常会接触的小组件，包括中间件，STL等 但这些内容都只实现了基本功能，实际运用的时候可能还需要根据具体需求进行扩展和优化   内存池 Memory Pool 共享指针 Shared Pointer 双向链表容器 List   内存池 Memory Pool内存池是一种预先分配一大块内存，然后按需分配小块内存的技术 内存池可以减少频繁的内存分配和释放操作从而提高性能 用一个栈实现： c">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C++小轮子合集">
+<meta property="og:title" content="C++小碗菜">
 <meta property="og:url" content="https://miustannis.github.io/2026/01/25/260125/index.html">
 <meta property="og:site_name" content="Miao&#39;s Blog">
-<meta property="og:description" content="这里放一些C++中经常会接触的小组件，或许在开发的时候可以利用起来 但这些内容都只实现了基本功能，实际运用的时候可能还需要根据具体需求进行扩展和优化   内存池 Memory Pool 共享指针 Shared Pointer   内存池 Memory Pool内存池是一种预先分配一大块内存，然后按需分配小块内存的技术 内存池可以减少频繁的内存分配和释放操作从而提高性能 用一个栈实现： classD">
+<meta property="og:description" content="一些C++中经常会接触的小组件，包括中间件，STL等 但这些内容都只实现了基本功能，实际运用的时候可能还需要根据具体需求进行扩展和优化   内存池 Memory Pool 共享指针 Shared Pointer 双向链表容器 List   内存池 Memory Pool内存池是一种预先分配一大块内存，然后按需分配小块内存的技术 内存池可以减少频繁的内存分配和释放操作从而提高性能 用一个栈实现： c">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-01-25T03:38:44.000Z">
-<meta property="article:modified_time" content="2026-01-27T12:04:57.530Z">
+<meta property="article:modified_time" content="2026-01-29T14:33:10.265Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
@@ -132,13 +132,13 @@
     <div class="widget">
       <h3 class="widget-title">分类</h3>
       <div class="category-box">
-            <a class="category-link" href="/categories/Learning-Record/">
-                Learning Record
+            <a class="category-link" href="/categories/Projects-Builds/">
+                Projects & Builds
                 <div class="category-count">8</div>
             </a>
         
-            <a class="category-link" href="/categories/Projects-Builds/">
-                Projects & Builds
+            <a class="category-link" href="/categories/Learning-Record/">
+                Learning Record
                 <div class="category-count">8</div>
             </a>
         </div>
@@ -177,7 +177,7 @@
   
     
       <h1 class="p-name article-title" itemprop="headline name">
-        C++小轮子合集
+        C++小碗菜
       </h1>
     
   
@@ -196,7 +196,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            5.2k 词 
+            8.9k 词 
           </div>
         </div>
         
@@ -205,12 +205,13 @@
       </header>
       <div class="e-content article-entry" itemprop="articleBody">
         
-          <p>这里放一些C++中经常会接触的小组件，或许在开发的时候可以利用起来</p>
+          <p>一些C++中经常会接触的小组件，包括中间件，STL等</p>
 <p>但这些内容都只实现了基本功能，实际运用的时候可能还需要根据具体需求进行扩展和优化</p>
 <!-- toc -->
 <ul>
 <li><a href="#内存池-memory-pool">内存池 Memory Pool</a></li>
 <li><a href="#共享指针-shared-pointer">共享指针 Shared Pointer</a></li>
+<li><a href="#双向链表容器-list">双向链表容器 List</a></li>
 </ul>
 <!-- tocstop -->
 <h2><span id="内存池-memory-pool">内存池 Memory Pool</span></h2><p>内存池是一种预先分配一大块内存，然后按需分配小块内存的技术</p>
@@ -587,6 +588,262 @@
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
 
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+    </div>
+</div>
+<h2><span id="双向链表容器-list">双向链表容器 List</span></h2><p>有节点定义，迭代器类和容器类</p>
+<pre class="mermaid">graph TD
+    subgraph "MyList 对象（包含两个哑节点）"
+        Head["head<br>ListNode<t>*<br>data: 未使用<br>pre: nullptr"] --> Tail["tail<br>ListNode<t>*<br>data: 未使用<br>next: nullptr"]
+        Tail -.-> Head
+    end
+
+    subgraph "空链表状态"
+        Head -- next --> Tail
+        Tail -- pre --> Head
+    end
+
+    subgraph "插入元素后的链表"
+        A["head"] -- next --> B["节点1<br>data: value1"]
+        B -- next --> C["节点2<br>data: value2"]
+        C -- next --> D["tail"]
+        D -- pre --> C
+        C -- pre --> B
+        B -- pre --> A
+    end
+
+    subgraph "迭代器关系"
+        IT1["迭代器 it1<br>node_ptr: → 节点1"] --> B
+        IT2["迭代器 it2<br>node_ptr: → 节点2"] --> C
+        IT_END["迭代器 end()<br>node_ptr: → tail"] --> D
+    end</t></t></pre>
+
+
+
+<div class="fold collapsed">
+    <div class="fold-title">
+        hpp
+    </div>
+    <div class="fold-content">
+        <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifndef</span> <span class="token expression">MYLIST_H</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">MYLIST_H</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cassert></span></span>
+
+<span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> <span class="token class-name">T</span><span class="token operator">></span>
+<span class="token keyword">struct</span> <span class="token class-name">ListNode</span>
+<span class="token punctuation">&#123;</span>
+    T data<span class="token punctuation">;</span>
+    ListNode <span class="token operator">*</span>pre<span class="token punctuation">;</span>
+    ListNode <span class="token operator">*</span>next<span class="token punctuation">;</span>
+    <span class="token function">ListNode</span><span class="token punctuation">(</span><span class="token keyword">const</span> T <span class="token operator">&amp;</span>value<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">data</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">pre</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> <span class="token class-name">T</span><span class="token operator">></span>
+<span class="token keyword">class</span> <span class="token class-name">Myiterator</span>
+<span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token keyword">using</span> self_type <span class="token operator">=</span> Myiterator<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">;</span>
+    <span class="token keyword">using</span> value_type <span class="token operator">=</span> T<span class="token punctuation">;</span>
+    <span class="token keyword">using</span> reference <span class="token operator">=</span> T <span class="token operator">&amp;</span><span class="token punctuation">;</span>
+    <span class="token keyword">using</span> pointer <span class="token operator">=</span> T <span class="token operator">*</span><span class="token punctuation">;</span>
+
+    <span class="token function">Myiterator</span><span class="token punctuation">(</span>ListNode<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token operator">*</span>ptr <span class="token operator">=</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">node_ptr</span><span class="token punctuation">(</span>ptr<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+    reference <span class="token keyword">operator</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">&#123;</span> <span class="token keyword">return</span> node_ptr<span class="token operator">-></span>data<span class="token punctuation">;</span> <span class="token punctuation">&#125;</span>
+    pointer <span class="token keyword">operator</span><span class="token operator">-></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">&#123;</span> <span class="token keyword">return</span> <span class="token operator">&amp;</span><span class="token punctuation">(</span>node_ptr<span class="token operator">-></span>data<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">&#125;</span>
+    <span class="token comment">// ++it</span>
+    self_type <span class="token operator">&amp;</span><span class="token keyword">operator</span><span class="token operator">++</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>node_ptr <span class="token operator">!=</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            node_ptr <span class="token operator">=</span> node_ptr<span class="token operator">-></span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> <span class="token operator">*</span><span class="token keyword">this</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">// it++</span>
+    self_type <span class="token keyword">operator</span><span class="token operator">++</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        self_type tmp <span class="token operator">=</span> <span class="token operator">*</span><span class="token keyword">this</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>node_ptr <span class="token operator">!=</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            node_ptr <span class="token operator">=</span> node_ptr<span class="token operator">-></span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> tmp<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    self_type <span class="token operator">&amp;</span><span class="token keyword">operator</span><span class="token operator">--</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>node_ptr <span class="token operator">!=</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            node_ptr <span class="token operator">=</span> node_ptr<span class="token operator">-></span>pre<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> <span class="token operator">*</span><span class="token keyword">this</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    self_type <span class="token keyword">operator</span><span class="token operator">--</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        self_type tmp <span class="token operator">=</span> <span class="token operator">*</span><span class="token keyword">this</span><span class="token punctuation">;</span>
+        <span class="token operator">--</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> tmp<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">bool</span> <span class="token keyword">operator</span><span class="token operator">==</span><span class="token punctuation">(</span><span class="token keyword">const</span> self_type <span class="token operator">&amp;</span>other<span class="token punctuation">)</span> <span class="token keyword">const</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>other<span class="token punctuation">.</span>node_ptr <span class="token operator">==</span> node_ptr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">bool</span> <span class="token keyword">operator</span><span class="token operator">!=</span><span class="token punctuation">(</span><span class="token keyword">const</span> self_type <span class="token operator">&amp;</span>other<span class="token punctuation">)</span> <span class="token keyword">const</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>other<span class="token punctuation">.</span>node_ptr <span class="token operator">!=</span> node_ptr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+<span class="token keyword">private</span><span class="token operator">:</span>
+    <span class="token comment">/* data */</span>
+    ListNode<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token operator">*</span>node_ptr<span class="token punctuation">;</span>
+    <span class="token keyword">friend</span> <span class="token keyword">class</span> <span class="token class-name">MyList</span><span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> <span class="token class-name">T</span><span class="token operator">></span>
+<span class="token keyword">class</span> <span class="token class-name">MyList</span>
+<span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token keyword">using</span> iterator <span class="token operator">=</span> Myiterator<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">;</span>
+
+<span class="token keyword">private</span><span class="token operator">:</span>
+    ListNode<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token operator">*</span>head<span class="token punctuation">;</span>
+    ListNode<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token operator">*</span>tail<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token function">MyList</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        head <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token generic-function"><span class="token function">ListNode</span><span class="token generic class-name"><span class="token operator">&lt;</span>T<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        tail <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token generic-function"><span class="token function">ListNode</span><span class="token generic class-name"><span class="token operator">&lt;</span>T<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        head<span class="token operator">-></span>next <span class="token operator">=</span> tail<span class="token punctuation">;</span>
+        tail<span class="token operator">-></span>pre <span class="token operator">=</span> head<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token operator">~</span><span class="token function">MyList</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">delete</span> head<span class="token punctuation">;</span>
+        <span class="token keyword">delete</span> tail<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token function">MyList</span><span class="token punctuation">(</span><span class="token keyword">const</span> MyList <span class="token operator">&amp;</span>other<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">delete</span><span class="token punctuation">;</span>
+    MyList <span class="token operator">&amp;</span><span class="token keyword">operator</span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">const</span> MyList <span class="token operator">&amp;</span>other<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">delete</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span><span class="token operator">:</span>
+    iterator <span class="token function">insert</span><span class="token punctuation">(</span>iterator pos<span class="token punctuation">,</span> <span class="token keyword">const</span> T <span class="token operator">&amp;</span>value<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        ListNode<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token operator">*</span>node <span class="token operator">=</span> pos<span class="token punctuation">.</span>node_ptr<span class="token punctuation">;</span>
+        ListNode<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token operator">*</span>newnode <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token generic-function"><span class="token function">ListNode</span><span class="token generic class-name"><span class="token operator">&lt;</span>T<span class="token operator">></span></span></span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        ListNode<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token operator">*</span>temp_pre <span class="token operator">=</span> node<span class="token operator">-></span>pre<span class="token punctuation">;</span>
+
+        newnode<span class="token operator">-></span>next <span class="token operator">=</span> node<span class="token punctuation">;</span>
+        newnode<span class="token operator">-></span>pre <span class="token operator">=</span> temp_pre<span class="token punctuation">;</span>
+
+        temp_pre<span class="token operator">-></span>next <span class="token operator">=</span> newnode<span class="token punctuation">;</span>
+        node<span class="token operator">-></span>pre <span class="token operator">=</span> newnode<span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> <span class="token function">iterator</span><span class="token punctuation">(</span>newnode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    iterator <span class="token function">erase</span><span class="token punctuation">(</span>iterator pos<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        ListNode<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token operator">*</span>node <span class="token operator">=</span> pos<span class="token punctuation">.</span>node_ptr<span class="token punctuation">;</span>
+        <span class="token comment">// 不能删除头尾节点</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>node <span class="token operator">==</span> head <span class="token operator">||</span> node <span class="token operator">==</span> tail<span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> <span class="token function">iterator</span><span class="token punctuation">(</span>tail<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        node<span class="token operator">-></span>pre<span class="token operator">-></span>next <span class="token operator">=</span> node<span class="token operator">-></span>next<span class="token punctuation">;</span>
+        node<span class="token operator">-></span>next<span class="token operator">-></span>pre <span class="token operator">=</span> node<span class="token operator">-></span>pre<span class="token punctuation">;</span>
+        ListNode<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token operator">*</span>nextnode <span class="token operator">=</span> node<span class="token operator">-></span>next<span class="token punctuation">;</span>
+        <span class="token keyword">delete</span> node<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token function">iterator</span><span class="token punctuation">(</span>nextnode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">void</span> <span class="token function">remove</span><span class="token punctuation">(</span><span class="token keyword">const</span> T<span class="token operator">&amp;</span> target<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>iterator it <span class="token operator">=</span> <span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it <span class="token operator">!=</span> <span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">*</span>it <span class="token operator">==</span> target<span class="token punctuation">)</span> it <span class="token operator">=</span> <span class="token function">erase</span><span class="token punctuation">(</span>it<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">else</span> it<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">void</span> <span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        ListNode<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token operator">*</span>cur <span class="token operator">=</span> head<span class="token operator">-></span>next<span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>cur <span class="token operator">!=</span> tail<span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            ListNode<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token operator">*</span>next <span class="token operator">=</span> cur<span class="token operator">-></span>next<span class="token punctuation">;</span>
+            <span class="token keyword">delete</span> cur<span class="token punctuation">;</span>
+            cur <span class="token operator">=</span> next<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        head<span class="token operator">-></span>next <span class="token operator">=</span> tail<span class="token punctuation">;</span>
+        tail<span class="token operator">-></span>pre <span class="token operator">=</span> head<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">bool</span> <span class="token function">isempty</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>head<span class="token operator">-></span>next <span class="token operator">==</span> tail<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+<span class="token keyword">public</span><span class="token operator">:</span>
+    iterator <span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token function">iterator</span><span class="token punctuation">(</span>head<span class="token operator">-></span>next<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    iterator <span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token function">iterator</span><span class="token punctuation">(</span>tail<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token keyword">void</span> <span class="token function">push_back</span><span class="token punctuation">(</span><span class="token keyword">const</span> T <span class="token operator">&amp;</span>value<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">insert</span><span class="token punctuation">(</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">void</span> <span class="token function">push_front</span><span class="token punctuation">(</span><span class="token keyword">const</span> T <span class="token operator">&amp;</span>value<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">insert</span><span class="token punctuation">(</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">void</span> <span class="token function">pop_front</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">isempty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token function">erase</span><span class="token punctuation">(</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">void</span> <span class="token function">pop_back</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">isempty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            iterator tmp <span class="token operator">=</span> <span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">--</span>tmp<span class="token punctuation">;</span>
+            <span class="token function">erase</span><span class="token punctuation">(</span>tmp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+<span class="token keyword">public</span><span class="token operator">:</span>
+    T <span class="token operator">&amp;</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">assert</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">isempty</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token string">"Cannot access front of an empty list"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> head<span class="token operator">-></span>next<span class="token operator">-></span>data<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    T <span class="token operator">&amp;</span><span class="token function">back</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">assert</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">isempty</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token string">"Cannot access back of an empty list"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> tail<span class="token operator">-></span>pre<span class="token operator">-></span>data<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    size_t <span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">&#123;</span>
+        size_t count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>iterator it <span class="token operator">=</span> <span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it <span class="token operator">!=</span> <span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            count<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> count<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
     </div>
 </div>

@@ -127,13 +127,13 @@
     <div class="widget">
       <h3 class="widget-title">分类</h3>
       <div class="category-box">
-            <a class="category-link" href="/categories/Learning-Record/">
-                Learning Record
+            <a class="category-link" href="/categories/Projects-Builds/">
+                Projects & Builds
                 <div class="category-count">8</div>
             </a>
         
-            <a class="category-link" href="/categories/Projects-Builds/">
-                Projects & Builds
+            <a class="category-link" href="/categories/Learning-Record/">
+                Learning Record
                 <div class="category-count">8</div>
             </a>
         </div>
@@ -171,7 +171,7 @@
   
     
       <h1 itemprop="name">
-        <a class="p-name article-title" href="/2026/01/25/260125/">C++小轮子合集</a>
+        <a class="p-name article-title" href="/2026/01/25/260125/">C++小碗菜</a>
       </h1>
     
   
@@ -190,7 +190,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            5.2k 词 
+            8.9k 词 
           </div>
         </div>
         
@@ -201,12 +201,13 @@
         
           <div class="truncate-text">
             
-              这里放一些C++中经常会接触的小组件，或许在开发的时候可以利用起来
+              一些C++中经常会接触的小组件，包括中间件，STL等
 但这些内容都只实现了基本功能，实际运用的时候可能还需要根据具体需求进行扩展和优化
 
 
 内存池 Memory Pool
 共享指针 Shared Pointer
+双向链表容器 List
 
 
 内存池 Memory Pool内存池是一种预先分配一大块内存，然后按需分配小块内存的技术
@@ -225,8 +226,7 @@ classDiagram
     MemoryPool --* "1" char : 管理
     MemoryPool --* "1" stack : 包含
 
-    class FreeListStack {
-  ...
+    class FreeListStack...
             
           </div>
         
