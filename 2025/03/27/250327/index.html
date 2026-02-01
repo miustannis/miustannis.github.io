@@ -236,10 +236,10 @@ npm install hexo<span class="token operator">-</span>renderer<span class="token 
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">npm install hexo<span class="token operator">-</span>filter<span class="token operator">-</span>mathjax <span class="token operator">--</span>save<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>对需要开启的博文，在其Front-Matter处增加mathjax: true这一行即可，如：</p>
 <pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token front-matter-block"><span class="token punctuation">---</span>
-<span class="token front-matter yaml language-yaml"><span class="token key atrule">title</span><span class="token punctuation">:</span> xxxxxx
-<span class="token key atrule">categories</span><span class="token punctuation">:</span> xxxxx
-<span class="token key atrule">date</span><span class="token punctuation">:</span> xxxx<span class="token punctuation">-</span>xx<span class="token punctuation">-</span>xx
-<span class="token key atrule">mathjax</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></span>
+<span class="token front-matter yaml language-yaml">title: xxxxxx
+categories: xxxxx
+date: xxxx-xx-xx
+mathjax: true</span>
 <span class="token punctuation">---</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>&nbsp;</p>
 <h4><span id="测试">测试</span></h4><p>公式：</p>
@@ -380,22 +380,5 @@ npm install hexo<span class="token operator">-</span>renderer<span class="token 
 
   </div>
   <script src="/js/light-dark-switch.js"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-
 </body>
 </html>

@@ -20,15 +20,15 @@
   <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
-  <meta name="description" content="一些C++中经常会接触的小组件，包括中间件，STL等 但这些内容都只实现了基本功能，实际运用的时候可能还需要根据具体需求进行扩展和优化   内存池 Memory Pool 共享指针 Shared Pointer 双向链表容器 List   内存池 Memory Pool内存池是一种预先分配一大块内存，然后按需分配小块内存的技术 内存池可以减少频繁的内存分配和释放操作从而提高性能 用一个栈实现： c">
+  <meta name="description" content="一些C++中经常会接触的小组件，包括中间件，STL等 但这些内容都只实现了基本功能，实际运用的时候可能还需要根据具体需求进行扩展和优化   内存池 Memory Pool 共享指针 Shared Pointer 函数封装 Function Encapsulation 双向链表容器 List   内存池 Memory Pool内存池是一种预先分配一大块内存，然后按需分配小块内存的技术 内存池可以减少">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++小碗菜">
 <meta property="og:url" content="https://miustannis.github.io/2026/01/25/260125/index.html">
 <meta property="og:site_name" content="Miao&#39;s Blog">
-<meta property="og:description" content="一些C++中经常会接触的小组件，包括中间件，STL等 但这些内容都只实现了基本功能，实际运用的时候可能还需要根据具体需求进行扩展和优化   内存池 Memory Pool 共享指针 Shared Pointer 双向链表容器 List   内存池 Memory Pool内存池是一种预先分配一大块内存，然后按需分配小块内存的技术 内存池可以减少频繁的内存分配和释放操作从而提高性能 用一个栈实现： c">
+<meta property="og:description" content="一些C++中经常会接触的小组件，包括中间件，STL等 但这些内容都只实现了基本功能，实际运用的时候可能还需要根据具体需求进行扩展和优化   内存池 Memory Pool 共享指针 Shared Pointer 函数封装 Function Encapsulation 双向链表容器 List   内存池 Memory Pool内存池是一种预先分配一大块内存，然后按需分配小块内存的技术 内存池可以减少">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-01-25T03:38:44.000Z">
-<meta property="article:modified_time" content="2026-01-29T14:43:21.717Z">
+<meta property="article:modified_time" content="2026-02-01T06:26:05.305Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
@@ -196,7 +196,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            8.5k 词 
+            10k 词 
           </div>
         </div>
         
@@ -211,6 +211,7 @@
 <ul>
 <li><a href="#内存池-memory-pool">内存池 Memory Pool</a></li>
 <li><a href="#共享指针-shared-pointer">共享指针 Shared Pointer</a></li>
+<li><a href="#函数封装-function-encapsulation">函数封装 Function Encapsulation</a></li>
 <li><a href="#双向链表容器-list">双向链表容器 List</a></li>
 </ul>
 <!-- tocstop -->
@@ -591,6 +592,94 @@
 
     </div>
 </div>
+<h2><span id="函数封装-function-encapsulation">函数封装 Function Encapsulation</span></h2><p>四种函数封装方式</p>
+<ol>
+<li>函数指针</li>
+<li>仿函数（函数对象）</li>
+<li>std::function</li>
+<li>lambda表达式</li>
+</ol>
+<ul>
+<li><strong>性能敏感场景</strong>：优先考虑函数指针或模板仿函数</li>
+<li><strong>回调系统</strong>：使用<code>std::function</code>统一接口</li>
+<li><strong>局部算法</strong>：lambda表达式最合适</li>
+<li><strong>兼容C代码</strong>：必须使用函数指针</li>
+</ul>
+<div class="fold collapsed">
+    <div class="fold-title">
+        示例
+    </div>
+    <div class="fold-content">
+        <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifndef</span> <span class="token expression">FUNCTION_BIND_H</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">FUNCTION_BIND_H</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;functional></span></span>
+
+<span class="token comment">// 1. 函数指针 - 最基础的函数封装方式</span>
+<span class="token comment">// 优点：简单、高效、零开销</span>
+<span class="token comment">// 缺点：无法捕获上下文、无法处理带状态的函数对象</span>
+<span class="token keyword">int</span> <span class="token punctuation">(</span><span class="token operator">*</span>funcptr<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 声明函数指针类型</span>
+
+<span class="token keyword">int</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> b<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/*
+使用示例：
+int main() &#123;
+    funcptr = add;           // 指向add函数
+    int result = funcptr(1, 2);  // 调用函数
+    std::cout &lt;&lt; result &lt;&lt; std::endl;  // 输出: 3
+&#125;
+*/</span>
+
+<span class="token comment">// 2. 仿函数（函数对象） - 类/结构体重载operator()</span>
+<span class="token comment">// 优点：可以携带状态、支持模板编程</span>
+<span class="token comment">// 缺点：需要定义完整的类、代码相对冗长</span>
+<span class="token keyword">struct</span> <span class="token class-name">adder</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> to_add<span class="token punctuation">;</span>
+    <span class="token function">adder</span><span class="token punctuation">(</span><span class="token keyword">int</span> value<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">to_add</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>  <span class="token comment">// 构造函数初始化状态</span>
+
+    <span class="token keyword">int</span> <span class="token keyword">operator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">int</span> value<span class="token punctuation">)</span>  <span class="token comment">// 重载函数调用运算符</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> to_add <span class="token operator">+</span> value<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token comment">/*
+使用示例：
+int main() &#123;
+    adder add_five(5);        // 创建带状态的函数对象
+    int result = add_five(10);    // 调用operator()
+    std::cout &lt;&lt; result &lt;&lt; std::endl;  // 输出: 15
+&#125;
+*/</span>
+
+<span class="token comment">// 3. std::function - C++11引入的通用函数包装器</span>
+<span class="token comment">// 优点：类型安全、统一接口、可包装任何可调用对象</span>
+<span class="token comment">// 缺点：有一定的运行时开销（类型擦除）</span>
+std<span class="token double-colon punctuation">::</span>function<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token punctuation">)</span><span class="token operator">></span> func1 <span class="token operator">=</span> add<span class="token punctuation">;</span>  <span class="token comment">// 包装函数指针</span>
+std<span class="token double-colon punctuation">::</span>function<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token operator">></span> func2 <span class="token operator">=</span> <span class="token function">adder</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 包装函数对象</span>
+std<span class="token double-colon punctuation">::</span>function<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token punctuation">)</span><span class="token operator">></span> func3 <span class="token operator">=</span>      <span class="token comment">// 包装lambda表达式</span>
+    <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> b<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token keyword">return</span> a <span class="token operator">*</span> b<span class="token punctuation">;</span> <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 4. Lambda表达式 - C++11引入的匿名函数</span>
+<span class="token comment">// 优点：语法简洁、可捕获上下文、支持多种捕获模式</span>
+<span class="token comment">// 缺点：捕获复杂时可能降低可读性</span>
+<span class="token keyword">auto</span> lambda1 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> b<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token keyword">return</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span> <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>        <span class="token comment">// 无捕获</span>
+<span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token keyword">auto</span> lambda2 <span class="token operator">=</span> <span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">int</span> y<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token keyword">return</span> x <span class="token operator">+</span> y<span class="token punctuation">;</span> <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>              <span class="token comment">// 值捕获</span>
+<span class="token keyword">auto</span> lambda3 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">&amp;</span>x<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">int</span> y<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> x <span class="token operator">+=</span> y<span class="token punctuation">;</span> <span class="token keyword">return</span> x<span class="token punctuation">;</span> <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>         <span class="token comment">// 引用捕获</span>
+<span class="token keyword">auto</span> lambda4 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">int</span> y<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token keyword">return</span> x <span class="token operator">+</span> y<span class="token punctuation">;</span> <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>              <span class="token comment">// 隐式值捕获全部</span>
+<span class="token keyword">auto</span> lambda5 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">&amp;</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">int</span> y<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> x <span class="token operator">+=</span> y<span class="token punctuation">;</span> <span class="token keyword">return</span> x<span class="token punctuation">;</span> <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>          <span class="token comment">// 隐式引用捕获全部</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+    </div>
+</div>
 <h2><span id="双向链表容器-list">双向链表容器 List</span></h2><p>有节点定义，迭代器类和容器类</p>
 <div class="fold collapsed">
     <div class="fold-title">
@@ -943,22 +1032,5 @@
 
   </div>
   <script src="/js/light-dark-switch.js"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-
 </body>
 </html>

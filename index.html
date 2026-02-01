@@ -190,7 +190,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            8.5k 词 
+            10k 词 
           </div>
         </div>
         
@@ -207,6 +207,7 @@
 
 内存池 Memory Pool
 共享指针 Shared Pointer
+函数封装 Function Encapsulation
 双向链表容器 List
 
 
@@ -224,9 +225,7 @@ classDiagram
     }
 
     MemoryPool --* "1" char : 管理
-    MemoryPool --* "1" stack : 包含
-
-    class FreeListStack...
+    MemoryPool --* "1" stack :...
             
           </div>
         
@@ -1037,22 +1036,5 @@ npm ...
 
   </div>
   <script src="/js/light-dark-switch.js"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-
 </body>
 </html>
