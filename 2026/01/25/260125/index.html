@@ -20,15 +20,15 @@
   <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
-  <meta name="description" content="一些C++中经常会接触的小组件，包括中间件，STL等 但这些内容都只实现了基本功能，实际运用的时候可能还需要根据具体需求进行扩展和优化   内存池 Memory Pool 共享指针 Shared Pointer 函数封装 Function Encapsulation 双向链表容器 List   内存池 Memory Pool内存池是一种预先分配一大块内存，然后按需分配小块内存的技术 内存池可以减少">
+  <meta name="description" content="一些C++中经常会接触的小组件，包括中间件，STL等 但这些内容都只实现了基本功能，实际运用的时候可能还需要根据具体需求进行扩展和优化   内存池 Memory Pool 共享指针 Shared Pointer 函数封装 Function Encapsulation 双向链表容器 List 双端队列容器 Deque   内存池 Memory Pool内存池是一种预先分配一大块内存，然后按需分配小块">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++小碗菜">
 <meta property="og:url" content="https://miustannis.github.io/2026/01/25/260125/index.html">
 <meta property="og:site_name" content="Miao&#39;s Blog">
-<meta property="og:description" content="一些C++中经常会接触的小组件，包括中间件，STL等 但这些内容都只实现了基本功能，实际运用的时候可能还需要根据具体需求进行扩展和优化   内存池 Memory Pool 共享指针 Shared Pointer 函数封装 Function Encapsulation 双向链表容器 List   内存池 Memory Pool内存池是一种预先分配一大块内存，然后按需分配小块内存的技术 内存池可以减少">
+<meta property="og:description" content="一些C++中经常会接触的小组件，包括中间件，STL等 但这些内容都只实现了基本功能，实际运用的时候可能还需要根据具体需求进行扩展和优化   内存池 Memory Pool 共享指针 Shared Pointer 函数封装 Function Encapsulation 双向链表容器 List 双端队列容器 Deque   内存池 Memory Pool内存池是一种预先分配一大块内存，然后按需分配小块">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-01-25T03:38:44.000Z">
-<meta property="article:modified_time" content="2026-02-01T06:26:05.305Z">
+<meta property="article:modified_time" content="2026-02-01T13:54:08.918Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
@@ -196,7 +196,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            10k 词 
+            13k 词 
           </div>
         </div>
         
@@ -213,6 +213,7 @@
 <li><a href="#共享指针-shared-pointer">共享指针 Shared Pointer</a></li>
 <li><a href="#函数封装-function-encapsulation">函数封装 Function Encapsulation</a></li>
 <li><a href="#双向链表容器-list">双向链表容器 List</a></li>
+<li><a href="#双端队列容器-deque">双端队列容器 Deque</a></li>
 </ul>
 <!-- tocstop -->
 <h2><span id="内存池-memory-pool">内存池 Memory Pool</span></h2><p>内存池是一种预先分配一大块内存，然后按需分配小块内存的技术</p>
@@ -908,6 +909,180 @@ std<span class="token double-colon punctuation">::</span>function<span class="to
 
     </div>
 </div>
+<h2><span id="双端队列容器-deque">双端队列容器 Deque</span></h2><hr>
+<p>deque 通常由一系列固定大小的数组块组成，这些块通过一个中央数组进行管理<br>整个结构使得在两端扩展的时候不需要再重新分配整个容器的内存</p>
+<p>简化版：环形缓冲区deque</p>
+<p>支持随机访问元素<br>支持在两端频繁插入和删除元素</p>
+<div class="fold collapsed">
+    <div class="fold-title">
+        实现
+    </div>
+    <div class="fold-content">
+        <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifndef</span> <span class="token expression">MYDEQUE_H</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">MYDEQUE_H</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+
+<span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> <span class="token class-name">T</span><span class="token operator">></span>
+<span class="token keyword">class</span> <span class="token class-name">MyDeque</span>
+<span class="token punctuation">&#123;</span>
+<span class="token keyword">private</span><span class="token operator">:</span>
+    T <span class="token operator">*</span>buffer<span class="token punctuation">;</span>        <span class="token comment">// 环形缓冲区</span>
+    size_t capacity<span class="token punctuation">;</span>  <span class="token comment">// 缓冲区容量</span>
+    size_t count<span class="token punctuation">;</span>     <span class="token comment">// 当前元素数量</span>
+    size_t front_idx<span class="token punctuation">;</span> <span class="token comment">// 前端索引</span>
+    size_t back_idx<span class="token punctuation">;</span>  <span class="token comment">// 下一个插入的位置（即最后一个元素的下一个位置）</span>
+
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token function">MyDeque</span><span class="token punctuation">(</span>size_t initial_capacity <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">capacity</span><span class="token punctuation">(</span>initial_capacity<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                                            <span class="token function">count</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">front_idx</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">back_idx</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 调用T的无参构造</span>
+        buffer <span class="token operator">=</span> <span class="token keyword">new</span> T<span class="token punctuation">[</span>capacity<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token operator">~</span><span class="token function">MyDeque</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">delete</span><span class="token punctuation">[</span><span class="token punctuation">]</span> buffer<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">bool</span> <span class="token function">isempty</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> count <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    size_t <span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> count<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token keyword">void</span> <span class="token function">resize</span><span class="token punctuation">(</span>size_t new_capacity<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        T <span class="token operator">*</span>new_buffer <span class="token operator">=</span> <span class="token keyword">new</span> T<span class="token punctuation">[</span>new_capacity<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>size_t i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> count<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            new_buffer<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> buffer<span class="token punctuation">[</span><span class="token punctuation">(</span>front_idx <span class="token operator">+</span> i<span class="token punctuation">)</span> <span class="token operator">%</span> capacity<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token keyword">delete</span><span class="token punctuation">[</span><span class="token punctuation">]</span> buffer<span class="token punctuation">;</span>
+        buffer <span class="token operator">=</span> new_buffer<span class="token punctuation">;</span>
+
+        front_idx <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        back_idx <span class="token operator">=</span> count<span class="token punctuation">;</span>
+
+        capacity <span class="token operator">=</span> new_capacity<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">void</span> <span class="token function">push_front</span><span class="token punctuation">(</span><span class="token keyword">const</span> T <span class="token operator">&amp;</span>value<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>count <span class="token operator">==</span> capacity<span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token function">resize</span><span class="token punctuation">(</span>capacity <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token comment">// 更新front_idx与插入值, 环形逻辑</span>
+        front_idx <span class="token operator">=</span> <span class="token punctuation">(</span>front_idx <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">+</span> capacity<span class="token punctuation">)</span> <span class="token operator">%</span> capacity<span class="token punctuation">;</span>
+        buffer<span class="token punctuation">[</span>front_idx<span class="token punctuation">]</span> <span class="token operator">=</span> value<span class="token punctuation">;</span>
+        count<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">void</span> <span class="token function">push_back</span><span class="token punctuation">(</span><span class="token keyword">const</span> T <span class="token operator">&amp;</span>value<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>count <span class="token operator">==</span> capacity<span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token function">resize</span><span class="token punctuation">(</span>capacity <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token comment">// 先赋值给当前位置</span>
+        buffer<span class="token punctuation">[</span>back_idx<span class="token punctuation">]</span> <span class="token operator">=</span> value<span class="token punctuation">;</span>
+        <span class="token comment">// 再移动 back_idx 到下一个位置</span>
+        back_idx <span class="token operator">=</span> <span class="token punctuation">(</span>back_idx <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> capacity<span class="token punctuation">;</span>
+        count<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">void</span> <span class="token function">pop_front</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isempty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token keyword">throw</span> std<span class="token double-colon punctuation">::</span><span class="token function">out_of_range</span><span class="token punctuation">(</span><span class="token string">"Deque is empty. "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        front_idx <span class="token operator">=</span> <span class="token punctuation">(</span>front_idx <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> capacity<span class="token punctuation">;</span>
+        count<span class="token operator">--</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">void</span> <span class="token function">pop_back</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isempty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token keyword">throw</span> std<span class="token double-colon punctuation">::</span><span class="token function">out_of_range</span><span class="token punctuation">(</span><span class="token string">"Deque is empty. "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        back_idx <span class="token operator">=</span> back_idx <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">?</span> capacity <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">:</span> back_idx <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        count<span class="token operator">--</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">const</span> T <span class="token operator">&amp;</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isempty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token keyword">throw</span> std<span class="token double-colon punctuation">::</span><span class="token function">out_of_range</span><span class="token punctuation">(</span><span class="token string">"Deque is empty. "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> buffer<span class="token punctuation">[</span>front_idx<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">const</span> T <span class="token operator">&amp;</span><span class="token function">back</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isempty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token keyword">throw</span> std<span class="token double-colon punctuation">::</span><span class="token function">out_of_range</span><span class="token punctuation">(</span><span class="token string">"Deque is empty. "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">int</span> last_idx <span class="token operator">=</span> back_idx <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">?</span> capacity <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">:</span> back_idx <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> buffer<span class="token punctuation">[</span>last_idx<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 迭代器</span>
+    <span class="token keyword">class</span> <span class="token class-name">Myiterator</span>
+    <span class="token punctuation">&#123;</span>
+    <span class="token keyword">public</span><span class="token operator">:</span>
+        <span class="token keyword">using</span> self_type <span class="token operator">=</span> MyDeque<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">;</span>
+        <span class="token keyword">using</span> value_type <span class="token operator">=</span> T<span class="token punctuation">;</span>
+        <span class="token keyword">using</span> reference <span class="token operator">=</span> T <span class="token operator">&amp;</span><span class="token punctuation">;</span>
+        <span class="token keyword">using</span> pointer <span class="token operator">=</span> T <span class="token operator">*</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span><span class="token operator">:</span>
+        MyDeque<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token operator">*</span>_deque<span class="token punctuation">;</span>
+        size_t pos<span class="token punctuation">;</span>
+    <span class="token keyword">public</span><span class="token operator">:</span>
+        <span class="token function">Myiterator</span><span class="token punctuation">(</span>self_type <span class="token operator">*</span>ptr <span class="token operator">=</span> <span class="token keyword">nullptr</span><span class="token punctuation">,</span> size_t position<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">_deque</span><span class="token punctuation">(</span>ptr<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">pos</span><span class="token punctuation">(</span>position<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+        reference <span class="token keyword">operator</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> _deque<span class="token operator">-></span>buffer<span class="token punctuation">[</span><span class="token punctuation">(</span>_deque<span class="token operator">-></span>front_idx <span class="token operator">+</span> pos<span class="token punctuation">)</span> <span class="token operator">%</span> _deque<span class="token operator">-></span>capacity<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        pointer <span class="token keyword">operator</span><span class="token operator">-></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> <span class="token operator">&amp;</span><span class="token punctuation">(</span>_deque<span class="token operator">-></span>buffer<span class="token punctuation">[</span><span class="token punctuation">(</span>_deque<span class="token operator">-></span>front_idx <span class="token operator">+</span> pos<span class="token punctuation">)</span> <span class="token operator">%</span> _deque<span class="token operator">-></span>capacity<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token comment">// 前置++</span>
+        Myiterator <span class="token operator">&amp;</span><span class="token keyword">operator</span><span class="token operator">++</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            pos<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token operator">*</span><span class="token keyword">this</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token comment">// 后置++</span>
+        Myiterator <span class="token keyword">operator</span><span class="token operator">++</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            Myiterator tmp <span class="token operator">=</span> <span class="token operator">*</span><span class="token keyword">this</span><span class="token punctuation">;</span>
+            pos<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> tmp<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">bool</span> <span class="token keyword">operator</span><span class="token operator">==</span><span class="token punctuation">(</span><span class="token keyword">const</span> Myiterator <span class="token operator">&amp;</span>other<span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> _deque <span class="token operator">==</span> other<span class="token punctuation">.</span>_deque <span class="token operator">&amp;&amp;</span> pos <span class="token operator">==</span> other<span class="token punctuation">.</span>pos<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">bool</span> <span class="token keyword">operator</span><span class="token operator">!=</span><span class="token punctuation">(</span><span class="token keyword">const</span> Myiterator <span class="token operator">&amp;</span>other<span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> <span class="token operator">!</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token keyword">this</span> <span class="token operator">==</span> other<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+    MyDeque <span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token function">Myiterator</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+    </div>
+</div>
 <link rel="stylesheet" href="/css/folder.css" type="text/css"><script src="/js/folder.js" type="text/javascript" async></script>
         
       </div>
@@ -1032,5 +1207,22 @@ std<span class="token double-colon punctuation">::</span>function<span class="to
 
   </div>
   <script src="/js/light-dark-switch.js"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
 </body>
 </html>
