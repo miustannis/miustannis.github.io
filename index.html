@@ -127,13 +127,13 @@
     <div class="widget">
       <h3 class="widget-title">分类</h3>
       <div class="category-box">
-            <a class="category-link" href="/categories/Learning-Record/">
-                Learning Record
+            <a class="category-link" href="/categories/Projects-Builds/">
+                Projects & Builds
                 <div class="category-count">8</div>
             </a>
         
-            <a class="category-link" href="/categories/Projects-Builds/">
-                Projects & Builds
+            <a class="category-link" href="/categories/Learning-Record/">
+                Learning Record
                 <div class="category-count">8</div>
             </a>
         </div>
@@ -190,7 +190,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            13k 词 
+            22k 词 
           </div>
         </div>
         
@@ -201,8 +201,9 @@
         
           <div class="truncate-text">
             
-              一些C++中经常会接触的小组件，包括中间件，STL等
-但这些内容都只实现了基本功能，实际运用的时候可能还需要根据具体需求进行扩展和优化
+              一些C++中经常会接触的概念，包括中间件，数据结构封装等模块
+了解原理，实现基本功能，实际运用的时候还需要根据具体需求进行扩展和优化
+一般肯定直接用STL封装好的
 
 
 内存池 Memory Pool
@@ -210,6 +211,11 @@
 函数封装 Function Encapsulation
 双向链表容器 List
 双端队列容器 Deque
+BST和AVL实现map
+1. 基于二叉搜索树 (BST) 的实现
+2. 基于 AVL 树的实现
+
+
 
 
 内存池 Memory Pool内存池是一种预先分配一大块内存，然后按需分配小块内存的技术
@@ -222,11 +228,7 @@ classDiagram
         size_t _totalsize
         stack~void*~ _freelist
         void* allocate()
-        void deallocate(void* ptr)
-    }
-
-    MemoryPool --* "1" char : 管理
-    MemoryPool --...
+        void deallocate(voi...
             
           </div>
         

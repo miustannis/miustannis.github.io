@@ -20,15 +20,15 @@
   <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
-  <meta name="description" content="一些C++中经常会接触的小组件，包括中间件，STL等 但这些内容都只实现了基本功能，实际运用的时候可能还需要根据具体需求进行扩展和优化   内存池 Memory Pool 共享指针 Shared Pointer 函数封装 Function Encapsulation 双向链表容器 List 双端队列容器 Deque   内存池 Memory Pool内存池是一种预先分配一大块内存，然后按需分配小块">
+  <meta name="description" content="一些C++中经常会接触的概念，包括中间件，数据结构封装等模块 了解原理，实现基本功能，实际运用的时候还需要根据具体需求进行扩展和优化 一般肯定直接用STL封装好的   内存池 Memory Pool 共享指针 Shared Pointer 函数封装 Function Encapsulation 双向链表容器 List 双端队列容器 Deque BST和AVL实现map 1. 基于二叉搜索树 (BS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++小碗菜">
 <meta property="og:url" content="https://miustannis.github.io/2026/01/25/260125/index.html">
 <meta property="og:site_name" content="Miao&#39;s Blog">
-<meta property="og:description" content="一些C++中经常会接触的小组件，包括中间件，STL等 但这些内容都只实现了基本功能，实际运用的时候可能还需要根据具体需求进行扩展和优化   内存池 Memory Pool 共享指针 Shared Pointer 函数封装 Function Encapsulation 双向链表容器 List 双端队列容器 Deque   内存池 Memory Pool内存池是一种预先分配一大块内存，然后按需分配小块">
+<meta property="og:description" content="一些C++中经常会接触的概念，包括中间件，数据结构封装等模块 了解原理，实现基本功能，实际运用的时候还需要根据具体需求进行扩展和优化 一般肯定直接用STL封装好的   内存池 Memory Pool 共享指针 Shared Pointer 函数封装 Function Encapsulation 双向链表容器 List 双端队列容器 Deque BST和AVL实现map 1. 基于二叉搜索树 (BS">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-01-25T03:38:44.000Z">
-<meta property="article:modified_time" content="2026-02-04T15:51:12.470Z">
+<meta property="article:modified_time" content="2026-02-05T13:33:38.110Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
@@ -132,13 +132,13 @@
     <div class="widget">
       <h3 class="widget-title">分类</h3>
       <div class="category-box">
-            <a class="category-link" href="/categories/Learning-Record/">
-                Learning Record
+            <a class="category-link" href="/categories/Projects-Builds/">
+                Projects & Builds
                 <div class="category-count">8</div>
             </a>
         
-            <a class="category-link" href="/categories/Projects-Builds/">
-                Projects & Builds
+            <a class="category-link" href="/categories/Learning-Record/">
+                Learning Record
                 <div class="category-count">8</div>
             </a>
         </div>
@@ -196,7 +196,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            13k 词 
+            22k 词 
           </div>
         </div>
         
@@ -205,8 +205,9 @@
       </header>
       <div class="e-content article-entry" itemprop="articleBody">
         
-          <p>一些C++中经常会接触的小组件，包括中间件，STL等</p>
-<p>但这些内容都只实现了基本功能，实际运用的时候可能还需要根据具体需求进行扩展和优化</p>
+          <p>一些C++中经常会接触的概念，包括中间件，数据结构封装等模块</p>
+<p>了解原理，实现基本功能，实际运用的时候还需要根据具体需求进行扩展和优化</p>
+<p>一般肯定直接用STL封装好的</p>
 <!-- toc -->
 <ul>
 <li><a href="#内存池-memory-pool">内存池 Memory Pool</a></li>
@@ -214,6 +215,11 @@
 <li><a href="#函数封装-function-encapsulation">函数封装 Function Encapsulation</a></li>
 <li><a href="#双向链表容器-list">双向链表容器 List</a></li>
 <li><a href="#双端队列容器-deque">双端队列容器 Deque</a></li>
+<li><a href="#bst和avl实现map">BST和AVL实现map</a><ul>
+<li><a href="#1-基于二叉搜索树-bst-的实现">1. 基于二叉搜索树 (BST) 的实现</a></li>
+<li><a href="#2-基于-avl-树的实现">2. 基于 AVL 树的实现</a></li>
+</ul>
+</li>
 </ul>
 <!-- tocstop -->
 <h2><span id="内存池-memory-pool">内存池 Memory Pool</span></h2><p>内存池是一种预先分配一大块内存，然后按需分配小块内存的技术</p>
@@ -1083,6 +1089,586 @@ std<span class="token double-colon punctuation">::</span>function<span class="to
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+    </div>
+</div>
+<hr>
+<h2><span id="bst和avl实现map">BST和AVL实现map</span></h2><p>stl中的map底层是用红黑树实现的，红黑树的插入删除操作相对复杂，这里用普通的二叉搜索树和自平衡二叉搜索树实现一个<code>map</code>。<code>map</code> 是一种键值对数据结构，在许多算法和系统设计中都有广泛的应用。通过封装不同的树结构，<code>map</code> 提供了高效的元素查找、插入和删除操作。</p>
+<h4><span id="1-基于二叉搜索树-bst-的实现">1. 基于二叉搜索树 (BST) 的实现</span></h4><p>二叉搜索树（BST）是一种特殊的二叉树，其中每个节点的值都大于左子树的所有节点，并且小于右子树的所有节点。这样的性质使得二叉搜索树能够支持高效的查找、插入和删除操作。在最理想的情况下，BST 能够以对数时间复杂度 O(log n) 进行这些操作。然而，若树不平衡，最坏的情况会退化为链表，导致操作时间复杂度为 O(n)。</p>
+<div class="fold collapsed">
+    <div class="fold-title">
+        BST-map
+    </div>
+    <div class="fold-content">
+        <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifndef</span> <span class="token expression">MYMAP_H</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">MYMAP_H</span></span>
+
+<span class="token comment">/*
+BST 实现map （不同于std::map，std::map是基于平衡二叉搜索树，
+              比如红黑树实现的）
+这里使用普通的二叉搜索树，非自动平衡的二叉搜索树
+*/</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;utility></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;exception></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stack></span></span>
+
+<span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> <span class="token class-name">Key</span><span class="token punctuation">,</span> <span class="token keyword">typename</span> <span class="token class-name">T</span><span class="token operator">></span>
+<span class="token keyword">struct</span> <span class="token class-name">TreeNode</span>
+<span class="token punctuation">&#123;</span>
+  std<span class="token double-colon punctuation">::</span>pair<span class="token operator">&lt;</span>Key<span class="token punctuation">,</span> T<span class="token operator">></span> data<span class="token punctuation">;</span>
+  TreeNode <span class="token operator">*</span>left<span class="token punctuation">;</span>
+  TreeNode <span class="token operator">*</span>right<span class="token punctuation">;</span>
+  TreeNode <span class="token operator">*</span>parent<span class="token punctuation">;</span>
+
+  <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token keyword">const</span> Key <span class="token operator">&amp;</span>key<span class="token punctuation">,</span> <span class="token keyword">const</span> T <span class="token operator">&amp;</span>value<span class="token punctuation">,</span> TreeNode <span class="token operator">*</span>parentnode <span class="token operator">=</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span>
+      <span class="token operator">:</span> <span class="token function">data</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span><span class="token function">make_pair</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">left</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">right</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">parent</span><span class="token punctuation">(</span>parentnode<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> <span class="token class-name">Key</span><span class="token punctuation">,</span> <span class="token keyword">typename</span> <span class="token class-name">T</span><span class="token operator">></span>
+<span class="token keyword">class</span> <span class="token class-name">Mymap</span>
+<span class="token punctuation">&#123;</span>
+<span class="token keyword">private</span><span class="token operator">:</span>
+  <span class="token comment">// 只保存根节点</span>
+  TreeNode<span class="token operator">&lt;</span>Key<span class="token punctuation">,</span> T<span class="token operator">></span> <span class="token operator">*</span>root<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span><span class="token operator">:</span>
+  <span class="token comment">/**
+   * @brief 默认构造函数，初始化空的映射
+   */</span>
+  <span class="token function">Mymap</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">root</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+  <span class="token comment">// 析构时按照递归的方式回收资源</span>
+  <span class="token comment">// helper function</span>
+  <span class="token keyword">void</span> <span class="token function">release</span><span class="token punctuation">(</span>TreeNode<span class="token operator">&lt;</span>Key<span class="token punctuation">,</span> T<span class="token operator">></span> <span class="token operator">*</span>node<span class="token punctuation">)</span>
+  <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>node <span class="token operator">==</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span>
+      <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>node<span class="token operator">-></span>right<span class="token punctuation">)</span>
+      <span class="token function">release</span><span class="token punctuation">(</span>node<span class="token operator">-></span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>node<span class="token operator">-></span>left<span class="token punctuation">)</span>
+      <span class="token function">release</span><span class="token punctuation">(</span>node<span class="token operator">-></span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">delete</span> node<span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token comment">/**
+   * @brief 析构函数，释放所有节点内存
+   */</span>
+  <span class="token operator">~</span><span class="token function">Mymap</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#123;</span>
+    <span class="token function">release</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token function">Mymap</span><span class="token punctuation">(</span><span class="token keyword">const</span> Mymap <span class="token operator">&amp;</span>other<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">delete</span><span class="token punctuation">;</span>
+  Mymap <span class="token operator">&amp;</span><span class="token keyword">operator</span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">const</span> Mymap <span class="token operator">&amp;</span>other<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">delete</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span><span class="token operator">:</span>
+  <span class="token comment">/**
+   * @brief 插入键值对到映射中
+   * @param key 要插入的键
+   * @param value 要插入的值
+   * @note 如果键已存在，则更新对应的值
+   */</span>
+  <span class="token keyword">void</span> <span class="token function">insert</span><span class="token punctuation">(</span><span class="token keyword">const</span> Key <span class="token operator">&amp;</span>key<span class="token punctuation">,</span> <span class="token keyword">const</span> T <span class="token operator">&amp;</span>value<span class="token punctuation">)</span>
+  <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>root <span class="token operator">==</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+      root <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token generic-function"><span class="token function">TreeNode</span><span class="token generic class-name"><span class="token operator">&lt;</span>Key<span class="token punctuation">,</span> T<span class="token operator">></span></span></span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    TreeNode<span class="token operator">&lt;</span>Key<span class="token punctuation">,</span> T<span class="token operator">></span> <span class="token operator">*</span>current <span class="token operator">=</span> root<span class="token punctuation">;</span>
+    TreeNode<span class="token operator">&lt;</span>Key<span class="token punctuation">,</span> T<span class="token operator">></span> <span class="token operator">*</span>parent <span class="token operator">=</span> <span class="token keyword">nullptr</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>current <span class="token operator">!=</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+      parent <span class="token operator">=</span> current<span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>key <span class="token operator">&lt;</span> current<span class="token operator">-></span>data<span class="token punctuation">.</span>first<span class="token punctuation">)</span>
+      <span class="token punctuation">&#123;</span>
+        current <span class="token operator">=</span> current<span class="token operator">-></span>left<span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span>
+      <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>key <span class="token operator">></span> current<span class="token operator">-></span>data<span class="token punctuation">.</span>first<span class="token punctuation">)</span>
+      <span class="token punctuation">&#123;</span>
+        current <span class="token operator">=</span> current<span class="token operator">-></span>right<span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span>
+      <span class="token keyword">else</span>
+      <span class="token punctuation">&#123;</span>
+        current<span class="token operator">-></span>data<span class="token punctuation">.</span>second <span class="token operator">=</span> value<span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>key <span class="token operator">&lt;</span> parent<span class="token operator">-></span>data<span class="token punctuation">.</span>first<span class="token punctuation">)</span>
+      parent<span class="token operator">-></span>left <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token generic-function"><span class="token function">TreeNode</span><span class="token generic class-name"><span class="token operator">&lt;</span>Key<span class="token punctuation">,</span> T<span class="token operator">></span></span></span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">,</span> parent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">else</span>
+      parent<span class="token operator">-></span>right <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token generic-function"><span class="token function">TreeNode</span><span class="token generic class-name"><span class="token operator">&lt;</span>Key<span class="token punctuation">,</span> T<span class="token operator">></span></span></span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">,</span> parent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+
+<span class="token keyword">public</span><span class="token operator">:</span>
+  <span class="token comment">/**
+   * @brief 找到某一节点的左子树中的最小节点
+   * @param node 起始节点（假设不为空）
+   * @return 左子树中的最小节点
+   */</span>
+  TreeNode<span class="token operator">&lt;</span>Key<span class="token punctuation">,</span> T<span class="token operator">></span> <span class="token operator">*</span><span class="token function">mininumNode</span><span class="token punctuation">(</span>TreeNode<span class="token operator">&lt;</span>Key<span class="token punctuation">,</span> T<span class="token operator">></span> <span class="token operator">*</span>node<span class="token punctuation">)</span> <span class="token keyword">const</span>
+  <span class="token punctuation">&#123;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>node<span class="token operator">-></span>left <span class="token operator">!=</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+      node <span class="token operator">=</span> node<span class="token operator">-></span>left<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> node<span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+
+  <span class="token comment">/**
+   * @brief 找到节点的后续节点（中序遍历中的下一个节点）
+   * @param node 起始节点（假设不为空）
+   * @return 后续节点，如果不存在则返回nullptr
+   */</span>
+  TreeNode<span class="token operator">&lt;</span>Key<span class="token punctuation">,</span> T<span class="token operator">></span> <span class="token operator">*</span><span class="token function">successorNode</span><span class="token punctuation">(</span>TreeNode<span class="token operator">&lt;</span>Key<span class="token punctuation">,</span> T<span class="token operator">></span> <span class="token operator">*</span>node<span class="token punctuation">)</span> <span class="token keyword">const</span>
+  <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 右子树不为空</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>node<span class="token operator">-></span>right <span class="token operator">!=</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+      <span class="token keyword">return</span> <span class="token function">mininumNode</span><span class="token punctuation">(</span>node<span class="token operator">-></span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">// 右子树为空</span>
+    TreeNode<span class="token operator">&lt;</span>Key<span class="token punctuation">,</span> T<span class="token operator">></span> <span class="token operator">*</span>p <span class="token operator">=</span> node<span class="token operator">-></span>parent<span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>p <span class="token operator">!=</span> <span class="token keyword">nullptr</span> <span class="token operator">&amp;&amp;</span> node <span class="token operator">==</span> p<span class="token operator">-></span>right<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+      node <span class="token operator">=</span> p<span class="token punctuation">;</span>
+      p <span class="token operator">=</span> p<span class="token operator">-></span>parent<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> p<span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token comment">/**
+   * @brief 删除指定键的节点
+   * @param key 要删除的键
+   * @note 如果键不存在，则不执行任何操作
+   */</span>
+  <span class="token keyword">void</span> <span class="token function">erase</span><span class="token punctuation">(</span><span class="token keyword">const</span> Key <span class="token operator">&amp;</span>key<span class="token punctuation">)</span>
+  <span class="token punctuation">&#123;</span>
+    TreeNode<span class="token operator">&lt;</span>Key<span class="token punctuation">,</span> T<span class="token operator">></span> <span class="token operator">*</span>node <span class="token operator">=</span> <span class="token function">find</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>node <span class="token operator">==</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span>
+      <span class="token keyword">return</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 情况1：删除的节点没有子节点</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>node<span class="token operator">-></span>left <span class="token operator">==</span> <span class="token keyword">nullptr</span> <span class="token operator">&amp;&amp;</span> node<span class="token operator">-></span>right <span class="token operator">==</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>node<span class="token operator">-></span>parent <span class="token operator">==</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span>
+      <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 删除的是根节点</span>
+        <span class="token keyword">delete</span> node<span class="token punctuation">;</span>
+        root <span class="token operator">=</span> <span class="token keyword">nullptr</span><span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span>
+      <span class="token keyword">else</span>
+      <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>node <span class="token operator">==</span> node<span class="token operator">-></span>parent<span class="token operator">-></span>left<span class="token punctuation">)</span>
+          node<span class="token operator">-></span>parent<span class="token operator">-></span>left <span class="token operator">=</span> <span class="token keyword">nullptr</span><span class="token punctuation">;</span>
+        <span class="token keyword">else</span>
+          node<span class="token operator">-></span>parent<span class="token operator">-></span>right <span class="token operator">=</span> <span class="token keyword">nullptr</span><span class="token punctuation">;</span>
+        <span class="token keyword">delete</span> node<span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 情况2：删除的节点有一个子节点</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>node<span class="token operator">-></span>left <span class="token operator">==</span> <span class="token keyword">nullptr</span> <span class="token operator">||</span> node<span class="token operator">-></span>right <span class="token operator">==</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+      TreeNode<span class="token operator">&lt;</span>Key<span class="token punctuation">,</span> T<span class="token operator">></span> <span class="token operator">*</span>child <span class="token operator">=</span> <span class="token punctuation">(</span>node<span class="token operator">-></span>left <span class="token operator">!=</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span> <span class="token operator">?</span> node<span class="token operator">-></span>left <span class="token operator">:</span> node<span class="token operator">-></span>right<span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>node<span class="token operator">-></span>parent <span class="token operator">==</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span>
+      <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 删除的是根节点</span>
+        root <span class="token operator">=</span> child<span class="token punctuation">;</span>
+        child<span class="token operator">-></span>parent <span class="token operator">=</span> <span class="token keyword">nullptr</span><span class="token punctuation">;</span>
+        <span class="token keyword">delete</span> node<span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span>
+      <span class="token keyword">else</span>
+      <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>node <span class="token operator">==</span> node<span class="token operator">-></span>parent<span class="token operator">-></span>left<span class="token punctuation">)</span>
+          node<span class="token operator">-></span>parent<span class="token operator">-></span>left <span class="token operator">=</span> child<span class="token punctuation">;</span>
+        <span class="token keyword">else</span>
+          node<span class="token operator">-></span>parent<span class="token operator">-></span>right <span class="token operator">=</span> child<span class="token punctuation">;</span>
+        child<span class="token operator">-></span>parent <span class="token operator">=</span> node<span class="token operator">-></span>parent<span class="token punctuation">;</span>
+        <span class="token keyword">delete</span> node<span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">// 情况3：删除的节点有两个子节点</span>
+    <span class="token keyword">else</span>
+    <span class="token punctuation">&#123;</span>
+
+      TreeNode<span class="token operator">&lt;</span>Key<span class="token punctuation">,</span> T<span class="token operator">></span> <span class="token operator">*</span>successor <span class="token operator">=</span> <span class="token function">successorNode</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// 用后继节点的值替换当前节点</span>
+      node<span class="token operator">-></span>data <span class="token operator">=</span> successor<span class="token operator">-></span>data<span class="token punctuation">;</span>
+
+      <span class="token comment">// 现在问题转化为删除successor节点</span>
+      <span class="token comment">// successor最多只有一个右子节点（因为它是右子树的最小值，没有左子节点）</span>
+      <span class="token comment">// 重新设置node指向successor，然后按照情况1或2删除</span>
+      TreeNode<span class="token operator">&lt;</span>Key<span class="token punctuation">,</span> T<span class="token operator">></span> <span class="token operator">*</span>child <span class="token operator">=</span> successor<span class="token operator">-></span>right<span class="token punctuation">;</span>
+      TreeNode<span class="token operator">&lt;</span>Key<span class="token punctuation">,</span> T<span class="token operator">></span> <span class="token operator">*</span>parent <span class="token operator">=</span> successor<span class="token operator">-></span>parent<span class="token punctuation">;</span>
+
+      <span class="token comment">// 更新父节点指向</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>successor <span class="token operator">==</span> parent<span class="token operator">-></span>left<span class="token punctuation">)</span>
+        parent<span class="token operator">-></span>left <span class="token operator">=</span> child<span class="token punctuation">;</span>
+      <span class="token keyword">else</span>
+        parent<span class="token operator">-></span>right <span class="token operator">=</span> child<span class="token punctuation">;</span>
+
+      <span class="token comment">// 更新子节点的父指针</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>child <span class="token operator">!=</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span>
+        child<span class="token operator">-></span>parent <span class="token operator">=</span> parent<span class="token punctuation">;</span>
+
+      <span class="token comment">// 删除successor</span>
+      <span class="token keyword">delete</span> successor<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span>
+
+<span class="token keyword">public</span><span class="token operator">:</span>
+  <span class="token comment">/**
+   * @brief 查找指定键的节点
+   * @param key 要查找的键
+   * @return 找到的节点指针，如果不存在则返回nullptr
+   */</span>
+  TreeNode<span class="token operator">&lt;</span>Key<span class="token punctuation">,</span> T<span class="token operator">></span> <span class="token operator">*</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token keyword">const</span> Key <span class="token operator">&amp;</span>key<span class="token punctuation">)</span> <span class="token keyword">const</span>
+  <span class="token punctuation">&#123;</span>
+    TreeNode<span class="token operator">&lt;</span>Key<span class="token punctuation">,</span> T<span class="token operator">></span> <span class="token operator">*</span>currentnode <span class="token operator">=</span> root<span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>currentnode <span class="token operator">!=</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>key <span class="token operator">&lt;</span> currentnode<span class="token operator">-></span>data<span class="token punctuation">.</span>first<span class="token punctuation">)</span>
+        currentnode <span class="token operator">=</span> currentnode<span class="token operator">-></span>left<span class="token punctuation">;</span>
+      <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>key <span class="token operator">></span> currentnode<span class="token operator">-></span>data<span class="token punctuation">.</span>first<span class="token punctuation">)</span>
+        currentnode <span class="token operator">=</span> currentnode<span class="token operator">-></span>right<span class="token punctuation">;</span>
+      <span class="token keyword">else</span>
+        <span class="token keyword">return</span> currentnode<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> <span class="token keyword">nullptr</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+    </div>
+</div>
+<h4><span id="2-基于-avl-树的实现">2. 基于 AVL 树的实现</span></h4><p>为了克服普通二叉搜索树在最坏情况下的退化问题，我们可以使用 AVL 树，它是一种自平衡的二叉搜索树。AVL 树通过保持每个节点的平衡因子（左右子树的高度差不超过 1）来确保树的平衡性。这种平衡策略使得 AVL 树在任何时候都保持较为理想的树形结构，从而保证查找、插入和删除操作都能在 O(log n) 的时间复杂度内完成。</p>
+<div class="fold collapsed">
+    <div class="fold-title">
+        AVL-map
+    </div>
+    <div class="fold-content">
+        <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifndef</span> <span class="token expression">MYAVLTREE_H</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">MYAVLTREE_H</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;exception></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;algorithm></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;functional></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;vector></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;utility></span></span>
+
+<span class="token comment">/**
+ * @brief AVL 树节点结构体
+ * @tparam Key 键类型
+ * @tparam Value 值类型
+ */</span>
+<span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> <span class="token class-name">Key</span><span class="token punctuation">,</span> <span class="token keyword">typename</span> <span class="token class-name">Value</span><span class="token operator">></span>
+<span class="token keyword">struct</span> <span class="token class-name">TreeNode</span>
+<span class="token punctuation">&#123;</span>
+    std<span class="token double-colon punctuation">::</span>pair<span class="token operator">&lt;</span>Key<span class="token punctuation">,</span> Value<span class="token operator">></span> data<span class="token punctuation">;</span>  <span class="token comment">///&lt; 存储键值对数据</span>
+    TreeNode <span class="token operator">*</span>left<span class="token punctuation">;</span>               <span class="token comment">///&lt; 左子节点指针</span>
+    TreeNode <span class="token operator">*</span>right<span class="token punctuation">;</span>              <span class="token comment">///&lt; 右子节点指针</span>
+    <span class="token keyword">int</span> height<span class="token punctuation">;</span>                   <span class="token comment">///&lt; 节点高度</span>
+
+    <span class="token comment">/**
+     * @brief 构造函数
+     * @param k 键
+     * @param v 值
+     */</span>
+    <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token keyword">const</span> Key <span class="token operator">&amp;</span>k<span class="token punctuation">,</span> <span class="token keyword">const</span> Value <span class="token operator">&amp;</span>v<span class="token punctuation">)</span> 
+        <span class="token operator">:</span> <span class="token function">data</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span><span class="token function">make_pair</span><span class="token punctuation">(</span>k<span class="token punctuation">,</span> v<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">height</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">left</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">right</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * @brief 自平衡二叉搜索树（AVL树）实现
+ * @tparam Key 键类型，必须支持比较操作
+ * @tparam Value 值类型
+ */</span>
+<span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> <span class="token class-name">Key</span><span class="token punctuation">,</span> <span class="token keyword">typename</span> <span class="token class-name">Value</span><span class="token operator">></span>
+<span class="token keyword">class</span> <span class="token class-name">MyAVLTree</span>
+<span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token keyword">using</span> node <span class="token operator">=</span> TreeNode<span class="token operator">&lt;</span>Key<span class="token punctuation">,</span> Value<span class="token operator">></span><span class="token punctuation">;</span>  <span class="token comment">///&lt; 节点类型别名</span>
+
+<span class="token keyword">private</span><span class="token operator">:</span>
+    node <span class="token operator">*</span>root<span class="token punctuation">;</span>  <span class="token comment">///&lt; 树的根节点</span>
+
+    <span class="token comment">/**
+     * @brief 获取节点高度
+     * @param n 节点指针
+     * @return 节点高度，空节点返回0
+     */</span>
+    <span class="token keyword">int</span> <span class="token function">getHeight</span><span class="token punctuation">(</span>node <span class="token operator">*</span>n<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>n <span class="token operator">==</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> n<span class="token operator">-></span>height<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">/**
+     * @brief 计算节点的平衡因子
+     * @param n 节点指针
+     * @return 平衡因子 = 左子树高度 - 右子树高度
+     */</span>
+    <span class="token keyword">int</span> <span class="token function">getbalance</span><span class="token punctuation">(</span>node <span class="token operator">*</span>n<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>n <span class="token operator">==</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">else</span>
+            <span class="token keyword">return</span> <span class="token function">getHeight</span><span class="token punctuation">(</span>n<span class="token operator">-></span>left<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">getHeight</span><span class="token punctuation">(</span>n<span class="token operator">-></span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">/**
+     * @brief 对节点进行右旋操作（LL型不平衡）
+     * @param objectnode 需要旋转的节点
+     * @return 旋转后新的子树根节点
+     */</span>
+    node <span class="token operator">*</span><span class="token function">rightrotate</span><span class="token punctuation">(</span>node <span class="token operator">*</span>objectnode<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        node <span class="token operator">*</span>x <span class="token operator">=</span> objectnode<span class="token operator">-></span>left<span class="token punctuation">;</span>
+        node <span class="token operator">*</span>origin <span class="token operator">=</span> x<span class="token operator">-></span>right<span class="token punctuation">;</span>
+        x<span class="token operator">-></span>right <span class="token operator">=</span> objectnode<span class="token punctuation">;</span>
+        objectnode<span class="token operator">-></span>left <span class="token operator">=</span> origin<span class="token punctuation">;</span>
+
+        objectnode<span class="token operator">-></span>height <span class="token operator">=</span> std<span class="token double-colon punctuation">::</span><span class="token function">max</span><span class="token punctuation">(</span><span class="token function">getHeight</span><span class="token punctuation">(</span>objectnode<span class="token operator">-></span>left<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">getHeight</span><span class="token punctuation">(</span>objectnode<span class="token operator">-></span>right<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        x<span class="token operator">-></span>height <span class="token operator">=</span> std<span class="token double-colon punctuation">::</span><span class="token function">max</span><span class="token punctuation">(</span><span class="token function">getHeight</span><span class="token punctuation">(</span>x<span class="token operator">-></span>left<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">getHeight</span><span class="token punctuation">(</span>x<span class="token operator">-></span>right<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> x<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">/**
+     * @brief 对节点进行左旋操作（RR型不平衡）
+     * @param objectnode 需要旋转的节点
+     * @return 旋转后新的子树根节点
+     */</span>
+    node <span class="token operator">*</span><span class="token function">leftrotate</span><span class="token punctuation">(</span>node <span class="token operator">*</span>objectnode<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        node <span class="token operator">*</span>x <span class="token operator">=</span> objectnode<span class="token operator">-></span>right<span class="token punctuation">;</span>
+        node <span class="token operator">*</span>origin <span class="token operator">=</span> x<span class="token operator">-></span>left<span class="token punctuation">;</span>
+        x<span class="token operator">-></span>left <span class="token operator">=</span> objectnode<span class="token punctuation">;</span>
+        objectnode<span class="token operator">-></span>right <span class="token operator">=</span> origin<span class="token punctuation">;</span>
+
+        x<span class="token operator">-></span>height <span class="token operator">=</span> std<span class="token double-colon punctuation">::</span><span class="token function">max</span><span class="token punctuation">(</span><span class="token function">getHeight</span><span class="token punctuation">(</span>x<span class="token operator">-></span>right<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">getHeight</span><span class="token punctuation">(</span>x<span class="token operator">-></span>left<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        objectnode<span class="token operator">-></span>height <span class="token operator">=</span> std<span class="token double-colon punctuation">::</span><span class="token function">max</span><span class="token punctuation">(</span><span class="token function">getHeight</span><span class="token punctuation">(</span>objectnode<span class="token operator">-></span>right<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">getHeight</span><span class="token punctuation">(</span>objectnode<span class="token operator">-></span>left<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> x<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">/**
+     * @brief 查找子树中的最小键值节点
+     * @param cur 子树根节点
+     * @return 最小键值节点指针
+     */</span>
+    node <span class="token operator">*</span><span class="token function">getminvaluenode</span><span class="token punctuation">(</span>node <span class="token operator">*</span>cur<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        node <span class="token operator">*</span>current <span class="token operator">=</span> cur<span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>current<span class="token operator">-></span>left <span class="token operator">!=</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            current <span class="token operator">=</span> current<span class="token operator">-></span>left<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> current<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">/**
+     * @brief 递归删除所有节点（用于析构函数）
+     * @param n 要删除的子树根节点
+     */</span>
+    <span class="token keyword">void</span> <span class="token function">destroy</span><span class="token punctuation">(</span>node <span class="token operator">*</span>n<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>n <span class="token operator">==</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token function">destroy</span><span class="token punctuation">(</span>n<span class="token operator">-></span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">destroy</span><span class="token punctuation">(</span>n<span class="token operator">-></span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">delete</span> n<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token comment">/**
+     * @brief 默认构造函数
+     * @post 创建空的AVL树
+     */</span>
+    <span class="token function">MyAVLTree</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">root</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+
+    <span class="token comment">/**
+     * @brief 析构函数
+     * @post 释放所有节点内存
+     */</span>
+    <span class="token operator">~</span><span class="token function">MyAVLTree</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">destroy</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        root <span class="token operator">=</span> <span class="token keyword">nullptr</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">/**
+     * @brief 在树中插入键值对（公开接口）
+     * @param key 要插入的键
+     * @param value 要插入的值
+     * @note 如果键已存在，则更新对应的值
+     */</span>
+    <span class="token keyword">void</span> <span class="token function">insert</span><span class="token punctuation">(</span><span class="token keyword">const</span> Key <span class="token operator">&amp;</span>key<span class="token punctuation">,</span> <span class="token keyword">const</span> Value <span class="token operator">&amp;</span>value<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        root <span class="token operator">=</span> <span class="token function">insert</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">/**
+     * @brief 从树中删除指定键的节点（公开接口）
+     * @param key 要删除的键
+     * @note 如果键不存在，则不进行任何操作
+     */</span>
+    <span class="token keyword">void</span> <span class="token function">remove</span><span class="token punctuation">(</span><span class="token keyword">const</span> Key <span class="token operator">&amp;</span>key<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        root <span class="token operator">=</span> <span class="token function">deletenode</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+<span class="token keyword">private</span><span class="token operator">:</span>
+    <span class="token comment">/**
+     * @brief 递归插入键值对到子树中（内部实现）
+     * @param node 子树根节点
+     * @param key 要插入的键
+     * @param value 要插入的值
+     * @return 插入后新的子树根节点
+     */</span>
+    node <span class="token operator">*</span><span class="token function">insert</span><span class="token punctuation">(</span>node <span class="token operator">*</span>node<span class="token punctuation">,</span> <span class="token keyword">const</span> Key <span class="token operator">&amp;</span>key<span class="token punctuation">,</span> <span class="token keyword">const</span> Value <span class="token operator">&amp;</span>value<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>node <span class="token operator">==</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token generic-function"><span class="token function">TreeNode</span><span class="token generic class-name"><span class="token operator">&lt;</span>Key<span class="token punctuation">,</span> Value<span class="token operator">></span></span></span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token comment">// 递归查找插入位置</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>key <span class="token operator">&lt;</span> node<span class="token operator">-></span>data<span class="token punctuation">.</span>first<span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            node<span class="token operator">-></span>left <span class="token operator">=</span> <span class="token function">insert</span><span class="token punctuation">(</span>node<span class="token operator">-></span>left<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>key <span class="token operator">></span> node<span class="token operator">-></span>data<span class="token punctuation">.</span>first<span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            node<span class="token operator">-></span>right <span class="token operator">=</span> <span class="token function">insert</span><span class="token punctuation">(</span>node<span class="token operator">-></span>right<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">else</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token comment">// 键已存在，更新值</span>
+            node<span class="token operator">-></span>data<span class="token punctuation">.</span>second <span class="token operator">=</span> value<span class="token punctuation">;</span>
+            <span class="token keyword">return</span> node<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token comment">// 更新节点高度</span>
+        node<span class="token operator">-></span>height <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">+</span> std<span class="token double-colon punctuation">::</span><span class="token function">max</span><span class="token punctuation">(</span><span class="token function">getHeight</span><span class="token punctuation">(</span>node<span class="token operator">-></span>left<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">getHeight</span><span class="token punctuation">(</span>node<span class="token operator">-></span>right<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token comment">// 检查平衡并旋转</span>
+        <span class="token keyword">int</span> balance <span class="token operator">=</span> <span class="token function">getbalance</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token comment">// 左左情况（LL）</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>balance <span class="token operator">></span> <span class="token number">1</span> <span class="token operator">&amp;&amp;</span> key <span class="token operator">&lt;</span> node<span class="token operator">-></span>left<span class="token operator">-></span>data<span class="token punctuation">.</span>first<span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> <span class="token function">rightrotate</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token comment">// 右右情况（RR）</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>balance <span class="token operator">&lt;</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">&amp;&amp;</span> key <span class="token operator">></span> node<span class="token operator">-></span>right<span class="token operator">-></span>data<span class="token punctuation">.</span>first<span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> <span class="token function">leftrotate</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token comment">// 左右情况（LR）</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>balance <span class="token operator">></span> <span class="token number">1</span> <span class="token operator">&amp;&amp;</span> key <span class="token operator">></span> node<span class="token operator">-></span>left<span class="token operator">-></span>data<span class="token punctuation">.</span>first<span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            node<span class="token operator">-></span>left <span class="token operator">=</span> <span class="token function">leftrotate</span><span class="token punctuation">(</span>node<span class="token operator">-></span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token function">rightrotate</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token comment">// 右左情况（RL）</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>balance <span class="token operator">&lt;</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">&amp;&amp;</span> key <span class="token operator">&lt;</span> node<span class="token operator">-></span>right<span class="token operator">-></span>data<span class="token punctuation">.</span>first<span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            node<span class="token operator">-></span>right <span class="token operator">=</span> <span class="token function">rightrotate</span><span class="token punctuation">(</span>node<span class="token operator">-></span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token function">leftrotate</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token keyword">return</span> node<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">/**
+     * @brief 递归删除子树中的节点（内部实现）
+     * @param root 子树根节点
+     * @param key 要删除的键
+     * @return 删除后新的子树根节点
+     */</span>
+    node <span class="token operator">*</span><span class="token function">deletenode</span><span class="token punctuation">(</span>node <span class="token operator">*</span>root<span class="token punctuation">,</span> <span class="token keyword">const</span> Key <span class="token operator">&amp;</span>key<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>root <span class="token operator">==</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> root<span class="token punctuation">;</span>
+
+        <span class="token comment">// 递归查找要删除的节点</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>key <span class="token operator">&lt;</span> root<span class="token operator">-></span>data<span class="token punctuation">.</span>first<span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            root<span class="token operator">-></span>left <span class="token operator">=</span> <span class="token function">deletenode</span><span class="token punctuation">(</span>root<span class="token operator">-></span>left<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>key <span class="token operator">></span> root<span class="token operator">-></span>data<span class="token punctuation">.</span>first<span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            root<span class="token operator">-></span>right <span class="token operator">=</span> <span class="token function">deletenode</span><span class="token punctuation">(</span>root<span class="token operator">-></span>right<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">else</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token comment">// 找到要删除的节点</span>
+            <span class="token comment">// 情况1：有一个子节点或没有子节点</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>root<span class="token operator">-></span>left <span class="token operator">==</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>root<span class="token operator">-></span>right <span class="token operator">==</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token punctuation">&#123;</span>
+                <span class="token keyword">auto</span> <span class="token operator">*</span>temp <span class="token operator">=</span> root<span class="token operator">-></span>left <span class="token operator">?</span> root<span class="token operator">-></span>left <span class="token operator">:</span> root<span class="token operator">-></span>right<span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>temp <span class="token operator">==</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span>  <span class="token comment">// 无子节点</span>
+                <span class="token punctuation">&#123;</span>
+                    temp <span class="token operator">=</span> root<span class="token punctuation">;</span>
+                    root <span class="token operator">=</span> <span class="token keyword">nullptr</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+                <span class="token keyword">else</span>  <span class="token comment">// 有一个子节点</span>
+                <span class="token punctuation">&#123;</span>
+                    <span class="token operator">*</span>root <span class="token operator">=</span> <span class="token operator">*</span>temp<span class="token punctuation">;</span>  <span class="token comment">// 值传递</span>
+                <span class="token punctuation">&#125;</span>
+                <span class="token keyword">delete</span> temp<span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token comment">// 情况2：有两个子节点</span>
+            <span class="token keyword">else</span>
+            <span class="token punctuation">&#123;</span>
+                <span class="token keyword">auto</span> <span class="token operator">*</span>temp <span class="token operator">=</span> <span class="token function">getminvaluenode</span><span class="token punctuation">(</span>root<span class="token operator">-></span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                root<span class="token operator">-></span>data<span class="token punctuation">.</span>first <span class="token operator">=</span> temp<span class="token operator">-></span>data<span class="token punctuation">.</span>first<span class="token punctuation">;</span>
+                root<span class="token operator">-></span>data<span class="token punctuation">.</span>second <span class="token operator">=</span> temp<span class="token operator">-></span>data<span class="token punctuation">.</span>second<span class="token punctuation">;</span>
+                root<span class="token operator">-></span>right <span class="token operator">=</span> <span class="token function">deletenode</span><span class="token punctuation">(</span>root<span class="token operator">-></span>right<span class="token punctuation">,</span> temp<span class="token operator">-></span>data<span class="token punctuation">.</span>first<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>root <span class="token operator">==</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> root<span class="token punctuation">;</span>
+
+        <span class="token comment">// 更新高度</span>
+        root<span class="token operator">-></span>height <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">+</span> std<span class="token double-colon punctuation">::</span><span class="token function">max</span><span class="token punctuation">(</span><span class="token function">getHeight</span><span class="token punctuation">(</span>root<span class="token operator">-></span>left<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">getHeight</span><span class="token punctuation">(</span>root<span class="token operator">-></span>right<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token comment">// 检查平衡并旋转</span>
+        <span class="token keyword">int</span> balance <span class="token operator">=</span> <span class="token function">getbalance</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 左左情况（LL）</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>balance <span class="token operator">></span> <span class="token number">1</span> <span class="token operator">&amp;&amp;</span> <span class="token function">getbalance</span><span class="token punctuation">(</span>root<span class="token operator">-></span>left<span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> <span class="token function">rightrotate</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 右右情况（RR）</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>balance <span class="token operator">&lt;</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">&amp;&amp;</span> <span class="token function">getbalance</span><span class="token punctuation">(</span>root<span class="token operator">-></span>right<span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token number">0</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> <span class="token function">leftrotate</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 左右情况（LR）</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>balance <span class="token operator">></span> <span class="token number">1</span> <span class="token operator">&amp;&amp;</span> <span class="token function">getbalance</span><span class="token punctuation">(</span>root<span class="token operator">-></span>left<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            root<span class="token operator">-></span>left <span class="token operator">=</span> <span class="token function">leftrotate</span><span class="token punctuation">(</span>root<span class="token operator">-></span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token function">rightrotate</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token comment">// 右左情况（RL）</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>balance <span class="token operator">&lt;</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">&amp;&amp;</span> <span class="token function">getbalance</span><span class="token punctuation">(</span>root<span class="token operator">-></span>right<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            root<span class="token operator">-></span>right <span class="token operator">=</span> <span class="token function">rightrotate</span><span class="token punctuation">(</span>root<span class="token operator">-></span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token function">leftrotate</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        
+        <span class="token keyword">return</span> root<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
     </div>
 </div>
