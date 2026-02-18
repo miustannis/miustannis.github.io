@@ -28,7 +28,7 @@
 <meta property="og:description" content="一些C++中经常会接触的概念，包括中间件，数据结构封装等模块 了解原理，实现基本功能，实际运用的时候还需要根据具体需求进行扩展和优化 一般肯定直接用STL封装好的   内存池 Memory Pool 共享指针 Shared Pointer 函数封装 Function Encapsulation 双向链表容器 List 双端队列容器 Deque BST和AVL实现map 1. 基于二叉搜索树 (BS">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-01-25T03:38:44.000Z">
-<meta property="article:modified_time" content="2026-02-10T03:02:22.104Z">
+<meta property="article:modified_time" content="2026-02-18T11:25:36.795Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
@@ -196,7 +196,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            28k 词 
+            34k 词 
           </div>
         </div>
         
@@ -221,6 +221,7 @@
 </ul>
 </li>
 <li><a href="#无序映射表-unordered_map">无序映射表 unordered_map</a></li>
+<li><a href="#单例模式-singleton">单例模式 Singleton</a></li>
 </ul>
 <!-- tocstop -->
 <h2><span id="内存池-memory-pool">内存池 Memory Pool</span></h2><p>内存池是一种预先分配一大块内存，然后按需分配小块内存的技术</p>
@@ -2025,6 +2026,246 @@ BST 实现map （不同于std::map，std::map是基于平衡二叉搜索树，
 
     </div>
 </div>
+<hr>
+<h2><span id="单例模式-singleton">单例模式 Singleton</span></h2><p>单例模式是一种创建型设计模式，确保一个类只有一个实例，并提供一个全局访问点。该模式在需要控制资源访问（如数据库连接、日志对象、配置管理器等）的场景中尤为常用。在 C++ 中实现线程安全的单例需要考虑构造时机、多线程竞争以及资源释放等问题，不同的实现方式各有特点。</p>
+<p>以下代码展示了三种典型的单例模式实现：基于双重检查锁定的懒汉式、饿汉式静态初始化，以及使用 <code>std::call_once</code> 的线程安全懒汉式。代码中包含了详细的注释，可供参考。</p>
+<div class="fold collapsed">
+    <div class="fold-title">
+        三种实现方式
+    </div>
+    <div class="fold-content">
+        <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifndef</span> <span class="token expression">MYSINGLETON_H</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">MYSINGLETON_H</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;mutex></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;memory></span></span>
+
+<span class="token comment">/**
+ * @file Mysingleton.hpp
+ * @brief 提供几种单例模式的示例实现（懒汉、饿汉、以及基于 call_once 的安全懒汉）。
+ *
+ * 该头文件演示了三种不同的单例实现方式，并在注释中说明了线程安全性和销毁语义：
+ * - MysingletonLazy: 使用双重检查锁定 (DCL) + std::mutex 保护的懒汉式（使用 shared_ptr 管理实例）。
+ * - MysingletonHun: 饿汉式，假设在翻译单元中初始化静态实例（须在 .cpp 中定义并初始化 instance）。
+ * - MysingletonSafe: 推荐的线程安全懒汉式，使用 std::call_once + std::once_flag，配合自定义删除器。
+ *
+ * @note 头文件仅包含类定义和静态成员声明；若需要全局初始化（饿汉式），请在对应的 .cpp 文件中提供静态成员的定义。
+ */</span>
+
+<span class="token comment">/**
+ * @class MysingletonLazy
+ * @brief 懒汉式单例示例（采用 shared_ptr + 双重检查锁定）。
+ *
+ * 特性：
+ * - 使用 std::shared_ptr 管理实例所有权，方便在多处持有引用时自动释放。
+ * - 使用 std::mutex 与双重检查锁定以减少锁开销（需注意在某些旧平台的内存模型问题）。
+ * - 构造函数私有，拷贝与赋值被删除以防止复制。
+ *
+ * @thread_safety GetInstance() 在多数现代实现中是线程安全的（此处使用 mutex 保护）。
+ */</span>
+<span class="token keyword">class</span> <span class="token class-name">MysingletonLazy</span>
+<span class="token punctuation">&#123;</span>
+<span class="token keyword">private</span><span class="token operator">:</span>
+  <span class="token comment">/// 单例的共享指针实例（只在类内声明，需在实现文件或静态初始化处定义）。</span>
+  <span class="token keyword">static</span> std<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>MysingletonLazy<span class="token operator">></span> instance<span class="token punctuation">;</span>
+  <span class="token comment">/// 保护实例创建的互斥量。</span>
+  <span class="token keyword">static</span> std<span class="token double-colon punctuation">::</span>mutex mtx<span class="token punctuation">;</span> <span class="token comment">// 互斥锁用于保护实例的创建过程，确保线程安全</span>
+
+<span class="token keyword">private</span><span class="token operator">:</span>
+  <span class="token comment">/// 私有默认构造函数，防止外部直接创建。</span>
+  <span class="token function">MysingletonLazy</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+  <span class="token function">MysingletonLazy</span><span class="token punctuation">(</span><span class="token keyword">const</span> MysingletonLazy <span class="token operator">&amp;</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">delete</span><span class="token punctuation">;</span> <span class="token comment">///&lt; 禁止拷贝</span>
+  MysingletonLazy <span class="token operator">&amp;</span><span class="token keyword">operator</span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">const</span> MysingletonLazy <span class="token operator">&amp;</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">delete</span><span class="token punctuation">;</span> <span class="token comment">///&lt; 禁止赋值</span>
+
+<span class="token keyword">public</span><span class="token operator">:</span>
+  <span class="token comment">/**
+   * @brief 析构函数
+   *
+   * 仅用于示例打印，实际释放由 shared_ptr 管理。
+   */</span>
+  <span class="token operator">~</span><span class="token function">MysingletonLazy</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#123;</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"MysingletonLazy destructed "</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+  <span class="token comment">/**
+   * @brief 获取单例实例的共享指针。
+   *
+   * 使用双重检查锁定（Double-Checked Locking）以在多线程下安全创建实例并减少锁开销。
+   *
+   * @return std::shared_ptr&lt;MysingletonLazy> 指向单例对象的共享指针。
+   * @note 如果你使用 C++11 及以上，推荐使用局部静态变量或 std::call_once 的实现。
+   */</span>
+  <span class="token keyword">static</span> std<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>MysingletonLazy<span class="token operator">></span> <span class="token function">GetInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 双重检查锁定（Double-Checked Locking）模式，确保线程安全的同时避免不必要的锁开销</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>instance <span class="token operator">==</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+      std<span class="token double-colon punctuation">::</span>lock_guard<span class="token operator">&lt;</span>std<span class="token double-colon punctuation">::</span>mutex<span class="token operator">></span> <span class="token function">lock</span><span class="token punctuation">(</span>mtx<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 使用锁保护实例的创建过程，确保线程安全</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>instance <span class="token operator">==</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span>
+      <span class="token punctuation">&#123;</span>
+        instance <span class="token operator">=</span> std<span class="token double-colon punctuation">::</span><span class="token generic-function"><span class="token function">shared_ptr</span><span class="token generic class-name"><span class="token operator">&lt;</span>MysingletonLazy<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token function">MysingletonLazy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> instance<span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * @class MysingletonHun
+ * @brief 饿汉式单例示例（启动时创建实例）。
+ *
+ * 特性：
+ * - 通过在程序启动时初始化静态实例来保证线程安全（依赖于静态初始化顺序）。
+ * - 需要在某个 .cpp 文件中定义并初始化静态成员 instance，例如：
+ *   @code
+ *   std::shared_ptr&lt;MysingletonHun> MysingletonHun::instance = std::shared_ptr&lt;MysingletonHun>(new MysingletonHun());
+ *   @endcode
+ *
+ * @note 饿汉式在单例构造开销小且必须在程序启动时就准备好的场景较为合适；否则会浪费资源。
+ */</span>
+<span class="token keyword">class</span> <span class="token class-name">MysingletonHun</span>
+<span class="token punctuation">&#123;</span>
+<span class="token keyword">private</span><span class="token operator">:</span>
+  <span class="token comment">/// 由 shared_ptr 管理的静态单例实例（需在翻译单元中定义）。</span>
+  <span class="token keyword">static</span> std<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>MysingletonHun<span class="token operator">></span> instance<span class="token punctuation">;</span>
+
+<span class="token keyword">private</span><span class="token operator">:</span>
+  <span class="token function">MysingletonHun</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span> <span class="token comment">///&lt; 私有构造</span>
+  <span class="token function">MysingletonHun</span><span class="token punctuation">(</span><span class="token keyword">const</span> MysingletonHun <span class="token operator">&amp;</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">delete</span><span class="token punctuation">;</span> <span class="token comment">///&lt; 禁止拷贝</span>
+  MysingletonHun <span class="token operator">&amp;</span><span class="token keyword">operator</span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">const</span> MysingletonHun <span class="token operator">&amp;</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">delete</span><span class="token punctuation">;</span> <span class="token comment">///&lt; 禁止赋值</span>
+
+<span class="token keyword">public</span><span class="token operator">:</span>
+  <span class="token comment">/**
+   * @brief 析构函数（示例打印）
+   *
+   * 实际销毁时机由 shared_ptr 的引用计数决定，若在翻译单元中为全局 shared_ptr 初始化，则程序退出时会执行销毁。
+   */</span>
+  <span class="token operator">~</span><span class="token function">MysingletonHun</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#123;</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"mysingletonHun destructed "</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+  <span class="token comment">/**
+   * @brief 获取单例实例。
+   * @return std::shared_ptr&lt;MysingletonHun> 单例共享指针（若未初始化则可能为 nullptr）。
+   * @warning 确保在某处为 MysingletonHun::instance 提供定义和初始化，否则返回 nullptr。
+   */</span>
+  <span class="token keyword">static</span> std<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>MysingletonHun<span class="token operator">></span> <span class="token function">GetInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> instance<span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * @brief 自定义删除器示例类，用于演示如何在 shared_ptr 中使用自定义删除行为。
+ *
+ * operator() 会在删除 MysingletonSafe 实例时被调用。
+ */</span>
+<span class="token keyword">class</span> <span class="token class-name">safedeleter</span>
+<span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+  <span class="token comment">/**
+   * @brief 删除操作符，当 shared_ptr 释放最后一个引用时调用。
+   * @param sf 要删除的 MysingletonSafe 指针。
+   */</span>
+  <span class="token keyword">void</span> <span class="token keyword">operator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span>MysingletonSafe <span class="token operator">*</span>sf<span class="token punctuation">)</span>
+  <span class="token punctuation">&#123;</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"safe deleter called "</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token keyword">delete</span> sf<span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * @class MysingletonSafe
+ * @brief 推荐的线程安全懒汉式单例（使用 std::call_once）。
+ *
+ * 特性：
+ * - 使用 std::call_once 与 std::once_flag 保证仅初始化一次（线程安全）。
+ * - 使用自定义删除器 safedeleter 与 shared_ptr 配合，展示如何控制销毁行为。
+ * - 构造与拷贝语义被限制，GetInstance 返回 shared_ptr 管理的实例。
+ *
+ * @note 这是一个懒加载（首次调用时创建）且线程安全的单例实现。
+ */</span>
+<span class="token keyword">class</span> <span class="token class-name">MysingletonSafe</span>
+<span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+  <span class="token comment">/**
+   * @brief 获取单例实例（线程安全，使用 std::call_once 实现）。
+   * @return std::shared_ptr&lt;MysingletonSafe> 指向单例的共享指针。
+   */</span>
+  <span class="token keyword">static</span> std<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>MysingletonSafe<span class="token operator">></span> <span class="token function">GetInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">static</span> std<span class="token double-colon punctuation">::</span>once_flag flag<span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span><span class="token function">call_once</span><span class="token punctuation">(</span>flag<span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">&#123;</span>instance <span class="token operator">=</span> std<span class="token double-colon punctuation">::</span><span class="token generic-function"><span class="token function">shared_ptr</span><span class="token generic class-name"><span class="token operator">&lt;</span>MysingletonSafe<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token function">MysingletonSafe</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">safedeleter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> instance<span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token keyword">private</span><span class="token operator">:</span>
+  <span class="token comment">/// 单例实例（由 GetInstance 使用 std::call_once 初始化）。</span>
+  <span class="token keyword">static</span> std<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>MysingletonSafe<span class="token operator">></span> instance<span class="token punctuation">;</span>
+  <span class="token comment">// 这里加不加class都行</span>
+  <span class="token keyword">friend</span> safedeleter<span class="token punctuation">;</span> <span class="token comment">///&lt; 允许 safedeleter 访问私有析构函数</span>
+
+<span class="token keyword">private</span><span class="token operator">:</span>
+  <span class="token function">MysingletonSafe</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">///&lt; 私有构造（需要在实现文件中定义）</span>
+  <span class="token comment">/**
+   * @brief 私有析构函数（被 safedeleter 调用以控制销毁过程）。
+   *
+   * 通过将析构函数设为私有并将 safedeleter 设为友元，可以确保只有自定义删除器能删除该实例。
+   */</span>
+  <span class="token operator">~</span><span class="token function">MysingletonSafe</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#123;</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"safe delete called by friend class "</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token function">MysingletonSafe</span><span class="token punctuation">(</span><span class="token keyword">const</span> MysingletonSafe <span class="token operator">&amp;</span>other<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">delete</span><span class="token punctuation">;</span> <span class="token comment">///&lt; 禁止拷贝</span>
+  MysingletonSafe <span class="token operator">&amp;</span><span class="token keyword">operator</span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">const</span> MysingletonSafe <span class="token operator">&amp;</span>other<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">delete</span><span class="token punctuation">;</span> <span class="token comment">///&lt; 禁止赋值</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+    </div>
+</div>
+<p>这里提供模板单例，可快速复用，提高效率。</p>
+<div class="fold collapsed">
+    <div class="fold-title">
+        模板单例类
+    </div>
+    <div class="fold-content">
+        <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;memory></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;mutex></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> <span class="token class-name">T</span><span class="token operator">></span>
+<span class="token keyword">class</span> <span class="token class-name">Singleton</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">protected</span><span class="token operator">:</span>
+    <span class="token function">Singleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">default</span><span class="token punctuation">;</span>
+    <span class="token function">Singleton</span><span class="token punctuation">(</span><span class="token keyword">const</span> Singleton<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token operator">&amp;</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">delete</span><span class="token punctuation">;</span>
+    Singleton<span class="token operator">&amp;</span> <span class="token keyword">operator</span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">const</span> Singleton<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token operator">&amp;</span> st<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">delete</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">static</span> std<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>T<span class="token operator">></span> _instance<span class="token punctuation">;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token keyword">static</span> std<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token function">GetInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">static</span> std<span class="token double-colon punctuation">::</span>once_flag s_flag<span class="token punctuation">;</span>
+        std<span class="token double-colon punctuation">::</span><span class="token function">call_once</span><span class="token punctuation">(</span>s_flag<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">&amp;</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            _instance <span class="token operator">=</span> <span class="token generic-function"><span class="token function">shared_ptr</span><span class="token generic class-name"><span class="token operator">&lt;</span>T<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token keyword">new</span> T<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> _instance<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">void</span> <span class="token function">PrintAddress</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> _instance<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token operator">~</span><span class="token function">Singleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"this is singleton destruct"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> <span class="token class-name">T</span><span class="token operator">></span>
+std<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>T<span class="token operator">></span> Singleton<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token double-colon punctuation">::</span>_instance <span class="token operator">=</span> <span class="token keyword">nullptr</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+    </div>
+</div>
+<p>使用时，public继承并在子类构造和析构里实现自己的逻辑</p>
+<p>注意，关于静态成员变量的定义位置，需要根据类的类型来区分：对于<strong>非模板类</strong>，静态成员变量必须在一个单独的cpp文件中定义和初始化，这是为了避免多重定义链接错误，遵循单一定义规则；</p>
+<p>而对于<strong>模板类</strong>，静态成员变量则应该在头文件中定义，因为模板需要在使用时实例化，编译器必须看到完整的定义才能为不同的模板参数生成相应的代码，如果放在cpp文件中，其他包含头文件的编译单元将无法找到该静态成员的定义而导致链接错误。这种区别是C++模板编程与非模板编程的重要不同之处。</p>
+<p>不过，C++17引入了<code>inline</code>变量，可以让非模板类的静态成员也在头文件中定义</p>
 <link rel="stylesheet" href="/css/folder.css" type="text/css"><script src="/js/folder.js" type="text/javascript" async></script>
         
       </div>
