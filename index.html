@@ -190,7 +190,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            0 词 
+            5.1k 词 
           </div>
         </div>
         
@@ -201,7 +201,29 @@
         
           <div class="truncate-text">
             
-              
+              这是一个轻量级异步日志器（async logger）。目标是用现代 C++（线程、互斥、条件变量）实现一个线程安全、低阻塞的日志写入方案：生产者将格式化后的日志消息推入队列，后台消费者线程异步写入文件并可选地输出到终端。实现包含一个简单的占位符格式化（暂用{}，可自行修改）、类型到字符串的通用转换和优雅的后台线程关闭机制。
+
+    
+        hpp
+    
+    
+        #ifndef MY_LOG
+#define MY_LOG
+
+#include &lt;iostream>
+#include &lt;queue>
+#include &lt;mutex>
+#include &lt;string>
+#include &lt;condition_variable>
+#include &lt;thread>
+#include &lt;fstream>
+#include &lt;atomic>
+#include &lt;sstream>
+#include &lt;vector>
+#include &lt;stdexcept>
+
+/**
+ * @brief 将单个参...
             
           </div>
         
