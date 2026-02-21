@@ -20,17 +20,17 @@
   <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
-  <meta name="description" content="回顾一下之前做的轻量级高并发网络服务器项目 项目部署在VMware的乌班图系统上，运行效果如下： 终端启动：         浏览器访问：         系统流程主线程用epoll这种多路复用机制监听获取客户端，等候其发起连接，当有read或者write事件发出请求时，将请求加入到线程池，线程池中的一个线程争抢到锁，开始执行任务，任务包括解析请求与生成响应，包括对信号的序列化与反序列化，最终发布">
+  <meta name="description" content="回顾一下之前做的轻量级高并发网络服务器项目 项目部署在VMware的乌班图系统上，运行效果如下： 终端启动：         浏览器访问：         系统流程主线程用epoll这种多路复用机制监听客户端连接，当有read或者write事件发出请求时，将请求加入到线程池，线程池中的一个线程争抢到锁，开始执行任务，任务包括解析请求与生成响应，包括对信号的序列化与反序列化，最终发布的静态资源为js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="回顾经典项目Webserver">
 <meta property="og:url" content="https://miustannis.github.io/2026/02/16/260216/index.html">
 <meta property="og:site_name" content="Miao&#39;s Blog">
-<meta property="og:description" content="回顾一下之前做的轻量级高并发网络服务器项目 项目部署在VMware的乌班图系统上，运行效果如下： 终端启动：         浏览器访问：         系统流程主线程用epoll这种多路复用机制监听获取客户端，等候其发起连接，当有read或者write事件发出请求时，将请求加入到线程池，线程池中的一个线程争抢到锁，开始执行任务，任务包括解析请求与生成响应，包括对信号的序列化与反序列化，最终发布">
+<meta property="og:description" content="回顾一下之前做的轻量级高并发网络服务器项目 项目部署在VMware的乌班图系统上，运行效果如下： 终端启动：         浏览器访问：         系统流程主线程用epoll这种多路复用机制监听客户端连接，当有read或者write事件发出请求时，将请求加入到线程池，线程池中的一个线程争抢到锁，开始执行任务，任务包括解析请求与生成响应，包括对信号的序列化与反序列化，最终发布的静态资源为js">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://miustannis.github.io/images/webserver/page.webp">
 <meta property="og:image" content="https://miustannis.github.io/images/webserver/terminal.webp">
 <meta property="article:published_time" content="2026-02-16T04:22:29.000Z">
-<meta property="article:modified_time" content="2026-02-20T16:52:33.783Z">
+<meta property="article:modified_time" content="2026-02-21T11:22:42.291Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
@@ -199,7 +199,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            328 词 
+            23k 词 
           </div>
         </div>
         
@@ -220,31 +220,1219 @@
     <img src="/images/webserver/terminal.webp" width="500">
 </center>
 
-<h3><span id="系统流程">系统流程</span></h3><p>主线程用epoll这种多路复用机制监听获取客户端，等候其发起连接，当有read或者write事件发出请求时，将请求加入到线程池，线程池中的一个线程争抢到锁，开始执行任务，任务包括解析请求与生成响应，包括对信号的序列化与反序列化，最终发布的静态资源为js页面，这里简单让ai写了一个电子木鱼的效果并进行一些润色，系统适配Linux。</p>
+<h3><span id="系统流程">系统流程</span></h3><p>主线程用epoll这种多路复用机制监听客户端连接，当有read或者write事件发出请求时，将请求加入到线程池，线程池中的一个线程争抢到锁，开始执行任务，任务包括解析请求与生成响应，包括对信号的序列化与反序列化，最终发布的静态资源为js页面，这里简单让ai写了一个电子木鱼的效果并进行一些润色，系统适配Linux。</p>
 <h3><span id="线程池类">线程池类</span></h3><div class="fold collapsed">
     <div class="fold-title">
-        head-only
+        head-only threadpool class
     </div>
     <div class="fold-content">
-        <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">to <span class="token keyword">do</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+        <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifndef</span> <span class="token expression">THREADPOOL_H</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">THREADPOOL_H</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;pthread.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cstdio></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;list></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;exception></span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"locker.h"</span></span>
+
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token comment">// 线程池类</span>
+<span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">typename</span> <span class="token class-name">T</span><span class="token operator">></span>
+<span class="token keyword">class</span> <span class="token class-name">threadpool</span>
+<span class="token punctuation">&#123;</span>
+<span class="token keyword">private</span><span class="token operator">:</span>
+    <span class="token comment">// 线程数量</span>
+    <span class="token keyword">int</span> m_thread_number<span class="token punctuation">;</span>
+    <span class="token comment">// 线程池数组</span>
+    pthread_t <span class="token operator">*</span> m_threadpool<span class="token punctuation">;</span>
+    <span class="token comment">// 请求队列中最多允许的等待处理请求数量</span>
+    <span class="token keyword">int</span> m_maxrequestnum<span class="token punctuation">;</span>
+    <span class="token comment">// 请求队列</span>
+    list<span class="token operator">&lt;</span>T<span class="token operator">*</span> <span class="token operator">></span> m_workqueue<span class="token punctuation">;</span>
+    <span class="token comment">// 互斥锁</span>
+    locker m_queuelocker<span class="token punctuation">;</span>
+    <span class="token comment">// 信号量 用来判断是否有任务需要处理</span>
+    sem m_queuestat<span class="token punctuation">;</span>
+    <span class="token comment">// 是否结束线程</span>
+    <span class="token keyword">bool</span> m_stop<span class="token punctuation">;</span>
+ 
+<span class="token keyword">private</span><span class="token operator">:</span>
+    <span class="token keyword">static</span> <span class="token keyword">void</span><span class="token operator">*</span> <span class="token function">worker</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token function">threadpool</span><span class="token punctuation">(</span><span class="token keyword">int</span> thread_number <span class="token operator">=</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token keyword">int</span> max_request <span class="token operator">=</span> <span class="token number">10000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">~</span><span class="token function">threadpool</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 添加任务</span>
+    <span class="token keyword">bool</span> <span class="token function">append</span><span class="token punctuation">(</span>T<span class="token operator">*</span> request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+
+<span class="token comment">/**
+ * @brief 构造线程池并创建工作线程
+ * @param thread_number 线程池中线程数量（默认 8）
+ * @param max_request 请求队列最大容量（默认 10000）
+ * @throws exception 构造参数不合法或线程创建/分离失败时抛出
+ */</span>
+<span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> <span class="token class-name">T</span><span class="token operator">></span>
+<span class="token class-name">threadpool</span><span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token double-colon punctuation">::</span> <span class="token function">threadpool</span><span class="token punctuation">(</span><span class="token keyword">int</span> thread_number<span class="token punctuation">,</span> <span class="token keyword">int</span> max_request<span class="token punctuation">)</span><span class="token operator">:</span>
+    <span class="token function">m_thread_number</span><span class="token punctuation">(</span>thread_number<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">m_maxrequestnum</span><span class="token punctuation">(</span>max_request<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token function">m_threadpool</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">m_stop</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>thread_number <span class="token operator">&lt;=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>max_request <span class="token operator">&lt;=</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token keyword">throw</span> <span class="token function">exception</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        m_threadpool <span class="token operator">=</span> <span class="token keyword">new</span> pthread_t<span class="token punctuation">[</span>m_thread_number<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>m_threadpool<span class="token punctuation">)</span> <span class="token keyword">throw</span> <span class="token function">exception</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+        <span class="token comment">// 创建thread_num 个线程，并设置为detach</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> thread_number<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"create %d thread\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">// worker 必须为static, this 传参</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">pthread_create</span><span class="token punctuation">(</span>m_threadpool <span class="token operator">+</span> i<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> worker<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                <span class="token keyword">delete</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> m_threadpool<span class="token punctuation">;</span>
+                <span class="token keyword">throw</span> <span class="token function">exception</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">pthread_detach</span><span class="token punctuation">(</span>m_threadpool<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                <span class="token keyword">delete</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> m_threadpool<span class="token punctuation">;</span>
+                <span class="token keyword">throw</span> <span class="token function">exception</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+
+<span class="token comment">/**
+ * @brief 析构函数，清理线程数组并标记停止
+ * @note 这里没有等待线程结束（线程创建时为 detached），需要确保其他资源可安全释放
+ */</span>
+<span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> <span class="token class-name">T</span><span class="token operator">></span>
+threadpool<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token double-colon punctuation">::</span> <span class="token operator">~</span><span class="token function">threadpool</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">delete</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> m_threadpool<span class="token punctuation">;</span>
+    m_stop <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+
+<span class="token comment">/**
+ * @brief 向线程池的任务队列添加一个任务指针
+ * @param request 待处理任务（T*）
+ * @return 添加成功返回 true；队列已满返回 false
+ */</span>
+<span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> <span class="token class-name">T</span><span class="token operator">></span>
+<span class="token keyword">bool</span> <span class="token class-name">threadpool</span><span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token double-colon punctuation">::</span> <span class="token function">append</span><span class="token punctuation">(</span>T<span class="token operator">*</span> request<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+    m_queuelocker<span class="token punctuation">.</span><span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 超出最大数量范围</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>m_workqueue<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">></span> m_maxrequestnum<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        m_queuelocker<span class="token punctuation">.</span><span class="token function">unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    m_workqueue<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    m_queuelocker<span class="token punctuation">.</span><span class="token function">unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    m_queuestat<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+
+<span class="token comment">/**
+ * @brief 工作线程入口函数（static），用于 pthread_create 的回调
+ * @param arg 传入的 threadpool 对象指针
+ * @return 返回传入指针（或者 nullptr）
+ */</span>
+<span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> <span class="token class-name">T</span><span class="token operator">></span>
+<span class="token keyword">void</span> <span class="token operator">*</span> <span class="token class-name">threadpool</span><span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token double-colon punctuation">::</span> <span class="token function">worker</span><span class="token punctuation">(</span><span class="token keyword">void</span> <span class="token operator">*</span>arg<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    threadpool<span class="token operator">*</span> pool <span class="token operator">=</span> <span class="token punctuation">(</span>threadpool <span class="token operator">*</span><span class="token punctuation">)</span>arg<span class="token punctuation">;</span>
+    pool<span class="token operator">-></span><span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> pool<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+
+<span class="token comment">/**
+ * @brief 工作线程的实际循环体，等待信号量并从队列中取出任务执行
+ * @note 持续运行直到 m_stop 被设置为 true
+ */</span>
+<span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> <span class="token class-name">T</span><span class="token operator">></span>
+<span class="token keyword">void</span> <span class="token class-name">threadpool</span><span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token double-colon punctuation">::</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">!</span>m_stop<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        m_queuestat<span class="token punctuation">.</span><span class="token function">wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        m_queuelocker<span class="token punctuation">.</span><span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>m_workqueue<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            m_queuelocker<span class="token punctuation">.</span><span class="token function">unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">continue</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        T<span class="token operator">*</span> request <span class="token operator">=</span> m_workqueue<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        m_workqueue<span class="token punctuation">.</span><span class="token function">pop_front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        m_queuelocker<span class="token punctuation">.</span><span class="token function">unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>request<span class="token punctuation">)</span> <span class="token keyword">continue</span><span class="token punctuation">;</span>
+
+        request<span class="token operator">-></span><span class="token function">process</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
     </div>
 </div>
+<p>&nbsp;</p>
 <h3><span id="线程同步封装类">线程同步封装类</span></h3><div class="fold collapsed">
     <div class="fold-title">
-        head-only threadsemaphore class
+        threadsemaphore class
     </div>
     <div class="fold-content">
-        <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token number">2222</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+        <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifndef</span> <span class="token expression">LOCKER_H</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">LOCKER_H</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;pthread.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;exception></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;semaphore.h></span></span>
+
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token comment">// 线程同步封装，方便使用</span>
+
+<span class="token comment">// 互斥锁类</span>
+<span class="token keyword">class</span> <span class="token class-name">locker</span><span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token function">locker</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">pthread_mutex_init</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>m_mutex<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">throw</span> <span class="token function">exception</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token operator">~</span><span class="token function">locker</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token function">pthread_mutex_destroy</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>m_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">//上锁</span>
+    <span class="token keyword">bool</span> <span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token function">pthread_mutex_lock</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>m_mutex<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">//解锁</span>
+    <span class="token keyword">bool</span> <span class="token function">unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token function">pthread_mutex_unlock</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>m_mutex<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">//返回互斥量</span>
+    pthread_mutex_t <span class="token operator">*</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token operator">&amp;</span>m_mutex<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+        
+<span class="token keyword">private</span><span class="token operator">:</span>
+    pthread_mutex_t m_mutex<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 条件变量类</span>
+<span class="token keyword">class</span> <span class="token class-name">cond</span><span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token function">cond</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">pthread_cond_init</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>m_cond<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">throw</span> <span class="token function">exception</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token operator">~</span><span class="token function">cond</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token function">pthread_cond_destroy</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>m_cond<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">bool</span> <span class="token function">wait</span><span class="token punctuation">(</span>pthread_mutex_t <span class="token operator">*</span> mutex<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span>  <span class="token function">pthread_cond_wait</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>m_cond<span class="token punctuation">,</span> mutex<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">bool</span> <span class="token function">timewait</span><span class="token punctuation">(</span>pthread_mutex_t <span class="token operator">*</span> mutex<span class="token punctuation">,</span> <span class="token keyword">struct</span> <span class="token class-name">timespec</span> t<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span>  <span class="token function">pthread_cond_timedwait</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>m_cond<span class="token punctuation">,</span> mutex<span class="token punctuation">,</span> <span class="token operator">&amp;</span>t<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">bool</span> <span class="token function">signal</span><span class="token punctuation">(</span>pthread_mutex_t <span class="token operator">*</span> mutex<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span>  <span class="token function">pthread_cond_signal</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>m_cond<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">bool</span> <span class="token function">broadcast</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span>  <span class="token function">pthread_cond_broadcast</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>m_cond<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+<span class="token keyword">private</span><span class="token operator">:</span>
+    pthread_cond_t m_cond<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 信号量类</span>
+<span class="token keyword">class</span> <span class="token class-name">sem</span><span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token function">sem</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">sem_init</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>m_sem<span class="token punctuation">,</span>  <span class="token number">0</span><span class="token punctuation">,</span>  <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span>
+            <span class="token keyword">throw</span> <span class="token function">exception</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">sem</span><span class="token punctuation">(</span><span class="token keyword">int</span> num<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">sem_init</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>m_sem<span class="token punctuation">,</span>  <span class="token number">0</span><span class="token punctuation">,</span>  num<span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span>
+            <span class="token keyword">throw</span> <span class="token function">exception</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token operator">~</span><span class="token function">sem</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token function">sem_destroy</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>m_sem<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 等待信号量</span>
+    <span class="token keyword">bool</span> <span class="token function">wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token function">sem_wait</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>m_sem<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 增加信号量</span>
+    <span class="token keyword">bool</span> <span class="token function">post</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token function">sem_post</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>m_sem<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+<span class="token keyword">private</span><span class="token operator">:</span>
+    sem_t m_sem<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
     </div>
 </div>
+<p>&nbsp;</p>
 <h3><span id="http解析类">Http解析类</span></h3><div class="fold collapsed">
     <div class="fold-title">
-        head-only threadsemaphore class
+        head-only threadsemaphore cpp
     </div>
     <div class="fold-content">
-        <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token number">555</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+        <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"http_conn.h"</span></span>
+
+<span class="token comment">// 模块职责与连接生命周期说明：</span>
+<span class="token comment">// - http_conn 对象代表一个客户端连接，包含读写缓冲、解析状态机、与文件映射状态。</span>
+<span class="token comment">// - 生命周期概述：init(sockfd) -> 主线程触发 EPOLLIN -> http_conn::read() 读取所有可读数据 -> 将对象交给线程池处理(process) -></span>
+<span class="token comment">//   线程池线程中执行 process_read()（主状态机 + 从状态机解析请求），若得到完整请求则 process_write() 填充响应并设置 m_iv，</span>
+<span class="token comment">//   最终通过 modifyfd 将该 fd 的 epoll 事件改为 EPOLLOUT 触发主线程写出；写完后根据 Connection 决定是否 keep-alive 或关闭连接。</span>
+<span class="token comment">// - epoll 与 EPOLLONESHOT：每次将 fd 注册为 EPOLLONESHOT，处理线程在完成一次读取/写入后必须调用 modifyfd 恢复事件，</span>
+<span class="token comment">//   以保证不会有多个线程同时处理同一 fd（避免并发竞态）。</span>
+<span class="token comment">//</span>
+<span class="token comment">// 解析/响应关键点：</span>
+<span class="token comment">// - 主状态机：CHECK_STATE_REQUESTLINE -> CHECK_STATE_HEADER -> CHECK_STATE_CONTENT；parse_line() 用于按 CRLF 分割行。</span>
+<span class="token comment">// - 对静态文件请求：do_request 使用 stat 检查并用 mmap 映射文件到内存，response 通过 writev 发送头部与映射区两段内存。</span>
+<span class="token comment">// - 非阻塞读写：read() 循环 recv 直到返回 EAGAIN/EWOULDBLOCK；write() 使用 writev，在 EAGAIN 时修改为 EPOLLOUT 等待下一次可写。</span>
+
+<span class="token keyword">int</span> http_conn <span class="token double-colon punctuation">::</span> m_epollfd <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment">// 所有socket上事件注册到同一个epoll</span>
+<span class="token keyword">int</span> http_conn <span class="token double-colon punctuation">::</span> m_user_count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//统计用户数量</span>
+
+<span class="token comment">// 定义HTTP响应的一些状态信息</span>
+<span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> ok_200_title <span class="token operator">=</span> <span class="token string">"OK"</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> error_400_title <span class="token operator">=</span> <span class="token string">"Bad Request"</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> error_400_form <span class="token operator">=</span> <span class="token string">"Your request has bad syntax or is inherently impossible to satisfy.\n"</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> error_403_title <span class="token operator">=</span> <span class="token string">"Forbidden"</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> error_403_form <span class="token operator">=</span> <span class="token string">"You do not have permission to get file from this server.\n"</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> error_404_title <span class="token operator">=</span> <span class="token string">"Not Found"</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> error_404_form <span class="token operator">=</span> <span class="token string">"The requested file was not found on this server.\n"</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> error_500_title <span class="token operator">=</span> <span class="token string">"Internal Error"</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> error_500_form <span class="token operator">=</span> <span class="token string">"There was an unusual problem serving the requested file.\n"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> doc_root <span class="token operator">=</span> <span class="token string">"./resources"</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * @brief 将文件描述符设置为非阻塞模式
+ * @param fd 要设置的文件描述符
+ * @return 返回原有的文件状态标志（old_flag），调用者可用于恢复
+ */</span>
+<span class="token keyword">int</span> <span class="token function">setnonblocking</span><span class="token punctuation">(</span><span class="token keyword">int</span> fd<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+    <span class="token keyword">int</span> old_flag <span class="token operator">=</span> <span class="token function">fcntl</span><span class="token punctuation">(</span>fd<span class="token punctuation">,</span> F_GETFL<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> new_flag <span class="token operator">=</span> old_flag <span class="token operator">|</span> O_NONBLOCK<span class="token punctuation">;</span>
+    <span class="token function">fcntl</span><span class="token punctuation">(</span>fd<span class="token punctuation">,</span> F_SETFL<span class="token punctuation">,</span> new_flag<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> old_flag<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/**
+ * @brief 将 fd 添加到 epoll 实例并设置触发模式与非阻塞
+ * @param epollfd epoll 实例的文件描述符
+ * @param fd 要添加的文件描述符
+ * @param one_shot 是否使用 EPOLLONESHOT（防止并发处理同一连接）
+ */</span>
+<span class="token keyword">void</span> <span class="token function">addfd</span><span class="token punctuation">(</span><span class="token keyword">int</span> epollfd<span class="token punctuation">,</span> <span class="token keyword">int</span> fd<span class="token punctuation">,</span> <span class="token keyword">bool</span> one_shot<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    epoll_event event<span class="token punctuation">;</span>
+    event<span class="token punctuation">.</span>data<span class="token punctuation">.</span>fd <span class="token operator">=</span> fd<span class="token punctuation">;</span>
+    <span class="token comment">// 此处修改触发模式</span>
+    event<span class="token punctuation">.</span>events <span class="token operator">=</span> EPOLLIN <span class="token operator">|</span> EPOLLET <span class="token operator">|</span> EPOLLRDHUP<span class="token punctuation">;</span> <span class="token comment">// ET</span>
+    <span class="token comment">//event.events = EPOLLIN | EPOLLRDHUP; // LT</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>one_shot<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        event<span class="token punctuation">.</span>events <span class="token operator">|=</span> EPOLLONESHOT<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">epoll_ctl</span><span class="token punctuation">(</span>epollfd<span class="token punctuation">,</span> EPOLL_CTL_ADD<span class="token punctuation">,</span> fd<span class="token punctuation">,</span> <span class="token operator">&amp;</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 设置文件描述符非阻塞</span>
+    <span class="token function">setnonblocking</span><span class="token punctuation">(</span>fd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/**
+ * @brief 从 epoll 中删除 fd 并关闭该描述符
+ * @param epollfd epoll 实例的文件描述符
+ * @param fd 要删除并关闭的文件描述符
+ */</span>
+<span class="token keyword">void</span> <span class="token function">removefd</span><span class="token punctuation">(</span><span class="token keyword">int</span> epollfd<span class="token punctuation">,</span> <span class="token keyword">int</span> fd<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token function">epoll_ctl</span><span class="token punctuation">(</span>epollfd<span class="token punctuation">,</span> EPOLL_CTL_DEL<span class="token punctuation">,</span> fd<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">close</span><span class="token punctuation">(</span>fd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/**
+ * @brief 修改 epoll 中 fd 的事件（并重置 EPOLLONESHOT）
+ * @param epollfd epoll 实例的文件描述符
+ * @param fd 目标文件描述符
+ * @param ev 要设置的事件掩码（如 EPOLLIN/EPOLLOUT）
+ */</span>
+<span class="token keyword">void</span> <span class="token function">modifyfd</span><span class="token punctuation">(</span><span class="token keyword">int</span> epollfd<span class="token punctuation">,</span> <span class="token keyword">int</span> fd <span class="token punctuation">,</span><span class="token keyword">int</span> ev<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    epoll_event event<span class="token punctuation">;</span>
+    event<span class="token punctuation">.</span>data<span class="token punctuation">.</span>fd <span class="token operator">=</span> fd<span class="token punctuation">;</span>
+    event<span class="token punctuation">.</span>events <span class="token operator">=</span> ev <span class="token operator">|</span> EPOLLONESHOT <span class="token operator">|</span> EPOLLRDHUP <span class="token operator">|</span> EPOLLET <span class="token punctuation">;</span> <span class="token comment">// 同步修改触发模式</span>
+    <span class="token function">epoll_ctl</span><span class="token punctuation">(</span>epollfd<span class="token punctuation">,</span> EPOLL_CTL_MOD<span class="token punctuation">,</span> fd<span class="token punctuation">,</span> <span class="token operator">&amp;</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/**
+ * @brief 初始化一个新的客户端连接（绑定 socket 到 http_conn 对象）
+ * @param sockfd 客户端连接的 socket 文件描述符
+ * @param addr 客户端地址信息
+ * @note 会将 socket 添加到 epoll，设置为 EPOLLONESHOT，并更新连接计数
+ */</span>
+<span class="token keyword">void</span> http_conn<span class="token double-colon punctuation">::</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token keyword">int</span> sockfd<span class="token punctuation">,</span> <span class="token keyword">const</span> sockaddr_in <span class="token operator">&amp;</span>addr<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+    m_sockfd <span class="token operator">=</span> sockfd<span class="token punctuation">;</span>
+    m_address <span class="token operator">=</span> addr<span class="token punctuation">;</span>
+
+    <span class="token comment">// 设置端口复用</span>
+    <span class="token keyword">int</span> reuse <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token function">setsockopt</span><span class="token punctuation">(</span>m_sockfd<span class="token punctuation">,</span> SOL_SOCKET<span class="token punctuation">,</span> SO_REUSEADDR<span class="token punctuation">,</span> <span class="token operator">&amp;</span>reuse<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>reuse<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 添加到epoll事件组中</span>
+    <span class="token function">addfd</span><span class="token punctuation">(</span>m_epollfd<span class="token punctuation">,</span> m_sockfd<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    
+    
+    m_user_count<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/**
+ * @brief 重置连接解析/读写状态，准备处理新请求
+ * @note 该函数不会关闭 socket，仅重置状态机与缓冲区
+ */</span>
+<span class="token keyword">void</span> http_conn <span class="token double-colon punctuation">::</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+    m_check_state <span class="token operator">=</span> CHECK_STATE_REQUESTLINE<span class="token punctuation">;</span>    <span class="token comment">// 初始状态为检查请求行</span>
+    m_linger <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>       <span class="token comment">// 默认不保持链接  Connection : keep-alive保持连接</span>
+
+    m_method <span class="token operator">=</span> GET<span class="token punctuation">;</span>         <span class="token comment">// 默认请求方式为GET</span>
+    m_url <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>              
+    m_version <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    m_content_length <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    m_host <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    m_start_line <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    m_checked_index <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    m_read_idx <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    m_write_idx <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token function">bzero</span><span class="token punctuation">(</span>m_read_buf<span class="token punctuation">,</span> READ_BUFFER_SIZE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">bzero</span><span class="token punctuation">(</span>m_write_buf<span class="token punctuation">,</span> READ_BUFFER_SIZE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">bzero</span><span class="token punctuation">(</span>m_real_file<span class="token punctuation">,</span> FILENAME_LEN<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/**
+ * @brief 关闭当前连接并从 epoll 中移除
+ * @note 会将 m_sockfd 置 -1 并减少全局连接计数
+ */</span>
+<span class="token keyword">void</span> http_conn <span class="token double-colon punctuation">::</span> <span class="token function">closeconn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>m_sockfd <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token function">removefd</span><span class="token punctuation">(</span>m_epollfd<span class="token punctuation">,</span> m_sockfd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        m_sockfd <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        m_user_count<span class="token operator">--</span><span class="token punctuation">;</span> <span class="token comment">// 关闭一个连接，客户总数量减1</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/**
+ * @brief 非阻塞读取数据，直到缓冲区满或没有更多数据
+ * @return 若成功读取（或暂时无更多数据）返回 true；发生错误或对端关闭返回 false
+ */</span>
+<span class="token keyword">bool</span>  http_conn <span class="token double-colon punctuation">::</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>m_read_idx <span class="token operator">>=</span> READ_BUFFER_SIZE<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 读取到的字节</span>
+    <span class="token keyword">int</span> bytes_read <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        bytes_read <span class="token operator">=</span> <span class="token function">recv</span><span class="token punctuation">(</span>m_sockfd<span class="token punctuation">,</span> m_read_buf <span class="token operator">+</span> m_read_idx<span class="token punctuation">,</span> READ_BUFFER_SIZE <span class="token operator">-</span> m_read_idx<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>bytes_read <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>errno <span class="token operator">==</span> EAGAIN <span class="token operator">||</span> errno <span class="token operator">==</span> EWOULDBLOCK<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token comment">// 没有数据</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>  
+            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>  
+        <span class="token punctuation">&#125;</span><span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>bytes_read <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        
+        m_read_idx <span class="token operator">+=</span> bytes_read<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">//printf("read: %s\n", m_read_buf);</span>
+    <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/**
+ * @brief 向客户端写出准备好的 HTTP 响应，使用 writev 分散写
+ * @return 发送完成并保持连接返回 true；发送完成但需要关闭连接返回 false；出错返回 false
+ * @note 在 EAGAIN 情况下会将事件修改为 EPOLLOUT 并返回 true（等待下一次可写）
+ */</span>
+<span class="token keyword">bool</span> http_conn<span class="token double-colon punctuation">::</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> temp <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> bytes_have_send <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>    <span class="token comment">// 已经发送的字节</span>
+    <span class="token keyword">int</span> bytes_to_send <span class="token operator">=</span> m_write_idx<span class="token punctuation">;</span><span class="token comment">// 将要发送的字节 （m_write_idx）写缓冲区中待发送的字节数</span>
+    
+    <span class="token keyword">if</span> <span class="token punctuation">(</span> bytes_to_send <span class="token operator">==</span> <span class="token number">0</span> <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 将要发送的字节为0，这一次响应结束。</span>
+        <span class="token function">modifyfd</span><span class="token punctuation">(</span> m_epollfd<span class="token punctuation">,</span> m_sockfd<span class="token punctuation">,</span> EPOLLIN <span class="token punctuation">)</span><span class="token punctuation">;</span> 
+        <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 分散写</span>
+        temp <span class="token operator">=</span> <span class="token function">writev</span><span class="token punctuation">(</span>m_sockfd<span class="token punctuation">,</span> m_iv<span class="token punctuation">,</span> m_iv_count<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span> temp <span class="token operator">&lt;=</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token comment">// 如果TCP写缓冲没有空间，则等待下一轮EPOLLOUT事件，虽然在此期间，</span>
+            <span class="token comment">// 服务器无法立即接收到同一客户的下一个请求，但可以保证连接的完整性。</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span> errno <span class="token operator">==</span> EAGAIN <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token function">modifyfd</span><span class="token punctuation">(</span> m_epollfd<span class="token punctuation">,</span> m_sockfd<span class="token punctuation">,</span> EPOLLOUT <span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token function">unmap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        bytes_to_send <span class="token operator">-=</span> temp<span class="token punctuation">;</span>
+        bytes_have_send <span class="token operator">+=</span> temp<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span> bytes_to_send <span class="token operator">&lt;=</span> bytes_have_send <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token comment">// 发送HTTP响应成功，根据HTTP请求中的Connection字段决定是否立即关闭连接</span>
+            <span class="token function">unmap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>m_linger<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token function">modifyfd</span><span class="token punctuation">(</span> m_epollfd<span class="token punctuation">,</span> m_sockfd<span class="token punctuation">,</span> EPOLLIN <span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+                <span class="token function">modifyfd</span><span class="token punctuation">(</span> m_epollfd<span class="token punctuation">,</span> m_sockfd<span class="token punctuation">,</span> EPOLLIN <span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span> 
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/**
+ * @brief 线程池中工作线程调用的入口，处理该连接的请求
+ * @note 包含解析请求、生成响应并修改 epoll 事件以触发写出
+ */</span>
+<span class="token keyword">void</span> http_conn <span class="token double-colon punctuation">::</span> <span class="token function">process</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token comment">// 解析HTTP请求</span>
+    HTTP_CODE read_ret <span class="token operator">=</span> <span class="token function">process_read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>read_ret <span class="token operator">==</span> NO_REQUEST<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token function">modifyfd</span><span class="token punctuation">(</span>m_epollfd<span class="token punctuation">,</span> m_sockfd<span class="token punctuation">,</span> EPOLLIN<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 生成响应</span>
+    <span class="token keyword">bool</span> write_ret <span class="token operator">=</span> <span class="token function">process_write</span><span class="token punctuation">(</span> read_ret <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token operator">!</span>write_ret <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">closeconn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">modifyfd</span><span class="token punctuation">(</span> m_epollfd<span class="token punctuation">,</span> m_sockfd<span class="token punctuation">,</span> EPOLLOUT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/**
+ * @brief 主状态机：解析 HTTP 请求（请求行、头部、内容）
+ * @return 解析结果枚举（NO_REQUEST, GET_REQUEST, BAD_REQUEST ...）
+ * @note 使用 parse_line 拆分行，循环直到无法继续解析
+ */</span>
+http_conn <span class="token double-colon punctuation">::</span> HTTP_CODE  http_conn <span class="token double-colon punctuation">::</span> <span class="token function">process_read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+    LINE_STATUS  line_status <span class="token operator">=</span> LINE_OK<span class="token punctuation">;</span>
+    HTTP_CODE ret <span class="token operator">=</span> NO_REQUEST<span class="token punctuation">;</span>
+    <span class="token keyword">char</span> <span class="token operator">*</span>text <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span>m_check_state <span class="token operator">==</span> CHECK_STATE_CONTENT<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>line_status <span class="token operator">==</span> LINE_OK<span class="token punctuation">)</span><span class="token punctuation">)</span> 
+    <span class="token operator">||</span> <span class="token punctuation">(</span>line_status <span class="token operator">=</span> <span class="token function">parse_line</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> LINE_OK<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token comment">// 解析到了一行完整的数据 或 解析到请求体，也是完整的数据</span>
+
+        <span class="token comment">// 获取一行数据</span>
+        text <span class="token operator">=</span> <span class="token function">get_line</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        m_start_line <span class="token operator">=</span> m_checked_index<span class="token punctuation">;</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"got 1 http line:%s\n"</span><span class="token punctuation">,</span> text<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+        <span class="token keyword">switch</span> <span class="token punctuation">(</span>m_check_state<span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+        <span class="token keyword">case</span> CHECK_STATE_REQUESTLINE<span class="token operator">:</span>
+            <span class="token punctuation">&#123;</span>
+                ret <span class="token operator">=</span> <span class="token function">parse_request_line</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>ret <span class="token operator">==</span> BAD_REQUEST<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                    <span class="token keyword">return</span> BAD_REQUEST<span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            
+        <span class="token keyword">case</span> CHECK_STATE_HEADER<span class="token operator">:</span>
+            <span class="token comment">/* code */</span>
+            <span class="token punctuation">&#123;</span>
+                ret <span class="token operator">=</span> <span class="token function">parse_headers</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>ret <span class="token operator">==</span> BAD_REQUEST<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                    <span class="token keyword">return</span> BAD_REQUEST<span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span><span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>ret <span class="token operator">==</span> GET_REQUEST<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                    <span class="token keyword">return</span> <span class="token function">do_request</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 解析具体信息</span>
+                <span class="token punctuation">&#125;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token keyword">case</span> CHECK_STATE_CONTENT<span class="token operator">:</span>
+            <span class="token comment">/* code */</span>
+            <span class="token punctuation">&#123;</span>
+                ret <span class="token operator">=</span> <span class="token function">parse_content</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>ret <span class="token operator">==</span> GET_REQUEST<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                    <span class="token keyword">return</span> <span class="token function">do_request</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+                line_status <span class="token operator">=</span> LINE_OPEN<span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        
+        <span class="token keyword">default</span><span class="token operator">:</span>
+            <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> INTERNAL_ERROR<span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> NO_REQUEST<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/**
+ * @brief 解析请求行，取得请求方法、URL、HTTP 版本
+ * @param text 请求行字符串（以 '\0' 结尾）
+ * @return 解析结果枚举（NO_REQUEST 表示继续解析，BAD_REQUEST 表示格式错误）
+ */</span>
+http_conn <span class="token double-colon punctuation">::</span> HTTP_CODE http_conn <span class="token double-colon punctuation">::</span> <span class="token function">parse_request_line</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>text<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token comment">// GET /index.html HTTP/1.1</span>
+    m_url <span class="token operator">=</span> <span class="token function">strpbrk</span><span class="token punctuation">(</span>text <span class="token punctuation">,</span> <span class="token string">" \t"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>m_url<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> BAD_REQUEST<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// GET\0/index.html HTTP/1.1</span>
+    <span class="token operator">*</span>m_url<span class="token operator">++</span> <span class="token operator">=</span> <span class="token char">'\0'</span><span class="token punctuation">;</span>  <span class="token comment">// 先用原值赋\0， 后++， </span>
+
+    <span class="token comment">// GET\0  字符串结束符截断</span>
+    <span class="token keyword">char</span><span class="token operator">*</span> method <span class="token operator">=</span> text<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">strcasecmp</span><span class="token punctuation">(</span>method<span class="token punctuation">,</span> <span class="token string">"GET"</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        m_method <span class="token operator">=</span> GET<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span><span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> BAD_REQUEST<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+
+    <span class="token comment">// /index.html HTTP/1.1</span>
+    m_version <span class="token operator">=</span> <span class="token function">strpbrk</span><span class="token punctuation">(</span>m_url<span class="token punctuation">,</span> <span class="token string">" \t"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>m_version<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> BAD_REQUEST<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">// /index.html\0HTTP/1.1</span>
+    <span class="token operator">*</span>m_version<span class="token operator">++</span> <span class="token operator">=</span> <span class="token char">'\0'</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">strcasecmp</span><span class="token punctuation">(</span>m_version<span class="token punctuation">,</span> <span class="token string">"HTTP/1.1"</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> BAD_REQUEST<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// http://192.168.1.1:10000/index.html</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">strncasecmp</span><span class="token punctuation">(</span>m_url<span class="token punctuation">,</span> <span class="token string">"http://"</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        m_url <span class="token operator">+=</span> <span class="token number">7</span><span class="token punctuation">;</span> <span class="token comment">//  192.168.1.1:10000/index.html</span>
+        m_url <span class="token operator">=</span> <span class="token function">strchr</span><span class="token punctuation">(</span>m_url<span class="token punctuation">,</span> <span class="token char">'/'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//  /index.html</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>m_url <span class="token operator">||</span> m_url<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">!=</span> <span class="token char">'/'</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> BAD_REQUEST<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    m_check_state <span class="token operator">=</span> CHECK_STATE_HEADER<span class="token punctuation">;</span> <span class="token comment">// 改变主状态机状态</span>
+
+    <span class="token keyword">return</span> NO_REQUEST<span class="token punctuation">;</span>
+
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/**
+ * @brief 解析请求头部字段（逐行调用）
+ * @param text 当前头部行（以 '\0' 结尾），空行表示头部结束
+ * @return GET_REQUEST 表示头部解析完成且无消息体；NO_REQUEST 表示继续解析；BAD_REQUEST 表示错误
+ */</span>
+http_conn <span class="token double-colon punctuation">::</span> HTTP_CODE http_conn <span class="token double-colon punctuation">::</span> <span class="token function">parse_headers</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>text<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    
+    <span class="token comment">// 遇到空行，表示头部字段解析完毕</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span> text<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token char">'\0'</span> <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 如果HTTP请求有消息体，则还需要读取m_content_length字节的消息体，</span>
+        <span class="token comment">// 状态机转移到CHECK_STATE_CONTENT状态</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span> m_content_length <span class="token operator">!=</span> <span class="token number">0</span> <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            m_check_state <span class="token operator">=</span> CHECK_STATE_CONTENT<span class="token punctuation">;</span>
+            <span class="token keyword">return</span> NO_REQUEST<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token comment">// 否则说明已经得到了一个完整的HTTP请求</span>
+        <span class="token keyword">return</span> GET_REQUEST<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token function">strncasecmp</span><span class="token punctuation">(</span> text<span class="token punctuation">,</span> <span class="token string">"Connection:"</span><span class="token punctuation">,</span> <span class="token number">11</span> <span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 处理Connection 头部字段  Connection: keep-alive</span>
+        text <span class="token operator">+=</span> <span class="token number">11</span><span class="token punctuation">;</span>
+        text <span class="token operator">+=</span> <span class="token function">strspn</span><span class="token punctuation">(</span> text<span class="token punctuation">,</span> <span class="token string">" \t"</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token function">strcasecmp</span><span class="token punctuation">(</span> text<span class="token punctuation">,</span> <span class="token string">"keep-alive"</span> <span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            m_linger <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token function">strncasecmp</span><span class="token punctuation">(</span> text<span class="token punctuation">,</span> <span class="token string">"Content-Length:"</span><span class="token punctuation">,</span> <span class="token number">15</span> <span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 处理Content-Length头部字段</span>
+        text <span class="token operator">+=</span> <span class="token number">15</span><span class="token punctuation">;</span>
+        text <span class="token operator">+=</span> <span class="token function">strspn</span><span class="token punctuation">(</span> text<span class="token punctuation">,</span> <span class="token string">" \t"</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        m_content_length <span class="token operator">=</span> <span class="token function">atol</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token function">strncasecmp</span><span class="token punctuation">(</span> text<span class="token punctuation">,</span> <span class="token string">"Host:"</span><span class="token punctuation">,</span> <span class="token number">5</span> <span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 处理Host头部字段</span>
+        text <span class="token operator">+=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+        text <span class="token operator">+=</span> <span class="token function">strspn</span><span class="token punctuation">(</span> text<span class="token punctuation">,</span> <span class="token string">" \t"</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        m_host <span class="token operator">=</span> text<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span> <span class="token string">"oops! unknow header %s\n"</span><span class="token punctuation">,</span> text <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> NO_REQUEST<span class="token punctuation">;</span>
+
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/**
+ * @brief 检查请求体是否已全部读入（不做具体解析）
+ * @param text 指向请求体（起始位置）
+ * @return 若读取完毕返回 GET_REQUEST，否则返回 NO_REQUEST
+ */</span>
+http_conn<span class="token double-colon punctuation">::</span>HTTP_CODE http_conn<span class="token double-colon punctuation">::</span><span class="token function">parse_content</span><span class="token punctuation">(</span> <span class="token keyword">char</span><span class="token operator">*</span> text <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span> m_read_idx <span class="token operator">>=</span> <span class="token punctuation">(</span> m_content_length <span class="token operator">+</span> m_checked_index <span class="token punctuation">)</span> <span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        text<span class="token punctuation">[</span> m_content_length <span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'\0'</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> GET_REQUEST<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> NO_REQUEST<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/**
+ * @brief 按行解析读缓冲区，判断是否遇到 CRLF 结束
+ * @return LINE_OK / LINE_BAD / LINE_OPEN
+ */</span>
+http_conn <span class="token double-colon punctuation">::</span> LINE_STATUS http_conn <span class="token double-colon punctuation">::</span> <span class="token function">parse_line</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    
+    <span class="token keyword">char</span> temp<span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token punctuation">;</span> m_checked_index <span class="token operator">&lt;</span> m_read_idx<span class="token punctuation">;</span> <span class="token operator">++</span> m_checked_index<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        temp <span class="token operator">=</span> m_read_buf<span class="token punctuation">[</span>m_checked_index<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>temp <span class="token operator">==</span> <span class="token char">'\r'</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>m_checked_index <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">==</span> m_read_idx<span class="token punctuation">)</span> <span class="token keyword">return</span> LINE_OPEN<span class="token punctuation">;</span>
+            <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>m_read_buf<span class="token punctuation">[</span>m_checked_index <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">==</span> <span class="token char">'\n'</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                m_read_buf<span class="token punctuation">[</span>m_checked_index<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'\0'</span><span class="token punctuation">;</span>
+                m_read_buf<span class="token punctuation">[</span>m_checked_index<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'\0'</span><span class="token punctuation">;</span>
+                <span class="token keyword">return</span> LINE_OK<span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">return</span> LINE_BAD<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span><span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>temp <span class="token operator">==</span> <span class="token char">'\n'</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>m_checked_index <span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>m_read_buf<span class="token punctuation">[</span>m_checked_index<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token char">'\r'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                m_read_buf<span class="token punctuation">[</span>m_checked_index<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'\0'</span><span class="token punctuation">;</span>
+                m_read_buf<span class="token punctuation">[</span>m_checked_index<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'\0'</span><span class="token punctuation">;</span>
+                <span class="token keyword">return</span> LINE_OK<span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">return</span> LINE_BAD<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    
+    <span class="token keyword">return</span> LINE_OPEN<span class="token punctuation">;</span>
+    
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/**
+ * @brief 根据解析后的 URL 在文件系统中查找目标文件并 mmap 映射
+ * @return FILE_REQUEST 表示文件请求成功，否则返回相应错误类型（NO_RESOURCE/FORBIDDEN_REQUEST 等）
+ */</span>
+http_conn<span class="token double-colon punctuation">::</span>HTTP_CODE http_conn<span class="token double-colon punctuation">::</span><span class="token function">do_request</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// "/home/miao/TinyWebserver/resources"</span>
+    <span class="token function">strcpy</span><span class="token punctuation">(</span> m_real_file<span class="token punctuation">,</span> doc_root <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> len <span class="token operator">=</span> <span class="token function">strlen</span><span class="token punctuation">(</span> doc_root <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">strncpy</span><span class="token punctuation">(</span> m_real_file <span class="token operator">+</span> len<span class="token punctuation">,</span> m_url<span class="token punctuation">,</span> FILENAME_LEN <span class="token operator">-</span> len <span class="token operator">-</span> <span class="token number">1</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 获取m_real_file文件的相关的状态信息，-1失败，0成功</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token function">stat</span><span class="token punctuation">(</span> m_real_file<span class="token punctuation">,</span> <span class="token operator">&amp;</span>m_file_stat <span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> NO_RESOURCE<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 判断访问权限</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token operator">!</span> <span class="token punctuation">(</span> m_file_stat<span class="token punctuation">.</span>st_mode <span class="token operator">&amp;</span> S_IROTH <span class="token punctuation">)</span> <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> FORBIDDEN_REQUEST<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 判断是否是目录</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token function">S_ISDIR</span><span class="token punctuation">(</span> m_file_stat<span class="token punctuation">.</span>st_mode <span class="token punctuation">)</span> <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> BAD_REQUEST<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 以只读方式打开文件</span>
+    <span class="token keyword">int</span> fd <span class="token operator">=</span> <span class="token function">open</span><span class="token punctuation">(</span> m_real_file<span class="token punctuation">,</span> O_RDONLY <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 创建内存映射</span>
+    m_file_address <span class="token operator">=</span> <span class="token punctuation">(</span> <span class="token keyword">char</span><span class="token operator">*</span> <span class="token punctuation">)</span><span class="token function">mmap</span><span class="token punctuation">(</span> <span class="token number">0</span><span class="token punctuation">,</span> m_file_stat<span class="token punctuation">.</span>st_size<span class="token punctuation">,</span> PROT_READ<span class="token punctuation">,</span> MAP_PRIVATE<span class="token punctuation">,</span> fd<span class="token punctuation">,</span> <span class="token number">0</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">close</span><span class="token punctuation">(</span> fd <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> FILE_REQUEST<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/**
+ * @brief 解除对文件映射的映射并清理 m_file_address
+ */</span>
+<span class="token keyword">void</span> http_conn<span class="token double-colon punctuation">::</span><span class="token function">unmap</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span> m_file_address <span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">munmap</span><span class="token punctuation">(</span> m_file_address<span class="token punctuation">,</span> m_file_stat<span class="token punctuation">.</span>st_size <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        m_file_address <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/**
+ * @brief 向写缓冲追加格式化响应文本（可变参数）
+ * @param format printf 风格的格式字符串
+ * @return 成功返回 true，写入超限返回 false
+ */</span>
+<span class="token keyword">bool</span> http_conn<span class="token double-colon punctuation">::</span><span class="token function">add_response</span><span class="token punctuation">(</span> <span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> format<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span> m_write_idx <span class="token operator">>=</span> WRITE_BUFFER_SIZE <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    va_list arg_list<span class="token punctuation">;</span>
+    <span class="token function">va_start</span><span class="token punctuation">(</span> arg_list<span class="token punctuation">,</span> format <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> len <span class="token operator">=</span> <span class="token function">vsnprintf</span><span class="token punctuation">(</span> m_write_buf <span class="token operator">+</span> m_write_idx<span class="token punctuation">,</span> WRITE_BUFFER_SIZE <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">-</span> m_write_idx<span class="token punctuation">,</span> format<span class="token punctuation">,</span> arg_list <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span> len <span class="token operator">>=</span> <span class="token punctuation">(</span> WRITE_BUFFER_SIZE <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">-</span> m_write_idx <span class="token punctuation">)</span> <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    m_write_idx <span class="token operator">+=</span> len<span class="token punctuation">;</span>
+    <span class="token function">va_end</span><span class="token punctuation">(</span> arg_list <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/**
+ * @brief 添加状态行，比如 "HTTP/1.1 200 OK"
+ */</span>
+<span class="token keyword">bool</span> http_conn<span class="token double-colon punctuation">::</span><span class="token function">add_status_line</span><span class="token punctuation">(</span> <span class="token keyword">int</span> status<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> title <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token function">add_response</span><span class="token punctuation">(</span> <span class="token string">"%s %d %s\r\n"</span><span class="token punctuation">,</span> <span class="token string">"HTTP/1.1"</span><span class="token punctuation">,</span> status<span class="token punctuation">,</span> title <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/**
+ * @brief 添加通用响应头（Content-Length/Content-Type/Connection/空行）
+ * @param content_len 正文长度（字节）
+ * @return 无（内部通过 add_response 填充）
+ */</span>
+<span class="token keyword">bool</span> http_conn<span class="token double-colon punctuation">::</span><span class="token function">add_headers</span><span class="token punctuation">(</span><span class="token keyword">int</span> content_len<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">add_content_length</span><span class="token punctuation">(</span>content_len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">add_content_type</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">add_linger</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">add_blank_line</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/**
+ * @brief 添加 Content-Length 头
+ * @param content_len 正文长度（字节）
+ */</span>
+<span class="token keyword">bool</span> http_conn<span class="token double-colon punctuation">::</span><span class="token function">add_content_length</span><span class="token punctuation">(</span><span class="token keyword">int</span> content_len<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token function">add_response</span><span class="token punctuation">(</span> <span class="token string">"Content-Length: %d\r\n"</span><span class="token punctuation">,</span> content_len <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/**
+ * @brief 添加 Connection 头（keep-alive 或 close）
+ */</span>
+<span class="token keyword">bool</span> http_conn<span class="token double-colon punctuation">::</span><span class="token function">add_linger</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token function">add_response</span><span class="token punctuation">(</span> <span class="token string">"Connection: %s\r\n"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span> m_linger <span class="token operator">==</span> <span class="token boolean">true</span> <span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token string">"keep-alive"</span> <span class="token operator">:</span> <span class="token string">"close"</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/**
+ * @brief 添加响应空行，结束 header 部分
+ */</span>
+<span class="token keyword">bool</span> http_conn<span class="token double-colon punctuation">::</span><span class="token function">add_blank_line</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token function">add_response</span><span class="token punctuation">(</span> <span class="token string">"%s"</span><span class="token punctuation">,</span> <span class="token string">"\r\n"</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/**
+ * @brief 添加响应正文字符串到写缓冲
+ * @param content 要添加的正文字符串
+ */</span>
+<span class="token keyword">bool</span> http_conn<span class="token double-colon punctuation">::</span><span class="token function">add_content</span><span class="token punctuation">(</span> <span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> content <span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token function">add_response</span><span class="token punctuation">(</span> <span class="token string">"%s"</span><span class="token punctuation">,</span> content <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/**
+ * @brief 添加 Content-Type 头（目前固定为 text/html）
+ */</span>
+<span class="token keyword">bool</span> http_conn<span class="token double-colon punctuation">::</span><span class="token function">add_content_type</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token function">add_response</span><span class="token punctuation">(</span><span class="token string">"Content-Type:%s\r\n"</span><span class="token punctuation">,</span> <span class="token string">"text/html"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/**
+ * @brief 根据解析结果构建要发送的响应内容到写缓冲 / iov
+ * @param ret HTTP_CODE 解析结果
+ * @return 成功返回 true，失败返回 false
+ */</span>
+<span class="token keyword">bool</span> http_conn<span class="token double-colon punctuation">::</span><span class="token function">process_write</span><span class="token punctuation">(</span>HTTP_CODE ret<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">switch</span> <span class="token punctuation">(</span>ret<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">case</span> INTERNAL_ERROR<span class="token operator">:</span>
+            <span class="token function">add_status_line</span><span class="token punctuation">(</span> <span class="token number">500</span><span class="token punctuation">,</span> error_500_title <span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">add_headers</span><span class="token punctuation">(</span> <span class="token function">strlen</span><span class="token punctuation">(</span> error_500_form <span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token operator">!</span> <span class="token function">add_content</span><span class="token punctuation">(</span> error_500_form <span class="token punctuation">)</span> <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token keyword">case</span> BAD_REQUEST<span class="token operator">:</span>
+            <span class="token function">add_status_line</span><span class="token punctuation">(</span> <span class="token number">400</span><span class="token punctuation">,</span> error_400_title <span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">add_headers</span><span class="token punctuation">(</span> <span class="token function">strlen</span><span class="token punctuation">(</span> error_400_form <span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token operator">!</span> <span class="token function">add_content</span><span class="token punctuation">(</span> error_400_form <span class="token punctuation">)</span> <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token keyword">case</span> NO_RESOURCE<span class="token operator">:</span>
+            <span class="token function">add_status_line</span><span class="token punctuation">(</span> <span class="token number">404</span><span class="token punctuation">,</span> error_404_title <span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">add_headers</span><span class="token punctuation">(</span> <span class="token function">strlen</span><span class="token punctuation">(</span> error_404_form <span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token operator">!</span> <span class="token function">add_content</span><span class="token punctuation">(</span> error_404_form <span class="token punctuation">)</span> <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token keyword">case</span> FORBIDDEN_REQUEST<span class="token operator">:</span>
+            <span class="token function">add_status_line</span><span class="token punctuation">(</span> <span class="token number">403</span><span class="token punctuation">,</span> error_403_title <span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">add_headers</span><span class="token punctuation">(</span><span class="token function">strlen</span><span class="token punctuation">(</span> error_403_form<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token operator">!</span> <span class="token function">add_content</span><span class="token punctuation">(</span> error_403_form <span class="token punctuation">)</span> <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token keyword">case</span> FILE_REQUEST<span class="token operator">:</span>
+            <span class="token function">add_status_line</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">,</span> ok_200_title <span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">add_headers</span><span class="token punctuation">(</span>m_file_stat<span class="token punctuation">.</span>st_size<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            m_iv<span class="token punctuation">[</span> <span class="token number">0</span> <span class="token punctuation">]</span><span class="token punctuation">.</span>iov_base <span class="token operator">=</span> m_write_buf<span class="token punctuation">;</span>
+            m_iv<span class="token punctuation">[</span> <span class="token number">0</span> <span class="token punctuation">]</span><span class="token punctuation">.</span>iov_len <span class="token operator">=</span> m_write_idx<span class="token punctuation">;</span>
+            m_iv<span class="token punctuation">[</span> <span class="token number">1</span> <span class="token punctuation">]</span><span class="token punctuation">.</span>iov_base <span class="token operator">=</span> m_file_address<span class="token punctuation">;</span>
+            m_iv<span class="token punctuation">[</span> <span class="token number">1</span> <span class="token punctuation">]</span><span class="token punctuation">.</span>iov_len <span class="token operator">=</span> m_file_stat<span class="token punctuation">.</span>st_size<span class="token punctuation">;</span>
+            m_iv_count <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token keyword">default</span><span class="token operator">:</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    m_iv<span class="token punctuation">[</span> <span class="token number">0</span> <span class="token punctuation">]</span><span class="token punctuation">.</span>iov_base <span class="token operator">=</span> m_write_buf<span class="token punctuation">;</span>
+    m_iv<span class="token punctuation">[</span> <span class="token number">0</span> <span class="token punctuation">]</span><span class="token punctuation">.</span>iov_len <span class="token operator">=</span> m_write_idx<span class="token punctuation">;</span>
+    m_iv_count <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+    </div>
+</div>
+<div class="fold collapsed">
+    <div class="fold-title">
+        头文件
+    </div>
+    <div class="fold-content">
+        <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifndef</span> <span class="token expression">HTTP_CONNECTION_H</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">HTTP_CONNECTION_H</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/epoll.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;arpa/inet.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;errno.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;fcntl.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;signal.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/stat.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/mman.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdarg.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/uio.h></span></span>
+
+<span class="token keyword">class</span> <span class="token class-name">http_conn</span>
+<span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token keyword">static</span> <span class="token keyword">int</span> m_epollfd<span class="token punctuation">;</span> <span class="token comment">// 所有socket上事件注册到同一个epoll</span>
+    <span class="token keyword">static</span> <span class="token keyword">int</span> m_user_count<span class="token punctuation">;</span> <span class="token comment">//统计用户数量</span>
+    <span class="token keyword">static</span> <span class="token keyword">const</span> <span class="token keyword">int</span> READ_BUFFER_SIZE <span class="token operator">=</span> <span class="token number">2048</span><span class="token punctuation">;</span> <span class="token comment">// 读缓冲区大小</span>
+    <span class="token keyword">static</span> <span class="token keyword">const</span> <span class="token keyword">int</span> WRITE_BUFFER_SIZE <span class="token operator">=</span> <span class="token number">1024</span><span class="token punctuation">;</span> <span class="token comment">// 写缓冲区大小</span>
+    <span class="token keyword">static</span> <span class="token keyword">const</span> <span class="token keyword">int</span> FILENAME_LEN <span class="token operator">=</span> <span class="token number">200</span><span class="token punctuation">;</span>        <span class="token comment">// 文件名的最大长度</span>
+
+    <span class="token comment">// HTTP请求方法，这里只支持GET</span>
+    <span class="token keyword">enum</span> <span class="token class-name">METHOD</span> <span class="token punctuation">&#123;</span>GET <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> POST<span class="token punctuation">,</span> HEAD<span class="token punctuation">,</span> PUT<span class="token punctuation">,</span> DELETE<span class="token punctuation">,</span> TRACE<span class="token punctuation">,</span> OPTIONS<span class="token punctuation">,</span> CONNECT<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+    <span class="token comment">/*
+        解析客户端请求时，主状态机的状态
+        CHECK_STATE_REQUESTLINE:当前正在分析请求行
+        CHECK_STATE_HEADER:当前正在分析头部字段
+        CHECK_STATE_CONTENT:当前正在解析请求体
+    */</span>
+    <span class="token keyword">enum</span> <span class="token class-name">CHECK_STATE</span> <span class="token punctuation">&#123;</span> CHECK_STATE_REQUESTLINE <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> CHECK_STATE_HEADER<span class="token punctuation">,</span> CHECK_STATE_CONTENT <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/*
+        服务器处理HTTP请求的可能结果，报文解析的结果
+        NO_REQUEST          :   请求不完整，需要继续读取客户数据
+        GET_REQUEST         :   表示获得了一个完成的客户请求
+        BAD_REQUEST         :   表示客户请求语法错误
+        NO_RESOURCE         :   表示服务器没有资源
+        FORBIDDEN_REQUEST   :   表示客户对资源没有足够的访问权限
+        FILE_REQUEST        :   文件请求,获取文件成功
+        INTERNAL_ERROR      :   表示服务器内部错误
+        CLOSED_CONNECTION   :   表示客户端已经关闭连接了
+    */</span>
+    <span class="token keyword">enum</span> <span class="token class-name">HTTP_CODE</span> <span class="token punctuation">&#123;</span> NO_REQUEST<span class="token punctuation">,</span> GET_REQUEST<span class="token punctuation">,</span> BAD_REQUEST<span class="token punctuation">,</span> NO_RESOURCE<span class="token punctuation">,</span> FORBIDDEN_REQUEST<span class="token punctuation">,</span> FILE_REQUEST<span class="token punctuation">,</span> INTERNAL_ERROR<span class="token punctuation">,</span> CLOSED_CONNECTION <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 从状态机的三种可能状态，即行的读取状态，分别表示</span>
+    <span class="token comment">// 1.读取到一个完整的行 2.行出错 3.行数据尚且不完整</span>
+    <span class="token keyword">enum</span> <span class="token class-name">LINE_STATUS</span> <span class="token punctuation">&#123;</span> LINE_OK <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> LINE_BAD<span class="token punctuation">,</span> LINE_OPEN <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+   
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token comment">/// @brief 处理客户端请求</span>
+    <span class="token keyword">void</span> <span class="token function">process</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">/// @brief 初始化新接受的连接</span>
+    <span class="token keyword">void</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token keyword">int</span> sockfd<span class="token punctuation">,</span> <span class="token keyword">const</span> sockaddr_in <span class="token operator">&amp;</span>addr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">/// @brief 关闭连接</span>
+    <span class="token keyword">void</span> <span class="token function">closeconn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">/// @brief 非阻塞读</span>
+    <span class="token keyword">bool</span> <span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">/// @brief 非阻塞写</span>
+    <span class="token keyword">bool</span> <span class="token function">write</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token comment">/// @brief  解析HTTP请求</span>
+    HTTP_CODE <span class="token function">process_read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">/// @brief  解析请求首行</span>
+    HTTP_CODE <span class="token function">parse_request_line</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>text<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">/// @brief  解析请求头</span>
+    HTTP_CODE <span class="token function">parse_headers</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>text<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">/// @brief  解析请求体</span>
+    HTTP_CODE <span class="token function">parse_content</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>text<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">/// @brief  解析请求一行</span>
+    LINE_STATUS <span class="token function">parse_line</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 填充HTTP应答</span>
+    <span class="token keyword">bool</span> <span class="token function">process_write</span><span class="token punctuation">(</span> HTTP_CODE ret <span class="token punctuation">)</span><span class="token punctuation">;</span>   
+
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token comment">// 这一组函数被process_write调用以填充HTTP应答</span>
+    <span class="token keyword">bool</span> <span class="token function">add_response</span><span class="token punctuation">(</span> <span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> format<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">bool</span> <span class="token function">add_content</span><span class="token punctuation">(</span> <span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> content <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">bool</span> <span class="token function">add_content_type</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">bool</span> <span class="token function">add_status_line</span><span class="token punctuation">(</span> <span class="token keyword">int</span> status<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> title <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">bool</span> <span class="token function">add_headers</span><span class="token punctuation">(</span> <span class="token keyword">int</span> content_length <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">bool</span> <span class="token function">add_content_length</span><span class="token punctuation">(</span> <span class="token keyword">int</span> content_length <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">bool</span> <span class="token function">add_linger</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">bool</span> <span class="token function">add_blank_line</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">private</span><span class="token operator">:</span>
+
+    <span class="token comment">/* data */</span>
+    <span class="token keyword">int</span> m_sockfd<span class="token punctuation">;</span>  <span class="token comment">// 该用户端连接的socket</span>
+    sockaddr_in m_address<span class="token punctuation">;</span> <span class="token comment">// 通信的socket地址</span>
+
+    <span class="token keyword">char</span> m_read_buf<span class="token punctuation">[</span>READ_BUFFER_SIZE<span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment">// 读缓冲区</span>
+    <span class="token keyword">int</span> m_read_idx<span class="token punctuation">;</span> <span class="token comment">// 标识读缓冲区中已经读入的客户端数据的最后一个字节的下一个位置</span>
+
+    <span class="token keyword">int</span> m_checked_index<span class="token punctuation">;</span> <span class="token comment">// 当前正在分析的字符在缓冲区的位置</span>
+    <span class="token keyword">int</span> m_start_line<span class="token punctuation">;</span> <span class="token comment">// 当前正在解析的行的起始位置</span>
+    CHECK_STATE m_check_state<span class="token punctuation">;</span> <span class="token comment">// 主状态机当前所处的状态</span>
+    
+    <span class="token keyword">char</span><span class="token operator">*</span> m_url<span class="token punctuation">;</span> <span class="token comment">// 请求地址</span>
+    <span class="token keyword">char</span><span class="token operator">*</span> m_version<span class="token punctuation">;</span> <span class="token comment">// 请求协议</span>
+    METHOD m_method<span class="token punctuation">;</span> <span class="token comment">//请求方法</span>
+    <span class="token keyword">char</span><span class="token operator">*</span> m_host<span class="token punctuation">;</span> <span class="token comment">// 主机名</span>
+    <span class="token keyword">bool</span> m_linger<span class="token punctuation">;</span> <span class="token comment">//判断HTTP请求是否保持连接</span>
+    <span class="token keyword">int</span> m_content_length<span class="token punctuation">;</span>                   <span class="token comment">// HTTP请求的消息总长度</span>
+    <span class="token keyword">char</span> m_real_file<span class="token punctuation">[</span> FILENAME_LEN <span class="token punctuation">]</span><span class="token punctuation">;</span>       <span class="token comment">// 客户请求的目标文件的完整路径，其内容等于 doc_root + m_url, doc_root是网站根目录</span>
+
+
+    <span class="token keyword">char</span> m_write_buf<span class="token punctuation">[</span> WRITE_BUFFER_SIZE <span class="token punctuation">]</span><span class="token punctuation">;</span>  <span class="token comment">// 写缓冲区</span>
+    <span class="token keyword">int</span> m_write_idx<span class="token punctuation">;</span>                        <span class="token comment">// 写缓冲区中待发送的字节数</span>
+    <span class="token keyword">char</span><span class="token operator">*</span> m_file_address<span class="token punctuation">;</span>                   <span class="token comment">// 客户请求的目标文件被mmap到内存中的起始位置</span>
+    <span class="token keyword">struct</span> <span class="token class-name">stat</span> m_file_stat<span class="token punctuation">;</span>                <span class="token comment">// 目标文件的状态。通过它我们可以判断文件是否存在、是否为目录、是否可读，并获取文件大小等信息</span>
+    <span class="token keyword">struct</span> <span class="token class-name">iovec</span> m_iv<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>                   <span class="token comment">// 采用writev来执行写操作，所以定义下面两个成员，其中m_iv_count表示被写内存块的数量。</span>
+    <span class="token keyword">int</span> m_iv_count<span class="token punctuation">;</span>
+
+    <span class="token keyword">void</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 连接解析状态初始化</span>
+    <span class="token keyword">void</span> <span class="token function">unmap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 对内存映射区执行munmap操作</span>
+    <span class="token keyword">char</span><span class="token operator">*</span> <span class="token function">get_line</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span> <span class="token keyword">return</span> m_read_buf <span class="token operator">+</span> m_start_line<span class="token punctuation">;</span><span class="token punctuation">&#125;</span>
+    HTTP_CODE <span class="token function">do_request</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+    </div>
+</div>
+<p>&nbsp;</p>
+<h2><span id="启动">启动</span></h2><div class="fold collapsed">
+    <div class="fold-title">
+        main.cpp
+    </div>
+    <div class="fold-content">
+        <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;arpa/inet.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;errno.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;fcntl.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/epoll.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;signal.h></span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"threadpool.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"locker.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"http_conn.h"</span></span>
+
+<span class="token comment">// 服务器总体工作逻辑说明：</span>
+<span class="token comment">// 1. 主线程完成初始化：忽略 SIGPIPE、创建线程池、分配 clients 数组、创建监听 socket 并加入 epoll。</span>
+<span class="token comment">// 2. 使用 epoll_wait 循环等待事件：</span>
+<span class="token comment">//    - 如果发生监听 socket 的可读事件，accept 新连接，设置 socket 非阻塞，注册到 epoll（使用 EPOLLONESHOT + ET）并把连接对象初始化到 users[]。</span>
+<span class="token comment">//    - 对客户端 fd 的 EPOLLIN 事件：主线程调用 http_conn::read() 非阻塞读入全部数据，若读完则将该 http_conn 对象放入线程池队列处理（pool->append）。</span>
+<span class="token comment">//    - 线程池中工作线程取出任务后调用 http_conn::process()：解析请求（状态机 parse），生成响应（process_write），并通过修改 epoll 事件触发写事件。</span>
+<span class="token comment">//    - 对客户端 fd 的 EPOLLOUT 事件：主线程调用 http_conn::write()，使用 writev 发送响应（包含头部缓冲区和 mmap 的文件），完成后根据 Connection 决定是否继续保持连接或关闭。</span>
+<span class="token comment">// 3. 关键点说明：</span>
+<span class="token comment">//    - 使用 EPOLLONESHOT 保证同一连接不会被多个线程并发处理，处理完成后需手动通过 modifyfd 恢复 EPOLLONESHOT 以再次接收事件。</span>
+<span class="token comment">//    - 使用非阻塞 I/O + 边沿触发（EPOLLET），read() 需要循环读取直到 EAGAIN/EWOULDBLOCK。</span>
+<span class="token comment">//    - 使用 mmap 将文件映射到内存并通过 writev 发送，发送完成需 munmap。</span>
+<span class="token comment">//    - 线程池负责耗时的请求解析与响应准备，主线程负责 I/O 事件分发与短小的非阻塞读写触发调度。</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">MAX_FD</span> <span class="token expression"><span class="token number">65535</span> </span><span class="token comment">//最大文件描述符个数</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">MAX_EVENT_NUM</span> <span class="token expression"><span class="token number">10000</span> </span><span class="token comment">//一次最大监听事件个数</span></span>
+
+<span class="token comment">// 添加信号捕捉</span>
+<span class="token keyword">void</span> <span class="token function">addsig</span><span class="token punctuation">(</span><span class="token keyword">int</span> sig<span class="token punctuation">,</span>  <span class="token keyword">void</span><span class="token punctuation">(</span>handler<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">struct</span> <span class="token class-name">sigaction</span> sa<span class="token punctuation">;</span>
+    <span class="token function">memset</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>sa<span class="token punctuation">,</span> <span class="token char">'\0'</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>sa<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sa<span class="token punctuation">.</span>sa_handler <span class="token operator">=</span> handler<span class="token punctuation">;</span>
+    <span class="token function">sigfillset</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>sa<span class="token punctuation">.</span>sa_mask<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">sigaction</span><span class="token punctuation">(</span>sig<span class="token punctuation">,</span> <span class="token operator">&amp;</span>sa<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+
+
+<span class="token comment">// 添加文件描述符到epoll中</span>
+<span class="token keyword">extern</span> <span class="token keyword">void</span> <span class="token function">addfd</span><span class="token punctuation">(</span><span class="token keyword">int</span> epollfd<span class="token punctuation">,</span> <span class="token keyword">int</span> fd<span class="token punctuation">,</span> <span class="token keyword">bool</span> one_shot<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 从epoll中删除文件描述符</span>
+<span class="token keyword">extern</span> <span class="token keyword">void</span> <span class="token function">removefd</span><span class="token punctuation">(</span><span class="token keyword">int</span> epollfd<span class="token punctuation">,</span> <span class="token keyword">int</span> fd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 修改文件描述符</span>
+<span class="token keyword">extern</span> <span class="token keyword">void</span> <span class="token function">modifyfd</span><span class="token punctuation">(</span><span class="token keyword">int</span> epollfd<span class="token punctuation">,</span> <span class="token keyword">int</span> fd <span class="token punctuation">,</span><span class="token keyword">int</span> ev<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span><span class="token operator">*</span> argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>argc <span class="token operator">&lt;=</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"按照如下格式运行： %s port num needed\n"</span><span class="token punctuation">,</span> <span class="token function">basename</span><span class="token punctuation">(</span>argv<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">exit</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">int</span> port <span class="token operator">=</span> <span class="token function">atoi</span><span class="token punctuation">(</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 对SIGPIE处理</span>
+    <span class="token function">addsig</span><span class="token punctuation">(</span>SIGPIPE<span class="token punctuation">,</span> SIG_IGN<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 初始化线程池</span>
+    threadpool<span class="token operator">&lt;</span>http_conn<span class="token operator">></span><span class="token operator">*</span> pool <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token keyword">try</span>
+    <span class="token punctuation">&#123;</span>
+        pool <span class="token operator">=</span> <span class="token keyword">new</span> threadpool<span class="token operator">&lt;</span>http_conn<span class="token operator">></span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token double-colon punctuation">::</span>exception <span class="token operator">&amp;</span> e<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        std<span class="token double-colon punctuation">::</span>cerr <span class="token operator">&lt;&lt;</span> e<span class="token punctuation">.</span><span class="token function">what</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+        <span class="token function">exit</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    
+    <span class="token comment">// 创建数组用于保存所有客户端信息</span>
+    http_conn <span class="token operator">*</span>users <span class="token operator">=</span> <span class="token keyword">new</span> http_conn<span class="token punctuation">[</span>MAX_FD<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 创建套接字</span>
+    <span class="token comment">// IPv4 TCP</span>
+    <span class="token keyword">int</span> lfd <span class="token operator">=</span> <span class="token function">socket</span><span class="token punctuation">(</span>PF_INET<span class="token punctuation">,</span> SOCK_STREAM<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>lfd <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">"socket create"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">exit</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 设置端口复用</span>
+    <span class="token keyword">int</span> reuse <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token function">setsockopt</span><span class="token punctuation">(</span>lfd<span class="token punctuation">,</span> SOL_SOCKET<span class="token punctuation">,</span> SO_REUSEADDR<span class="token punctuation">,</span> <span class="token operator">&amp;</span>reuse<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>reuse<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">struct</span> <span class="token class-name">sockaddr_in</span> address<span class="token punctuation">;</span>
+    address<span class="token punctuation">.</span>sin_port <span class="token operator">=</span> <span class="token function">htons</span><span class="token punctuation">(</span>port<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    address<span class="token punctuation">.</span>sin_family <span class="token operator">=</span> AF_INET<span class="token punctuation">;</span>
+    address<span class="token punctuation">.</span>sin_addr<span class="token punctuation">.</span>s_addr <span class="token operator">=</span> INADDR_ANY<span class="token punctuation">;</span>
+
+    <span class="token comment">// bind</span>
+    <span class="token keyword">int</span> ret <span class="token operator">=</span> <span class="token function">bind</span><span class="token punctuation">(</span>lfd<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">sockaddr</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>address<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>address<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>ret <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">"bind"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">exit</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 监听</span>
+    ret <span class="token operator">=</span> <span class="token function">listen</span><span class="token punctuation">(</span>lfd<span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>ret <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">"listen"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">exit</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 创建epoll对象，事件数组，添加监听事件</span>
+    epoll_event events<span class="token punctuation">[</span>MAX_EVENT_NUM<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> epollfd <span class="token operator">=</span> <span class="token function">epoll_create</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">addfd</span><span class="token punctuation">(</span>epollfd<span class="token punctuation">,</span> lfd<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    http_conn<span class="token double-colon punctuation">::</span>m_epollfd <span class="token operator">=</span> epollfd<span class="token punctuation">;</span>
+
+    <span class="token comment">// 主线程检测</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">int</span> num <span class="token operator">=</span> <span class="token function">epoll_wait</span><span class="token punctuation">(</span>epollfd<span class="token punctuation">,</span> events<span class="token punctuation">,</span> MAX_EVENT_NUM<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span> <span class="token punctuation">(</span>num <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>errno <span class="token operator">!=</span> EINTR<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"epoll failed\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token comment">// 循环遍历事件数组</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> num<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        
+            <span class="token keyword">int</span> sockfd <span class="token operator">=</span> events<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>data<span class="token punctuation">.</span>fd<span class="token punctuation">;</span>
+            <span class="token comment">// 有客户端连接情况</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>sockfd <span class="token operator">==</span> lfd<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                <span class="token keyword">struct</span> <span class="token class-name">sockaddr_in</span> clientaddr<span class="token punctuation">;</span>
+                socklen_t len <span class="token operator">=</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>clientaddr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">int</span> connfd <span class="token operator">=</span> <span class="token function">accept</span><span class="token punctuation">(</span>lfd<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">sockaddr</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>clientaddr<span class="token punctuation">,</span> <span class="token operator">&amp;</span>len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>http_conn<span class="token double-colon punctuation">::</span>m_user_count <span class="token operator">>=</span> MAX_FD<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                    <span class="token comment">// 目前连接数已满</span>
+                    <span class="token comment">// 给客户端写一个信息：服务器正忙</span>
+                    <span class="token function">close</span><span class="token punctuation">(</span>connfd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">continue</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+
+                <span class="token comment">// 将connfd客户数据初始化后放入用户信息数组</span>
+                users<span class="token punctuation">[</span>connfd<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span>connfd<span class="token punctuation">,</span> clientaddr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            
+            <span class="token punctuation">&#125;</span>
+
+            <span class="token comment">// 有客户端错误事件情况</span>
+            <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>events<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>events <span class="token operator">&amp;</span> <span class="token punctuation">(</span>EPOLLRDHUP <span class="token operator">|</span> EPOLLHUP<span class="token operator">|</span> EPOLLERR<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token punctuation">&#123;</span>
+                users<span class="token punctuation">[</span>sockfd<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">closeconn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token comment">// 有客户端读事件情况</span>
+            <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>events<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>events <span class="token operator">&amp;</span> EPOLLIN<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>users<span class="token punctuation">[</span>sockfd<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                    <span class="token comment">// 一次性把所有数据读完</span>
+                    pool<span class="token operator">-></span><span class="token function">append</span><span class="token punctuation">(</span>users <span class="token operator">+</span> sockfd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span><span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+                    users<span class="token punctuation">[</span>sockfd<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">closeconn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+            <span class="token punctuation">&#125;</span>
+            
+            <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>events<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>events <span class="token operator">&amp;</span> EPOLLOUT<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>users<span class="token punctuation">[</span>sockfd<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                    <span class="token comment">// 一次性把所有数据写完</span>
+                <span class="token punctuation">&#125;</span><span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+                    users<span class="token punctuation">[</span>sockfd<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">closeconn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">close</span><span class="token punctuation">(</span>epollfd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">close</span><span class="token punctuation">(</span>lfd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">delete</span><span class="token punctuation">[</span><span class="token punctuation">]</span> users<span class="token punctuation">;</span>
+    <span class="token keyword">delete</span> pool<span class="token punctuation">;</span>
+
+<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
     </div>
 </div>

@@ -190,7 +190,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            328 词 
+            23k 词 
           </div>
         </div>
         
@@ -213,36 +213,26 @@
     
 
 
-系统流程主线程用epoll这种多路复用机制监听获取客户端，等候其发起连接，当有read或者write事件发出请求时，将请求加入到线程池，线程池中的一个线程争抢到锁，开始执行任务，任务包括解析请求与生成响应，包括对信号的序列化与反序列化，最终发布的静态资源为js页面，这里简单让ai写了一个电子木鱼的效果并进行一些润色，系统适配Linux。
+系统流程主线程用epoll这种多路复用机制监听客户端连接，当有read或者write事件发出请求时，将请求加入到线程池，线程池中的一个线程争抢到锁，开始执行任务，任务包括解析请求与生成响应，包括对信号的序列化与反序列化，最终发布的静态资源为js页面，这里简单让ai写了一个电子木鱼的效果并进行一些润色，系统适配Linux。
 线程池类
     
-        head-only
+        head-only threadpool class
     
     
-        to do
+        #ifndef THREADPOOL_H
+#define THREADPOOL_H
 
-    
+#include &lt;pthread.h>
+#include &lt;cstdio>
+#include &lt;list>
+#include &lt;exception>
 
-线程同步封装类
-    
-        head-only threadsemaphore class
-    
-    
-        2222
+#include "locker.h"
 
-    
+using namespace std;
 
-Http解析类
-    
-        head-only threadsemaphore class
-    
-    
-        555
-
-    
-
-经典永流传
-
+// 线程池类
+template&lt...
             
           </div>
         
