@@ -6,7 +6,7 @@
   <link href="https://miustannis.github.io/atom.xml" rel="self"/>
   
   <link href="https://miustannis.github.io/"/>
-  <updated>2026-02-20T07:55:36.467Z</updated>
+  <updated>2026-02-20T16:52:33.783Z</updated>
   <id>https://miustannis.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>回顾经典项目Webserver</title>
+    <link href="https://miustannis.github.io/2026/02/16/260216/"/>
+    <id>https://miustannis.github.io/2026/02/16/260216/</id>
+    <published>2026-02-16T04:22:29.000Z</published>
+    <updated>2026-02-20T16:52:33.783Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;回顾一下之前做的轻量级高并发网络服务器项目&lt;/p&gt;
+&lt;p&gt;项目部署在VMware的乌班图系统上，运行效果如下：&lt;/p&gt;
+&lt;p&gt;终端启动：&lt;/p&gt;
+&lt;center&gt;
+    &lt;img src=&quot;/images/webserver/page.webp&quot; width=&quot;500&quot;&gt;</summary>
+      
+    
+    
+    
+    <category term="Projects &amp; Builds" scheme="https://miustannis.github.io/categories/Projects-Builds/"/>
+    
+    
+    <category term="C++" scheme="https://miustannis.github.io/tags/C/"/>
+    
+  </entry>
   
   <entry>
     <title>异步日志系统</title>
@@ -98,17 +124,17 @@
     <link href="https://miustannis.github.io/2025/07/18/250718/"/>
     <id>https://miustannis.github.io/2025/07/18/250718/</id>
     <published>2025-07-18T03:38:44.000Z</published>
-    <updated>2025-09-15T14:07:58.798Z</updated>
+    <updated>2026-02-20T13:02:29.299Z</updated>
     
     
       
       
-    <summary type="html">&lt;p&gt;出于科研项目要求，我需要开发一个能个性化定制界面与功能的BLE手机上位机软件，在经过简单的调研后，主要有以下两种开发路径：&lt;/p&gt;
+    <summary type="html">&lt;p&gt;出于科研项目的需求，我需要开发一个能个性化定制界面与功能的BLE手机上位机软件，在经过简单的调研后，主要有以下两种开发路径：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Android Studio&lt;/li&gt;
 &lt;li&gt;MIT APP Inventor&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;其中AS需要J</summary>
+&lt;p&gt;其中AS需要</summary>
       
     
     
@@ -117,30 +143,6 @@
     
     
     <category term="Android" scheme="https://miustannis.github.io/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MFCC音频特征提取流程demo</title>
-    <link href="https://miustannis.github.io/2025/07/10/250710/"/>
-    <id>https://miustannis.github.io/2025/07/10/250710/</id>
-    <published>2025-07-10T03:38:44.000Z</published>
-    <updated>2025-08-20T04:14:33.829Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;MFCC的核心思想是模仿人耳对声音的非线性感知特性（人耳对低频声音比高频声音更敏感），从而更好地表示语音特征。其流程可以概括为以下&lt;strong&gt;步骤&lt;/strong&gt;：&lt;/p&gt;
-&lt;h3&gt;&lt;span id=&quot;分帧&quot;&gt;分帧&lt;/span&gt;&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;&lt;stron</summary>
-      
-    
-    
-    
-    <category term="Projects &amp; Builds" scheme="https://miustannis.github.io/categories/Projects-Builds/"/>
-    
-    
-    <category term="Algorithm" scheme="https://miustannis.github.io/tags/Algorithm/"/>
     
   </entry>
   

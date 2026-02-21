@@ -14,19 +14,27 @@
   
 
   
-  <title>归档: 2024/11 | Miao&#39;s Blog</title>
+  <title>回顾经典项目Webserver | Miao&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Miao&#39;s Blog">
-<meta property="og:url" content="https://miustannis.github.io/archives/2024/11/index.html">
+  <meta name="description" content="回顾一下之前做的轻量级高并发网络服务器项目 项目部署在VMware的乌班图系统上，运行效果如下： 终端启动：         浏览器访问：         系统流程主线程用epoll这种多路复用机制监听获取客户端，等候其发起连接，当有read或者write事件发出请求时，将请求加入到线程池，线程池中的一个线程争抢到锁，开始执行任务，任务包括解析请求与生成响应，包括对信号的序列化与反序列化，最终发布">
+<meta property="og:type" content="article">
+<meta property="og:title" content="回顾经典项目Webserver">
+<meta property="og:url" content="https://miustannis.github.io/2026/02/16/260216/index.html">
 <meta property="og:site_name" content="Miao&#39;s Blog">
+<meta property="og:description" content="回顾一下之前做的轻量级高并发网络服务器项目 项目部署在VMware的乌班图系统上，运行效果如下： 终端启动：         浏览器访问：         系统流程主线程用epoll这种多路复用机制监听获取客户端，等候其发起连接，当有read或者write事件发出请求时，将请求加入到线程池，线程池中的一个线程争抢到锁，开始执行任务，任务包括解析请求与生成响应，包括对信号的序列化与反序列化，最终发布">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://miustannis.github.io/images/webserver/page.webp">
+<meta property="og:image" content="https://miustannis.github.io/images/webserver/terminal.webp">
+<meta property="article:published_time" content="2026-02-16T04:22:29.000Z">
+<meta property="article:modified_time" content="2026-02-20T16:52:33.783Z">
 <meta property="article:author" content="miao">
+<meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://miustannis.github.io/images/webserver/page.webp">
   
     <link rel="alternate" href="/atom.xml" title="Miao's Blog" type="application/atom+xml">
   
@@ -158,100 +166,127 @@
     <div id="content-body">
        
 
-<!-- 局部样式：将 chip 的展示和颜色交给主题变量控制，避免内联样式覆盖主题 -->
-<style>
-:root{
-  --archive-chip-bg: rgba(0,0,0,0.04);
-  --archive-chip-color: #000; /* 从 #222 改为纯黑 */
-}
 
-/* 支持多种常见暗色类/属性，便于快速兼容不同主题实现 */
-[theme="dark"]{
-  --archive-chip-bg: rgba(255,255,255,0.06);
-  --archive-chip-color: #eee;
-}
-.archive-total.chip{
-  margin-left: 12px;
-  display: inline-flex;
-  align-items: center;
-  white-space: nowrap;
-  padding: 2px 8px;
-  border-radius: 6px;
-  font-weight: 600;
-  /* 去掉背景色，避免出现底纹 */
-  background: transparent;
-  color: var(--archive-chip-color);
-}
-</style>
-
-<!-- 小脚本：从 localStorage 或 html[theme] 读取主题并同步到 data-theme / html.class / body.class -->
-<script>
-(function(){
-  try {
-    const html = document.documentElement;
-    const getStored = () => {
-      try { return localStorage.getItem('vivia-theme') || localStorage.getItem('theme'); } catch(e) { return null; }
-    };
-    const raw = getStored() || html.getAttribute('theme') || html.getAttribute('data-theme') || '';
-    if (!raw) return;
-    const key = String(raw).toLowerCase();
-    const resolved = key === 'system' && window.matchMedia
-      ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
-      : key;
-    const isDark = resolved === 'dark' || resolved === 'night';
-    html.setAttribute('data-theme', isDark ? 'dark' : 'light');
-    html.classList.toggle('dark', isDark);
-    html.classList.toggle('vivia-dark', isDark);
-    if (document.body) document.body.classList.toggle('dark', isDark);
-  } catch(e){}
-})();
-</script>
-
-<div class="archive-main-card">
-    <div class="archive-top">
-      <div class="main-title-bar">
-        <div class="main-title-dot"></div>
-        <h1 class="article-title">归档</h1>
-        <!-- 保持与标题同一行、同一层级并加粗，避免换行 -->
+<article id="post-260216" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
         
-        
-          <div class="archive-total chip">
-            <strong>共 18 篇</strong>
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        回顾经典项目Webserver
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2026-02-16T04:22:29.000Z" itemprop="datePublished">2026-02-16</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/Projects-Builds/">Projects & Builds</a>
+   
+</div>
+  
           </div>
+          <div class="wordcount need-seperator meta-info">
+            328 词 
+          </div>
+        </div>
         
-      </div>    
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <p>回顾一下之前做的轻量级高并发网络服务器项目</p>
+<p>项目部署在VMware的乌班图系统上，运行效果如下：</p>
+<p>终端启动：</p>
+<center>
+    <img src="/images/webserver/page.webp" width="500">
+</center>
+
+<p>浏览器访问：</p>
+<center>
+    <img src="/images/webserver/terminal.webp" width="500">
+</center>
+
+<h3><span id="系统流程">系统流程</span></h3><p>主线程用epoll这种多路复用机制监听获取客户端，等候其发起连接，当有read或者write事件发出请求时，将请求加入到线程池，线程池中的一个线程争抢到锁，开始执行任务，任务包括解析请求与生成响应，包括对信号的序列化与反序列化，最终发布的静态资源为js页面，这里简单让ai写了一个电子木鱼的效果并进行一些润色，系统适配Linux。</p>
+<h3><span id="线程池类">线程池类</span></h3><div class="fold collapsed">
+    <div class="fold-title">
+        head-only
+    </div>
+    <div class="fold-content">
+        <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">to <span class="token keyword">do</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+    </div>
+</div>
+<h3><span id="线程同步封装类">线程同步封装类</span></h3><div class="fold collapsed">
+    <div class="fold-title">
+        head-only threadsemaphore class
+    </div>
+    <div class="fold-content">
+        <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token number">2222</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+    </div>
+</div>
+<h3><span id="http解析类">Http解析类</span></h3><div class="fold collapsed">
+    <div class="fold-title">
+        head-only threadsemaphore class
+    </div>
+    <div class="fold-content">
+        <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token number">555</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+    </div>
+</div>
+<p>经典永流传</p>
+<link rel="stylesheet" href="/css/folder.css" type="text/css"><script src="/js/folder.js" type="text/javascript" async></script>
+        
+      </div>
+         
     </div>
     
-    
-      
-      
-        
-        <div class="year-line">
-            <div class="year-num">2024</div>
-            <div class="dot-wrapper">
-                <div class="dot"></div>
-            </div>
-            <div class="article-count">1 篇文章</div>
-        </div>
-      
-      <a class="archive-article-link" href="/2024/11/21/241121/" title="STM32配置笔记">
-        <div class="date">11-21</div>
-        <div class="line">
-            <div class="dot"></div>
-        </div>
-        <div class="title">
-            <div class="title-inner">
-                
-                    STM32配置笔记
-                
-            </div>
-        </div>
-        <div class="tags">
-            #嵌入式
-        </div>
-      </a>
-    
+     
   </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left  disabled "
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2026/01/30/260130/"
+      title="异步日志系统"
+     >
+
+    <p class="title-text">
+      
+        异步日志系统
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+
     </div>
     <div id="footer-wrapper">
       <footer id="footer">

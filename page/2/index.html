@@ -127,14 +127,14 @@
     <div class="widget">
       <h3 class="widget-title">分类</h3>
       <div class="category-box">
-            <a class="category-link" href="/categories/Projects-Builds/">
-                Projects & Builds
-                <div class="category-count">9</div>
-            </a>
-        
             <a class="category-link" href="/categories/Learning-Record/">
                 Learning Record
                 <div class="category-count">8</div>
+            </a>
+        
+            <a class="category-link" href="/categories/Projects-Builds/">
+                Projects & Builds
+                <div class="category-count">10</div>
             </a>
         </div>
     </div>
@@ -157,6 +157,94 @@
     </div>
     <div id="content-body">
       
+   
+
+
+<article id="post-250510" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2025/05/10/250510/">手持红外热成像仪V2.0-加载图像算法并嵌入轻量级神经网络</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2025-05-10T02:05:52.000Z" itemprop="datePublished">2025-05-10</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/Projects-Builds/">Projects & Builds</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            6.2k 词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">图像处理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="truncate-text">
+            
+              在之前的基础上改进了一部分
+硬件上把串口和SWD下载口引出来了，夹具下载有点不稳定
+同时把手头上的LCD模组和红外传感器模组给用了，没有额外购买物资，成品图如下：
+
+    
+
+
+
+左边是V1，右边是V2
+&nbsp;
+软件部分增加了一些图像处理的功能：
+图像平滑：双线性插值
+void interpolateTemperature(float *src, float *dst, uint8_t src_w, uint8_t src_h, uint8_t dst_w, uint8_t dst_h) &#123;
+    float x_ratio = (float)(src_w-1) / dst_w;
+    float y_ratio = (float)(src_h-1) / dst_h;
+    for (int y = 0; y &lt; dst_h; y++) &#123;
+        for (int x = 0; x &lt; dst_w; x++) &#123;
+            float x_src = x * x_ratio;
+            ...
+            
+          </div>
+        
+      </div>
+         
+    </div>
+    
+     
+    <a class="right-panel  with-pic  "
+       style="background-image: url(/images/thermal_camera/thermal_camera2.webp)" 
+      href="/2025/05/10/250510/" 
+    >
+       
+      <div class="overlay">
+        <i class="fa-solid fa-angle-right with-pic"></i>
+      </div>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+
+
    
 
 
@@ -740,92 +828,6 @@ void ST7735_DrawImage(uint16_t x, uint16_t y, uint16_t w, uint16_t h, const uint
     <a class="right-panel  non-pic  "
       
       href="/2024/09/28/240928/" 
-    >
-       
-      <i class="fa-solid fa-angle-right non-pic"></i>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
-
-
-   
-
-
-<article id="post-220321" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2022/03/21/220321/">Hexo博客插入图片</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2022-03-21T01:32:46.000Z" itemprop="datePublished">2022-03-21</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-  <a class="meta-cate-link" href="/categories/Projects-Builds/">Projects & Builds</a>
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            1.1k 词 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            
-              目录：
-
-插入图片
-更改相对位置
-
-
-插入图片之前打算在文章中插入图片，配置的过程中遇到了一些问题。
-想在博客中引用外站图片问题不大，但Hexo默认插入图片只有这一个方法，对有本地化需求的人群来说不够方便，此时可以安装一个满足本地图片引用的插件npm install https://github.com/CodeFalling/hexo-asset-image –save
-修改_config.yml文件，将post_asset_folder:值改为true。
-之后在新建一个博客的同时会生成同名文件夹，将需插入的图片放入该文件夹即可。文章中的具体引用代码为以下格式：(后来发现在source文件夹里新建一个名为images的文件夹存放图片也行)![](1/image.jpg)
-更改相对位置但这种方法在PC端有一个默认的问题就是图片插入后会自动左对齐，想要实现居中对齐，可以在markdown引用代码外部添加center元素，或者直接添加html元素，如下所示：&lt;center>
-
-![...](xxx)
-
-&lt;/center>
-
-&lt;!--or -->
-
-&lt;div a...
-            
-          </div>
-        
-      </div>
-         
-    </div>
-    
-     
-    <a class="right-panel  non-pic  "
-      
-      href="/2022/03/21/220321/" 
     >
        
       <i class="fa-solid fa-angle-right non-pic"></i>
