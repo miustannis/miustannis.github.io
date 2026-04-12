@@ -6,7 +6,7 @@
   <link href="https://sylvanmiao.github.io/atom.xml" rel="self"/>
   
   <link href="https://sylvanmiao.github.io/"/>
-  <updated>2026-04-06T09:43:13.108Z</updated>
+  <updated>2026-04-12T03:06:38.548Z</updated>
   <id>https://sylvanmiao.github.io/</id>
   
   <author>
@@ -21,14 +21,15 @@
     <link href="https://sylvanmiao.github.io/2026/03/30/260330/"/>
     <id>https://sylvanmiao.github.io/2026/03/30/260330/</id>
     <published>2026-03-30T14:22:29.000Z</published>
-    <updated>2026-04-06T09:43:13.108Z</updated>
+    <updated>2026-04-12T03:06:38.548Z</updated>
     
     
       
       
-    <summary type="html">&lt;h2&gt;&lt;span id=&quot;同步与异步模式简介&quot;&gt;同步与异步模式简介&lt;/span&gt;&lt;/h2&gt;&lt;h3&gt;&lt;span id=&quot;同步&quot;&gt;同步&lt;/span&gt;&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;同步模式下，程序会等待某个操作完成后再继续执行后续代码&lt;/li&gt;
-&lt;li&gt;典型场景：阻塞式 socket </summary>
+    <summary type="html">&lt;h2&gt;&lt;span id=&quot;目录&quot;&gt;&lt;strong&gt;目录：&lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;&lt;!-- toc --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#%E5%90%8C%E6%AD%A5%E4%B8%8E%E5%BC%82%E6%AD%A5%E6%A8%A1%E5</summary>
       
     
     

@@ -127,14 +127,14 @@
     <div class="widget">
       <h3 class="widget-title">分类</h3>
       <div class="category-box">
-            <a class="category-link" href="/categories/Learning-Record/">
-                Learning Record
-                <div class="category-count">9</div>
-            </a>
-        
             <a class="category-link" href="/categories/Projects-Builds/">
                 Projects & Builds
                 <div class="category-count">10</div>
+            </a>
+        
+            <a class="category-link" href="/categories/Learning-Record/">
+                Learning Record
+                <div class="category-count">9</div>
             </a>
         </div>
     </div>
@@ -231,7 +231,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            13k 词 
+            14k 词 
           </div>
         </div>
         
@@ -242,7 +242,31 @@
         
           <div class="truncate-text">
             
-              同步与异步模式简介同步
+              目录：
+
+
+同步与异步模式简介
+同步
+异步
+
+
+Boost.Asio 网络库使用
+核心组件
+同步模式下的典型流程
+异步模式下的典型流程
+开发注意点：
+
+
+一个asio异步echo服务器示例
+常用协议与模型之间的关系
+协议升级
+I&#x2F;O模型
+
+
+
+
+
+同步与异步模式简介同步
 同步模式下，程序会等待某个操作完成后再继续执行后续代码
 典型场景：阻塞式 socket 通信，read&#x2F;write 操作会阻塞线程直到数据收发完成
 优点：编程简单，逻辑清晰，易于理解和调试
@@ -253,14 +277,7 @@ void session(socket_ptr sock)&#123;
     char data[MAX_LENGTH];
     size_t length = sock->read_some(boost::asio::buffer(data, MAX_LENGTH), error);
     // ...处理数据...
-    boost::asio::write(*sock, boost::asio::buffer(data, length));
-  &#125;
-&#125;
-
-异步
-异步模式下，操作会立即返回，实际的读写操作在后台进行，完成后通过回调函数通知主程序
-典型场景：事件驱动的高性能服务器，利用回调机制处理 I&#x2F;O
-优点：高...
+    boost::asio::write(*sock, boost::a...
             
           </div>
         
@@ -674,22 +691,5 @@ classDiagram
 
   </div>
   <script src="/js/light-dark-switch.js"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-
 </body>
 </html>
