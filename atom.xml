@@ -6,7 +6,7 @@
   <link href="https://sylvanmiao.github.io/atom.xml" rel="self"/>
   
   <link href="https://sylvanmiao.github.io/"/>
-  <updated>2026-04-12T03:06:38.548Z</updated>
+  <updated>2026-06-03T15:15:54.377Z</updated>
   <id>https://sylvanmiao.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Diffusion：从hands-on practise出发，拆解 DDPM 的核心原理</title>
+    <link href="https://sylvanmiao.github.io/2026/06/03/260603/"/>
+    <id>https://sylvanmiao.github.io/2026/06/03/260603/</id>
+    <published>2026-06-03T14:22:29.000Z</published>
+    <updated>2026-06-03T15:15:54.377Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;最近在捣鼓扩散模型，参照HuggingFace的教程，搭了一个 MiniU-Net 跑了一遍训练&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2&gt;&lt;span id=&quot;项目简述&quot;&gt;项目简述&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;项目很小，三个文件，目标就</summary>
+      
+    
+    
+    
+    <category term="Learning Record" scheme="https://sylvanmiao.github.io/categories/Learning-Record/"/>
+    
+    
+    <category term="Algorithm" scheme="https://sylvanmiao.github.io/tags/Algorithm/"/>
+    
+  </entry>
   
   <entry>
     <title>网络编程与应用实践</title>
@@ -116,31 +142,6 @@
     
     
     <category term="C++" scheme="https://sylvanmiao.github.io/tags/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>KMP算法 Study Log</title>
-    <link href="https://sylvanmiao.github.io/2025/08/10/250810/"/>
-    <id>https://sylvanmiao.github.io/2025/08/10/250810/</id>
-    <published>2025-08-10T03:38:44.000Z</published>
-    <updated>2025-08-18T14:29:23.141Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;!-- toc --&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#%E4%BB%80%E4%B9%88%E6%98%AF%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D&quot;&gt;&lt;strong&gt;什么是字符串匹配&lt;/strong&gt;&lt;/a&gt;&lt;/li</summary>
-      
-    
-    
-    
-    <category term="Learning Record" scheme="https://sylvanmiao.github.io/categories/Learning-Record/"/>
-    
-    
-    <category term="Algorithm" scheme="https://sylvanmiao.github.io/tags/Algorithm/"/>
     
   </entry>
   
