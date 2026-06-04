@@ -28,7 +28,7 @@
 <meta property="og:description" content="最近在捣鼓扩散模型，参照HuggingFace的教程，搭了一个 MiniU-Net 跑了一遍训练   项目简述项目很小，三个文件，目标就一个：让模型学会把一张加了噪声的手写数字恢复到干净状态 Diffusers&#x2F; ├── BasicUnet.py            # MiniU-Net，~50K 参数 ├── diffusion_learning.py   # 训练 + 简化的去">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-06-03T14:22:29.000Z">
-<meta property="article:modified_time" content="2026-06-03T15:15:54.377Z">
+<meta property="article:modified_time" content="2026-06-04T02:25:34.304Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary">
@@ -321,7 +321,10 @@ loss <span class="token operator">=</span> loss_fn<span class="token punctuation
 <p>训练 3 个 epoch，loss 就从 ~0.05 降到了 ~0.02，收敛很快。</p>
 <hr>
 <h3><span id="采样x2f生成">采样&#x2F;生成</span></h3><p>生成新图时，从一个纯噪声 $x_T$ 开始，一步步去噪：</p>
-<p>$x_{t-1} &#x3D; \frac{1}{\sqrt{\alpha_t}} \left(x_t - \frac{1 - \alpha_t}{\sqrt{1 - \bar{\alpha}<em>t}} \cdot \epsilon</em>\theta(x_t, t)\right) + \sigma_t \cdot z$</p>
+<center>
+    $x_{t-1} = \frac{1}{\sqrt{\alpha_t}} \left(x_t - \frac{1 - \alpha_t}{\sqrt{1 - \bar{\alpha}_t}} \cdot \epsilon_\theta(x_t, t)\right) + \sigma_t \cdot z$
+</center>
+
 <p>最后加的那个 $\sigma_t \cdot z$ 是随机噪声，保证生成的多样性, 但在简化版里我直接省略了，保持每一步都是确定性的</p>
 <p>项目中简化为 5 步线性插值：</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">n_steps <span class="token operator">=</span> <span class="token number">5</span>
@@ -398,7 +401,10 @@ x <span class="token operator">=</span> torch<span class="token punctuation">.</
 <p><strong>前向扩散（一步到位）</strong>：</p>
 <p>$x_t &#x3D; \sqrt{\bar{\alpha}_t} \cdot x_0 + \sqrt{1 - \bar{\alpha}_t} \cdot \epsilon$</p>
 <p><strong>逆向采样</strong>：</p>
-<p>$x_{t-1} &#x3D; \frac{1}{\sqrt{\alpha_t}} \left(x_t - \frac{1 - \alpha_t}{\sqrt{1 - \bar{\alpha}<em>t}} \cdot \epsilon</em>\theta(x_t, t)\right) + \sigma_t z$</p>
+<center>
+    $x_{t-1} = \frac{1}{\sqrt{\alpha_t}} \left(x_t - \frac{1 - \alpha_t}{\sqrt{1 - \bar{\alpha}_t}} \cdot \epsilon_\theta(x_t, t)\right) + \sigma_t z$
+</center>
+
 <p><strong>训练 Loss</strong>：</p>
 <p>$\mathcal{L} &#x3D; \big|\epsilon - \epsilon_\theta(x_t, t)\big|^2$</p>
 <hr>
@@ -432,14 +438,14 @@ x <span class="token operator">=</span> torch<span class="token punctuation">.</
 </tr>
 </tbody></table>
 <hr>
-<h2><span id="ddpm-之后扩散模型这五年">DDPM 之后：扩散模型这五年</span></h2><p>DDPM 打开了局面，但它有一个明显的痛点——<strong>生成一张图要迭代 1000 步，太慢了</strong>。后续的研究基本都在解决这个问题：</p>
+<h2><span id="ddpm-之后">DDPM 之后</span></h2><p>DDPM 打开了局面，但它有一个明显的痛点——<strong>生成一张图要迭代 1000 步，太慢了</strong>。后续的研究基本都在解决这个问题：</p>
 <ul>
 <li><strong>DDIM（2020）</strong>：去掉马尔可夫约束，采样步数从 1000 砍到 50~100 步，质量几乎不降</li>
 <li><strong>Stable Diffusion &#x2F; Latent Diffusion（2022）</strong>：不在像素空间扩散，改在 VAE 压缩后的潜空间——计算量骤降，让扩散模型能跑在消费级 GPU 上</li>
 <li><strong>DPM-Solver &#x2F; DPM++（2022）</strong>：用 ODE 数值求解器替代随机采样，20~50 步达到高质量</li>
 <li><strong>Consistency Models（2023）</strong>：训练模型一步或两步就能生成，直接对标 GAN 的速度</li>
 </ul>
-<p>现在你在 Civitai 上下载的 Stable Diffusion 模型、Midjourney 的 V6、OpenAI 的 DALL·E 3——它们的技术底座都能追溯到 DDPM 这篇 2020 年的论文。</p>
+<p>现在在 Civitai 上下载的 Stable Diffusion 模型、Midjourney 的 V6、OpenAI 的 DALL·E 3——它们的技术底座都能追溯到 DDPM 这篇 2020 年的论文。</p>
 <hr>
 <h2><span id="参考资料">参考资料</span></h2><ul>
 <li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2006.11239">Denoising Diffusion Probabilistic Models (Ho et al., 2020)</a> — 开山之作</li>
