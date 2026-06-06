@@ -22,7 +22,7 @@
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="Miao&#39;s Blog">
-<meta property="og:url" content="https://sylvanmiao.github.io/page/5/index.html">
+<meta property="og:url" content="https://sylvanmiao.github.io/page/6/index.html">
 <meta property="og:site_name" content="Miao&#39;s Blog">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="miao">
@@ -201,7 +201,7 @@
    
 
 
-<article id="post-241121" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+<article id="post-230220" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
    
   <div class="article-inner">
     <div class="article-main">
@@ -212,7 +212,7 @@
   
     
       <h1 itemprop="name">
-        <a class="p-name article-title" href="/2024/11/21/241121/">STM32配置笔记</a>
+        <a class="p-name article-title" href="/2023/02/20/230220/">Hexo博客启用测试</a>
       </h1>
     
   
@@ -220,228 +220,7 @@
 
         <div class='meta-info-bar'>
           <div class="meta-info">
-  <time class="dt-published" datetime="2024-11-21T10:45:34.000Z" itemprop="datePublished">2024-11-21</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-  <a class="meta-cate-link" href="/categories/Learning-Record/">Learning Record</a>
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            56 词 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <p>大二学习STM32G4系列的笔记</p>
-        
-      </div>
-         
-    </div>
-    
-     
-    <a class="right-panel  with-pic  "
-       style="background-image: url(/images/embeded_sys/notes.webp)" 
-      href="/2024/11/21/241121/" 
-    >
-       
-      <div class="overlay">
-        <i class="fa-solid fa-angle-right with-pic"></i>
-      </div>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
-
-
-   
-
-
-<article id="post-241020" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2024/10/20/241020/">UART收发处理函数</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2024-10-20T02:51:00.000Z" itemprop="datePublished">2024-10-20</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-  <a class="meta-cate-link" href="/categories/Learning-Record/">Learning Record</a>
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            1.8k 词 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            
-              UART（Universal Asynchronous Receiver&#x2F;Transmitter）是一种串行通信协议，在嵌入式系统和微控制器间数据传输中发挥着核心作用。UART协议通过异步方式传输数据，不依赖于共享时钟信号，简化了通信线路的需求。每次传输包括起始位、数据位、可选的奇偶校验位以及停止位，这种结构支持从简单的传感器到复杂的处理器之间的可靠数据交换。
-其重要性还体现在其广泛的兼容性和低成本实现上。它可以通过简单的两线（TX和RX）接口实现全双工通信，极大地降低了系统的硬件复杂性。此外，UART通信协议可以适应不同的波特率设置，使其能够灵活地调整以匹配特定应用的速度要求。在许多工业和消费电子产品中，UART仍然是实现可靠串行通信的首选技术，尤其在资源受限的环境中显示出其高效和经济的优势。（以上均为GPT生成）
-在进行传感器测试时，常用到UART，这里mark一下自己常用的HAL库函数封装，免得后续一直翻之前的程序
-函数需要用到的全局变量如下：
-char send[20] = &#123;0&#125;; //传输用字符数组，储存字符串
-
-uint8_t rx_b...
-            
-          </div>
-        
-      </div>
-         
-    </div>
-    
-     
-    <a class="right-panel  non-pic  "
-      
-      href="/2024/10/20/241020/" 
-    >
-       
-      <i class="fa-solid fa-angle-right non-pic"></i>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
-
-
-   
-
-
-<article id="post-240928" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2024/09/28/240928/">TFTLCD驱动</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2024-09-28T06:00:30.000Z" itemprop="datePublished">2024-09-28</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-  <a class="meta-cate-link" href="/categories/Learning-Record/">Learning Record</a>
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            1.8k 词 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            
-              在使用Img2LCD取模软件和ST7735S驱动IC控制LCD时，发现API中显示图片的函数调用后显示异常
-原函数：
-void ST7735_DrawImage(uint16_t x, uint16_t y, uint16_t w, uint16_t h, const uint16_t* data) &#123;
-    if((x >= ST7735_WIDTH) || (y >= ST7735_HEIGHT)) return;
-    if((x + w - 1) >= ST7735_WIDTH) return;
-    if((y + h - 1) >= ST7735_HEIGHT) return;
-
-    ST7735_Select();
-    ST7735_SetAddressWindow(x, y, x+w-1, y+h-1);
-    ST7735_WriteData((uint8_t*)data, sizeof(uint16_t)*w*h);
-    ST7735_Unselect();
-&#125;
-
-输入数据要求16位rgb565格式图片，与Img2LCD...
-            
-          </div>
-        
-      </div>
-         
-    </div>
-    
-     
-    <a class="right-panel  non-pic  "
-      
-      href="/2024/09/28/240928/" 
-    >
-       
-      <i class="fa-solid fa-angle-right non-pic"></i>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
-
-
-   
-
-
-<article id="post-230321" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2023/03/21/230321/">Hexo博客插入图片</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2023-03-21T01:32:46.000Z" itemprop="datePublished">2023-03-21</time>
+  <time class="dt-published" datetime="2023-02-20T07:08:39.000Z" itemprop="datePublished">2023-02-20</time>
 </div>
           <div class="need-seperator meta-info">
             <div class="meta-cate-flex">
@@ -452,7 +231,7 @@ void ST7735_DrawImage(uint16_t x, uint16_t y, uint16_t w, uint16_t h, const uint
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            1.1k 词 
+            11 词 
           </div>
         </div>
         
@@ -463,29 +242,11 @@ void ST7735_DrawImage(uint16_t x, uint16_t y, uint16_t w, uint16_t h, const uint
         
           <div class="truncate-text">
             
-              目录：
+              test
+测试
+試験
+テスト
 
-
-插入图片
-更改相对位置
-
-
-
-插入图片之前打算在文章中插入图片，配置的过程中遇到了一些问题。
-想在博客中引用外站图片问题不大，但Hexo默认插入图片只有这一个方法，对有本地化需求的人群来说不够方便，此时可以安装一个满足本地图片引用的插件npm install https://github.com/CodeFalling/hexo-asset-image –save
-修改_config.yml文件，将post_asset_folder:值改为true。
-之后在新建一个博客的同时会生成同名文件夹，将需插入的图片放入该文件夹即可。文章中的具体引用代码为以下格式：(后来发现在source文件夹里新建一个名为images的文件夹存放图片也行)
-![](1/image.jpg)
-更改相对位置但这种方法在PC端有一个默认的问题就是图片插入后会自动左对齐，想要实现居中对齐，可以在markdown引用代码外部添加center元素，或者直接添加html元素，如下所示：
-&lt;center>
-
-![...](xxx)
-
-&lt;/center>
-
-&lt;!--or -->
-
-&lt;d...
             
           </div>
         
@@ -496,7 +257,7 @@ void ST7735_DrawImage(uint16_t x, uint16_t y, uint16_t w, uint16_t h, const uint
      
     <a class="right-panel  non-pic  "
       
-      href="/2023/03/21/230321/" 
+      href="/2023/02/20/230220/" 
     >
        
       <i class="fa-solid fa-angle-right non-pic"></i>
@@ -512,13 +273,13 @@ void ST7735_DrawImage(uint16_t x, uint16_t y, uint16_t w, uint16_t h, const uint
 
   <nav id="page-nav">
     <!-- 在第二页时 page.prev_link 不知为何无法返回正确的链接 -->
-    <a id="prev-btn" class="page-nav-btn " href=" /page/4/  ">
+    <a id="prev-btn" class="page-nav-btn " href=" /page/5/  ">
       <i class="fa-solid fa-angle-left"></i>
     </a>
     <div id="num-bar">
-      <a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a>  
+      <a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>  
     </div>
-    <a id="next-btn" class="page-nav-btn " href="/page/6/">
+    <a id="next-btn" class="page-nav-btn disabled" href="/">
       <i class="fa-solid fa-angle-right"></i>
     </a>
   </nav>

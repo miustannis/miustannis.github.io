@@ -6,7 +6,7 @@
   <link href="https://sylvanmiao.github.io/atom.xml" rel="self"/>
   
   <link href="https://sylvanmiao.github.io/"/>
-  <updated>2026-06-04T02:25:34.304Z</updated>
+  <updated>2026-06-06T15:47:23.199Z</updated>
   <id>https://sylvanmiao.github.io/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Diffusion：从hands-on practise出发，拆解 DDPM 的核心原理</title>
+    <title>J-Invariance 视角下的 Blind-Spot Network 原理阐释</title>
     <link href="https://sylvanmiao.github.io/2026/06/03/260603/"/>
     <id>https://sylvanmiao.github.io/2026/06/03/260603/</id>
     <published>2026-06-03T14:22:29.000Z</published>
-    <updated>2026-06-04T02:25:34.304Z</updated>
+    <updated>2026-06-06T15:47:23.199Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;首先我们给出复原的问题定义，以及J不变性在优化问题中的推导，下面是在众多论文的思想中集成后整理的推导逻辑：&lt;/p&gt;
+&lt;iframe src=&quot;/pdfjs/web/viewer.html?file=/pdf/post2.pdf&quot; style=&quot;width:100%;heig</summary>
+      
+    
+    
+    
+    <category term="Learning Record" scheme="https://sylvanmiao.github.io/categories/Learning-Record/"/>
+    
+    
+    <category term="Algorithm" scheme="https://sylvanmiao.github.io/tags/Algorithm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Diffusion：hands-on practice</title>
+    <link href="https://sylvanmiao.github.io/2026/06/01/260601/"/>
+    <id>https://sylvanmiao.github.io/2026/06/01/260601/</id>
+    <published>2026-06-01T14:22:29.000Z</published>
+    <updated>2026-06-06T15:30:15.801Z</updated>
     
     
       
@@ -30,7 +53,7 @@
 &lt;p&gt;最近在捣鼓扩散模型，参照HuggingFace的教程，搭了一个 MiniU-Net 跑了一遍训练&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;hr&gt;
-&lt;h2&gt;&lt;span id=&quot;项目简述&quot;&gt;项目简述&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;项目很小，三个文件，目标就</summary>
+&lt;h2&gt;&lt;span id=&quot;项目简述&quot;&gt;项目简述&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;项目目标：&lt;strong&gt;</summary>
       
     
     
@@ -112,34 +135,6 @@
     
     
     <category term="CS" scheme="https://sylvanmiao.github.io/tags/CS/"/>
-    
-    <category term="C++" scheme="https://sylvanmiao.github.io/tags/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>C++小碗菜</title>
-    <link href="https://sylvanmiao.github.io/2026/01/25/260125/"/>
-    <id>https://sylvanmiao.github.io/2026/01/25/260125/</id>
-    <published>2026-01-25T03:38:44.000Z</published>
-    <updated>2026-02-18T11:25:36.795Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;一些C++中经常会接触的概念，包括中间件，数据结构封装等模块&lt;/p&gt;
-&lt;p&gt;了解原理，实现基本功能，实际运用的时候还需要根据具体需求进行扩展和优化&lt;/p&gt;
-&lt;p&gt;一般肯定直接用STL封装好的&lt;/p&gt;
-&lt;!-- toc --&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#%E5%</summary>
-      
-    
-    
-    
-    <category term="Learning Record" scheme="https://sylvanmiao.github.io/categories/Learning-Record/"/>
-    
     
     <category term="C++" scheme="https://sylvanmiao.github.io/tags/C/"/>
     

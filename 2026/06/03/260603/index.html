@@ -14,21 +14,21 @@
   
 
   
-  <title>Diffusion：从hands-on practise出发，拆解 DDPM 的核心原理 | Miao&#39;s Blog</title>
+  <title>J-Invariance 视角下的 Blind-Spot Network 原理阐释 | Miao&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
-  <meta name="description" content="最近在捣鼓扩散模型，参照HuggingFace的教程，搭了一个 MiniU-Net 跑了一遍训练   项目简述项目很小，三个文件，目标就一个：让模型学会把一张加了噪声的手写数字恢复到干净状态 Diffusers&#x2F; ├── BasicUnet.py            # MiniU-Net，~50K 参数 ├── diffusion_learning.py   # 训练 + 简化的去">
+  <meta name="description" content="首先我们给出复原的问题定义，以及J不变性在优化问题中的推导，下面是在众多论文的思想中集成后整理的推导逻辑：     Blind-Spot Network就是在上面结论的指引下做出的构建">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Diffusion：从hands-on practise出发，拆解 DDPM 的核心原理">
+<meta property="og:title" content="J-Invariance 视角下的 Blind-Spot Network 原理阐释">
 <meta property="og:url" content="https://sylvanmiao.github.io/2026/06/03/260603/index.html">
 <meta property="og:site_name" content="Miao&#39;s Blog">
-<meta property="og:description" content="最近在捣鼓扩散模型，参照HuggingFace的教程，搭了一个 MiniU-Net 跑了一遍训练   项目简述项目很小，三个文件，目标就一个：让模型学会把一张加了噪声的手写数字恢复到干净状态 Diffusers&#x2F; ├── BasicUnet.py            # MiniU-Net，~50K 参数 ├── diffusion_learning.py   # 训练 + 简化的去">
+<meta property="og:description" content="首先我们给出复原的问题定义，以及J不变性在优化问题中的推导，下面是在众多论文的思想中集成后整理的推导逻辑：     Blind-Spot Network就是在上面结论的指引下做出的构建">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-06-03T14:22:29.000Z">
-<meta property="article:modified_time" content="2026-06-04T02:25:34.304Z">
+<meta property="article:modified_time" content="2026-06-06T15:47:23.199Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary">
@@ -139,7 +139,7 @@
         
             <a class="category-link" href="/categories/Learning-Record/">
                 Learning Record
-                <div class="category-count">10</div>
+                <div class="category-count">11</div>
             </a>
         </div>
     </div>
@@ -163,9 +163,15 @@
       <h3 class="widget-title">最新文章</h3>
       <ul>
         
-          <a class="recent-link" href="/2026/06/03/260603/" title="Diffusion：从hands-on practise出发，拆解 DDPM 的核心原理" >
+          <a class="recent-link" href="/2026/06/03/260603/" title="J-Invariance 视角下的 Blind-Spot Network 原理阐释" >
             <div class="recent-link-text">
-              Diffusion：从hands-on practise出发，拆解 DDPM 的核心原理
+              J-Invariance 视角下的 Blind-Spot Network 原理阐释
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2026/06/01/260601/" title="Diffusion：hands-on practice" >
+            <div class="recent-link-text">
+              Diffusion：hands-on practice
             </div>
           </a>
         
@@ -184,12 +190,6 @@
           <a class="recent-link" href="/2026/01/30/260130/" title="异步日志系统" >
             <div class="recent-link-text">
               异步日志系统
-            </div>
-          </a>
-        
-          <a class="recent-link" href="/2026/01/25/260125/" title="C++小碗菜" >
-            <div class="recent-link-text">
-              C++小碗菜
             </div>
           </a>
         
@@ -218,7 +218,7 @@
   
     
       <h1 class="p-name article-title" itemprop="headline name">
-        Diffusion：从hands-on practise出发，拆解 DDPM 的核心原理
+        J-Invariance 视角下的 Blind-Spot Network 原理阐释
       </h1>
     
   
@@ -237,7 +237,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            4.5k 词 
+            86 词 
           </div>
         </div>
         
@@ -246,216 +246,12 @@
       </header>
       <div class="e-content article-entry" itemprop="articleBody">
         
-          <blockquote>
-<p>最近在捣鼓扩散模型，参照HuggingFace的教程，搭了一个 MiniU-Net 跑了一遍训练</p>
-</blockquote>
-<hr>
-<h2><span id="项目简述">项目简述</span></h2><p>项目很小，三个文件，目标就一个：<strong>让模型学会把一张加了噪声的手写数字恢复到干净状态</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">Diffusers&#x2F;
-├── BasicUnet.py            # MiniU-Net，~50K 参数
-├── diffusion_learning.py   # 训练 + 简化的去噪采样
-└── diffusers_usage.py      # HuggingFace Diffusers 库的配置示例<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+          <p>首先我们给出复原的问题定义，以及J不变性在优化问题中的推导，下面是在众多论文的思想中集成后整理的推导逻辑：</p>
+<iframe src="/pdfjs/web/viewer.html?file=/pdf/post2.pdf" style="width:100%;height:800px"></iframe>
 
-<p>用 MNIST 的 28×28 灰度数字图，往上面随机加噪声，然后训练一个 U-Net 把噪声去掉。降噪任务就是扩散模型一开始提出时的核心，后续推广到生成与多模态领域。</p>
-<blockquote>
-<p>运行环境：PyTorch + 一张 GPU</p>
-</blockquote>
-<hr>
-<h2><span id="ddpm生成模型的核心原理">DDPM：生成模型的核心原理</span></h2><h3><span id="反复加噪再反复去噪">反复加噪，再反复去噪</span></h3><p>想象你有一张清晰的图片。你往上面洒一点点沙子（加一点噪声），照片稍微糊了一点。再洒一点，更糊了。反复洒 1000 次——最后照片变成了一团完全看不出内容的沙子堆</p>
-<p><strong>如果能让 AI 学会”看到一团沙子，猜出洒沙子前一刻的照片长什么样”</strong>——那么反过来，从一团完全随机的沙子出发，一步步”逆转洒沙子”，最终不就能得到一张还原出来的图片了吗？</p>
-<p>这就是 DDPM 的核心逻辑</p>
-<p>DDPM（Denoising Diffusion Probabilistic Models）是 Ho 等人在 2020 年提出的，它把上面这个过程变成了两条马尔可夫链：</p>
-<pre class="line-numbers language-none"><code class="language-none">前向：x₀ → x₁ → x₂ → ... → x_T    （真图 → 纯噪）
-逆向：x_T → x_&#123;T-1&#125; → ... → x₀    （纯噪 → 新图）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p>前向是固定的（不需要学习），逆向才是模型要学的。</p>
-<hr>
-<h3><span id="前向扩散">前向扩散</span></h3><h4><span id="一步一加">一步一加</span></h4><p>每一步我们做同样的事情——保留一部分原图信号，再拌入一部分噪声：</p>
-<p>$q(x_t | x_{t-1}) &#x3D; \mathcal{N}\big(x_t;\ \sqrt{1-\beta_t} \cdot x_{t-1},\ \beta_t \mathbf{I}\big)$</p>
-<p>$\beta_t$ 是一个很小的数，从 $10^{-4}$ 慢慢涨到 $0.02$。一开始噪声加得很克制，到后面几乎全是噪声。</p>
-<h4><span id="合并步数">合并步数</span></h4><p>因为高斯分布的性质特别优雅，这 1000 步可以被”折叠”成一步：</p>
-<p>定义 $\alpha_t &#x3D; 1 - \beta_t$，$\bar{\alpha}_t &#x3D; \alpha_1 \cdot \alpha_2 \cdots \alpha_t$，那么：</p>
-<p>$$x_t &#x3D; \sqrt{\bar{\alpha}_t} \cdot x_0 + \sqrt{1 - \bar{\alpha}_t} \cdot \epsilon,\qquad \epsilon \sim \mathcal{N}(0, \mathbf{I})$$</p>
-<p><strong>这是整篇文章中比较重要的公式。(除了另外几个算 Lower Bound 与KL散度的公式之外)</strong> 它的意思就是：不管时间步 t 是多少，我可以直接从原始图 $x_0$ 算出 $x_t$，不需要迭代。</p>
-<p>代码里做了个更暴力的简化——随机选一个噪声量 amount，直接线性混合：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">corrupt</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> amount<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    noise <span class="token operator">=</span> torch<span class="token punctuation">.</span>rand_like<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
-    amount <span class="token operator">=</span> amount<span class="token punctuation">.</span>view<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
-    <span class="token keyword">return</span> x <span class="token operator">*</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">-</span> amount<span class="token punctuation">)</span> <span class="token operator">+</span> noise <span class="token operator">*</span> amount<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>直观到一句话就能说清楚：<code>amount=0</code> → 原图，<code>amount=1</code> → 纯噪声，中间就是各种程度的模糊。</p>
-<hr>
-<h3><span id="逆向去噪">逆向去噪</span></h3><p>逆向过程才是需要训练的。我们用神经网络 $\epsilon_\theta$ 来猜：<strong>给定 $x_t$ 和时间步 $t$，$x_t$ 里面混了多少噪声？</strong></p>
-<p>$$p_\theta(x_{t-1} | x_t) &#x3D; \mathcal{N}\big(x_{t-1};\ \mu_\theta(x_t, t),\ \sigma_t^2 \mathbf{I}\big)$$</p>
-<h4><span id="为什么让模型预测噪声而不是干净图">为什么让模型预测”噪声”而不是”干净图”？</span></h4><p>这是个绝妙的设计选择。如果想：</p>
-<ul>
-<li>如果让模型直接预测 $x_0$（干净图）——非常难做</li>
-<li>如果让模型预测噪声 $\epsilon$——噪声的分布是 $\mathcal{N}(0, I)$，零均值、单位方差，规规矩矩</li>
-</ul>
-<p>预测噪声更好，因为：</p>
-<ol>
-<li><strong>目标分布简单</strong>：不管输入是什么，噪声永远服从同一个分布</li>
-<li><strong>等价可转换</strong>：知道了噪声 $\hat{\epsilon}$，就能反推出 $\mu_\theta$，进而得到 $x_{t-1}$</li>
-<li><strong>实践验证</strong>：大量实验表明预测噪声的训练更稳定、生成质量更高</li>
-</ol>
-<blockquote>
-<p>本项目做的是简化版——直接预测 $x_0$，方便理解。标准 Diffusers 库里的 UNet2DModel 是老老实实预测噪声</p>
-</blockquote>
-<hr>
-<h3><span id="训练公式很复杂但核心思路很简单">训练：公式很复杂，但核心思路很简单</span></h3><p>DDPM 的训练循环，核心就这几步：</p>
-<ol>
-<li>拿一张干净图 $x_0$</li>
-<li>随机挑一个时间步 $t$</li>
-<li>随机生成噪声 $\epsilon$</li>
-<li>一步算出 $x_t &#x3D; \sqrt{\bar{\alpha}_t} \cdot x_0 + \sqrt{1 - \bar{\alpha}_t} \cdot \epsilon$</li>
-<li>让模型根据 $x_t$ 猜噪声 $\hat{\epsilon}$</li>
-<li>算 MSE：$\mathcal{L} &#x3D; |\epsilon - \hat{\epsilon}|^2$</li>
-<li>反向传播，更新参数</li>
-</ol>
-<p>在项目中，对应的代码更直观——模型直接预测干净图，和原图算 MSE：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">noise_amount <span class="token operator">=</span> torch<span class="token punctuation">.</span>rand<span class="token punctuation">(</span>x<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>   <span class="token comment"># 随机噪声量</span>
-noisy_x <span class="token operator">=</span> corrupt<span class="token punctuation">(</span>x<span class="token punctuation">,</span> noise_amount<span class="token punctuation">)</span>                  <span class="token comment"># 加噪</span>
-pred <span class="token operator">=</span> net<span class="token punctuation">(</span>noisy_x<span class="token punctuation">)</span>                                  <span class="token comment"># 模型预测干净图</span>
-loss <span class="token operator">=</span> loss_fn<span class="token punctuation">(</span>pred<span class="token punctuation">,</span> x<span class="token punctuation">)</span>                              <span class="token comment"># 和真图比 MSE</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>训练 3 个 epoch，loss 就从 ~0.05 降到了 ~0.02，收敛很快。</p>
-<hr>
-<h3><span id="采样x2f生成">采样&#x2F;生成</span></h3><p>生成新图时，从一个纯噪声 $x_T$ 开始，一步步去噪：</p>
-<center>
-    $x_{t-1} = \frac{1}{\sqrt{\alpha_t}} \left(x_t - \frac{1 - \alpha_t}{\sqrt{1 - \bar{\alpha}_t}} \cdot \epsilon_\theta(x_t, t)\right) + \sigma_t \cdot z$
-</center>
-
-<p>最后加的那个 $\sigma_t \cdot z$ 是随机噪声，保证生成的多样性, 但在简化版里我直接省略了，保持每一步都是确定性的</p>
-<p>项目中简化为 5 步线性插值：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">n_steps <span class="token operator">=</span> <span class="token number">5</span>
-x <span class="token operator">=</span> torch<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">28</span><span class="token punctuation">,</span> <span class="token number">28</span><span class="token punctuation">)</span>   <span class="token comment"># 从纯随机噪声开始</span>
-<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n_steps<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    pred <span class="token operator">=</span> net<span class="token punctuation">(</span>x<span class="token punctuation">)</span>                <span class="token comment"># 模型猜干净图</span>
-    mix_factor <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">/</span> <span class="token punctuation">(</span>n_steps <span class="token operator">-</span> i<span class="token punctuation">)</span>  <span class="token comment"># 这一步迈向预测结果的比例</span>
-    x <span class="token operator">=</span> x <span class="token operator">*</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">-</span> mix_factor<span class="token punctuation">)</span> <span class="token operator">+</span> pred <span class="token operator">*</span> mix_factor<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>每步往模型预测的干净图方向挪一点，5 步后就能看到像模像样的数字了</p>
-<hr>
-<h2><span id="网络结构">网络结构</span></h2><p>扩散模型的经典backbone是U-Net，<br>这里用的MiniU-Net 结构更简明：</p>
-<pre class="line-numbers language-none"><code class="language-none">Input (1, 28, 28)
-  │
-  ├─ Conv(1→32) → SiLU ──→ [保存 skip] → MaxPool (14×14)
-  ├─ Conv(32→64) → SiLU ──→ [保存 skip] → MaxPool (7×7)
-  └─ Conv(64→64) → SiLU
-                      │
-  ┌─ Upsample → + skip ─→ Conv(64→64) → SiLU
-  ├─ Upsample → + skip ─→ Conv(64→32) → SiLU
-  └─ Conv(32→1)
-                      │
-               Output (1, 28, 28)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>要点：</p>
-<ul>
-<li><strong>下采样</strong>：MaxPool2d 逐步把空间尺寸从 28→14→7，同时通道数从 1 升到 64</li>
-<li><strong>跳跃连接</strong>：下采样途中把中间特征存起来，上采样时拼回去——这样模型不会”忘记”边缘和细节</li>
-<li><strong>上采样</strong>：Upsample 把尺寸恢复回来，配合跳跃连接逐步重建</li>
-<li><strong>激活函数</strong>：全用 SiLU（Swish），比 ReLU 在生成任务上表现更丝滑</li>
-</ul>
-<hr>
-<h2><span id="公式速查">公式速查</span></h2><p>写代码的时候经常要回来翻这几个公式，贴在这里备用：</p>
-<table>
-<thead>
-<tr>
-<th>符号</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>$x_0$</td>
-<td>原始干净图像</td>
-</tr>
-<tr>
-<td>$x_t$</td>
-<td>第 t 步加噪结果</td>
-</tr>
-<tr>
-<td>$x_T$</td>
-<td>纯噪声（标准 DDPM 取 T&#x3D;1000）</td>
-</tr>
-<tr>
-<td>$\beta_t$</td>
-<td>第 t 步噪声方差，从小到大（如 $10^{-4} \to 0.02$）</td>
-</tr>
-<tr>
-<td>$\alpha_t$</td>
-<td>$1 - \beta_t$</td>
-</tr>
-<tr>
-<td>$\bar{\alpha}_t$</td>
-<td>$\prod_{s&#x3D;1}^t \alpha_s$</td>
-</tr>
-<tr>
-<td>$\epsilon$</td>
-<td>标准高斯噪声 $\sim \mathcal{N}(0, I)$</td>
-</tr>
-<tr>
-<td>$\epsilon_\theta$</td>
-<td>神经网络（U-Net），输入 $x_t$ 输出预测的噪声</td>
-</tr>
-</tbody></table>
-<p><strong>前向扩散（一步到位）</strong>：</p>
-<p>$x_t &#x3D; \sqrt{\bar{\alpha}_t} \cdot x_0 + \sqrt{1 - \bar{\alpha}_t} \cdot \epsilon$</p>
-<p><strong>逆向采样</strong>：</p>
-<center>
-    $x_{t-1} = \frac{1}{\sqrt{\alpha_t}} \left(x_t - \frac{1 - \alpha_t}{\sqrt{1 - \bar{\alpha}_t}} \cdot \epsilon_\theta(x_t, t)\right) + \sigma_t z$
-</center>
-
-<p><strong>训练 Loss</strong>：</p>
-<p>$\mathcal{L} &#x3D; \big|\epsilon - \epsilon_\theta(x_t, t)\big|^2$</p>
-<hr>
-<h2><span id="这个项目的简化-vs-标准-ddpm">这个项目的简化 vs 标准 DDPM</span></h2><table>
-<thead>
-<tr>
-<th></th>
-<th>本项目</th>
-<th>标准 DDPM</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>预测目标</strong></td>
-<td>干净图 $x_0$</td>
-<td>噪声 $\epsilon$</td>
-</tr>
-<tr>
-<td><strong>噪声调度</strong></td>
-<td>随机均匀采样 amount</td>
-<td>线性 $\beta_t$ 调度表（1000 步）</td>
-</tr>
-<tr>
-<td><strong>采样步数</strong></td>
-<td>5 步线性插值</td>
-<td>1000 步马尔可夫链</td>
-</tr>
-<tr>
-<td><strong>U-Net</strong></td>
-<td>简易版，无 attention，无时间嵌入</td>
-<td>完整版，含 attention + time embedding</td>
-</tr>
-</tbody></table>
-<hr>
-<h2><span id="ddpm-之后">DDPM 之后</span></h2><p>DDPM 打开了局面，但它有一个明显的痛点——<strong>生成一张图要迭代 1000 步，太慢了</strong>。后续的研究基本都在解决这个问题：</p>
-<ul>
-<li><strong>DDIM（2020）</strong>：去掉马尔可夫约束，采样步数从 1000 砍到 50~100 步，质量几乎不降</li>
-<li><strong>Stable Diffusion &#x2F; Latent Diffusion（2022）</strong>：不在像素空间扩散，改在 VAE 压缩后的潜空间——计算量骤降，让扩散模型能跑在消费级 GPU 上</li>
-<li><strong>DPM-Solver &#x2F; DPM++（2022）</strong>：用 ODE 数值求解器替代随机采样，20~50 步达到高质量</li>
-<li><strong>Consistency Models（2023）</strong>：训练模型一步或两步就能生成，直接对标 GAN 的速度</li>
-</ul>
-<p>现在在 Civitai 上下载的 Stable Diffusion 模型、Midjourney 的 V6、OpenAI 的 DALL·E 3——它们的技术底座都能追溯到 DDPM 这篇 2020 年的论文。</p>
-<hr>
-<h2><span id="参考资料">参考资料</span></h2><ul>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2006.11239">Denoising Diffusion Probabilistic Models (Ho et al., 2020)</a> — 开山之作</li>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2010.02502">Denoising Diffusion Implicit Models (Song et al., 2020)</a> — DDIM 加速采样</li>
-<li><a target="_blank" rel="noopener" href="https://lilianweng.github.io/posts/2021-07-11-diffusion-models/">What are Diffusion Models? (Lilian Weng)</a> — 可能是最好的 Diffusion 博客</li>
-<li><a target="_blank" rel="noopener" href="https://huggingface.co/docs/diffusers/">HuggingFace Diffusers 文档</a> — 工业级实现</li>
-<li><a target="_blank" rel="noopener" href="https://huggingface.co/blog/annotated-diffusion">The Annotated Diffusion Model</a> — HuggingFace 的逐行注释教程</li>
-</ul>
-<hr>
-<p><em>写于 2026 年 6 月，边学边记</em></p>
+<p>Blind-Spot Network就是在上面结论的指引下做出的构建</p>
 <link rel="stylesheet" href="/css/folder.css" type="text/css"><script src="/js/folder.js" type="text/javascript" async></script>
         
       </div>
@@ -476,13 +272,13 @@ x <span class="token operator">=</span> torch<span class="token punctuation">.</
   </a>
   <a class="article-nav-btn right "
     
-      href="/2026/03/30/260330/"
-      title="网络编程与应用实践"
+      href="/2026/06/01/260601/"
+      title="Diffusion：hands-on practice"
      >
 
     <p class="title-text">
       
-        网络编程与应用实践
+        Diffusion：hands-on practice
         
     </p>
     <i class="fa-solid fa-angle-right"></i>

@@ -134,7 +134,7 @@
         
             <a class="category-link" href="/categories/Learning-Record/">
                 Learning Record
-                <div class="category-count">10</div>
+                <div class="category-count">11</div>
             </a>
         </div>
     </div>
@@ -158,9 +158,15 @@
       <h3 class="widget-title">最新文章</h3>
       <ul>
         
-          <a class="recent-link" href="/2026/06/03/260603/" title="Diffusion：从hands-on practise出发，拆解 DDPM 的核心原理" >
+          <a class="recent-link" href="/2026/06/03/260603/" title="J-Invariance 视角下的 Blind-Spot Network 原理阐释" >
             <div class="recent-link-text">
-              Diffusion：从hands-on practise出发，拆解 DDPM 的核心原理
+              J-Invariance 视角下的 Blind-Spot Network 原理阐释
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2026/06/01/260601/" title="Diffusion：hands-on practice" >
+            <div class="recent-link-text">
+              Diffusion：hands-on practice
             </div>
           </a>
         
@@ -179,12 +185,6 @@
           <a class="recent-link" href="/2026/01/30/260130/" title="异步日志系统" >
             <div class="recent-link-text">
               异步日志系统
-            </div>
-          </a>
-        
-          <a class="recent-link" href="/2026/01/25/260125/" title="C++小碗菜" >
-            <div class="recent-link-text">
-              C++小碗菜
             </div>
           </a>
         
@@ -212,7 +212,7 @@
   
     
       <h1 itemprop="name">
-        <a class="p-name article-title" href="/2026/06/03/260603/">Diffusion：从hands-on practise出发，拆解 DDPM 的核心原理</a>
+        <a class="p-name article-title" href="/2026/06/03/260603/">J-Invariance 视角下的 Blind-Spot Network 原理阐释</a>
       </h1>
     
   
@@ -231,7 +231,81 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            4.5k 词 
+            86 词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="truncate-text">
+            
+              首先我们给出复原的问题定义，以及J不变性在优化问题中的推导，下面是在众多论文的思想中集成后整理的推导逻辑：
+
+
+
+
+Blind-Spot Network就是在上面结论的指引下做出的构建
+
+            
+          </div>
+        
+      </div>
+         
+    </div>
+    
+     
+    <a class="right-panel  non-pic  "
+      
+      href="/2026/06/03/260603/" 
+    >
+       
+      <i class="fa-solid fa-angle-right non-pic"></i>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+
+
+   
+
+
+<article id="post-260601" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2026/06/01/260601/">Diffusion：hands-on practice</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2026-06-01T14:22:29.000Z" itemprop="datePublished">2026-06-01</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/Learning-Record/">Learning Record</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            4.3k 词 
           </div>
         </div>
         
@@ -246,19 +320,16 @@
 最近在捣鼓扩散模型，参照HuggingFace的教程，搭了一个 MiniU-Net 跑了一遍训练
 
 
-项目简述项目很小，三个文件，目标就一个：让模型学会把一张加了噪声的手写数字恢复到干净状态
+项目简述项目目标：让模型学会把一张加了噪声的手写数字恢复到干净状态
 Diffusers&#x2F;
 ├── BasicUnet.py            # MiniU-Net，~50K 参数
 ├── diffusion_learning.py   # 训练 + 简化的去噪采样
 └── diffusers_usage.py      # HuggingFace Diffusers 库的配置示例
 
 用 MNIST 的 28×28 灰度数字图，往上面随机加噪声，然后训练一个 U-Net 把噪声去掉。降噪任务就是扩散模型一开始提出时的核心，后续推广到生成与多模态领域。
-
-运行环境：PyTorch + 一张 GPU
-
-
-DDPM：生成模型的核心原理反复加噪，再反复去噪想象你有一张清晰的图片。你往上面洒一点点沙子（加一点噪声），照片稍微糊了一点。再洒一点，更糊了。反复洒 1000 次——最后照片变成了一团完全看不出内容的沙子堆
-如果能让 AI 学会”看到一团沙子，...
+DDPM：生成模型的核心原理DDPM 的核心逻辑是前向反复加噪，逆向逐步去噪
+DDPM（Denoising Diffusion Probabilistic Models）是 Ho 等人在 2020 年提出的，它把上面这个过程变成了两条马尔可夫链：
+前向：x₀ → x₁ → x₂ → ... → x_T    （真图 ...
             
           </div>
         
@@ -269,7 +340,7 @@ DDPM：生成模型的核心原理反复加噪，再反复去噪想象你有一�
      
     <a class="right-panel  non-pic  "
       
-      href="/2026/06/03/260603/" 
+      href="/2026/06/01/260601/" 
     >
        
       <i class="fa-solid fa-angle-right non-pic"></i>
@@ -486,96 +557,6 @@ template&...
 
 
 
-   
-
-
-<article id="post-260130" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2026/01/30/260130/">异步日志系统</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2026-01-30T03:38:44.000Z" itemprop="datePublished">2026-01-30</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-  <a class="meta-cate-link" href="/categories/Projects-Builds/">Projects & Builds</a>
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            5.8k 词 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CS/" rel="tag">CS</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            
-              这是一个轻量级异步日志器（async logger）。目标是用现代 C++（线程、互斥、条件变量）实现一个线程安全、低阻塞的日志写入方案：生产者将格式化后的日志消息推入队列，后台消费者线程异步写入文件并可选地输出到终端。整体实现包含一个简单的占位符格式化（暂用{}，可自行修改）、类型到字符串的通用转换和优雅的后台线程关闭机制。
-
-    
-        hpp
-    
-    
-        #ifndef MY_LOG
-#define MY_LOG
-
-#include &lt;iostream>
-#include &lt;queue>
-#include &lt;mutex>
-#include &lt;string>
-#include &lt;condition_variable>
-#include &lt;thread>
-#include &lt;fstream>
-#include &lt;atomic>
-#include &lt;sstream>
-#include &lt;vector>
-#include &lt;stdexcept>
-
-/**
- * @brief 将单...
-            
-          </div>
-        
-      </div>
-         
-    </div>
-    
-     
-    <a class="right-panel  non-pic  "
-      
-      href="/2026/01/30/260130/" 
-    >
-       
-      <i class="fa-solid fa-angle-right non-pic"></i>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
-
-
 
   <nav id="page-nav">
     <!-- 在第二页时 page.prev_link 不知为何无法返回正确的链接 -->
@@ -583,7 +564,7 @@ template&...
       <i class="fa-solid fa-angle-left"></i>
     </a>
     <div id="num-bar">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a>  
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a>  
     </div>
     <a id="next-btn" class="page-nav-btn " href="/page/2/">
       <i class="fa-solid fa-angle-right"></i>
