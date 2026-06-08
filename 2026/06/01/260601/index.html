@@ -28,7 +28,7 @@
 <meta property="og:description" content="最近在捣鼓扩散模型，参照HuggingFace的教程，搭了一个 MiniU-Net 跑了一遍训练   项目简述项目目标：让模型学会把一张加了噪声的手写数字恢复到干净状态 Diffusers&#x2F; ├── BasicUnet.py            # MiniU-Net，~50K 参数 ├── diffusion_learning.py   # 训练 + 简化的去噪采样 └── dif">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-06-01T14:22:29.000Z">
-<meta property="article:modified_time" content="2026-06-06T15:30:15.801Z">
+<meta property="article:modified_time" content="2026-06-08T04:15:37.920Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary">
@@ -237,7 +237,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            4.3k 词 
+            4.2k 词 
           </div>
         </div>
         
@@ -281,7 +281,7 @@
 <hr>
 <h3><span id="逆向去噪">逆向去噪</span></h3><p>逆向过程才是需要训练的。我们用神经网络 $\epsilon_\theta$ 来猜：<strong>给定 $x_t$ 和时间步 $t$，$x_t$ 里面混了多少噪声</strong></p>
 <p>$$p_\theta(x_{t-1} | x_t) &#x3D; \mathcal{N}\big(x_{t-1};\ \mu_\theta(x_t, t),\ \sigma_t^2 \mathbf{I}\big)$$</p>
-<h4><span id="为什么让模型预测噪声而不是干净图">为什么让模型预测”噪声”而不是”干净图”？</span></h4><ul>
+<h4><span id="为什么让模型预测噪声而不是干净图">为什么让模型预测”噪声”而不是”干净图”</span></h4><ul>
 <li>如果让模型直接预测 $x_0$非常难做</li>
 <li>如果让模型预测噪声 $\epsilon$——噪声的分布是 $\mathcal{N}(0, I)$，零均值、单位方差，相对更规矩</li>
 </ul>
@@ -295,7 +295,7 @@
 <p>本项目做的是简化版——直接预测 $x_0$，方便理解。其中代码上差别没那么大</p>
 </blockquote>
 <hr>
-<h3><span id="训练公式很复杂但最后论文给出的算法简化了">训练：公式很复杂，但最后论文给出的算法简化了</span></h3><p>DDPM 的训练循环，核心就这几步，论文中并没有全部采样时间步：</p>
+<h3><span id="训练">训练</span></h3><p>DDPM 的训练循环，论文中并没有全部采样时间步：</p>
 <ol>
 <li>拿一张干净图 $x_0$</li>
 <li>随机挑一个时间步 $t$</li>
@@ -326,7 +326,7 @@ x <span class="token operator">=</span> torch<span class="token punctuation">.</
     mix_factor <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">/</span> <span class="token punctuation">(</span>n_steps <span class="token operator">-</span> i<span class="token punctuation">)</span>  <span class="token comment"># 这一步迈向预测结果的比例</span>
     x <span class="token operator">=</span> x <span class="token operator">*</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">-</span> mix_factor<span class="token punctuation">)</span> <span class="token operator">+</span> pred <span class="token operator">*</span> mix_factor<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>每步往模型预测的干净图方向挪一点，5 步后就能看到有一些样子的数字了</p>
+<p>每步往模型预测的干净图方向挪一点，5步后就能看到有一些样子的数字了</p>
 <h2><span id="网络结构">网络结构</span></h2><p>扩散模型的经典backbone是U-Net，<br>这里用的MiniU-Net 结构更简明：</p>
 <pre class="line-numbers language-none"><code class="language-none">Input (1, 28, 28)
   │
@@ -347,8 +347,7 @@ x <span class="token operator">=</span> torch<span class="token punctuation">.</
 <li><strong>上采样</strong>：Upsample 把尺寸恢复回来，配合跳跃连接逐步重建</li>
 <li><strong>激活函数</strong>：全用 SiLU（Swish），比 ReLU 在生成任务上表现更丝滑</li>
 </ul>
-<h2><span id="公式速查">公式速查</span></h2><p>写代码的时候经常要回来翻这几个公式，贴在这里备用：</p>
-<table>
+<h2><span id="公式速查">公式速查</span></h2><table>
 <thead>
 <tr>
 <th>符号</th>
@@ -426,7 +425,7 @@ x <span class="token operator">=</span> torch<span class="token punctuation">.</
 <td>完整版，含 attention + time embedding</td>
 </tr>
 </tbody></table>
-<h2><span id="ddpm-之后">DDPM 之后</span></h2><p>DDPM 打开了局面，但它有一个明显的痛点——<strong>生成一张图要迭代 1000 步，太慢了</strong>。后续的研究基本都在解决这个问题：</p>
+<h2><span id="ddpm-之后">DDPM 之后</span></h2><p>DDPM 打开了局面，但它有一个明显的痛点——<strong>生成一张图要迭代很多步，太慢了</strong>。因此后续的研究基本都在解决这个问题：</p>
 <ul>
 <li><strong>DDIM（2020）</strong>：去掉马尔可夫约束，采样步数从 1000 砍到 50~100 步，质量几乎不降</li>
 <li><strong>Stable Diffusion &#x2F; Latent Diffusion（2022）</strong>：不在像素空间扩散，改在 VAE 压缩后的潜空间——计算量骤降，让扩散模型能跑在消费级 GPU 上</li>
@@ -435,9 +434,9 @@ x <span class="token operator">=</span> torch<span class="token punctuation">.</
 </ul>
 <p>现在在 Civitai 上下载的 Stable Diffusion 模型、Midjourney 的 V6、OpenAI 的 DALL·E 3——它们的技术底座都能追溯到 DDPM 这篇 2020 年的论文。</p>
 <h2><span id="参考资料">参考资料</span></h2><ul>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2006.11239">Denoising Diffusion Probabilistic Models (Ho et al., 2020)</a> — 开山之作</li>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2010.02502">Denoising Diffusion Implicit Models (Song et al., 2020)</a> — DDIM 加速采样</li>
-<li><a target="_blank" rel="noopener" href="https://lilianweng.github.io/posts/2021-07-11-diffusion-models/">What are Diffusion Models? (Lilian Weng)</a> — 可能是最好的 Diffusion 博客</li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2006.11239">Denoising Diffusion Probabilistic Models (Ho et al., 2020)</a></li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2010.02502">Denoising Diffusion Implicit Models (Song et al., 2020)</a> </li>
+<li><a target="_blank" rel="noopener" href="https://lilianweng.github.io/posts/2021-07-11-diffusion-models/">What are Diffusion Models? (Lilian Weng)</a> </li>
 <li><a target="_blank" rel="noopener" href="https://huggingface.co/docs/diffusers/">HuggingFace Diffusers 文档</a> — 工业级实现</li>
 <li><a target="_blank" rel="noopener" href="https://huggingface.co/blog/annotated-diffusion">The Annotated Diffusion Model</a> — HuggingFace 的逐行注释教程</li>
 </ul>

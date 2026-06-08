@@ -231,7 +231,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            86 词 
+            899 词 
           </div>
         </div>
         
@@ -248,7 +248,18 @@
 
 
 Blind-Spot Network就是在上面结论的指引下做出的构建
+目前主要有两种实现方法，一个是把普通的卷积换成四个方向的单向卷积，计算完之后聚合；不过用的最多的还是中心遮蔽像素的方法，如下：
+class CentralMaskedConv2d(nn.Conv2d):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
+        self.register_buffer('mask', self.weight.data.clone())
+        _, _, kH, kW = self.weight.size()
+        self.mask.fill_(1)
+        self.mask[:, :, kH // 2, kH // 2] = 0
+
+    def forward(self, x):
+        self....
             
           </div>
         
@@ -305,7 +316,7 @@ Blind-Spot Network就是在上面结论的指引下做出的构建
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            4.3k 词 
+            4.2k 词 
           </div>
         </div>
         

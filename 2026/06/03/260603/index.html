@@ -20,15 +20,15 @@
   <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
-  <meta name="description" content="首先我们给出复原的问题定义，以及J不变性在优化问题中的推导，下面是在众多论文的思想中集成后整理的推导逻辑：     Blind-Spot Network就是在上面结论的指引下做出的构建">
+  <meta name="description" content="首先我们给出复原的问题定义，以及J不变性在优化问题中的推导，下面是在众多论文的思想中集成后整理的推导逻辑：     Blind-Spot Network就是在上面结论的指引下做出的构建 目前主要有两种实现方法，一个是把普通的卷积换成四个方向的单向卷积，计算完之后聚合；不过用的最多的还是中心遮蔽像素的方法，如下： class CentralMaskedConv2d(nn.Conv2d):     d">
 <meta property="og:type" content="article">
 <meta property="og:title" content="J-Invariance 视角下的 Blind-Spot Network 原理阐释">
 <meta property="og:url" content="https://sylvanmiao.github.io/2026/06/03/260603/index.html">
 <meta property="og:site_name" content="Miao&#39;s Blog">
-<meta property="og:description" content="首先我们给出复原的问题定义，以及J不变性在优化问题中的推导，下面是在众多论文的思想中集成后整理的推导逻辑：     Blind-Spot Network就是在上面结论的指引下做出的构建">
+<meta property="og:description" content="首先我们给出复原的问题定义，以及J不变性在优化问题中的推导，下面是在众多论文的思想中集成后整理的推导逻辑：     Blind-Spot Network就是在上面结论的指引下做出的构建 目前主要有两种实现方法，一个是把普通的卷积换成四个方向的单向卷积，计算完之后聚合；不过用的最多的还是中心遮蔽像素的方法，如下： class CentralMaskedConv2d(nn.Conv2d):     d">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-06-03T14:22:29.000Z">
-<meta property="article:modified_time" content="2026-06-06T15:47:23.199Z">
+<meta property="article:modified_time" content="2026-06-08T04:08:40.109Z">
 <meta property="article:author" content="miao">
 <meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary">
@@ -237,7 +237,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            86 词 
+            899 词 
           </div>
         </div>
         
@@ -252,6 +252,23 @@
 
 
 <p>Blind-Spot Network就是在上面结论的指引下做出的构建</p>
+<p>目前主要有两种实现方法，一个是把普通的卷积换成四个方向的单向卷积，计算完之后聚合；不过用的最多的还是中心遮蔽像素的方法，如下：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">CentralMaskedConv2d</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Conv2d<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
+
+        self<span class="token punctuation">.</span>register_buffer<span class="token punctuation">(</span><span class="token string">'mask'</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>weight<span class="token punctuation">.</span>data<span class="token punctuation">.</span>clone<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        _<span class="token punctuation">,</span> _<span class="token punctuation">,</span> kH<span class="token punctuation">,</span> kW <span class="token operator">=</span> self<span class="token punctuation">.</span>weight<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>mask<span class="token punctuation">.</span>fill_<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>mask<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token punctuation">:</span><span class="token punctuation">,</span> kH <span class="token operator">//</span> <span class="token number">2</span><span class="token punctuation">,</span> kH <span class="token operator">//</span> <span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span>
+
+    <span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>weight<span class="token punctuation">.</span>data <span class="token operator">*=</span> self<span class="token punctuation">.</span>mask
+        <span class="token keyword">return</span> <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>forward<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在输入后续更深层次的网络维度前，首先把中心像素的信息屏蔽，后续的内容只要考虑扩大感受野就可以了，不管是扩张卷积还是transformer</p>
+<p>不过这样其实有个潜在的tradeoff：入口处的中心遮蔽只切断了$ x_i $到 $[f(x)]_i$的直接路径，但随着网络加深，邻域像素的特征会通过卷积或attention不断聚合，$ x_i $的信息可能通过迂回路径重新渗入位置$ i $的特征表示中——尤其是在多尺度架构里，下采样把空间信息折叠到通道维度，通道attention可能部分等价于空间交互，进一步加剧这种泄漏</p>
+<p>因此，中心遮蔽的方法本质上是对J-invariance的近似实现，而非严格保证。实践中这种近似被普遍接受，原因是严格实现的代价较高——感受野增长慢、结构复杂，且实验表明近似实现在去噪性能上并不逊色。后续工作如TBSN（AAAI 2025）尝试在Transformer框架下对空间attention引入显式mask、对通道attention做分组处理，以在性能和J-invariance严格性之间取得更好的平衡</p>
 <link rel="stylesheet" href="/css/folder.css" type="text/css"><script src="/js/folder.js" type="text/javascript" async></script>
         
       </div>
