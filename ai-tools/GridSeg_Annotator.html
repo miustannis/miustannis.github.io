@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GridSeg Annotator</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font:13px/1.5 system-ui,sans-serif;background:#0f1724;color:#a0b4cc;padding:16px;display:flex;gap:16px;min-height:100vh}
+/* sidebar */
+#side{width:180px;flex-shrink:0;display:flex;flex-direction:column;gap:8px}
+#side label{font-size:11px;color:#5a7494;text-transform:uppercase;letter-spacing:.5px}
+#side input,#side select{width:100%;padding:7px 10px;background:#161f30;color:#ccd8e8;border:1px solid #263550;border-radius:6px;font-size:13px}
+#side input:focus{outline:none;border-color:#4b80c0}
+#side input[type=number]{text-align:center}
+#side button{width:100%;padding:7px 0;border:1px solid #263550;border-radius:6px;background:#1a2540;color:#b0c4dc;cursor:pointer;font-size:13px;text-align:center}
+#side button:hover{background:#233050;border-color:#4b80c0}
+#side button.accent{background:#2a5080;border-color:#3a68a8;color:#e0ecff}
+#side button.accent:hover{background:#356098}
+/* label block */
+.label-block{border:2px solid #3a68a8;border-radius:8px;padding:10px;background:#111d30;text-align:center}
+.label-block .val{font-size:28px;font-weight:700;color:#e0ecff;line-height:1.2;word-break:break-all}
+.label-block .hint{font-size:11px;color:#5a7494;margin-top:2px}
+.label-block button{margin-top:6px;width:100%;padding:5px 0;border:1px solid #3a3040;border-radius:4px;background:#1f1830;color:#a08090;cursor:pointer;font-size:12px}
+.label-block button:hover{background:#2a2038;color:#c0a0b0}
+/* main */
+#main{flex:1;display:flex;flex-direction:column;gap:8px}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.toolbar button{padding:6px 14px;border:1px solid #263550;border-radius:5px;background:#1a2540;color:#b0c4dc;cursor:pointer;font-size:13px}
+.toolbar button:hover{background:#233050;border-color:#4b80c0}
+.toolbar button.accent{background:#2a5080;border-color:#3a68a8;color:#e0ecff}
+.toolbar button.accent:hover{background:#356098}
+.toolbar span{color:#5a7494;font-size:12px}
+.toolbar kbd{background:#161f30;border:1px solid #263550;border-radius:2px;padding:0 4px;font-size:11px;color:#8aa4c0}
+canvas{max-width:60vmin;max-height:60vmin;border:1px solid #263550;display:block;cursor:crosshair;border-radius:4px}
+#results{display:flex;flex-wrap:wrap;gap:10px}
+.result-item{border:1px solid #263550;border-radius:6px;padding:8px;background:#161f30}
+.result-item img{max-width:340px;max-height:340px;display:block;image-rendering:pixelated;border-radius:3px}
+.result-item .head{font-size:11px;color:#7a98b8;margin-bottom:4px;display:flex;justify-content:space-between}
+.result-item .dl{display:block;margin-top:5px;font-size:12px;color:#5a90cc;text-decoration:none}
+#stats{font-size:11px;color:#5a7494;margin-top:2px}
+</style>
+</head>
+<body>
+
+<div id="side">
+  <label>图片</label>
+  <input type="file" id="imgFile" accept="image/*" style="display:none">
+  <button onclick="document.getElementById('imgFile').click()">选择图片</button>
+  <span style="font-size:11px;color:#4a6078" id="fileName">未选择</span>
+
+  <label style="margin-top:8px">网格</label>
+  <div style="display:flex;gap:4px">
+    <input type="number" id="rows" value="4" min="1" placeholder="行">
+    <input type="number" id="cols" value="4" min="1" placeholder="列">
+  </div>
+  <button class="accent" onclick="buildGrid()">生成网格</button>
+
+  <label style="margin-top:8px">当前标签</label>
+  <div class="label-block">
+    <div class="val" id="labelDisplay">1</div>
+    <div class="hint">点击格子涂色</div>
+    <button onclick="setLabel('')">擦除模式</button>
+  </div>
+
+  <button class="accent" style="margin-top:8px" onclick="exportParts()">生成子图</button>
+  <div id="stats"></div>
+</div>
+
+<div id="main">
+  <div class="toolbar">
+    <span>快捷键：<kbd>0-9</kbd> 切换标签 <kbd>点击/拖动</kbd> 涂色 <kbd>右键</kbd> 擦除 <kbd>Backspace</kbd> 擦除模式</span>
+  </div>
+  <canvas id="canvas"></canvas>
+  <div id="results"></div>
+</div>
+
+<script>
+const canvas=document.getElementById('canvas');
+const ctx=canvas.getContext('2d');
+const off=document.createElement('canvas'), offCtx=off.getContext('2d');
+let img=new Image(), labels=[], annotOrder=[], annotCounter=0, rows=4, cols=4, painting=false, paintVal='1';
+
+const PALETTE=['#ff6b6b','#51cf66','#ffd43b','#4dabf7','#ff922b','#cc5de8','#20c997','#f06595','#94d82d','#ff8787','#63e6be','#748ffc','#fcc419','#da77f2','#38d9a9','#ffa8a8','#69db7c','#a9e34b','#74c0fc','#e599f7'];
+function labelColor(l){let h=0;for(let i=0;i<l.length;i++)h=(h*31+l.charCodeAt(i))|0;return PALETTE[Math.abs(h)%PALETTE.length]}
+
+document.getElementById('imgFile').addEventListener('change',e=>{
+  const f=e.target.files[0];if(!f)return;
+  document.getElementById('fileName').textContent=f.name;
+  const r=new FileReader();
+  r.onload=ev=>{img.onload=()=>buildGrid();img.src=ev.target.result};
+  r.readAsDataURL(f);
+});
+
+// Label input via keyboard only (the display updates visually)
+function setLabel(v){
+  paintVal=v;
+  document.getElementById('labelDisplay').textContent=v||'—';
+  if(v==='') document.getElementById('labelDisplay').style.color='#a08090';
+  else document.getElementById('labelDisplay').style.color='#e0ecff';
+}
+document.addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT')return;
+  if(e.key>='0'&&e.key<='9'){e.preventDefault();setLabel(e.key)}
+  if(e.key==='Backspace'||e.key==='Delete'){e.preventDefault();setLabel('')}
+});
+
+function buildGrid(){
+  if(!img.src)return;
+  rows=+document.getElementById('rows').value||4;
+  cols=+document.getElementById('cols').value||4;
+  canvas.width=img.width;canvas.height=img.height;
+  off.width=img.width;off.height=img.height;offCtx.drawImage(img,0,0);
+  labels=Array.from({length:rows},()=>Array(cols).fill(''));
+  annotOrder=Array.from({length:rows},()=>Array(cols).fill(0));annotCounter=0;
+  draw();
+}
+
+function getCell(x,y){
+  const cw=canvas.width/cols,ch=canvas.height/rows;
+  const c=Math.floor(x/cw),r=Math.floor(y/ch);
+  return c<0||c>=cols||r<0||r>=rows?null:{r,c};
+}
+
+function draw(){
+  ctx.drawImage(off,0,0);
+  const cw=canvas.width/cols,ch=canvas.height/rows;
+  for(let r=0;r<rows;r++)for(let c=0;c<cols;c++)if(labels[r][c]!==''){ctx.fillStyle=labelColor(labels[r][c])+'55';ctx.fillRect(c*cw,r*ch,cw,ch)}
+  ctx.strokeStyle='rgba(180,200,230,.35)';ctx.lineWidth=1;
+  for(let r=0;r<=rows;r++){ctx.beginPath();ctx.moveTo(0,r*ch);ctx.lineTo(canvas.width,r*ch);ctx.stroke()}
+  for(let c=0;c<=cols;c++){ctx.beginPath();ctx.moveTo(c*cw,0);ctx.lineTo(c*cw,canvas.height);ctx.stroke()}
+  const fs=Math.max(12,Math.floor(Math.min(cw,ch)*.38));
+  ctx.font=`bold ${fs}px system-ui,sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';
+  for(let r=0;r<rows;r++)for(let c=0;c<cols;c++)if(labels[r][c]!==''){ctx.fillStyle='rgba(0,0,0,.6)';ctx.fillText(labels[r][c],c*cw+cw/2+1,r*ch+ch/2+1);ctx.fillStyle='#fff';ctx.fillText(labels[r][c],c*cw+cw/2,r*ch+ch/2)}
+  updateStats();
+}
+
+function getCanvasPos(e){const r=canvas.getBoundingClientRect();return{x:(e.clientX-r.left)*(canvas.width/r.width),y:(e.clientY-r.top)*(canvas.height/r.height)}}
+
+canvas.addEventListener('mousedown',e=>{
+  if(e.button===2){e.preventDefault();const p=getCanvasPos(e),c=getCell(p.x,p.y);if(c){labels[c.r][c.c]='';annotOrder[c.r][c.c]=0;draw()}return}
+  if(e.button!==0)return;
+  const p=getCanvasPos(e),c=getCell(p.x,p.y);if(!c)return;
+  painting=true;labels[c.r][c.c]=paintVal;annotOrder[c.r][c.c]=++annotCounter;draw();
+});
+canvas.addEventListener('mousemove',e=>{
+  if(!painting)return;
+  const p=getCanvasPos(e),c=getCell(p.x,p.y);if(!c||labels[c.r][c.c]===paintVal)return;
+  labels[c.r][c.c]=paintVal;annotOrder[c.r][c.c]=++annotCounter;draw();
+});
+canvas.addEventListener('mouseup',()=>{painting=false});
+canvas.addEventListener('mouseleave',()=>{painting=false});
+canvas.addEventListener('contextmenu',e=>e.preventDefault());
+
+function updateStats(){
+  const el=document.getElementById('stats');if(!el)return;
+  const cnt={};for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){const l=labels[r][c];if(l)cnt[l]=(cnt[l]||0)+1}
+  const e=Object.keys(cnt).sort((a,b)=>{const na=+a,nb=+b;return isNaN(na)||isNaN(nb)?a.localeCompare(b):na-nb});
+  el.innerHTML=e.length?e.map(l=>`<span style="display:inline-block;margin:2px 0"><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:${labelColor(l)};margin-right:3px"></span>${l}:${cnt[l]}</span>`).join('<br>'):'';
+}
+
+function exportParts(){
+  document.getElementById('results').innerHTML='';
+  const colSW=[],rowSH=[];
+  for(let c=0;c<cols;c++)colSW[c]=Math.floor((c+1)*img.width/cols)-Math.floor(c*img.width/cols);
+  for(let r=0;r<rows;r++)rowSH[r]=Math.floor((r+1)*img.height/rows)-Math.floor(r*img.height/rows);
+  const cellBounds=[];
+  for(let r=0;r<rows;r++){const sy=Math.floor(r*img.height/rows);for(let c=0;c<cols;c++)cellBounds.push({r,c,sx:Math.floor(c*img.width/cols),sy,sw:colSW[c],sh:rowSH[r]})}
+
+  const groups={};
+  for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){const l=labels[r][c];if(l){if(!groups[l])groups[l]=[];groups[l].push({r,c})}}
+  if(!Object.keys(groups).length){document.getElementById('results').innerHTML='<span style="color:#5a7494">请标注后生成</span>';return}
+
+  Object.keys(groups).sort((a,b)=>{const na=+a,nb=+b;return isNaN(na)||isNaN(nb)?a.localeCompare(b):na-nb}).forEach(label=>{
+    const cells=groups[label],N=cells.length;
+    cells.sort((a,b)=>annotOrder[a.r][a.c]-annotOrder[b.r][b.c]);
+    const S=Math.ceil(Math.sqrt(N)),Rows=Math.ceil(N/S);
+    const bounds=cells.map(c=>cellBounds.find(b=>b.r===c.r&&b.c===c.c)).filter(Boolean);
+    const swS=bounds.map(b=>b.sw).sort((a,b)=>a-b),shS=bounds.map(b=>b.sh).sort((a,b)=>a-b);
+    const uW=swS[Math.floor(swS.length/2)],uH=shS[Math.floor(shS.length/2)];
+
+    const out=document.createElement('canvas');out.width=S*uW;out.height=Rows*uH;
+    const octx=out.getContext('2d');
+    cells.forEach((c,idx)=>{
+      const b=cellBounds.find(cb=>cb.r===c.r&&cb.c===c.c);if(!b)return;
+      octx.drawImage(img,b.sx,b.sy,b.sw,b.sh,(idx%S)*uW,Math.floor(idx/S)*uH,uW,uH);
+    });
+
+    const url=out.toDataURL('image/png'),sq=S+'×'+Rows;
+    const div=document.createElement('div');div.className='result-item';
+    div.innerHTML=`<div class="head"><span>Part ${label}</span><span>${sq}</span></div><img src="${url}"><a class="dl" href="${url}" download="part_${label}.png">下载</a>`;
+    document.getElementById('results').appendChild(div);
+  });
+}
+</script>
+</body>
+</html>
