@@ -44,16 +44,13 @@
     <link href="https://sylvanmiao.github.io/2026/06/01/260601/"/>
     <id>https://sylvanmiao.github.io/2026/06/01/260601/</id>
     <published>2026-06-01T14:22:29.000Z</published>
-    <updated>2026-06-08T04:15:37.920Z</updated>
+    <updated>2026-06-15T14:18:08.416Z</updated>
     
     
       
       
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;最近在捣鼓扩散模型，参照HuggingFace的教程，搭了一个 MiniU-Net 跑了一遍训练&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;hr&gt;
-&lt;h2&gt;&lt;span id=&quot;项目简述&quot;&gt;项目简述&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;项目目标：&lt;strong&gt;</summary>
+    <summary type="html">&lt;h2&gt;&lt;span id=&quot;项目简述&quot;&gt;项目简述&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;项目目标：在MNIST上尝试一下扩散模型&lt;/p&gt;
+&lt;pre class=&quot;line-numbers language-none&quot;&gt;&lt;code class=&quot;language-none&quot;&gt;Diffuser</summary>
       
     
     

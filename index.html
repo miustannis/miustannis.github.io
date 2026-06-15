@@ -320,7 +320,7 @@ class CentralMaskedConv2d(nn.Conv2d):
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            4.2k 词 
+            4.1k 词 
           </div>
         </div>
         
@@ -331,20 +331,21 @@ class CentralMaskedConv2d(nn.Conv2d):
         
           <div class="truncate-text">
             
-              
-最近在捣鼓扩散模型，参照HuggingFace的教程，搭了一个 MiniU-Net 跑了一遍训练
-
-
-项目简述项目目标：让模型学会把一张加了噪声的手写数字恢复到干净状态
+              项目简述项目目标：在MNIST上尝试一下扩散模型
 Diffusers&#x2F;
 ├── BasicUnet.py            # MiniU-Net，~50K 参数
 ├── diffusion_learning.py   # 训练 + 简化的去噪采样
 └── diffusers_usage.py      # HuggingFace Diffusers 库的配置示例
 
-用 MNIST 的 28×28 灰度数字图，往上面随机加噪声，然后训练一个 U-Net 把噪声去掉。降噪任务就是扩散模型一开始提出时的核心，后续推广到生成与多模态领域。
+用 MNIST 的 28×28 灰度数字图，往上面随机加噪声，然后训练一个U-Net的backbone网络把噪声去掉
 DDPM：生成模型的核心原理DDPM 的核心逻辑是前向反复加噪，逆向逐步去噪
 DDPM（Denoising Diffusion Probabilistic Models）是 Ho 等人在 2020 年提出的，它把上面这个过程变成了两条马尔可夫链：
-前向：x₀ → x₁ → x₂ → ... → x_T    （真图 ...
+前向：x₀ → x₁ → x₂ → ... → x_T    （真图 → 纯噪）
+逆向：x_T → x_&#123;T-1&#125; → ... → x₀    （纯噪 → 新图）
+
+前向是固定的（不需要学习），逆向才是模型要学的
+
+前向扩散...
             
           </div>
         
