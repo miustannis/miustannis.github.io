@@ -40,29 +40,6 @@
   </entry>
   
   <entry>
-    <title>Diffusion：hands-on practice</title>
-    <link href="https://sylvanmiao.github.io/2026/06/01/260601/"/>
-    <id>https://sylvanmiao.github.io/2026/06/01/260601/</id>
-    <published>2026-06-01T14:22:29.000Z</published>
-    <updated>2026-06-15T14:18:08.416Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;h2&gt;&lt;span id=&quot;项目简述&quot;&gt;项目简述&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;项目目标：在MNIST上尝试一下扩散模型&lt;/p&gt;
-&lt;pre class=&quot;line-numbers language-none&quot;&gt;&lt;code class=&quot;language-none&quot;&gt;Diffuser</summary>
-      
-    
-    
-    
-    <category term="Learning Record" scheme="https://sylvanmiao.github.io/categories/Learning-Record/"/>
-    
-    
-    <category term="Algorithm" scheme="https://sylvanmiao.github.io/tags/Algorithm/"/>
-    
-  </entry>
-  
-  <entry>
     <title>网络编程与应用实践</title>
     <link href="https://sylvanmiao.github.io/2026/03/30/260330/"/>
     <id>https://sylvanmiao.github.io/2026/03/30/260330/</id>
@@ -88,11 +65,11 @@
   </entry>
   
   <entry>
-    <title>经典Webserver</title>
+    <title>经典网络服务器</title>
     <link href="https://sylvanmiao.github.io/2026/02/16/260216/"/>
     <id>https://sylvanmiao.github.io/2026/02/16/260216/</id>
     <published>2026-02-16T04:22:29.000Z</published>
-    <updated>2026-06-02T00:54:29.118Z</updated>
+    <updated>2026-07-03T10:22:09.828Z</updated>
     
     
       
@@ -132,6 +109,34 @@
     
     
     <category term="CS" scheme="https://sylvanmiao.github.io/tags/CS/"/>
+    
+    <category term="C++" scheme="https://sylvanmiao.github.io/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>C++小碗菜</title>
+    <link href="https://sylvanmiao.github.io/2026/01/25/260125/"/>
+    <id>https://sylvanmiao.github.io/2026/01/25/260125/</id>
+    <published>2026-01-25T03:38:44.000Z</published>
+    <updated>2026-02-18T11:25:36.795Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;一些C++中经常会接触的概念，包括中间件，数据结构封装等模块&lt;/p&gt;
+&lt;p&gt;了解原理，实现基本功能，实际运用的时候还需要根据具体需求进行扩展和优化&lt;/p&gt;
+&lt;p&gt;一般肯定直接用STL封装好的&lt;/p&gt;
+&lt;!-- toc --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#%E5%</summary>
+      
+    
+    
+    
+    <category term="Learning Record" scheme="https://sylvanmiao.github.io/categories/Learning-Record/"/>
+    
     
     <category term="C++" scheme="https://sylvanmiao.github.io/tags/C/"/>
     
